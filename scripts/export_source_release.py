@@ -33,6 +33,18 @@ OPTIONAL_DOCS = (
     "docs/submission.md", "docs/publication-status.md", "docs/design.md",
     "docs/deadline-refresh-20260919.json",
     ".github/workflows/offline-regression.yml", "docs/publication/README.md",
+    "docs/publication/github-ci-initial.json",
+    "docs/publication/browser-review.json", "docs/publication/youtube-publication.json",
+    "docs/publication/hosting-initial/hosting-deployment-initial.json",
+    "docs/publication/hosting-initial/hosting-configuration-initial.json",
+    "docs/publication/hosting-initial/anonymous-https-initial.json",
+    "docs/publication/hosting-final/hosting-deployment-final.json",
+    "docs/publication/hosting-final/anonymous-https-final.json",
+    "docs/publication/hosting-final/hosting-public-summary-final.json",
+    "docs/publication/source-snapshot/README.md",
+    "docs/publication/source-snapshot/SOURCE-README.md",
+    "docs/publication/source-snapshot/SOURCE-PACKAGE.json",
+    "docs/publication/source-snapshot/SOURCE-SHA256SUMS",
     "docs/screenshots/comparison.png",
 )
 PATTERNS = (

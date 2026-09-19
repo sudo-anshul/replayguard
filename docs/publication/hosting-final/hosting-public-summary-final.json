@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "kind": "replayguard-static-release",
+  "verifiedAt": "2026-09-19T05:00:54.102239+00:00",
+  "url": "https://prod.d2w687q4ucx6dk.amplifyapp.com",
+  "status": "passed",
+  "hosting": {
+    "provider": "AWS Amplify Hosting",
+    "platform": "WEB",
+    "region": "us-east-1",
+    "stack": "replayguard-hosting",
+    "branch": "prod",
+    "deploymentJobId": "2",
+    "deploymentStatus": "SUCCEED",
+    "repositoryConnected": false,
+    "autoBuildEnabled": false,
+    "pullRequestPreviewEnabled": false,
+    "basicAuthEnabled": false
+  },
+  "scope": "Static order-and-receipts comparison, preserved experiment evidence and downloadable regression cases. No failure-lab compute or execution endpoint was recreated.",
+  "bundle": {
+    "bytes": 250302,
+    "sha256": "403ffc7915c026e29476e76df020f03b553ebc75a3cf1936d1eca0ad39080352"
+  },
+  "verification": {
+    "method": "Anonymous HTTPS GET using certificate and hostname verification; no cookies, Authorization header, AWS credentials, or signed URLs sent.",
+    "rootHttpStatus": 200,
+    "rootMatchesIndex": true,
+    "assetCount": 24,
+    "allAssetsHttp200": true,
+    "allAssetsMatchStagedSource": true,
+    "freshVisualReviewByThisVerifier": false
+  },
+  "limitations": [
+    "This static hosting result does not run a new AWS failure experiment.",
+    "Public CDN transfer remains usage-based; a planning allowance is not an AWS hard billing cap.",
+    "Billing observations remain estimated and exclude unposted usage."
+  ]
+}

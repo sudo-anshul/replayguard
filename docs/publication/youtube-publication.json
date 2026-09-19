@@ -1,0 +1,23 @@
+{
+  "observedAt": "2026-09-19T08:35:45Z",
+  "url": "https://youtu.be/2ufAV4Ovat4",
+  "title": "ReplayGuard — A retry repair should protect every order | First Commit",
+  "publication": "confirmed",
+  "visibility": "unlisted",
+  "confirmation": "YouTube Studio displayed Video published and listed the video as Unlisted.",
+  "sourceDurationSeconds": 163.064875,
+  "watchPlayerDurationSeconds": 163.101,
+  "watchPlayerDisplay": "2:43",
+  "studioDisplay": "2:44",
+  "playback": "Confirmed signed-in playback advancing from 0 to 11.846478 seconds with readyState 4 and paused false; subsequently paused.",
+  "englishTranscript": "Published transcript observed from the opening AWS narration through the final cue at 2:33: Keep the failure. Test the repair.",
+  "description": {
+    "liveUrl": "https://prod.d2w687q4ucx6dk.amplifyapp.com",
+    "repository": "https://github.com/sudo-anshul/replayguard",
+    "savedLinksVerifiedOnWatchPage": true,
+    "aiAndSyntheticNarrationDisclosed": true,
+    "recordedAwsVersusLocalBenchScopeDisclosed": true
+  },
+  "initialChecks": "No copyright or Community Guidelines issues reported during upload.",
+  "signedOutPlayback": "not independently verified"
+}

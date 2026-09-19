@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "kind": "github-hosted-ci-observation",
+  "recordedAt": "2026-09-19T08:35:24.042462+00:00",
+  "repository": "https://github.com/sudo-anshul/replayguard",
+  "commit": "480a7333954ea3532d9ec3d24cdc4154d212836a",
+  "runUrl": "https://github.com/sudo-anshul/replayguard/actions/runs/35422824471",
+  "runId": 35422824471,
+  "jobId": 105843489732,
+  "githubConclusion": "failure",
+  "executionState": "not-started",
+  "executedStepCount": 0,
+  "startedAt": "2026-09-19T05:01:13Z",
+  "completedAt": "2026-09-19T05:01:15Z",
+  "annotation": "The job was not started because your account is locked due to a billing issue.",
+  "localValidation": {
+    "scope": "Executed in the separate public source tree before first push; these are local checks, not a GitHub CI pass.",
+    "repairAndExportUnitTestsPassed": 33,
+    "sourceExportUnitTestsPassed": 4,
+    "javascriptContractTestsPassed": 95,
+    "independentTransferChecksPassed": 45,
+    "selectedRepairExitCode": 0,
+    "fullComparisonExpectedExitCode": 3,
+    "frozenFixtureIntact": true
+  },
+  "accountBillingChangesPerformed": false
+}

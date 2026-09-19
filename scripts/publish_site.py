@@ -103,7 +103,15 @@ def main():
     print(f"Uploaded {len(bundle):,} bytes. Waiting for hosting deployment {deployment['jobId']}.", flush=True)
     deadline = time.monotonic() + 600
     while time.monotonic() < deadline:
-        job = client.get_job(appId=outputs["AppId"], branchName=outputs["BranchName"], jobId=deployment["jobId"])["job"]
+        try:
+            job = client.get_job(appId=outputs["AppId"], branchName=outputs["BranchName"], jobId=deployment["jobId"])["job"]
+        except Exception as error:
+            stop_pending_job()
+            record["status"] = "poll-failed-stop-requested"
+            record["error"] = {"type": type(error).__name__}
+            save()
+            print("Hosting status check failed; stop requested for the exact pending job.", file=sys.stderr)
+            return 2
         status = job["summary"]["status"]
         record["status"] = status
         record["checkedAt"] = datetime.now(timezone.utc).isoformat()

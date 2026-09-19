@@ -1,0 +1,23 @@
+{
+  "observedAt": "2026-09-19T08:35:45Z",
+  "url": "https://prod.d2w687q4ucx6dk.amplifyapp.com/",
+  "method": "Codex browser UI, rendered screenshots and read-only DOM observations",
+  "status": "passed",
+  "checks": {
+    "desktop1280x720": "Rendered opening, loaded comparison and original JSON dialog inspected; dialog opens and closes.",
+    "mobile390x844": "Rendered opening and final footer inspected. Document width equals viewport width.",
+    "narrow320x740": "Rendered final provenance area inspected. Document width equals 320px; each footer resource link has a 44px target height.",
+    "counterexample": "No key: two receipts for each order. SKU key: ORDER-A one, ORDER-B zero. Business key: one receipt per order.",
+    "passed": "Business order key displays Every expected order has exactly one receipt.",
+    "incomplete": "Receiver observation unavailable displays Incomplete and unknown counts.",
+    "unresolved": "External effect outside the atomic receipt contract displays Unresolved.",
+    "transfer": "Independent worker report loads five cases and one candidate, with a passing selected case.",
+    "provenance": "Original September 18 experiment teardown is distinguished from current AWS Amplify static hosting.",
+    "resources": "Source and demo footer links point to the published GitHub repository and YouTube video."
+  },
+  "limits": [
+    "This review did not run a new AWS failure experiment.",
+    "Anonymous HTTPS asset verification is recorded separately in anonymous-https-final.json.",
+    "Requested viewport overrides initially applied to another open tab. Only the dimensions confirmed above are claimed for this release review."
+  ]
+}

@@ -30,3 +30,7 @@ See [current publication status](../publication-status.md) for confirmed
 repository, hosting, video and submission links.
 
 The [initial hosting verification](hosting-initial/anonymous-https-initial.json) records anonymous HTTPS byte checks for the deployed static assets. [Deployment](hosting-initial/hosting-deployment-initial.json) and [minimal hosting configuration](hosting-initial/hosting-configuration-initial.json) omit signed upload URLs and credentials. These facts do not claim a new failure experiment.
+
+The [final hosting summary](hosting-final/hosting-public-summary-final.json) and [anonymous HTTPS checks](hosting-final/anonymous-https-final.json) verify deployment job 2, including the published Source/Demo footer links. The [initial hosted-CI observation](github-ci-initial.json) records a runner that never started and the separate passing local checks.
+
+The [final browser review](browser-review.json) records the observed desktop/narrow layouts and interaction states. The [YouTube publication record](youtube-publication.json) records the unlisted video, playable signed-in watch page, published English transcript and saved resource links; signed-out playback remains unverified.
