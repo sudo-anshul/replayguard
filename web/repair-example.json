@@ -1,0 +1,4573 @@
+{
+  "schemaVersion": 2,
+  "kind": "replayguard-repair-report",
+  "provenance": "local-execution",
+  "startedAt": "2026-09-19T04:07:19.917Z",
+  "recordedAt": "2026-09-19T04:07:19.950Z",
+  "candidates": [
+    {
+      "id": "no-key",
+      "title": "No fulfillment key",
+      "adapter": "no_key.py",
+      "sourceSha256": {
+        "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "business_key.py": "6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc",
+        "no_key.py": "2c0900396ea37bbd8a7630aa83b53122ab72d586837424a9e321ad608e7180e9",
+        "overbroad_key.py": "1e6af285a264477e4f1303759ec367842c10486f5550695924486905163bde63"
+      },
+      "sourceHashScope": "Captured .py files recursively within adapter directory; excludes dependencies and non-Python files."
+    },
+    {
+      "id": "business-key",
+      "title": "Business order key",
+      "adapter": "business_key.py",
+      "sourceSha256": {
+        "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "business_key.py": "6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc",
+        "no_key.py": "2c0900396ea37bbd8a7630aa83b53122ab72d586837424a9e321ad608e7180e9",
+        "overbroad_key.py": "1e6af285a264477e4f1303759ec367842c10486f5550695924486905163bde63"
+      },
+      "sourceHashScope": "Captured .py files recursively within adapter directory; excludes dependencies and non-Python files."
+    },
+    {
+      "id": "overbroad-key",
+      "title": "Overbroad SKU key",
+      "adapter": "overbroad_key.py",
+      "sourceSha256": {
+        "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "business_key.py": "6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc",
+        "no_key.py": "2c0900396ea37bbd8a7630aa83b53122ab72d586837424a9e321ad608e7180e9",
+        "overbroad_key.py": "1e6af285a264477e4f1303759ec367842c10486f5550695924486905163bde63"
+      },
+      "sourceHashScope": "Captured .py files recursively within adapter directory; excludes dependencies and non-Python files."
+    }
+  ],
+  "cases": [
+    {
+      "id": "clean-orders",
+      "title": "Two clean orders",
+      "description": "Two clean orders. Receiver receipts define the business outcome.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "d2",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "fault": "none",
+          "expect": "complete"
+        }
+      ]
+    },
+    {
+      "id": "crash-retry",
+      "title": "Committed effect, lost response",
+      "description": "Committed effect, lost response. Receiver receipts define the business outcome.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "after-commit",
+          "expect": "crash"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-a",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        }
+      ]
+    },
+    {
+      "id": "different-message",
+      "title": "One order, different messages",
+      "description": "One order, different messages. Receiver receipts define the business outcome.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-b",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        }
+      ]
+    },
+    {
+      "id": "two-orders-same-sku",
+      "title": "Different orders share a SKU",
+      "description": "Different orders share a SKU. Receiver receipts define the business outcome.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "d2",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        }
+      ]
+    },
+    {
+      "id": "interleaved-retries",
+      "title": "Interleaved committed orders and retries",
+      "description": "Interleaved committed orders and retries. Receiver receipts define the business outcome.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "after-commit",
+          "expect": "crash"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-b",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        },
+        {
+          "deliveryId": "d3",
+          "messageId": "m-a",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        },
+        {
+          "deliveryId": "d4",
+          "messageId": "m-c",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        }
+      ]
+    },
+    {
+      "id": "payload-conflict",
+      "title": "Changed payload must be rejected",
+      "description": "Changed payload must be rejected. Receiver receipts define the business outcome.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-b",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 3
+          },
+          "fault": "none",
+          "expect": "conflict"
+        }
+      ]
+    },
+    {
+      "id": "missing-snapshot",
+      "title": "Receiver observation unavailable",
+      "description": "Receiver observation unavailable. Receiver receipts define the business outcome.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "missing",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        }
+      ]
+    },
+    {
+      "id": "unsupported-effect",
+      "title": "External effect has no atomic receipt contract",
+      "description": "External effect has no atomic receipt contract. Receiver receipts define the business outcome.",
+      "effectModel": "unsupported-external",
+      "observation": "independent-ledger",
+      "expectedOrders": [],
+      "deliveries": []
+    }
+  ],
+  "results": [
+    {
+      "candidateId": "no-key",
+      "caseId": "clean-orders",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.923Z",
+          "acceptedDeliveryId": "d1"
+        },
+        {
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.923Z",
+          "acceptedDeliveryId": "d2"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.923Z",
+          "finishedAt": "2026-09-19T04:07:19.923Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "d2",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-002",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-C",
+              "sku": "TOTE",
+              "quantity": 2
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-002"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.923Z",
+          "finishedAt": "2026-09-19T04:07:19.923Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 4,
+          "type": "receipt-accepted",
+          "deliveryId": "d2",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "key": null
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "order:ORDER-C",
+          "status": "pass",
+          "message": "Order ORDER-C: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "no-key",
+      "caseId": "crash-retry",
+      "status": "violation",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.924Z",
+          "acceptedDeliveryId": "d1"
+        },
+        {
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.924Z",
+          "acceptedDeliveryId": "d2"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "after-commit",
+          "expect": "crash",
+          "attempted": true,
+          "outcome": "crashed",
+          "error": {
+            "phase": "delivery",
+            "type": "CrashAfterCommit",
+            "message": "receiver committed fulfillment; response was lost"
+          },
+          "returned": null,
+          "faultInjected": true,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.924Z",
+          "finishedAt": "2026-09-19T04:07:19.924Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-a",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-002",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-002"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.924Z",
+          "finishedAt": "2026-09-19T04:07:19.924Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null
+        },
+        {
+          "index": 2,
+          "type": "fault-injected",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "fault": "after-commit"
+        },
+        {
+          "index": 3,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "crashed"
+        },
+        {
+          "index": 4,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 5,
+          "type": "receipt-accepted",
+          "deliveryId": "d2",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null
+        },
+        {
+          "index": 6,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "violation",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 2."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required crash, observed crashed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "no-key",
+      "caseId": "different-message",
+      "status": "violation",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.926Z",
+          "acceptedDeliveryId": "d1"
+        },
+        {
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.926Z",
+          "acceptedDeliveryId": "d2"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.926Z",
+          "finishedAt": "2026-09-19T04:07:19.926Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-b",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-002",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-002"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.926Z",
+          "finishedAt": "2026-09-19T04:07:19.926Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 4,
+          "type": "receipt-accepted",
+          "deliveryId": "d2",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "violation",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 2."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "no-key",
+      "caseId": "two-orders-same-sku",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.927Z",
+          "acceptedDeliveryId": "d1"
+        },
+        {
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.927Z",
+          "acceptedDeliveryId": "d2"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.927Z",
+          "finishedAt": "2026-09-19T04:07:19.927Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "d2",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-002",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-B",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-002"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.927Z",
+          "finishedAt": "2026-09-19T04:07:19.927Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 4,
+          "type": "receipt-accepted",
+          "deliveryId": "d2",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "order:ORDER-B",
+          "status": "pass",
+          "message": "Order ORDER-B: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "no-key",
+      "caseId": "interleaved-retries",
+      "status": "violation",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.929Z",
+          "acceptedDeliveryId": "d1"
+        },
+        {
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.929Z",
+          "acceptedDeliveryId": "d2"
+        },
+        {
+          "receiptId": "receipt-003",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.929Z",
+          "acceptedDeliveryId": "d3"
+        },
+        {
+          "receiptId": "receipt-004",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.929Z",
+          "acceptedDeliveryId": "d4"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "after-commit",
+          "expect": "crash",
+          "attempted": true,
+          "outcome": "crashed",
+          "error": {
+            "phase": "delivery",
+            "type": "CrashAfterCommit",
+            "message": "receiver committed fulfillment; response was lost"
+          },
+          "returned": null,
+          "faultInjected": true,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.929Z",
+          "finishedAt": "2026-09-19T04:07:19.929Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-b",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-002",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-B",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-002"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.929Z",
+          "finishedAt": "2026-09-19T04:07:19.929Z"
+        },
+        {
+          "deliveryId": "d3",
+          "messageId": "m-a",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-003",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-003"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.929Z",
+          "finishedAt": "2026-09-19T04:07:19.929Z"
+        },
+        {
+          "deliveryId": "d4",
+          "messageId": "m-c",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-004",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-B",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-004"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.929Z",
+          "finishedAt": "2026-09-19T04:07:19.929Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null
+        },
+        {
+          "index": 2,
+          "type": "fault-injected",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "fault": "after-commit"
+        },
+        {
+          "index": 3,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "crashed"
+        },
+        {
+          "index": 4,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 5,
+          "type": "receipt-accepted",
+          "deliveryId": "d2",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null
+        },
+        {
+          "index": 6,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        },
+        {
+          "index": 7,
+          "type": "delivery-start",
+          "deliveryId": "d3"
+        },
+        {
+          "index": 8,
+          "type": "receipt-accepted",
+          "deliveryId": "d3",
+          "receiptId": "receipt-003",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null
+        },
+        {
+          "index": 9,
+          "type": "delivery-end",
+          "deliveryId": "d3",
+          "outcome": "completed"
+        },
+        {
+          "index": 10,
+          "type": "delivery-start",
+          "deliveryId": "d4"
+        },
+        {
+          "index": 11,
+          "type": "receipt-accepted",
+          "deliveryId": "d4",
+          "receiptId": "receipt-004",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null
+        },
+        {
+          "index": 12,
+          "type": "delivery-end",
+          "deliveryId": "d4",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "violation",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 2."
+        },
+        {
+          "id": "order:ORDER-B",
+          "status": "violation",
+          "message": "Order ORDER-B: expected 1 receipt with the full expected payload; observed 2."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required crash, observed crashed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d3",
+          "status": "pass",
+          "message": "Delivery d3: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d4",
+          "status": "pass",
+          "message": "Delivery d4: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "no-key",
+      "caseId": "payload-conflict",
+      "status": "violation",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.930Z",
+          "acceptedDeliveryId": "d1"
+        },
+        {
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 3
+          },
+          "key": null,
+          "createdAt": "2026-09-19T04:07:19.930Z",
+          "acceptedDeliveryId": "d2"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.930Z",
+          "finishedAt": "2026-09-19T04:07:19.930Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-b",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 3
+          },
+          "fault": "none",
+          "expect": "conflict",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-002",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 3
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-002"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.930Z",
+          "finishedAt": "2026-09-19T04:07:19.930Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 4,
+          "type": "receipt-accepted",
+          "deliveryId": "d2",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 3
+          },
+          "key": null
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "violation",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 2."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "violation",
+          "message": "Delivery d2: required conflict, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "no-key",
+      "caseId": "missing-snapshot",
+      "status": "incomplete",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": null,
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.931Z",
+          "finishedAt": "2026-09-19T04:07:19.931Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": null
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "receipt-observation",
+          "status": "incomplete",
+          "message": "Independent receiver snapshot is unavailable."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": false,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "no-key",
+      "caseId": "unsupported-effect",
+      "status": "unresolved",
+      "expectedOrders": [],
+      "receipts": null,
+      "deliveries": [],
+      "events": [],
+      "assertions": [
+        {
+          "id": "supported-effect",
+          "status": "unresolved",
+          "message": "The external effect does not expose the atomic receipt contract."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": false,
+        "built": false,
+        "sourceUnchanged": true,
+        "snapshotComplete": false,
+        "completedSchedule": false,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "business-key",
+      "caseId": "clean-orders",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A",
+          "createdAt": "2026-09-19T04:07:19.932Z",
+          "acceptedDeliveryId": "d1"
+        },
+        {
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "key": "ORDER-C",
+          "createdAt": "2026-09-19T04:07:19.932Z",
+          "acceptedDeliveryId": "d2"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.932Z",
+          "finishedAt": "2026-09-19T04:07:19.932Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "d2",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-002",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-C",
+              "sku": "TOTE",
+              "quantity": 2
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-002"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.932Z",
+          "finishedAt": "2026-09-19T04:07:19.933Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 4,
+          "type": "receipt-accepted",
+          "deliveryId": "d2",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "key": "ORDER-C"
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "order:ORDER-C",
+          "status": "pass",
+          "message": "Order ORDER-C: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "business-key",
+      "caseId": "crash-retry",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A",
+          "createdAt": "2026-09-19T04:07:19.934Z",
+          "acceptedDeliveryId": "d1"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "after-commit",
+          "expect": "crash",
+          "attempted": true,
+          "outcome": "crashed",
+          "error": {
+            "phase": "delivery",
+            "type": "CrashAfterCommit",
+            "message": "receiver committed fulfillment; response was lost"
+          },
+          "returned": null,
+          "faultInjected": true,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.934Z",
+          "finishedAt": "2026-09-19T04:07:19.934Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-a",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": false,
+            "reused": true,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.934Z",
+          "finishedAt": "2026-09-19T04:07:19.934Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 2,
+          "type": "fault-injected",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "fault": "after-commit"
+        },
+        {
+          "index": 3,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "crashed"
+        },
+        {
+          "index": 4,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 5,
+          "type": "receipt-reused",
+          "deliveryId": "d2",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 6,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required crash, observed crashed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "business-key",
+      "caseId": "different-message",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A",
+          "createdAt": "2026-09-19T04:07:19.935Z",
+          "acceptedDeliveryId": "d1"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.935Z",
+          "finishedAt": "2026-09-19T04:07:19.935Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-b",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": false,
+            "reused": true,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.935Z",
+          "finishedAt": "2026-09-19T04:07:19.935Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 4,
+          "type": "receipt-reused",
+          "deliveryId": "d2",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "business-key",
+      "caseId": "two-orders-same-sku",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A",
+          "createdAt": "2026-09-19T04:07:19.936Z",
+          "acceptedDeliveryId": "d1"
+        },
+        {
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-B",
+          "createdAt": "2026-09-19T04:07:19.936Z",
+          "acceptedDeliveryId": "d2"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.936Z",
+          "finishedAt": "2026-09-19T04:07:19.936Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "d2",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-002",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-B",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-002"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.936Z",
+          "finishedAt": "2026-09-19T04:07:19.936Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 4,
+          "type": "receipt-accepted",
+          "deliveryId": "d2",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-B"
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "order:ORDER-B",
+          "status": "pass",
+          "message": "Order ORDER-B: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "business-key",
+      "caseId": "interleaved-retries",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A",
+          "createdAt": "2026-09-19T04:07:19.938Z",
+          "acceptedDeliveryId": "d1"
+        },
+        {
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-B",
+          "createdAt": "2026-09-19T04:07:19.938Z",
+          "acceptedDeliveryId": "d2"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "after-commit",
+          "expect": "crash",
+          "attempted": true,
+          "outcome": "crashed",
+          "error": {
+            "phase": "delivery",
+            "type": "CrashAfterCommit",
+            "message": "receiver committed fulfillment; response was lost"
+          },
+          "returned": null,
+          "faultInjected": true,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.938Z",
+          "finishedAt": "2026-09-19T04:07:19.938Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-b",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-002",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-B",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-002"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.938Z",
+          "finishedAt": "2026-09-19T04:07:19.938Z"
+        },
+        {
+          "deliveryId": "d3",
+          "messageId": "m-a",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": false,
+            "reused": true,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.938Z",
+          "finishedAt": "2026-09-19T04:07:19.938Z"
+        },
+        {
+          "deliveryId": "d4",
+          "messageId": "m-c",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-002",
+            "accepted": false,
+            "reused": true,
+            "order": {
+              "orderId": "ORDER-B",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-002"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.938Z",
+          "finishedAt": "2026-09-19T04:07:19.938Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 2,
+          "type": "fault-injected",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "fault": "after-commit"
+        },
+        {
+          "index": 3,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "crashed"
+        },
+        {
+          "index": 4,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 5,
+          "type": "receipt-accepted",
+          "deliveryId": "d2",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-B"
+        },
+        {
+          "index": 6,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        },
+        {
+          "index": 7,
+          "type": "delivery-start",
+          "deliveryId": "d3"
+        },
+        {
+          "index": 8,
+          "type": "receipt-reused",
+          "deliveryId": "d3",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 9,
+          "type": "delivery-end",
+          "deliveryId": "d3",
+          "outcome": "completed"
+        },
+        {
+          "index": 10,
+          "type": "delivery-start",
+          "deliveryId": "d4"
+        },
+        {
+          "index": 11,
+          "type": "receipt-reused",
+          "deliveryId": "d4",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-B"
+        },
+        {
+          "index": 12,
+          "type": "delivery-end",
+          "deliveryId": "d4",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "order:ORDER-B",
+          "status": "pass",
+          "message": "Order ORDER-B: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required crash, observed crashed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d3",
+          "status": "pass",
+          "message": "Delivery d3: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d4",
+          "status": "pass",
+          "message": "Delivery d4: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "business-key",
+      "caseId": "payload-conflict",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A",
+          "createdAt": "2026-09-19T04:07:19.939Z",
+          "acceptedDeliveryId": "d1"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.939Z",
+          "finishedAt": "2026-09-19T04:07:19.939Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-b",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 3
+          },
+          "fault": "none",
+          "expect": "conflict",
+          "attempted": true,
+          "outcome": "conflict",
+          "error": {
+            "phase": "delivery",
+            "type": "Conflict",
+            "message": "idempotency key already belongs to a different order payload"
+          },
+          "returned": null,
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [],
+          "conflictObserved": true,
+          "startedAt": "2026-09-19T04:07:19.939Z",
+          "finishedAt": "2026-09-19T04:07:19.939Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 4,
+          "type": "payload-conflict",
+          "deliveryId": "d2",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 3
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "conflict"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required conflict, observed conflict."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "business-key",
+      "caseId": "missing-snapshot",
+      "status": "incomplete",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": null,
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.940Z",
+          "finishedAt": "2026-09-19T04:07:19.940Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "receipt-observation",
+          "status": "incomplete",
+          "message": "Independent receiver snapshot is unavailable."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": false,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "business-key",
+      "caseId": "unsupported-effect",
+      "status": "unresolved",
+      "expectedOrders": [],
+      "receipts": null,
+      "deliveries": [],
+      "events": [],
+      "assertions": [
+        {
+          "id": "supported-effect",
+          "status": "unresolved",
+          "message": "The external effect does not expose the atomic receipt contract."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": false,
+        "built": false,
+        "sourceUnchanged": true,
+        "snapshotComplete": false,
+        "completedSchedule": false,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "overbroad-key",
+      "caseId": "clean-orders",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES",
+          "createdAt": "2026-09-19T04:07:19.942Z",
+          "acceptedDeliveryId": "d1"
+        },
+        {
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "key": "TOTE",
+          "createdAt": "2026-09-19T04:07:19.942Z",
+          "acceptedDeliveryId": "d2"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.942Z",
+          "finishedAt": "2026-09-19T04:07:19.942Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "d2",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-002",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-C",
+              "sku": "TOTE",
+              "quantity": 2
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-002"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.942Z",
+          "finishedAt": "2026-09-19T04:07:19.942Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 4,
+          "type": "receipt-accepted",
+          "deliveryId": "d2",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "key": "TOTE"
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "order:ORDER-C",
+          "status": "pass",
+          "message": "Order ORDER-C: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "overbroad-key",
+      "caseId": "crash-retry",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES",
+          "createdAt": "2026-09-19T04:07:19.943Z",
+          "acceptedDeliveryId": "d1"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "after-commit",
+          "expect": "crash",
+          "attempted": true,
+          "outcome": "crashed",
+          "error": {
+            "phase": "delivery",
+            "type": "CrashAfterCommit",
+            "message": "receiver committed fulfillment; response was lost"
+          },
+          "returned": null,
+          "faultInjected": true,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.943Z",
+          "finishedAt": "2026-09-19T04:07:19.943Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-a",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": false,
+            "reused": true,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.943Z",
+          "finishedAt": "2026-09-19T04:07:19.943Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 2,
+          "type": "fault-injected",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "fault": "after-commit"
+        },
+        {
+          "index": 3,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "crashed"
+        },
+        {
+          "index": 4,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 5,
+          "type": "receipt-reused",
+          "deliveryId": "d2",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 6,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required crash, observed crashed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "overbroad-key",
+      "caseId": "different-message",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES",
+          "createdAt": "2026-09-19T04:07:19.944Z",
+          "acceptedDeliveryId": "d1"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.944Z",
+          "finishedAt": "2026-09-19T04:07:19.944Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-b",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": false,
+            "reused": true,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.944Z",
+          "finishedAt": "2026-09-19T04:07:19.944Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 4,
+          "type": "receipt-reused",
+          "deliveryId": "d2",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "overbroad-key",
+      "caseId": "two-orders-same-sku",
+      "status": "violation",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES",
+          "createdAt": "2026-09-19T04:07:19.945Z",
+          "acceptedDeliveryId": "d1"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.945Z",
+          "finishedAt": "2026-09-19T04:07:19.945Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "d2",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "conflict",
+          "error": {
+            "phase": "delivery",
+            "type": "Conflict",
+            "message": "idempotency key already belongs to a different order payload"
+          },
+          "returned": null,
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [],
+          "conflictObserved": true,
+          "startedAt": "2026-09-19T04:07:19.945Z",
+          "finishedAt": "2026-09-19T04:07:19.945Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 4,
+          "type": "payload-conflict",
+          "deliveryId": "d2",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "conflict"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "order:ORDER-B",
+          "status": "violation",
+          "message": "Order ORDER-B: expected 1 receipt with the full expected payload; observed 0."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "violation",
+          "message": "Delivery d2: required complete, observed conflict."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "overbroad-key",
+      "caseId": "interleaved-retries",
+      "status": "violation",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES",
+          "createdAt": "2026-09-19T04:07:19.947Z",
+          "acceptedDeliveryId": "d1"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "after-commit",
+          "expect": "crash",
+          "attempted": true,
+          "outcome": "crashed",
+          "error": {
+            "phase": "delivery",
+            "type": "CrashAfterCommit",
+            "message": "receiver committed fulfillment; response was lost"
+          },
+          "returned": null,
+          "faultInjected": true,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.947Z",
+          "finishedAt": "2026-09-19T04:07:19.947Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-b",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "conflict",
+          "error": {
+            "phase": "delivery",
+            "type": "Conflict",
+            "message": "idempotency key already belongs to a different order payload"
+          },
+          "returned": null,
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [],
+          "conflictObserved": true,
+          "startedAt": "2026-09-19T04:07:19.947Z",
+          "finishedAt": "2026-09-19T04:07:19.947Z"
+        },
+        {
+          "deliveryId": "d3",
+          "messageId": "m-a",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": false,
+            "reused": true,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.947Z",
+          "finishedAt": "2026-09-19T04:07:19.947Z"
+        },
+        {
+          "deliveryId": "d4",
+          "messageId": "m-c",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "conflict",
+          "error": {
+            "phase": "delivery",
+            "type": "Conflict",
+            "message": "idempotency key already belongs to a different order payload"
+          },
+          "returned": null,
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [],
+          "conflictObserved": true,
+          "startedAt": "2026-09-19T04:07:19.947Z",
+          "finishedAt": "2026-09-19T04:07:19.947Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 2,
+          "type": "fault-injected",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "fault": "after-commit"
+        },
+        {
+          "index": 3,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "crashed"
+        },
+        {
+          "index": 4,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 5,
+          "type": "payload-conflict",
+          "deliveryId": "d2",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 6,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "conflict"
+        },
+        {
+          "index": 7,
+          "type": "delivery-start",
+          "deliveryId": "d3"
+        },
+        {
+          "index": 8,
+          "type": "receipt-reused",
+          "deliveryId": "d3",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 9,
+          "type": "delivery-end",
+          "deliveryId": "d3",
+          "outcome": "completed"
+        },
+        {
+          "index": 10,
+          "type": "delivery-start",
+          "deliveryId": "d4"
+        },
+        {
+          "index": 11,
+          "type": "payload-conflict",
+          "deliveryId": "d4",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 12,
+          "type": "delivery-end",
+          "deliveryId": "d4",
+          "outcome": "conflict"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "order:ORDER-B",
+          "status": "violation",
+          "message": "Order ORDER-B: expected 1 receipt with the full expected payload; observed 0."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required crash, observed crashed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "violation",
+          "message": "Delivery d2: required complete, observed conflict."
+        },
+        {
+          "id": "delivery:d3",
+          "status": "pass",
+          "message": "Delivery d3: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d4",
+          "status": "violation",
+          "message": "Delivery d4: required complete, observed conflict."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "overbroad-key",
+      "caseId": "payload-conflict",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES",
+          "createdAt": "2026-09-19T04:07:19.948Z",
+          "acceptedDeliveryId": "d1"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.948Z",
+          "finishedAt": "2026-09-19T04:07:19.948Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-b",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 3
+          },
+          "fault": "none",
+          "expect": "conflict",
+          "attempted": true,
+          "outcome": "conflict",
+          "error": {
+            "phase": "delivery",
+            "type": "Conflict",
+            "message": "idempotency key already belongs to a different order payload"
+          },
+          "returned": null,
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [],
+          "conflictObserved": true,
+          "startedAt": "2026-09-19T04:07:19.948Z",
+          "finishedAt": "2026-09-19T04:07:19.948Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 4,
+          "type": "payload-conflict",
+          "deliveryId": "d2",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 3
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "conflict"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required conflict, observed conflict."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "overbroad-key",
+      "caseId": "missing-snapshot",
+      "status": "incomplete",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": null,
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": true,
+            "reused": false,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:19.949Z",
+          "finishedAt": "2026-09-19T04:07:19.949Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "FIELD-NOTES"
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "receipt-observation",
+          "status": "incomplete",
+          "message": "Independent receiver snapshot is unavailable."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": false,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "overbroad-key",
+      "caseId": "unsupported-effect",
+      "status": "unresolved",
+      "expectedOrders": [],
+      "receipts": null,
+      "deliveries": [],
+      "events": [],
+      "assertions": [
+        {
+          "id": "supported-effect",
+          "status": "unresolved",
+          "message": "The external effect does not expose the atomic receipt contract."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": false,
+        "built": false,
+        "sourceUnchanged": true,
+        "snapshotComplete": false,
+        "completedSchedule": false,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    }
+  ],
+  "summary": {
+    "status": "unresolved",
+    "exitCode": 3,
+    "counts": {
+      "pass": 12,
+      "violation": 6,
+      "incomplete": 3,
+      "unresolved": 3
+    }
+  },
+  "errors": [],
+  "boundaries": [
+    "Trusted local Python adapters only; defense-in-depth guard is not a hostile-code sandbox.",
+    "Receiver-owned simulated effects and bounded explicit schedules; no real AWS execution or cloud equivalence claimed.",
+    "Independent local receipts establish effects; handler returns do not.",
+    "Source hashes cover captured .py files in each adapter folder only; not signatures or dependency attestation."
+  ],
+  "guard": {
+    "installedBeforeHandlerImport": true,
+    "mechanism": "CPython audit hook plus SDK/process/FFI import blocker",
+    "auditEventsSeen": 2657,
+    "blockedOperationCount": 4,
+    "handlerBlockedOperationCount": 0,
+    "blockedOperations": [
+      {
+        "event": "socket.__new__",
+        "detail": "",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "boto3",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "subprocess",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "ctypes",
+        "duringSelfTest": true
+      }
+    ],
+    "selfTests": [
+      {
+        "probe": "socket-construction",
+        "blocked": true
+      },
+      {
+        "probe": "aws-sdk-import",
+        "blocked": true
+      },
+      {
+        "probe": "child-process-import",
+        "blocked": true
+      },
+      {
+        "probe": "native-ffi-import",
+        "blocked": true
+      }
+    ],
+    "passed": true,
+    "boundary": "Blocks normal Python socket, SDK, subprocess and ctypes paths; not a hostile-native-code sandbox.",
+    "diagnosticsTruncated": false
+  }
+}

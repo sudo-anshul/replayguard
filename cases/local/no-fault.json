@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "no-fault",
+  "title": "No-fault completion control",
+  "order": {
+    "orderId": "LOCAL-ORDER-1042",
+    "sku": "FIELD-NOTES-3PACK",
+    "quantity": 1
+  },
+  "fault": "none",
+  "deliveries": [
+    {
+      "messageKey": "message-a",
+      "receiveCount": 1
+    }
+  ],
+  "observation": "independent-ledger",
+  "effectModel": "receiver-owned-receipt",
+  "expectedStatus": {
+    "vulnerable": "pass",
+    "repaired": "pass"
+  },
+  "maxDeliveries": 1
+}

@@ -1,0 +1,13 @@
+{
+  "src/worker.py": "de7873c61f4d140e7229d7ae4eb1c03aaf0f2ec34b22d00291c25c7a3cea5b4f",
+  "src/provider.py": "0c053a5cbf7f57da3aeb0fef2c2ddf6312682a70cdeccd9618bcbdccaeb91a8a",
+  "scripts/verify_case.py": "e04ff80fd9b4747933e6bfb3aafb6070b826a30dac40117bbaeab2e69780db89",
+  "scripts/run_case.py": "f840a9bea2fd87c8dff826c674d1d29a9afc0b148c6a8ce99cfca1c88bb70ac9",
+  "scripts/export_case.py": "fd46df16f6316d7986ef3322a98cc32f321916ecca5436eb21f9820330620760",
+  "evidence/latest.json": "e32d3a8c68b7228b3014eb644f982824eab4a5c7147885be0dc51988a938adf3",
+  "evidence/initial-cold-start.json": "01db88b399b1442ae26739cab91ecfe05b685d314c20e4fd01e195420be09a58",
+  "evidence/teardown.json": "274d0c2994609871866cc67cd111e269397b67130d40404527562a4143266647",
+  "web/regression-case.zip": "fbc7ba0a3fe4efa6bf26dbc76a0380ff1c96abcd23c4524662e4e618fd5290ef",
+  "../replayguard-regression-case.zip": "fbc7ba0a3fe4efa6bf26dbc76a0380ff1c96abcd23c4524662e4e618fd5290ef",
+  "../replayguard-initial-unresolved.zip": "6b5a24be0375be44379dc7b5fce18518e2fd7ab7c77b08592fb69864f8e16868"
+}

@@ -1,0 +1,63 @@
+REPLAYGUARD — RECORDED LOCAL CLI EXECUTION
+Recorded: 2026-09-19T04:08:15.877859+00:00
+Actual subprocess output; summaries below are read from the generated JSON.
+Local simulated receipts. No AWS execution or shipment.
+
+Copied the packaged business-key reference to disposable candidate/adapter.py.
+
+[2026-09-19T04:08:15.881808+00:00]
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case crash-retry --output 01-correct.json
+pass: 1 results; 01-correct.json
+Process exit: 0
+Report status: pass
+  crash-retry: pass
+    ORDER-A: 1 receipt(s), expected 1
+Captured source SHA-256:
+  adapter.py: 6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc
+
+Applied deliberate mutation to disposable candidate: key=order["orderId"] -> key=None
+
+[2026-09-19T04:08:15.947912+00:00]
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case crash-retry --output 02-broken-key.json
+violation: 1 results; 02-broken-key.json
+Process exit: 1
+Report status: violation
+  crash-retry: violation
+    ORDER-A: 2 receipt(s), expected 1
+Captured source SHA-256:
+  adapter.py: 06725bd7e37ac04613cd102e68a059288aa27ec4db25ac4f9c077b7f03b31b07
+
+Restored the exact packaged business-key bytes to the disposable candidate.
+
+[2026-09-19T04:08:16.007478+00:00]
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case crash-retry --output 03-restored.json
+pass: 1 results; 03-restored.json
+Process exit: 0
+Report status: pass
+  crash-retry: pass
+    ORDER-A: 1 receipt(s), expected 1
+Captured source SHA-256:
+  adapter.py: 6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc
+
+[2026-09-19T04:08:16.066013+00:00]
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -I -S scripts/test_repair.py --adapter examples/dispatchdesk/adapter.py --case-file examples/dispatchdesk/cases.json --output 04-dispatchdesk.json
+pass: 5 results; 04-dispatchdesk.json
+Process exit: 0
+Report status: pass
+  dispatchdesk-response-loss: pass
+    cedar-paper/DD-7319: 1 receipt(s), expected 1
+  dispatchdesk-interleaved-orders: pass
+    cedar-paper/DD-7319: 1 receipt(s), expected 1
+    cedar-paper/DD-8452: 1 receipt(s), expected 1
+  dispatchdesk-distinct-references: pass
+    cedar-paper/DD-7319: 1 receipt(s), expected 1
+    orchard-books/DD-7319: 1 receipt(s), expected 1
+  dispatchdesk-quantity-conflict: pass
+    cedar-paper/DD-9903: 1 receipt(s), expected 1
+  dispatchdesk-shipping-conflict-after-crash: pass
+    orchard-books/DD-1407: 1 receipt(s), expected 1
+Captured source SHA-256:
+  __init__.py: ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280
+  adapter.py: c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8
+  worker.py: 1d42d2145e9134df90381a6e0c1f77322e460f0dbcdb78a1efc531f85a874854
+

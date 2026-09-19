@@ -1,0 +1,610 @@
+{
+  "kind": "replayguard-native-viewer-parity",
+  "recordedAt": "2026-09-19T04:07:09.603628+00:00",
+  "claim": "Repeatable explicit integration fixtures; not a new held-out transfer claim.",
+  "passed": true,
+  "passedChecks": 70,
+  "totalChecks": 70,
+  "reports": [
+    {
+      "scenario": "wrong-payload",
+      "caseId": "clean-orders",
+      "candidateId": "external-1",
+      "expectedStatus": "violation",
+      "report": "wrong-payload/report.json",
+      "reportSha256": "ccb2632db5d210880d5f032106c60215e63d02a563f51408095050df1e882e5a"
+    },
+    {
+      "scenario": "repeated-reuse",
+      "caseId": "clean-orders",
+      "candidateId": "external-1",
+      "expectedStatus": "pass",
+      "report": "repeated-reuse/report.json",
+      "reportSha256": "c95bfee9f8bd1b0f66e5ae83cf7604ee09b81ba403b0fa9a86152c8874ca9c69"
+    },
+    {
+      "scenario": "manual-crash-on-conflict",
+      "caseId": "payload-conflict",
+      "candidateId": "external-1",
+      "expectedStatus": "incomplete",
+      "report": "manual-crash-on-conflict/report.json",
+      "reportSha256": "d1101b73ac4a308840ff9e9cb2bb7d5b2d2026482ccceea5ce7dfe633b3bb0b9"
+    },
+    {
+      "scenario": "call-exhaustion",
+      "caseId": "clean-orders",
+      "candidateId": "external-1",
+      "expectedStatus": "violation",
+      "report": "call-exhaustion/report.json",
+      "reportSha256": "a9420c8105b703e9fc8166cb1baf79cdf9c0bdb7f7e66fdc786d1aac888d41b4"
+    },
+    {
+      "scenario": "timeout",
+      "caseId": "clean-orders",
+      "candidateId": "external-1",
+      "expectedStatus": "incomplete",
+      "report": "timeout/report.json",
+      "reportSha256": "524a0542090ecdb5b7726fae4409ae373b7ea3bb17ff17ad5f117a684a0b69a9"
+    },
+    {
+      "scenario": "caught-protocol-error",
+      "caseId": "clean-orders",
+      "candidateId": "external-1",
+      "expectedStatus": "incomplete",
+      "report": "caught-protocol-error/report.json",
+      "reportSha256": "89660b7fbfc338cbf5f21a5e66a238df3175afc3644d2b4e03321a85979a2ccd"
+    },
+    {
+      "scenario": "wide-values-empty-description",
+      "caseId": "clean-orders",
+      "candidateId": "external-1",
+      "expectedStatus": "pass",
+      "report": "wide-values-empty-description/report.json",
+      "reportSha256": "d83185cf5e2f370030412a357490e4d4c5b59271def00937c3565c1fa6d5c6c0"
+    },
+    {
+      "scenario": "numeric-equivalence",
+      "caseId": "clean-orders",
+      "candidateId": "external-1",
+      "expectedStatus": "pass",
+      "report": "numeric-equivalence/report.json",
+      "reportSha256": "8f0aed42aa3299852507dd901b7fab024190327f1b43a902b5f49dd5bf69e7ab"
+    },
+    {
+      "scenario": "numeric-boolean-distinction",
+      "caseId": "clean-orders",
+      "candidateId": "external-1",
+      "expectedStatus": "violation",
+      "report": "numeric-boolean-distinction/report.json",
+      "reportSha256": "47bca0516e26ae0b0d69bf5958e4091792d63b862202f8008f669a9d530e0aea"
+    }
+  ],
+  "checks": [
+    {
+      "name": "wrong-payload:exit",
+      "passed": true,
+      "detail": {
+        "expected": 1,
+        "observed": 1
+      }
+    },
+    {
+      "name": "wrong-payload:native-status",
+      "passed": true,
+      "detail": {
+        "expected": "violation",
+        "observed": "violation"
+      }
+    },
+    {
+      "name": "wrong-payload:receipt-count",
+      "passed": true,
+      "detail": {
+        "expected": 2,
+        "observed": 2
+      }
+    },
+    {
+      "name": "wrong-payload:guard",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "wrong-payload:source",
+      "passed": true,
+      "detail": {
+        "adapter.py": "552c890eba6fe484eccf271cb0e28e15c62c710aac0b548f30e8d39348cdbd33"
+      }
+    },
+    {
+      "name": "wrong-payload:actual-wrong-payload",
+      "passed": true,
+      "detail": "Receiver actually accepted changed quantities."
+    },
+    {
+      "name": "wrong-payload:viewer-parity",
+      "passed": true,
+      "detail": {
+        "statuses": [
+          "violation"
+        ],
+        "stderr": ""
+      }
+    },
+    {
+      "name": "wrong-payload:untouched-report",
+      "passed": true,
+      "detail": "The test never changes native status fields or report bytes."
+    },
+    {
+      "name": "repeated-reuse:exit",
+      "passed": true,
+      "detail": {
+        "expected": 0,
+        "observed": 0
+      }
+    },
+    {
+      "name": "repeated-reuse:native-status",
+      "passed": true,
+      "detail": {
+        "expected": "pass",
+        "observed": "pass"
+      }
+    },
+    {
+      "name": "repeated-reuse:receipt-count",
+      "passed": true,
+      "detail": {
+        "expected": 2,
+        "observed": 2
+      }
+    },
+    {
+      "name": "repeated-reuse:guard",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "repeated-reuse:source",
+      "passed": true,
+      "detail": {
+        "adapter.py": "4a4d193cb40d8daba897c93ac5f29e728a2851f6478e24bcd7e59188fe97b7be"
+      }
+    },
+    {
+      "name": "repeated-reuse:actual-repeated-references",
+      "passed": true,
+      "detail": "Each delivery reused the same receipt twice."
+    },
+    {
+      "name": "repeated-reuse:viewer-parity",
+      "passed": true,
+      "detail": {
+        "statuses": [
+          "pass"
+        ],
+        "stderr": ""
+      }
+    },
+    {
+      "name": "repeated-reuse:untouched-report",
+      "passed": true,
+      "detail": "The test never changes native status fields or report bytes."
+    },
+    {
+      "name": "manual-crash-on-conflict:exit",
+      "passed": true,
+      "detail": {
+        "expected": 2,
+        "observed": 2
+      }
+    },
+    {
+      "name": "manual-crash-on-conflict:native-status",
+      "passed": true,
+      "detail": {
+        "expected": "incomplete",
+        "observed": "incomplete"
+      }
+    },
+    {
+      "name": "manual-crash-on-conflict:receipt-count",
+      "passed": true,
+      "detail": {
+        "expected": 1,
+        "observed": 1
+      }
+    },
+    {
+      "name": "manual-crash-on-conflict:guard",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "manual-crash-on-conflict:source",
+      "passed": true,
+      "detail": {
+        "adapter.py": "5a98ca213c66ca14c3398659a447508c8fb12af8ced773cffc2438d5cefd9b2d"
+      }
+    },
+    {
+      "name": "manual-crash-on-conflict:no-injection",
+      "passed": true,
+      "detail": "crashed"
+    },
+    {
+      "name": "manual-crash-on-conflict:viewer-parity",
+      "passed": true,
+      "detail": {
+        "statuses": [
+          "incomplete"
+        ],
+        "stderr": ""
+      }
+    },
+    {
+      "name": "manual-crash-on-conflict:untouched-report",
+      "passed": true,
+      "detail": "The test never changes native status fields or report bytes."
+    },
+    {
+      "name": "call-exhaustion:exit",
+      "passed": true,
+      "detail": {
+        "expected": 1,
+        "observed": 1
+      }
+    },
+    {
+      "name": "call-exhaustion:native-status",
+      "passed": true,
+      "detail": {
+        "expected": "violation",
+        "observed": "violation"
+      }
+    },
+    {
+      "name": "call-exhaustion:receipt-count",
+      "passed": true,
+      "detail": {
+        "expected": 16,
+        "observed": 16
+      }
+    },
+    {
+      "name": "call-exhaustion:guard",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "call-exhaustion:source",
+      "passed": true,
+      "detail": {
+        "adapter.py": "60b215e9e4994396b1a20b5307520a36ad801fb17e8d36e3d961856273df2778"
+      }
+    },
+    {
+      "name": "call-exhaustion:bounded-calls",
+      "passed": true,
+      "detail": "Eight accepted calls per delivery; ninth denied."
+    },
+    {
+      "name": "call-exhaustion:viewer-parity",
+      "passed": true,
+      "detail": {
+        "statuses": [
+          "violation"
+        ],
+        "stderr": ""
+      }
+    },
+    {
+      "name": "call-exhaustion:untouched-report",
+      "passed": true,
+      "detail": "The test never changes native status fields or report bytes."
+    },
+    {
+      "name": "timeout:exit",
+      "passed": true,
+      "detail": {
+        "expected": 2,
+        "observed": 2
+      }
+    },
+    {
+      "name": "timeout:native-status",
+      "passed": true,
+      "detail": {
+        "expected": "incomplete",
+        "observed": "incomplete"
+      }
+    },
+    {
+      "name": "timeout:receipt-count",
+      "passed": true,
+      "detail": {
+        "expected": 1,
+        "observed": 1
+      }
+    },
+    {
+      "name": "timeout:guard",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "timeout:source",
+      "passed": true,
+      "detail": {
+        "adapter.py": "9375f3339317a263444c853da53634fb5d9083606e7ee8e56245ded7b9905695"
+      }
+    },
+    {
+      "name": "timeout:actual-timeout",
+      "passed": true,
+      "detail": "timeout"
+    },
+    {
+      "name": "timeout:viewer-parity",
+      "passed": true,
+      "detail": {
+        "statuses": [
+          "incomplete"
+        ],
+        "stderr": ""
+      }
+    },
+    {
+      "name": "timeout:untouched-report",
+      "passed": true,
+      "detail": "The test never changes native status fields or report bytes."
+    },
+    {
+      "name": "caught-protocol-error:exit",
+      "passed": true,
+      "detail": {
+        "expected": 2,
+        "observed": 2
+      }
+    },
+    {
+      "name": "caught-protocol-error:native-status",
+      "passed": true,
+      "detail": {
+        "expected": "incomplete",
+        "observed": "incomplete"
+      }
+    },
+    {
+      "name": "caught-protocol-error:receipt-count",
+      "passed": true,
+      "detail": {
+        "expected": 2,
+        "observed": 2
+      }
+    },
+    {
+      "name": "caught-protocol-error:guard",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "caught-protocol-error:source",
+      "passed": true,
+      "detail": {
+        "adapter.py": "0400371ab7121a86d285c6e7e6b91ea14510009fda75c44f666f237e9a53d3bd"
+      }
+    },
+    {
+      "name": "caught-protocol-error:actual-protocol-error",
+      "passed": true,
+      "detail": [
+        {
+          "phase": "protocol",
+          "type": "AdapterProtocolError",
+          "message": "fulfill called outside an active delivery"
+        }
+      ]
+    },
+    {
+      "name": "caught-protocol-error:viewer-parity",
+      "passed": true,
+      "detail": {
+        "statuses": [
+          "incomplete"
+        ],
+        "stderr": ""
+      }
+    },
+    {
+      "name": "caught-protocol-error:untouched-report",
+      "passed": true,
+      "detail": "The test never changes native status fields or report bytes."
+    },
+    {
+      "name": "wide-values-empty-description:exit",
+      "passed": true,
+      "detail": {
+        "expected": 0,
+        "observed": 0
+      }
+    },
+    {
+      "name": "wide-values-empty-description:native-status",
+      "passed": true,
+      "detail": {
+        "expected": "pass",
+        "observed": "pass"
+      }
+    },
+    {
+      "name": "wide-values-empty-description:receipt-count",
+      "passed": true,
+      "detail": {
+        "expected": 1,
+        "observed": 1
+      }
+    },
+    {
+      "name": "wide-values-empty-description:guard",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "wide-values-empty-description:source",
+      "passed": true,
+      "detail": {
+        "adapter.py": "abd2c5e375e59b6139914458812a997e81651aa01733dd5728e98f0c7a2529a2"
+      }
+    },
+    {
+      "name": "wide-values-empty-description:viewer-parity",
+      "passed": true,
+      "detail": {
+        "statuses": [
+          "pass"
+        ],
+        "stderr": ""
+      }
+    },
+    {
+      "name": "wide-values-empty-description:untouched-report",
+      "passed": true,
+      "detail": "The test never changes native status fields or report bytes."
+    },
+    {
+      "name": "numeric-equivalence:exit",
+      "passed": true,
+      "detail": {
+        "expected": 0,
+        "observed": 0
+      }
+    },
+    {
+      "name": "numeric-equivalence:native-status",
+      "passed": true,
+      "detail": {
+        "expected": "pass",
+        "observed": "pass"
+      }
+    },
+    {
+      "name": "numeric-equivalence:receipt-count",
+      "passed": true,
+      "detail": {
+        "expected": 1,
+        "observed": 1
+      }
+    },
+    {
+      "name": "numeric-equivalence:guard",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "numeric-equivalence:source",
+      "passed": true,
+      "detail": {
+        "adapter.py": "b84ee5074686b97cfd7474be531de5138dc5dfc55da219845894d75680e21496"
+      }
+    },
+    {
+      "name": "numeric-equivalence:viewer-parity",
+      "passed": true,
+      "detail": {
+        "statuses": [
+          "pass"
+        ],
+        "stderr": ""
+      }
+    },
+    {
+      "name": "numeric-equivalence:untouched-report",
+      "passed": true,
+      "detail": "The test never changes native status fields or report bytes."
+    },
+    {
+      "name": "numeric-boolean-distinction:exit",
+      "passed": true,
+      "detail": {
+        "expected": 1,
+        "observed": 1
+      }
+    },
+    {
+      "name": "numeric-boolean-distinction:native-status",
+      "passed": true,
+      "detail": {
+        "expected": "violation",
+        "observed": "violation"
+      }
+    },
+    {
+      "name": "numeric-boolean-distinction:receipt-count",
+      "passed": true,
+      "detail": {
+        "expected": 1,
+        "observed": 1
+      }
+    },
+    {
+      "name": "numeric-boolean-distinction:guard",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "numeric-boolean-distinction:source",
+      "passed": true,
+      "detail": {
+        "adapter.py": "a035e39a58cf02c8bc9233962ce4417ff25832ec58be5812eccd524e426a4389"
+      }
+    },
+    {
+      "name": "numeric-boolean-distinction:viewer-parity",
+      "passed": true,
+      "detail": {
+        "statuses": [
+          "violation"
+        ],
+        "stderr": ""
+      }
+    },
+    {
+      "name": "numeric-boolean-distinction:untouched-report",
+      "passed": true,
+      "detail": "The test never changes native status fields or report bytes."
+    },
+    {
+      "name": "runtime-and-viewer-stable",
+      "passed": true,
+      "detail": "Runtime, integration driver, and browser contract source hashes match before and after."
+    }
+  ],
+  "sourceSha256Before": {
+    "scripts/test_repair.py": "a83fda10ae59a1d93fd2cc3d11fb578915ca460a1feebd67ee750d812d11cc3b",
+    "local_lab/guard.py": "b4914319e24d6537bb9ec06604819be92e81293b07b5310665bbad3dc0ed63d2",
+    "web/repair-contract.js": "dabd37feb58a92476ff8de7ba125237c5a6004c88967ecfcd743a069361b4a31",
+    "tests/repair_holdout/native_parity.py": "2da1755d8ee26deb5a286da110f45a3b474d3ae6f73bb004c7b7bc1666731d66",
+    "repair_lab/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "repair_lab/adapters/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "repair_lab/adapters/business_key.py": "6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc",
+    "repair_lab/adapters/no_key.py": "2c0900396ea37bbd8a7630aa83b53122ab72d586837424a9e321ad608e7180e9",
+    "repair_lab/adapters/overbroad_key.py": "1e6af285a264477e4f1303759ec367842c10486f5550695924486905163bde63",
+    "repair_lab/engine.py": "e890560682a769a659426956cb81e7dbe55f40bae49d47eb3186db786055b829",
+    "repair_lab/plans.py": "c11392fa0e656799e80470c4e62ff95e14787fccecfc586380e97083d408e66c"
+  },
+  "sourceSha256After": {
+    "scripts/test_repair.py": "a83fda10ae59a1d93fd2cc3d11fb578915ca460a1feebd67ee750d812d11cc3b",
+    "local_lab/guard.py": "b4914319e24d6537bb9ec06604819be92e81293b07b5310665bbad3dc0ed63d2",
+    "web/repair-contract.js": "dabd37feb58a92476ff8de7ba125237c5a6004c88967ecfcd743a069361b4a31",
+    "tests/repair_holdout/native_parity.py": "2da1755d8ee26deb5a286da110f45a3b474d3ae6f73bb004c7b7bc1666731d66",
+    "repair_lab/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "repair_lab/adapters/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "repair_lab/adapters/business_key.py": "6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc",
+    "repair_lab/adapters/no_key.py": "2c0900396ea37bbd8a7630aa83b53122ab72d586837424a9e321ad608e7180e9",
+    "repair_lab/adapters/overbroad_key.py": "1e6af285a264477e4f1303759ec367842c10486f5550695924486905163bde63",
+    "repair_lab/engine.py": "e890560682a769a659426956cb81e7dbe55f40bae49d47eb3186db786055b829",
+    "repair_lab/plans.py": "c11392fa0e656799e80470c4e62ff95e14787fccecfc586380e97083d408e66c"
+  }
+}

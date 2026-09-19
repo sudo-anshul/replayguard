@@ -1,0 +1,61 @@
+{
+  "recordedAt": "2026-09-18T18:42:12.463552+00:00",
+  "retrieval": "HTTPS GET via curl, TLS verification enabled. Browser CUA read-only DOM verification for visible countdown and signed-out submit state. Firecrawl unavailable: insufficient credits; no paid upgrade.",
+  "sources": [
+    {
+      "file": "official-aws.html",
+      "url": "https://www.wemakedevs.org/aws",
+      "sha256": "08361ae145e1c5070f0fcffbf7e78ba99690b6a75eb18908a3bf7eb6a1f6e346"
+    },
+    {
+      "file": "official-first-commit.html",
+      "url": "https://www.wemakedevs.org/aws/first-commit",
+      "sha256": "8114ccea2af41645ea524a17ec3d833523a3afeb8687437364b20209f459f5b4"
+    },
+    {
+      "file": "official-schedule.html",
+      "url": "https://www.wemakedevs.org/aws/first-commit/schedule",
+      "sha256": "758c1eda274f2a77754ebf95202a93795fa0d7d19730c37e6774364e04ebe3a0"
+    },
+    {
+      "file": "official-event-rules.html",
+      "url": "https://www.wemakedevs.org/aws/first-commit/rules",
+      "sha256": "5f8498c9507c9287a8a098b0581cb6ea26fe029abca8281a542b472d9856b4d3"
+    },
+    {
+      "file": "official-rules.html",
+      "url": "https://www.wemakedevs.org/aws/rules",
+      "sha256": "5093791fb75c612c95796f029b35b24c9ec0abbb644f2a319125f06098d182b9"
+    },
+    {
+      "file": "official-submit.html",
+      "url": "https://www.wemakedevs.org/aws/first-commit/submit",
+      "sha256": "18c161c9a285e71278acb6ca4f4cae6bb4d130d9ddeecf22720cd1ede028745a"
+    },
+    {
+      "file": "official-hackathon-api.json",
+      "url": "https://wemakedevs-server.onrender.com/hackathons/first-commit",
+      "sha256": "ff211dd12b0522703b435a52285db7fca2aaa5a848972839dfa803051acd1712"
+    },
+    {
+      "file": "assets/0avcoity_epag.js",
+      "url": "https://www.wemakedevs.org/_next/static/immutable/chunks/0avcoity_epag.js",
+      "sha256": "c277a75ca78826ef71bb18c4502720299d15cd299efc33220ba48bae59496cad"
+    },
+    {
+      "file": "assets/23nphn7_7clzr.js",
+      "url": "https://www.wemakedevs.org/_next/static/immutable/chunks/23nphn7_7clzr.js",
+      "sha256": "7d0253dbc6a843ac99b7925f18c684da425b3e154ffb982c176060fc3800e0be"
+    },
+    {
+      "file": "assets/0c0uw9a_4t67r.js",
+      "url": "https://www.wemakedevs.org/_next/static/immutable/chunks/0c0uw9a_4t67r.js",
+      "sha256": "7c90793441468b04b1a77192b46fb107b1bcf252b7182acc1f8430f281e88e7c"
+    },
+    {
+      "file": "assets/32u9w5ftwk842.js",
+      "url": "https://www.wemakedevs.org/_next/static/immutable/chunks/32u9w5ftwk842.js",
+      "sha256": "2cef8ae6eb92a1b5883210ac7a0ee20bcb4a0de1fb1880469f0ad163a27a1bad"
+    }
+  ]
+}

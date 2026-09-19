@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 2,
+  "kind": "replayguard-repair-report",
+  "provenance": "local-execution",
+  "startedAt": "2026-09-19T04:07:07.215Z",
+  "recordedAt": "2026-09-19T04:07:09.228Z",
+  "candidates": [
+    {
+      "id": "external-1",
+      "title": "adapter.py",
+      "adapter": "adapter.py",
+      "sourceSha256": {
+        "adapter.py": "9375f3339317a263444c853da53634fb5d9083606e7ee8e56245ded7b9905695"
+      },
+      "sourceHashScope": "Captured .py files recursively within adapter directory; excludes dependencies and non-Python files."
+    }
+  ],
+  "cases": [
+    {
+      "id": "clean-orders",
+      "title": "Two clean orders",
+      "description": "Two clean orders. Receiver receipts define the business outcome.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "candidateId": "external-1",
+      "caseId": "clean-orders",
+      "status": "incomplete",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A",
+          "createdAt": "2026-09-19T04:07:07.218Z",
+          "acceptedDeliveryId": "d1"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "timeout",
+          "error": {
+            "phase": "delivery",
+            "type": "ExecutionTimeout",
+            "message": "execution phase exceeded its time budget"
+          },
+          "returned": null,
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:07.218Z",
+          "finishedAt": "2026-09-19T04:07:09.227Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "timeout"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "incomplete",
+          "message": "Delivery d1: required complete, observed timeout."
+        },
+        {
+          "id": "execution-errors",
+          "status": "incomplete",
+          "message": "Execution recorded an import, build, protocol, timeout, or handler error."
+        }
+      ],
+      "errors": [
+        {
+          "phase": "delivery",
+          "type": "ExecutionTimeout",
+          "message": "execution phase exceeded its time budget"
+        }
+      ],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    }
+  ],
+  "summary": {
+    "status": "incomplete",
+    "exitCode": 2,
+    "counts": {
+      "pass": 0,
+      "violation": 0,
+      "incomplete": 1,
+      "unresolved": 0
+    }
+  },
+  "errors": [],
+  "boundaries": [
+    "Trusted local Python adapters only; defense-in-depth guard is not a hostile-code sandbox.",
+    "Receiver-owned simulated effects and bounded explicit schedules; no real AWS execution or cloud equivalence claimed.",
+    "Independent local receipts establish effects; handler returns do not.",
+    "Source hashes cover captured .py files in each adapter folder only; not signatures or dependency attestation."
+  ],
+  "guard": {
+    "installedBeforeHandlerImport": true,
+    "mechanism": "CPython audit hook plus SDK/process/FFI import blocker",
+    "auditEventsSeen": 86,
+    "blockedOperationCount": 4,
+    "handlerBlockedOperationCount": 0,
+    "blockedOperations": [
+      {
+        "event": "socket.__new__",
+        "detail": "",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "boto3",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "subprocess",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "ctypes",
+        "duringSelfTest": true
+      }
+    ],
+    "selfTests": [
+      {
+        "probe": "socket-construction",
+        "blocked": true
+      },
+      {
+        "probe": "aws-sdk-import",
+        "blocked": true
+      },
+      {
+        "probe": "child-process-import",
+        "blocked": true
+      },
+      {
+        "probe": "native-ffi-import",
+        "blocked": true
+      }
+    ],
+    "passed": true,
+    "boundary": "Blocks normal Python socket, SDK, subprocess and ctypes paths; not a hostile-native-code sandbox.",
+    "diagnosticsTruncated": false
+  }
+}

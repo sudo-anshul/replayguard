@@ -1,0 +1,867 @@
+{
+  "schemaVersion": 1,
+  "kind": "replayguard-independent-transfer-result",
+  "startedAt": "2026-09-19T04:01:55.300813+00:00",
+  "completedAt": "2026-09-19T04:01:55.519431+00:00",
+  "scope": "Independent API transfer on frozen synthetic application inputs; no human/customer validation.",
+  "python": "3.14.3 (v3.14.3:323c59a5e34, Feb  3 2026, 11:41:37) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "runner": "scripts/test_repair.py",
+  "runnerSha256": "a83fda10ae59a1d93fd2cc3d11fb578915ca460a1feebd67ee750d812d11cc3b",
+  "runtimeSourceSha256Before": {
+    "scripts/test_repair.py": "a83fda10ae59a1d93fd2cc3d11fb578915ca460a1feebd67ee750d812d11cc3b",
+    "local_lab/guard.py": "b4914319e24d6537bb9ec06604819be92e81293b07b5310665bbad3dc0ed63d2",
+    "repair_lab/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "repair_lab/adapters/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "repair_lab/adapters/business_key.py": "6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc",
+    "repair_lab/adapters/no_key.py": "2c0900396ea37bbd8a7630aa83b53122ab72d586837424a9e321ad608e7180e9",
+    "repair_lab/adapters/overbroad_key.py": "1e6af285a264477e4f1303759ec367842c10486f5550695924486905163bde63",
+    "repair_lab/engine.py": "e890560682a769a659426956cb81e7dbe55f40bae49d47eb3186db786055b829",
+    "repair_lab/plans.py": "9304a667d72c270462fc24f3e0d10d798c09f43925ee125bbd87c86c1d5ae747"
+  },
+  "runtimeSourceSha256After": {
+    "scripts/test_repair.py": "a83fda10ae59a1d93fd2cc3d11fb578915ca460a1feebd67ee750d812d11cc3b",
+    "local_lab/guard.py": "b4914319e24d6537bb9ec06604819be92e81293b07b5310665bbad3dc0ed63d2",
+    "repair_lab/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "repair_lab/adapters/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "repair_lab/adapters/business_key.py": "6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc",
+    "repair_lab/adapters/no_key.py": "2c0900396ea37bbd8a7630aa83b53122ab72d586837424a9e321ad608e7180e9",
+    "repair_lab/adapters/overbroad_key.py": "1e6af285a264477e4f1303759ec367842c10486f5550695924486905163bde63",
+    "repair_lab/engine.py": "e890560682a769a659426956cb81e7dbe55f40bae49d47eb3186db786055b829",
+    "repair_lab/plans.py": "9304a667d72c270462fc24f3e0d10d798c09f43925ee125bbd87c86c1d5ae747"
+  },
+  "runtimeSourceScope": "Entry script, repair_lab Python sources and imported local_lab guard; excludes standard library and interpreter.",
+  "originalPlanSha256": "5dd459a726de3d74926a7e1bbcb5c16937822d9fd1f108ebced7fa55acbef8d5",
+  "freezeBefore": {
+    "freezeManifestSha256": "f9979ca9217a40f72c521ca901e7cf902966bc0134b5626fffb386b7359ae85d",
+    "frozenAt": "2026-09-19T03:50:08Z",
+    "intact": true,
+    "files": [
+      {
+        "path": "examples/dispatchdesk/__init__.py",
+        "sha256": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "matches": true
+      },
+      {
+        "path": "examples/dispatchdesk/worker.py",
+        "sha256": "1d42d2145e9134df90381a6e0c1f77322e460f0dbcdb78a1efc531f85a874854",
+        "matches": true
+      },
+      {
+        "path": "examples/dispatchdesk/adapter.py",
+        "sha256": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "matches": true
+      },
+      {
+        "path": "examples/dispatchdesk/README.md",
+        "sha256": "cc68b3359244202818eeaf1e4ab687ede5506c1b59d67d82c6fbe0e0ec5e0ef0",
+        "matches": true
+      },
+      {
+        "path": "tests/repair_holdout/dispatchdesk-plan.json",
+        "sha256": "5dd459a726de3d74926a7e1bbcb5c16937822d9fd1f108ebced7fa55acbef8d5",
+        "matches": true
+      },
+      {
+        "path": "tests/repair_holdout/mutations.json",
+        "sha256": "d637405124e86f4450b00ea27fed50c13d025a2bcb137024151f174c2393fe2f",
+        "matches": true
+      }
+    ]
+  },
+  "freezeAfter": {
+    "freezeManifestSha256": "f9979ca9217a40f72c521ca901e7cf902966bc0134b5626fffb386b7359ae85d",
+    "frozenAt": "2026-09-19T03:50:08Z",
+    "intact": true,
+    "files": [
+      {
+        "path": "examples/dispatchdesk/__init__.py",
+        "sha256": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "matches": true
+      },
+      {
+        "path": "examples/dispatchdesk/worker.py",
+        "sha256": "1d42d2145e9134df90381a6e0c1f77322e460f0dbcdb78a1efc531f85a874854",
+        "matches": true
+      },
+      {
+        "path": "examples/dispatchdesk/adapter.py",
+        "sha256": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "matches": true
+      },
+      {
+        "path": "examples/dispatchdesk/README.md",
+        "sha256": "cc68b3359244202818eeaf1e4ab687ede5506c1b59d67d82c6fbe0e0ec5e0ef0",
+        "matches": true
+      },
+      {
+        "path": "tests/repair_holdout/dispatchdesk-plan.json",
+        "sha256": "5dd459a726de3d74926a7e1bbcb5c16937822d9fd1f108ebced7fa55acbef8d5",
+        "matches": true
+      },
+      {
+        "path": "tests/repair_holdout/mutations.json",
+        "sha256": "d637405124e86f4450b00ea27fed50c13d025a2bcb137024151f174c2393fe2f",
+        "matches": true
+      }
+    ]
+  },
+  "runs": [
+    {
+      "id": "reference",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/scripts/test_repair.py",
+        "--adapter",
+        "/var/folders/wl/k_pqj23s4_z_bj35zbsyc2qm0000gn/T/replayguard-dispatchdesk-transfer-h518xmob/reference/adapter.py",
+        "--case-file",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/tests/repair_holdout/dispatchdesk-plan.json",
+        "--output",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/transfer-results/final-runtime/reference.json"
+      ],
+      "exitCode": 0,
+      "sourceSha256Before": {
+        "__init__.py": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "adapter.py": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "worker.py": "1d42d2145e9134df90381a6e0c1f77322e460f0dbcdb78a1efc531f85a874854"
+      },
+      "sourceSha256After": {
+        "__init__.py": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "adapter.py": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "worker.py": "1d42d2145e9134df90381a6e0c1f77322e460f0dbcdb78a1efc531f85a874854"
+      },
+      "report": "reference.json",
+      "reportSha256": "b541b87329d4cbfc7b87cfbcabf791df1f7bd7395b8ae605f1613c4fb3d7fc41"
+    },
+    {
+      "id": "no-business-key",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/scripts/test_repair.py",
+        "--adapter",
+        "/var/folders/wl/k_pqj23s4_z_bj35zbsyc2qm0000gn/T/replayguard-dispatchdesk-transfer-h518xmob/no-business-key/adapter.py",
+        "--case-file",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/tests/repair_holdout/dispatchdesk-plan.json",
+        "--output",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/transfer-results/final-runtime/no-business-key.json"
+      ],
+      "exitCode": 1,
+      "sourceSha256Before": {
+        "__init__.py": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "adapter.py": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "worker.py": "51757f8c5c34d52e115de915bc39f02af49defba043c3da7998058edc20bf9c9"
+      },
+      "sourceSha256After": {
+        "__init__.py": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "adapter.py": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "worker.py": "51757f8c5c34d52e115de915bc39f02af49defba043c3da7998058edc20bf9c9"
+      },
+      "report": "no-business-key.json",
+      "reportSha256": "8fe4a786b0dd8bf5ba7d76eb4469c981d1bf107d56acaf5ba8c2519487238392"
+    },
+    {
+      "id": "sku-only-key",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/scripts/test_repair.py",
+        "--adapter",
+        "/var/folders/wl/k_pqj23s4_z_bj35zbsyc2qm0000gn/T/replayguard-dispatchdesk-transfer-h518xmob/sku-only-key/adapter.py",
+        "--case-file",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/tests/repair_holdout/dispatchdesk-plan.json",
+        "--output",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/transfer-results/final-runtime/sku-only-key.json"
+      ],
+      "exitCode": 1,
+      "sourceSha256Before": {
+        "__init__.py": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "adapter.py": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "worker.py": "7c23a7259842443453d676163bd6782f0b5faae58bb04e376a6f33bd12d60e7c"
+      },
+      "sourceSha256After": {
+        "__init__.py": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "adapter.py": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "worker.py": "7c23a7259842443453d676163bd6782f0b5faae58bb04e376a6f33bd12d60e7c"
+      },
+      "report": "sku-only-key.json",
+      "reportSha256": "c60a1a0b33052f5ef2207f29072a880819e82305155f475d3f8b0990dd948b42"
+    }
+  ],
+  "checks": [
+    {
+      "name": "reference:source-copy-unchanged",
+      "status": "pass",
+      "observed": {
+        "__init__.py": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "adapter.py": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "worker.py": "1d42d2145e9134df90381a6e0c1f77322e460f0dbcdb78a1efc531f85a874854"
+      }
+    },
+    {
+      "name": "reference:exit-code",
+      "status": "pass",
+      "observed": 0
+    },
+    {
+      "name": "reference:canonical-plan-preserves-frozen-semantics",
+      "status": "pass",
+      "observed": {
+        "originalPlanSha256": "5dd459a726de3d74926a7e1bbcb5c16937822d9fd1f108ebced7fa55acbef8d5",
+        "canonicalCaseIds": [
+          "dispatchdesk-response-loss",
+          "dispatchdesk-interleaved-orders",
+          "dispatchdesk-distinct-references",
+          "dispatchdesk-quantity-conflict",
+          "dispatchdesk-shipping-conflict-after-crash"
+        ]
+      }
+    },
+    {
+      "name": "reference:complete-case-set",
+      "status": "pass",
+      "observed": [
+        "dispatchdesk-distinct-references",
+        "dispatchdesk-interleaved-orders",
+        "dispatchdesk-quantity-conflict",
+        "dispatchdesk-response-loss",
+        "dispatchdesk-shipping-conflict-after-crash"
+      ]
+    },
+    {
+      "name": "reference:single-candidate",
+      "status": "pass",
+      "observed": 1
+    },
+    {
+      "name": "reference:source-fingerprints-match-copy",
+      "status": "pass",
+      "observed": {
+        "__init__.py": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "adapter.py": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "worker.py": "1d42d2145e9134df90381a6e0c1f77322e460f0dbcdb78a1efc531f85a874854"
+      }
+    },
+    {
+      "name": "reference:dispatchdesk-response-loss:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "crashed",
+          "completed",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "reference:dispatchdesk-response-loss:one-correct-receipt-per-order",
+      "status": "pass",
+      "observed": {
+        "status": "pass",
+        "counts": {
+          "cedar-paper/DD-7319": 1
+        }
+      }
+    },
+    {
+      "name": "reference:dispatchdesk-interleaved-orders:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "crashed",
+          "completed",
+          "completed",
+          "completed",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "reference:dispatchdesk-interleaved-orders:one-correct-receipt-per-order",
+      "status": "pass",
+      "observed": {
+        "status": "pass",
+        "counts": {
+          "cedar-paper/DD-7319": 1,
+          "cedar-paper/DD-8452": 1
+        }
+      }
+    },
+    {
+      "name": "reference:dispatchdesk-distinct-references:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "completed",
+          "completed",
+          "completed",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "reference:dispatchdesk-distinct-references:one-correct-receipt-per-order",
+      "status": "pass",
+      "observed": {
+        "status": "pass",
+        "counts": {
+          "cedar-paper/DD-7319": 1,
+          "orchard-books/DD-7319": 1
+        }
+      }
+    },
+    {
+      "name": "reference:dispatchdesk-quantity-conflict:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "completed",
+          "conflict",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "reference:dispatchdesk-quantity-conflict:one-correct-receipt-per-order",
+      "status": "pass",
+      "observed": {
+        "status": "pass",
+        "counts": {
+          "cedar-paper/DD-9903": 1
+        }
+      }
+    },
+    {
+      "name": "reference:dispatchdesk-shipping-conflict-after-crash:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "crashed",
+          "conflict",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "reference:dispatchdesk-shipping-conflict-after-crash:one-correct-receipt-per-order",
+      "status": "pass",
+      "observed": {
+        "status": "pass",
+        "counts": {
+          "orchard-books/DD-1407": 1
+        }
+      }
+    },
+    {
+      "name": "no-business-key:source-copy-unchanged",
+      "status": "pass",
+      "observed": {
+        "__init__.py": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "adapter.py": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "worker.py": "51757f8c5c34d52e115de915bc39f02af49defba043c3da7998058edc20bf9c9"
+      }
+    },
+    {
+      "name": "no-business-key:exit-code",
+      "status": "pass",
+      "observed": 1
+    },
+    {
+      "name": "no-business-key:canonical-plan-preserves-frozen-semantics",
+      "status": "pass",
+      "observed": {
+        "originalPlanSha256": "5dd459a726de3d74926a7e1bbcb5c16937822d9fd1f108ebced7fa55acbef8d5",
+        "canonicalCaseIds": [
+          "dispatchdesk-response-loss",
+          "dispatchdesk-interleaved-orders",
+          "dispatchdesk-distinct-references",
+          "dispatchdesk-quantity-conflict",
+          "dispatchdesk-shipping-conflict-after-crash"
+        ]
+      }
+    },
+    {
+      "name": "no-business-key:complete-case-set",
+      "status": "pass",
+      "observed": [
+        "dispatchdesk-distinct-references",
+        "dispatchdesk-interleaved-orders",
+        "dispatchdesk-quantity-conflict",
+        "dispatchdesk-response-loss",
+        "dispatchdesk-shipping-conflict-after-crash"
+      ]
+    },
+    {
+      "name": "no-business-key:single-candidate",
+      "status": "pass",
+      "observed": 1
+    },
+    {
+      "name": "no-business-key:source-fingerprints-match-copy",
+      "status": "pass",
+      "observed": {
+        "__init__.py": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "adapter.py": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "worker.py": "51757f8c5c34d52e115de915bc39f02af49defba043c3da7998058edc20bf9c9"
+      }
+    },
+    {
+      "name": "no-business-key:dispatchdesk-response-loss:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "crashed",
+          "completed",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "no-business-key:dispatchdesk-response-loss:material-mutation-detected",
+      "status": "pass",
+      "observed": {
+        "status": "violation",
+        "counts": {
+          "cedar-paper/DD-7319": 3
+        },
+        "outcomes": [
+          "crashed",
+          "completed",
+          "completed"
+        ]
+      }
+    },
+    {
+      "name": "no-business-key:dispatchdesk-interleaved-orders:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "crashed",
+          "completed",
+          "completed",
+          "completed",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "no-business-key:dispatchdesk-distinct-references:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "completed",
+          "completed",
+          "completed",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "no-business-key:dispatchdesk-quantity-conflict:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "completed",
+          "completed",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "no-business-key:dispatchdesk-quantity-conflict:material-mutation-detected",
+      "status": "pass",
+      "observed": {
+        "status": "violation",
+        "counts": {
+          "cedar-paper/DD-9903": 3
+        },
+        "outcomes": [
+          "completed",
+          "completed",
+          "completed"
+        ]
+      }
+    },
+    {
+      "name": "no-business-key:dispatchdesk-shipping-conflict-after-crash:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "crashed",
+          "completed",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "no-business-key:dispatchdesk-shipping-conflict-after-crash:material-mutation-detected",
+      "status": "pass",
+      "observed": {
+        "status": "violation",
+        "counts": {
+          "orchard-books/DD-1407": 3
+        },
+        "outcomes": [
+          "crashed",
+          "completed",
+          "completed"
+        ]
+      }
+    },
+    {
+      "name": "sku-only-key:source-copy-unchanged",
+      "status": "pass",
+      "observed": {
+        "__init__.py": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "adapter.py": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "worker.py": "7c23a7259842443453d676163bd6782f0b5faae58bb04e376a6f33bd12d60e7c"
+      }
+    },
+    {
+      "name": "sku-only-key:exit-code",
+      "status": "pass",
+      "observed": 1
+    },
+    {
+      "name": "sku-only-key:canonical-plan-preserves-frozen-semantics",
+      "status": "pass",
+      "observed": {
+        "originalPlanSha256": "5dd459a726de3d74926a7e1bbcb5c16937822d9fd1f108ebced7fa55acbef8d5",
+        "canonicalCaseIds": [
+          "dispatchdesk-response-loss",
+          "dispatchdesk-interleaved-orders",
+          "dispatchdesk-distinct-references",
+          "dispatchdesk-quantity-conflict",
+          "dispatchdesk-shipping-conflict-after-crash"
+        ]
+      }
+    },
+    {
+      "name": "sku-only-key:complete-case-set",
+      "status": "pass",
+      "observed": [
+        "dispatchdesk-distinct-references",
+        "dispatchdesk-interleaved-orders",
+        "dispatchdesk-quantity-conflict",
+        "dispatchdesk-response-loss",
+        "dispatchdesk-shipping-conflict-after-crash"
+      ]
+    },
+    {
+      "name": "sku-only-key:single-candidate",
+      "status": "pass",
+      "observed": 1
+    },
+    {
+      "name": "sku-only-key:source-fingerprints-match-copy",
+      "status": "pass",
+      "observed": {
+        "__init__.py": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "adapter.py": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "worker.py": "7c23a7259842443453d676163bd6782f0b5faae58bb04e376a6f33bd12d60e7c"
+      }
+    },
+    {
+      "name": "sku-only-key:dispatchdesk-response-loss:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "crashed",
+          "completed",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "sku-only-key:dispatchdesk-interleaved-orders:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "crashed",
+          "conflict",
+          "completed",
+          "conflict",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "sku-only-key:dispatchdesk-interleaved-orders:material-mutation-detected",
+      "status": "pass",
+      "observed": {
+        "status": "violation",
+        "counts": {
+          "cedar-paper/DD-7319": 1
+        },
+        "outcomes": [
+          "crashed",
+          "conflict",
+          "completed",
+          "conflict",
+          "completed"
+        ]
+      }
+    },
+    {
+      "name": "sku-only-key:dispatchdesk-distinct-references:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "completed",
+          "conflict",
+          "completed",
+          "conflict"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "sku-only-key:dispatchdesk-distinct-references:material-mutation-detected",
+      "status": "pass",
+      "observed": {
+        "status": "violation",
+        "counts": {
+          "cedar-paper/DD-7319": 1
+        },
+        "outcomes": [
+          "completed",
+          "conflict",
+          "completed",
+          "conflict"
+        ]
+      }
+    },
+    {
+      "name": "sku-only-key:dispatchdesk-quantity-conflict:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "completed",
+          "conflict",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "sku-only-key:dispatchdesk-shipping-conflict-after-crash:executed",
+      "status": "pass",
+      "observed": {
+        "execution": {
+          "imported": true,
+          "built": true,
+          "sourceUnchanged": true,
+          "snapshotComplete": true,
+          "completedSchedule": true,
+          "console": "",
+          "consoleTruncated": false
+        },
+        "outcomes": [
+          "crashed",
+          "conflict",
+          "completed"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "original-freeze-unchanged",
+      "status": "pass",
+      "observed": {
+        "freezeManifestSha256": "f9979ca9217a40f72c521ca901e7cf902966bc0134b5626fffb386b7359ae85d",
+        "frozenAt": "2026-09-19T03:50:08Z",
+        "intact": true,
+        "files": [
+          {
+            "path": "examples/dispatchdesk/__init__.py",
+            "sha256": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+            "matches": true
+          },
+          {
+            "path": "examples/dispatchdesk/worker.py",
+            "sha256": "1d42d2145e9134df90381a6e0c1f77322e460f0dbcdb78a1efc531f85a874854",
+            "matches": true
+          },
+          {
+            "path": "examples/dispatchdesk/adapter.py",
+            "sha256": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+            "matches": true
+          },
+          {
+            "path": "examples/dispatchdesk/README.md",
+            "sha256": "cc68b3359244202818eeaf1e4ab687ede5506c1b59d67d82c6fbe0e0ec5e0ef0",
+            "matches": true
+          },
+          {
+            "path": "tests/repair_holdout/dispatchdesk-plan.json",
+            "sha256": "5dd459a726de3d74926a7e1bbcb5c16937822d9fd1f108ebced7fa55acbef8d5",
+            "matches": true
+          },
+          {
+            "path": "tests/repair_holdout/mutations.json",
+            "sha256": "d637405124e86f4450b00ea27fed50c13d025a2bcb137024151f174c2393fe2f",
+            "matches": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "runtime-sources-unchanged-during-test",
+      "status": "pass",
+      "observed": {
+        "scripts/test_repair.py": "a83fda10ae59a1d93fd2cc3d11fb578915ca460a1feebd67ee750d812d11cc3b",
+        "local_lab/guard.py": "b4914319e24d6537bb9ec06604819be92e81293b07b5310665bbad3dc0ed63d2",
+        "repair_lab/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "repair_lab/adapters/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "repair_lab/adapters/business_key.py": "6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc",
+        "repair_lab/adapters/no_key.py": "2c0900396ea37bbd8a7630aa83b53122ab72d586837424a9e321ad608e7180e9",
+        "repair_lab/adapters/overbroad_key.py": "1e6af285a264477e4f1303759ec367842c10486f5550695924486905163bde63",
+        "repair_lab/engine.py": "e890560682a769a659426956cb81e7dbe55f40bae49d47eb3186db786055b829",
+        "repair_lab/plans.py": "9304a667d72c270462fc24f3e0d10d798c09f43925ee125bbd87c86c1d5ae747"
+      }
+    }
+  ],
+  "passed": 45,
+  "failed": 0
+}

@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "kind": "local-demo-media-validation",
+  "completedAt": "2026-09-19T04:20:40.787151+00:00",
+  "video": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard-repair-demo.mp4",
+  "videoSha256": "582537a547ff08a1cfd1118a60b8784a07bfe7d854974aa3abd0a4e2bf580339",
+  "videoBytes": 4979581,
+  "durationSeconds": 163.064875,
+  "lastFrame": {
+    "path": "docs/repair-lab/media/validation-frames/last-second.jpg",
+    "sha256": "925a2ceb3484f8a3f7de2173c9b46798d1f4b545ebbc331a84fa0955bd5fc5bc",
+    "timeSeconds": 162.314875
+  },
+  "checks": [
+    {
+      "name": "output-hash-matches-render",
+      "status": "pass",
+      "observed": "582537a547ff08a1cfd1118a60b8784a07bfe7d854974aa3abd0a4e2bf580339"
+    },
+    {
+      "name": "duration-under-170-seconds",
+      "status": "pass",
+      "observed": 163.064875
+    },
+    {
+      "name": "h264-1080p-24fps",
+      "status": "pass",
+      "observed": {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "profile": "High",
+        "codec_type": "video",
+        "codec_tag_string": "avc1",
+        "codec_tag": "0x31637661",
+        "width": 1920,
+        "height": 1080,
+        "coded_width": 1920,
+        "coded_height": 1080,
+        "has_b_frames": 2,
+        "sample_aspect_ratio": "1:1",
+        "display_aspect_ratio": "16:9",
+        "pix_fmt": "yuv420p",
+        "level": 40,
+        "chroma_location": "left",
+        "field_order": "progressive",
+        "refs": 1,
+        "is_avc": "true",
+        "nal_length_size": "4",
+        "id": "0x1",
+        "r_frame_rate": "24/1",
+        "avg_frame_rate": "24/1",
+        "time_base": "1/12288",
+        "start_pts": 283,
+        "start_time": "0.023031",
+        "duration_ts": 2003456,
+        "duration": "163.041667",
+        "bit_rate": "91843",
+        "bits_per_raw_sample": "8",
+        "nb_frames": "3913",
+        "extradata_size": 47,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "VideoHandler",
+          "vendor_id": "[0][0][0][0]",
+          "encoder": "Lavc62.11.100 libx264"
+        }
+      }
+    },
+    {
+      "name": "aac-narration-present",
+      "status": "pass",
+      "observed": {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_long_name": "AAC (Advanced Audio Coding)",
+        "profile": "LC",
+        "codec_type": "audio",
+        "codec_tag_string": "mp4a",
+        "codec_tag": "0x6134706d",
+        "sample_fmt": "fltp",
+        "sample_rate": "44100",
+        "channels": 1,
+        "channel_layout": "mono",
+        "bits_per_sample": 0,
+        "initial_padding": 0,
+        "id": "0x2",
+        "r_frame_rate": "0/0",
+        "avg_frame_rate": "0/0",
+        "time_base": "1/44100",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 7191161,
+        "duration": "163.064875",
+        "bit_rate": "146226",
+        "nb_frames": "7039",
+        "extradata_size": 5,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "SoundHandler",
+          "vendor_id": "[0][0][0][0]"
+        }
+      }
+    },
+    {
+      "name": "full-video-and-audio-decode",
+      "status": "pass",
+      "observed": {
+        "exitCode": 0,
+        "stderr": ""
+      }
+    },
+    {
+      "name": "audio-is-audible-and-below-clipping",
+      "status": "pass",
+      "observed": {
+        "meanDb": -16.5,
+        "peakDb": -1.8
+      }
+    },
+    {
+      "name": "historical-videos-byte-identical",
+      "status": "pass",
+      "observed": {
+        "replayguard-walkthrough-current.mp4": "7c576188e1f2556ce39eec6fd22b392b49d446127f375997c59e128007d469be",
+        "replayguard-demo.mp4": "5a7a92e6032b784e5a1b3ddc5774b609f26f9c6f0e73d6473c87f3f2daae6a4c"
+      }
+    },
+    {
+      "name": "actual-screenshot-hashes-match-frozen-capture-manifest",
+      "status": "pass",
+      "observed": [
+        {
+          "file": "docs/repair-lab/media/aws.png",
+          "matches": true
+        },
+        {
+          "file": "docs/repair-lab/media/aws.png",
+          "matches": true
+        },
+        {
+          "file": "docs/repair-lab/media/comparison-detail.png",
+          "matches": true
+        },
+        {
+          "file": "docs/repair-lab/media/comparison-detail.png",
+          "matches": true
+        },
+        {
+          "file": "docs/repair-lab/media/comparison-detail.png",
+          "matches": true
+        },
+        {
+          "file": "docs/repair-lab/media/adapter.png",
+          "matches": true
+        },
+        {
+          "file": "docs/repair-lab/media/independent.png",
+          "matches": true
+        },
+        {
+          "file": "docs/repair-lab/media/independent.png",
+          "matches": true
+        },
+        {
+          "file": "docs/repair-lab/media/run-kit.png",
+          "matches": true
+        },
+        {
+          "file": "docs/repair-lab/media/incomplete.png",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "name": "subtitles-monotonic-and-within-media",
+      "status": "pass",
+      "observed": {
+        "cues": 38,
+        "lastEndSeconds": 160.203
+      }
+    },
+    {
+      "name": "requested-closing-words",
+      "status": "pass",
+      "observed": "Missing observations remain incomplete. Unsupported guarantees remain unresolved. Keep the failure. Test the repair."
+    }
+  ],
+  "passed": 10,
+  "failed": 0
+}

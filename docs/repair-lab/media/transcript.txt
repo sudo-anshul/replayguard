@@ -1,0 +1,41 @@
+0.00s — A real failure, retained as evidence
+ReplayGuard began with a real Lambda and SQS failure on September eighteenth. A simulated fulfillment succeeded, then the worker crashed.
+
+10.00s — The receipt ledger exposes the duplicate
+SQS delivered again. The independently queried DynamoDB ledger recorded two receipts for the vulnerable handler, and one for the repair. These are retained observations.
+
+20.96s — Now test the repair against a second valid order
+The portable local lab asks a harder question. Two valid orders share one product. Order A commits, loses its response, then retries among deliveries for order B.
+
+33.96s — A key can remove duplicates and still lose an order
+Without a key, both orders have duplicate receipts. A product key looks safer, but suppresses order B. Zero receipts is also a failure.
+
+43.96s — Preserve every valid business order
+The stable business order key leaves one receipt for each order. The comparison checks both duplicate prevention and valid order preservation.
+
+52.96s — Bring a handler through one small adapter
+A small adapter connects your handler to the injected receiver. The handler chooses its key. The receiver owns the atomic receipt contract, and the observer counts effects independently of the handler's return value.
+
+67.96s — A pass belongs to the observed case
+A pass belongs to the observed case and receiver assumptions. It does not promise an external shipment, payment, or safety for arbitrary untrusted code.
+
+78.96s — Fresh extraction · correct candidate
+Here is recorded command output from a fresh kit extraction, with network access denied. The correct adapter produces one receipt and exits zero.
+
+90.96s — Change the candidate · expose the regression
+Change the candidate to use no key, and run the same case again. Two receipts appear. The assertion fails, and the process exits one. This is actual execution.
+
+103.96s — Restore the candidate · recover the pass
+Restore the exact original source, and one receipt returns, with exit zero. The recorded source hashes identify the changed and restored bytes.
+
+115.96s — A separate application crosses the same boundary
+DispatchDesk uses a different business event and a separate adapter. Its author froze five cases before reading the evaluator implementation. Both authors were AI agents; this is not customer validation.
+
+129.96s — The reference passes; both defects are detected
+All five reference cases pass. Removing the business key fails all five. A product-only key fails the two cases with distinct valid orders.
+
+139.96s — Keep the case, rerun it, inspect what changed
+Download the kit, run trusted Python locally, change your handler, and import the report. Inputs, fault conditions, assertions, source hashes, and receipt evidence travel together.
+
+153.04s — Keep the failure. Test the repair.
+Missing observations remain incomplete. Unsupported guarantees remain unresolved. Keep the failure. Test the repair.

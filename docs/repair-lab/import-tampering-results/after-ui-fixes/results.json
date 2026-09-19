@@ -1,0 +1,218 @@
+{
+  "startedAt": "2026-09-19T04:04:11.289Z",
+  "referenceSha256": "b541b87329d4cbfc7b87cfbcabf791df1f7bd7395b8ae605f1613c4fb3d7fc41",
+  "mutantSha256": "8fe4a786b0dd8bf5ba7d76eb4469c981d1bf107d56acaf5ba8c2519487238392",
+  "checks": [
+    {
+      "name": "genuine-transfer-report-imports-and-round-trips",
+      "status": "pass",
+      "observed": {
+        "message": "Imported transfer-control.json. Counts and outcomes were checked against the supplied observations; origin remains unauthenticated.",
+        "downloadedSha256": "b541b87329d4cbfc7b87cfbcabf791df1f7bd7395b8ae605f1613c4fb3d7fc41"
+      }
+    },
+    {
+      "name": "false-pass-on-duplicate-effect",
+      "status": "pass",
+      "observed": {
+        "reason": "Reported pass contradicts the observations (violation) for external-1 / dispatchdesk-response-loss.",
+        "message": "Could not import: Reported pass contradicts the observations (violation) for external-1 / dispatchdesk-response-loss. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "missing-snapshot-claimed-pass",
+      "status": "pass",
+      "observed": {
+        "reason": "Snapshot availability contradicts its execution flag.",
+        "message": "Could not import: Snapshot availability contradicts its execution flag. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "changed-result-expectations",
+      "status": "pass",
+      "observed": {
+        "reason": "Result expectations differ from the declared case.",
+        "message": "Could not import: Result expectations differ from the declared case. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "changed-observed-input",
+      "status": "pass",
+      "observed": {
+        "reason": "Observed delivery input differs from the declared plan.",
+        "message": "Could not import: Observed delivery input differs from the declared plan. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "orphan-accepted-receipt",
+      "status": "pass",
+      "observed": {
+        "reason": "Reported pass contradicts the observations (unresolved) for external-1 / dispatchdesk-response-loss.",
+        "message": "Could not import: Reported pass contradicts the observations (unresolved) for external-1 / dispatchdesk-response-loss. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "receipt-for-unrequested-order",
+      "status": "pass",
+      "observed": {
+        "reason": "Effect event contradicts the independent receipt snapshot.",
+        "message": "Could not import: Effect event contradicts the independent receipt snapshot. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "acceptance-link-removed",
+      "status": "pass",
+      "observed": {
+        "reason": "Effect event has no matching receipt reference in the delivery.",
+        "message": "Could not import: Effect event has no matching receipt reference in the delivery. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "event-refers-to-unknown-receipt",
+      "status": "pass",
+      "observed": {
+        "reason": "Effect event has no matching receipt reference in the delivery.",
+        "message": "Could not import: Effect event has no matching receipt reference in the delivery. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "event-order-disagrees-with-receipt",
+      "status": "pass",
+      "observed": {
+        "reason": "Effect event contradicts the independent receipt snapshot.",
+        "message": "Could not import: Effect event contradicts the independent receipt snapshot. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "completed-delivery-marked-unattempted",
+      "status": "pass",
+      "observed": {
+        "reason": "Delivery attempt and outcome contradict each other.",
+        "message": "Could not import: Delivery attempt and outcome contradict each other. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "required-import-marked-failed",
+      "status": "pass",
+      "observed": {
+        "reason": "A built candidate is marked as not imported.",
+        "message": "Could not import: A built candidate is marked as not imported. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "conflict-outcome-without-conflict-observation",
+      "status": "pass",
+      "observed": {
+        "reason": "Receiver conflict event contradicts its delivery flag.",
+        "message": "Could not import: Receiver conflict event contradicts its delivery flag. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "unconfigured-fault-claimed-injected",
+      "status": "pass",
+      "observed": {
+        "reason": "A fault was observed where the plan configured none.",
+        "message": "Could not import: A fault was observed where the plan configured none. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "malformed-source-fingerprint",
+      "status": "pass",
+      "observed": {
+        "reason": "Invalid source fingerprint.",
+        "message": "Could not import: Invalid source fingerprint. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "false-summary-pass",
+      "status": "pass",
+      "observed": {
+        "reason": "Summary claims contradict the individual observations.",
+        "message": "Could not import: Summary claims contradict the individual observations. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "missing-candidate-case-result",
+      "status": "pass",
+      "observed": {
+        "reason": "The report is missing a candidate/case result. Generate a complete report for the selected candidates and cases.",
+        "message": "Could not import: The report is missing a candidate/case result. Generate a complete report for the selected candidates and cases. Your previous comparison is unchanged.",
+        "previousComparisonPreserved": true,
+        "originalBytesPreserved": true
+      }
+    },
+    {
+      "name": "valid-shaped-source-claim-remains-unauthenticated",
+      "status": "pass",
+      "observed": {
+        "acceptedAsClaim": true,
+        "sourceOriginAuthenticated": false
+      }
+    },
+    {
+      "name": "narrow-import-has-no-document-overflow",
+      "status": "pass",
+      "observed": {
+        "viewport": 390,
+        "document": 390
+      }
+    },
+    {
+      "name": "no-remote-requests-or-page-errors",
+      "status": "pass",
+      "observed": {
+        "blockedRequests": [],
+        "pageErrors": []
+      }
+    }
+  ],
+  "blockedRequests": [],
+  "pageErrors": [],
+  "sourceAtStart": {
+    "web/repair-contract.js": "2ff66541b368c24f742fe3c090f93f3faa94d5512823233202d49eb3b61d4937",
+    "web/repair-app.js": "695a31c63ab0641d1f57d229f384affd6bf2394ac4e7302a88f47359c49dcc82",
+    "web/repair.css": "139ca93c774bc57a066350782081e8d2d906a170ffcedec8c094ce39235a7112",
+    "web/repair.html": "86b7de1e080e93443610c4caf24f9f730230eaa4b2476e3890ae54005ac8c347"
+  },
+  "browser": "153.0.8010.12",
+  "sourceAtEnd": {
+    "web/repair-contract.js": "2ff66541b368c24f742fe3c090f93f3faa94d5512823233202d49eb3b61d4937",
+    "web/repair-app.js": "695a31c63ab0641d1f57d229f384affd6bf2394ac4e7302a88f47359c49dcc82",
+    "web/repair.css": "139ca93c774bc57a066350782081e8d2d906a170ffcedec8c094ce39235a7112",
+    "web/repair.html": "86b7de1e080e93443610c4caf24f9f730230eaa4b2476e3890ae54005ac8c347"
+  },
+  "sourceStableDuringTest": true,
+  "completedAt": "2026-09-19T04:04:15.548Z",
+  "passed": 20,
+  "failed": 0
+}

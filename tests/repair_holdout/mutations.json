@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Deliberate defects in temporary test copies of independently authored DispatchDesk; never modify the reference application.",
+  "source": "examples/dispatchdesk/worker.py",
+  "referenceExpected": "all five cases pass",
+  "mutations": [
+    {
+      "id": "no-business-key",
+      "find": "idempotency_key=f\"dispatchdesk:{reference}\"",
+      "replace": "idempotency_key=None",
+      "mustRejectCases": [
+        "dispatchdesk-response-loss",
+        "dispatchdesk-quantity-conflict",
+        "dispatchdesk-shipping-conflict-after-crash"
+      ],
+      "reason": "Unkeyed retries create extra receipts and changed payloads are not rejected."
+    },
+    {
+      "id": "sku-only-key",
+      "find": "idempotency_key=f\"dispatchdesk:{reference}\"",
+      "replace": "idempotency_key=f\"dispatchdesk:sku:{code}\"",
+      "mustRejectCases": [
+        "dispatchdesk-interleaved-orders",
+        "dispatchdesk-distinct-references"
+      ],
+      "reason": "Separate valid orders sharing a product incorrectly collide."
+    }
+  ]
+}

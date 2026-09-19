@@ -1,0 +1,52 @@
+[
+    {
+        "type": "AWS::SQS::Queue",
+        "status": "CREATE_COMPLETE",
+        "name": "DeadLetterQueue"
+    },
+    {
+        "type": "AWS::DynamoDB::Table",
+        "status": "CREATE_COMPLETE",
+        "name": "Ledger"
+    },
+    {
+        "type": "AWS::SQS::Queue",
+        "status": "CREATE_COMPLETE",
+        "name": "OrdersQueue"
+    },
+    {
+        "type": "AWS::Lambda::Function",
+        "status": "CREATE_COMPLETE",
+        "name": "ProviderFunction"
+    },
+    {
+        "type": "AWS::Logs::LogGroup",
+        "status": "CREATE_COMPLETE",
+        "name": "ProviderLogs"
+    },
+    {
+        "type": "AWS::IAM::Role",
+        "status": "CREATE_COMPLETE",
+        "name": "ProviderRole"
+    },
+    {
+        "type": "AWS::Lambda::Function",
+        "status": "CREATE_COMPLETE",
+        "name": "WorkerFunction"
+    },
+    {
+        "type": "AWS::Logs::LogGroup",
+        "status": "CREATE_COMPLETE",
+        "name": "WorkerLogs"
+    },
+    {
+        "type": "AWS::Lambda::EventSourceMapping",
+        "status": "CREATE_COMPLETE",
+        "name": "WorkerQueueMapping"
+    },
+    {
+        "type": "AWS::IAM::Role",
+        "status": "CREATE_COMPLETE",
+        "name": "WorkerRole"
+    }
+]

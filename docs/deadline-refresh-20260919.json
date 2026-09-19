@@ -1,0 +1,21 @@
+[
+  {
+    "source": "submission-api",
+    "url": "https://wemakedevs-server.onrender.com/hackathons/first-commit",
+    "observedAt": "2026-09-19T04:12:00.320060+00:00",
+    "sha256": "95198a2d315f772822d3fc766c84af74cd8e18c297cb719cc398ed18bc870c0a",
+    "tlsVerification": true,
+    "end_date": "2026-09-20T03:30:00Z"
+  },
+  {
+    "source": "event-overview",
+    "url": "https://www.wemakedevs.org/aws/first-commit",
+    "observedAt": "2026-09-19T04:12:00.598348+00:00",
+    "sha256": "8114ccea2af41645ea524a17ec3d833523a3afeb8687437364b20209f459f5b4",
+    "tlsVerification": true,
+    "timeElements": [
+      "<time dateTime=\"2026-09-17T02:30:00Z\" class=\"font-medium tabular-nums text-theme-3-light\">"
+    ],
+    "deadlineTimestamps": []
+  }
+]

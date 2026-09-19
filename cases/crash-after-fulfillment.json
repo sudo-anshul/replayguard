@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "name": "crash-after-fulfillment",
+  "orders": [
+    { "orderId": "ORDER-1042", "sku": "FIELD-NOTES-3PACK", "quantity": 1 }
+  ],
+  "fault": { "type": "crash-after-fulfillment" },
+  "bounds": {
+    "maxWaitSeconds": 180,
+    "maxMessages": 2,
+    "drainGraceSeconds": 15
+  }
+}

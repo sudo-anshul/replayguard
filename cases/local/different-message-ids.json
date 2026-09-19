@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "different-message-ids",
+  "title": "Different messages for the same business order",
+  "order": {
+    "orderId": "LOCAL-ORDER-1042",
+    "sku": "FIELD-NOTES-3PACK",
+    "quantity": 1
+  },
+  "fault": "none",
+  "deliveries": [
+    {
+      "messageKey": "message-a",
+      "receiveCount": 1
+    },
+    {
+      "messageKey": "message-b",
+      "receiveCount": 1
+    }
+  ],
+  "observation": "independent-ledger",
+  "effectModel": "receiver-owned-receipt",
+  "expectedStatus": {
+    "vulnerable": "violation",
+    "repaired": "pass"
+  },
+  "maxDeliveries": 2
+}

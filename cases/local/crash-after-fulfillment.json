@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "crash-after-fulfillment",
+  "title": "Same-message retry after successful fulfillment",
+  "order": {
+    "orderId": "LOCAL-ORDER-1042",
+    "sku": "FIELD-NOTES-3PACK",
+    "quantity": 1
+  },
+  "fault": "crash-after-fulfillment",
+  "deliveries": [
+    {
+      "messageKey": "message-a",
+      "receiveCount": 1
+    },
+    {
+      "messageKey": "message-a",
+      "receiveCount": 2
+    }
+  ],
+  "observation": "independent-ledger",
+  "effectModel": "receiver-owned-receipt",
+  "expectedStatus": {
+    "vulnerable": "violation",
+    "repaired": "pass"
+  },
+  "maxDeliveries": 2
+}

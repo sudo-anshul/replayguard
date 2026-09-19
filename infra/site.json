@@ -1,0 +1,31 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "ReplayGuard read-only static evidence UI on AWS Amplify Hosting. Manual uploads only; no build service, repository connection or experiment endpoint.",
+  "Resources": {
+    "SiteApp": {
+      "Type": "AWS::Amplify::App",
+      "Properties": {
+        "Name": {"Fn::Sub": "${AWS::StackName}"},
+        "Platform": "WEB",
+        "EnableBranchAutoDeletion": false,
+        "Tags": [{"Key": "Project", "Value": "ReplayGuard"}]
+      }
+    },
+    "ProductionBranch": {
+      "Type": "AWS::Amplify::Branch",
+      "Properties": {
+        "AppId": {"Fn::GetAtt": ["SiteApp", "AppId"]},
+        "BranchName": "prod",
+        "Stage": "PRODUCTION",
+        "EnableAutoBuild": false,
+        "EnablePullRequestPreview": false,
+        "Tags": [{"Key": "Project", "Value": "ReplayGuard"}]
+      }
+    }
+  },
+  "Outputs": {
+    "AppId": {"Value": {"Fn::GetAtt": ["SiteApp", "AppId"]}},
+    "BranchName": {"Value": "prod"},
+    "LiveUrl": {"Value": {"Fn::Sub": "https://prod.${SiteApp.DefaultDomain}"}}
+  }
+}

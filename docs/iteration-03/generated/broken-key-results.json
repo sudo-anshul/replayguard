@@ -1,0 +1,2649 @@
+{
+  "schemaVersion": 1,
+  "provenance": "local-execution",
+  "supervisorIteration": "RG-SUP-001-9c7acfba",
+  "startedAt": "2026-09-18T20:30:51.363624Z",
+  "recordedAt": "2026-09-18T20:30:51.378090Z",
+  "boundaries": [
+    "Actual existing worker.py and provider.py execute through explicit local adapters; this is not AWS execution or stored-evidence verification.",
+    "The observer independently snapshots a process-local MemoryLedger. It models atomic receiver-owned receipt creation only, not DynamoDB durability or service behavior.",
+    "Delivery schedules are declared finite inputs (maximum two deliveries); they do not model SQS timing, visibility, concurrency, redrive or all possible interleavings.",
+    "No external payment, shipment, email or customer order is attempted. An external effect without an atomic idempotency contract is explicitly unresolved.",
+    "A suite pass means observed outcomes match the frozen expectations, including expected buggy-handler violations. It does not mean every handler is safe.",
+    "The guard blocks normal Python network, SDK, process and FFI APIs. This trusted-code lab is not a sandbox for adversarial native code."
+  ],
+  "noNetworkGuard": {
+    "installedBeforeHandlerImport": true,
+    "mechanism": "CPython audit hook plus SDK/process/FFI import blocker",
+    "auditEventsSeen": 930,
+    "blockedOperationCount": 4,
+    "handlerBlockedOperationCount": 0,
+    "blockedOperations": [
+      {
+        "event": "socket.__new__",
+        "detail": "",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "boto3",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "subprocess",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "ctypes",
+        "duringSelfTest": true
+      }
+    ],
+    "selfTests": [
+      {
+        "probe": "socket-construction",
+        "blocked": true
+      },
+      {
+        "probe": "aws-sdk-import",
+        "blocked": true
+      },
+      {
+        "probe": "child-process-import",
+        "blocked": true
+      },
+      {
+        "probe": "native-ffi-import",
+        "blocked": true
+      }
+    ],
+    "passed": true,
+    "boundary": "Blocks normal Python socket, SDK, subprocess and ctypes paths; not a hostile-native-code sandbox."
+  },
+  "runtime": {
+    "python": "3.14.3",
+    "isolated": true,
+    "noSitePackages": true,
+    "sdkImported": false
+  },
+  "sourceSha256": {
+    "src/worker.py": "4d261d5125d3d70dc93d2943772ce9f8d1b91e2288695054ff9da2a41f9167f4",
+    "src/provider.py": "0c053a5cbf7f57da3aeb0fef2c2ddf6312682a70cdeccd9618bcbdccaeb91a8a"
+  },
+  "caseSha256": {
+    "cases/local/no-fault.json": "e00eb6ee18218565a267b0d22cc329ab3ffb54d3fc38793197c511c1f8748624",
+    "cases/local/crash-after-fulfillment.json": "5ee625acf00b051f8ca8f36fa071cdc2355140230cdb71f6c15fe642af951dab",
+    "cases/local/different-message-ids.json": "ea3c2160571b72b69bc25b146678ae313ff63cac36fdbf8c1c7f3fcbacdce841",
+    "cases/local/missing-observation.json": "c8740b4b53fff40e4dff224ff71d0c2f3f94e85ab34fb9187f3824988d6cc082",
+    "cases/local/ambiguous-side-effect.json": "82685af77552c61bc18ff5839cb6174aa34ba05e250f826a1cbc980a59129a2c"
+  },
+  "plan": {
+    "path": "docs/iteration-01/plan.json",
+    "sha256": "0a16692d69cb7b9a066eb9ba20c774cfd3b022f36aec243c304f0b71a59db26e",
+    "frozenBeforeImplementation": true
+  },
+  "results": [
+    {
+      "caseId": "no-fault",
+      "title": "No-fault completion control",
+      "mode": "vulnerable",
+      "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+      "provenance": "local-execution",
+      "expectedStatus": "pass",
+      "observedStatus": "pass",
+      "exitCode": 0,
+      "expectationMatched": true,
+      "case": {
+        "schemaVersion": 1,
+        "id": "no-fault",
+        "title": "No-fault completion control",
+        "order": {
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1
+        },
+        "fault": "none",
+        "deliveries": [
+          {
+            "messageKey": "message-a",
+            "receiveCount": 1
+          }
+        ],
+        "observation": "independent-ledger",
+        "effectModel": "receiver-owned-receipt",
+        "expectedStatus": {
+          "vulnerable": "pass",
+          "repaired": "pass"
+        },
+        "maxDeliveries": 1
+      },
+      "execution": {
+        "performed": true,
+        "sourcesLoaded": true,
+        "handlerInvocations": 1,
+        "providerInvocations": 1,
+        "maxDeliveries": 1,
+        "maximumDeliveryRuntimeSeconds": 2
+      },
+      "deliveries": [
+        {
+          "index": 1,
+          "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+          "receiveCount": 1,
+          "requestId": "local-worker-63ab070bd7574d9dadf22bfaadc41ad2",
+          "input": {
+            "Records": [
+              {
+                "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+                "body": "{\"runId\":\"local-6a66ecf8115e4642a031886bedd263d8\",\"mode\":\"vulnerable\",\"order\":{\"orderId\":\"LOCAL-ORDER-1042\",\"sku\":\"FIELD-NOTES-3PACK\",\"quantity\":1},\"fault\":\"none\"}",
+                "attributes": {
+                  "ApproximateReceiveCount": "1"
+                }
+              }
+            ]
+          },
+          "startedAt": "2026-09-18T20:30:51.366082Z",
+          "returnedNormally": true,
+          "returned": {
+            "receiptId": "422d8cf8b11942f9a63f3376889ba952",
+            "reused": false
+          },
+          "error": null,
+          "finishedAt": "2026-09-18T20:30:51.366226Z"
+        }
+      ],
+      "providerInvocations": [
+        {
+          "requestId": "local-provider-9986dd24d7fe41ebbec0b399b3408a70",
+          "payload": {
+            "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+            "mode": "vulnerable",
+            "order": {
+              "orderId": "LOCAL-ORDER-1042",
+              "sku": "FIELD-NOTES-3PACK",
+              "quantity": 1
+            },
+            "fault": "none",
+            "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+            "receiveCount": 1,
+            "workerRequestId": "local-worker-63ab070bd7574d9dadf22bfaadc41ad2"
+          },
+          "functionError": null,
+          "returned": {
+            "receiptId": "422d8cf8b11942f9a63f3376889ba952",
+            "accepted": true,
+            "reused": false,
+            "idempotencyKey": null,
+            "createdAt": "2026-09-18T20:30:51.366Z"
+          }
+        }
+      ],
+      "events": [
+        {
+          "component": "worker",
+          "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": null,
+          "receiveCount": 1,
+          "requestId": "local-worker-63ab070bd7574d9dadf22bfaadc41ad2",
+          "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+          "stage": "received",
+          "timestamp": "2026-09-18T20:30:51.366Z",
+          "localObservationIndex": 0,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "provider",
+          "idempotencyKey": null,
+          "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "422d8cf8b11942f9a63f3376889ba952",
+          "receiveCount": 1,
+          "requestId": "local-provider-9986dd24d7fe41ebbec0b399b3408a70",
+          "reused": false,
+          "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+          "stage": "accepted",
+          "timestamp": "2026-09-18T20:30:51.366Z",
+          "workerRequestId": "local-worker-63ab070bd7574d9dadf22bfaadc41ad2",
+          "localObservationIndex": 1,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "worker",
+          "idempotencyKey": null,
+          "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "422d8cf8b11942f9a63f3376889ba952",
+          "receiveCount": 1,
+          "requestId": "local-worker-63ab070bd7574d9dadf22bfaadc41ad2",
+          "reused": false,
+          "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+          "stage": "fulfillment_succeeded",
+          "timestamp": "2026-09-18T20:30:51.366Z",
+          "localObservationIndex": 2,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "422d8cf8b11942f9a63f3376889ba952",
+          "receiveCount": 1,
+          "requestId": "local-worker-63ab070bd7574d9dadf22bfaadc41ad2",
+          "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+          "stage": "completed",
+          "timestamp": "2026-09-18T20:30:51.366Z",
+          "localObservationIndex": 3,
+          "localDeliveryIndex": 1
+        }
+      ],
+      "ledgerSnapshot": [
+        {
+          "PK": "RUN#local-6a66ecf8115e4642a031886bedd263d8#MODE#vulnerable",
+          "SK": "RECEIPT#422d8cf8b11942f9a63f3376889ba952",
+          "receiptId": "422d8cf8b11942f9a63f3376889ba952",
+          "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1,
+          "idempotencyKey": null,
+          "createdAt": "2026-09-18T20:30:51.366Z",
+          "invocationId": "local-provider-9986dd24d7fe41ebbec0b399b3408a70",
+          "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+          "receiveCount": 1,
+          "expiresAt": 1789936251
+        }
+      ],
+      "ledgerOperations": [
+        {
+          "operation": "conditional-create",
+          "outcome": "created"
+        }
+      ],
+      "errors": [],
+      "assertions": [
+        {
+          "id": "source-executed",
+          "status": "pass",
+          "expected": "existing worker and provider modules loaded",
+          "observed": true,
+          "detail": "The runner executes the captured handler source bytes at their existing entry points; the reported SHA-256 fingerprints those exact bytes."
+        },
+        {
+          "id": "no-forbidden-operations",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "detail": "Any handler network, SDK, subprocess or native FFI attempt is blocked and invalidates this local result."
+        },
+        {
+          "id": "finite-schedule-executed",
+          "status": "pass",
+          "expected": 1,
+          "observed": 1,
+          "detail": "Only the fixed declared deliveries execute; there are no automatic retries."
+        },
+        {
+          "id": "required-completions",
+          "status": "pass",
+          "expected": "all non-fault deliveries return normally after a completed event",
+          "observed": [],
+          "detail": "An immediate exception or missing completion cannot pass. Only a fully evidenced configured first-delivery crash is expected."
+        },
+        {
+          "id": "independent-receipt-observation",
+          "status": "pass",
+          "expected": "observer snapshot after execution",
+          "observed": 1,
+          "detail": "Receipt counts come directly from MemoryLedger state, never a worker returned result."
+        },
+        {
+          "id": "receipt-input-integrity",
+          "status": "pass",
+          "expected": "all receipts belong to the executed logical order",
+          "observed": [],
+          "detail": "The same logical order identity spans the declared deliveries, including different message IDs."
+        },
+        {
+          "id": "single-fulfillment",
+          "status": "pass",
+          "expected": 1,
+          "observed": 1,
+          "detail": "One durable local receipt is the only modeled fulfillment effect. More than one is a directly observed safety violation."
+        }
+      ]
+    },
+    {
+      "caseId": "no-fault",
+      "title": "No-fault completion control",
+      "mode": "repaired",
+      "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+      "provenance": "local-execution",
+      "expectedStatus": "pass",
+      "observedStatus": "pass",
+      "exitCode": 0,
+      "expectationMatched": true,
+      "case": {
+        "schemaVersion": 1,
+        "id": "no-fault",
+        "title": "No-fault completion control",
+        "order": {
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1
+        },
+        "fault": "none",
+        "deliveries": [
+          {
+            "messageKey": "message-a",
+            "receiveCount": 1
+          }
+        ],
+        "observation": "independent-ledger",
+        "effectModel": "receiver-owned-receipt",
+        "expectedStatus": {
+          "vulnerable": "pass",
+          "repaired": "pass"
+        },
+        "maxDeliveries": 1
+      },
+      "execution": {
+        "performed": true,
+        "sourcesLoaded": true,
+        "handlerInvocations": 1,
+        "providerInvocations": 1,
+        "maxDeliveries": 1,
+        "maximumDeliveryRuntimeSeconds": 2
+      },
+      "deliveries": [
+        {
+          "index": 1,
+          "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+          "receiveCount": 1,
+          "requestId": "local-worker-a7429326b74c421d8265b2fa0ce25e4c",
+          "input": {
+            "Records": [
+              {
+                "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+                "body": "{\"runId\":\"local-6a66ecf8115e4642a031886bedd263d8\",\"mode\":\"repaired\",\"order\":{\"orderId\":\"LOCAL-ORDER-1042\",\"sku\":\"FIELD-NOTES-3PACK\",\"quantity\":1},\"fault\":\"none\"}",
+                "attributes": {
+                  "ApproximateReceiveCount": "1"
+                }
+              }
+            ]
+          },
+          "startedAt": "2026-09-18T20:30:51.367703Z",
+          "returnedNormally": true,
+          "returned": {
+            "receiptId": "c476aa90ecbe4deaa63a84612ec24e04",
+            "reused": false
+          },
+          "error": null,
+          "finishedAt": "2026-09-18T20:30:51.367818Z"
+        }
+      ],
+      "providerInvocations": [
+        {
+          "requestId": "local-provider-adb467d0ca7b453ebbb3e5a36031a576",
+          "payload": {
+            "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+            "mode": "repaired",
+            "order": {
+              "orderId": "LOCAL-ORDER-1042",
+              "sku": "FIELD-NOTES-3PACK",
+              "quantity": 1
+            },
+            "fault": "none",
+            "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+            "receiveCount": 1,
+            "workerRequestId": "local-worker-a7429326b74c421d8265b2fa0ce25e4c"
+          },
+          "functionError": null,
+          "returned": {
+            "receiptId": "c476aa90ecbe4deaa63a84612ec24e04",
+            "accepted": true,
+            "reused": false,
+            "idempotencyKey": null,
+            "createdAt": "2026-09-18T20:30:51.367Z"
+          }
+        }
+      ],
+      "events": [
+        {
+          "component": "worker",
+          "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": null,
+          "receiveCount": 1,
+          "requestId": "local-worker-a7429326b74c421d8265b2fa0ce25e4c",
+          "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+          "stage": "received",
+          "timestamp": "2026-09-18T20:30:51.367Z",
+          "localObservationIndex": 0,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "provider",
+          "idempotencyKey": null,
+          "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "c476aa90ecbe4deaa63a84612ec24e04",
+          "receiveCount": 1,
+          "requestId": "local-provider-adb467d0ca7b453ebbb3e5a36031a576",
+          "reused": false,
+          "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+          "stage": "accepted",
+          "timestamp": "2026-09-18T20:30:51.367Z",
+          "workerRequestId": "local-worker-a7429326b74c421d8265b2fa0ce25e4c",
+          "localObservationIndex": 1,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "worker",
+          "idempotencyKey": null,
+          "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "c476aa90ecbe4deaa63a84612ec24e04",
+          "receiveCount": 1,
+          "requestId": "local-worker-a7429326b74c421d8265b2fa0ce25e4c",
+          "reused": false,
+          "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+          "stage": "fulfillment_succeeded",
+          "timestamp": "2026-09-18T20:30:51.367Z",
+          "localObservationIndex": 2,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "c476aa90ecbe4deaa63a84612ec24e04",
+          "receiveCount": 1,
+          "requestId": "local-worker-a7429326b74c421d8265b2fa0ce25e4c",
+          "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+          "stage": "completed",
+          "timestamp": "2026-09-18T20:30:51.367Z",
+          "localObservationIndex": 3,
+          "localDeliveryIndex": 1
+        }
+      ],
+      "ledgerSnapshot": [
+        {
+          "PK": "RUN#local-6a66ecf8115e4642a031886bedd263d8#MODE#repaired",
+          "SK": "RECEIPT#c476aa90ecbe4deaa63a84612ec24e04",
+          "receiptId": "c476aa90ecbe4deaa63a84612ec24e04",
+          "runId": "local-6a66ecf8115e4642a031886bedd263d8",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1,
+          "idempotencyKey": null,
+          "createdAt": "2026-09-18T20:30:51.367Z",
+          "invocationId": "local-provider-adb467d0ca7b453ebbb3e5a36031a576",
+          "messageId": "local-6a66ecf8115e4642a031886bedd263d8-message-a",
+          "receiveCount": 1,
+          "expiresAt": 1789936251
+        }
+      ],
+      "ledgerOperations": [
+        {
+          "operation": "conditional-create",
+          "outcome": "created"
+        }
+      ],
+      "errors": [],
+      "assertions": [
+        {
+          "id": "source-executed",
+          "status": "pass",
+          "expected": "existing worker and provider modules loaded",
+          "observed": true,
+          "detail": "The runner executes the captured handler source bytes at their existing entry points; the reported SHA-256 fingerprints those exact bytes."
+        },
+        {
+          "id": "no-forbidden-operations",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "detail": "Any handler network, SDK, subprocess or native FFI attempt is blocked and invalidates this local result."
+        },
+        {
+          "id": "finite-schedule-executed",
+          "status": "pass",
+          "expected": 1,
+          "observed": 1,
+          "detail": "Only the fixed declared deliveries execute; there are no automatic retries."
+        },
+        {
+          "id": "required-completions",
+          "status": "pass",
+          "expected": "all non-fault deliveries return normally after a completed event",
+          "observed": [],
+          "detail": "An immediate exception or missing completion cannot pass. Only a fully evidenced configured first-delivery crash is expected."
+        },
+        {
+          "id": "independent-receipt-observation",
+          "status": "pass",
+          "expected": "observer snapshot after execution",
+          "observed": 1,
+          "detail": "Receipt counts come directly from MemoryLedger state, never a worker returned result."
+        },
+        {
+          "id": "receipt-input-integrity",
+          "status": "pass",
+          "expected": "all receipts belong to the executed logical order",
+          "observed": [],
+          "detail": "The same logical order identity spans the declared deliveries, including different message IDs."
+        },
+        {
+          "id": "single-fulfillment",
+          "status": "pass",
+          "expected": 1,
+          "observed": 1,
+          "detail": "One durable local receipt is the only modeled fulfillment effect. More than one is a directly observed safety violation."
+        }
+      ]
+    },
+    {
+      "caseId": "crash-after-fulfillment",
+      "title": "Same-message retry after successful fulfillment",
+      "mode": "vulnerable",
+      "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+      "provenance": "local-execution",
+      "expectedStatus": "violation",
+      "observedStatus": "violation",
+      "exitCode": 1,
+      "expectationMatched": true,
+      "case": {
+        "schemaVersion": 1,
+        "id": "crash-after-fulfillment",
+        "title": "Same-message retry after successful fulfillment",
+        "order": {
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1
+        },
+        "fault": "crash-after-fulfillment",
+        "deliveries": [
+          {
+            "messageKey": "message-a",
+            "receiveCount": 1
+          },
+          {
+            "messageKey": "message-a",
+            "receiveCount": 2
+          }
+        ],
+        "observation": "independent-ledger",
+        "effectModel": "receiver-owned-receipt",
+        "expectedStatus": {
+          "vulnerable": "violation",
+          "repaired": "pass"
+        },
+        "maxDeliveries": 2
+      },
+      "execution": {
+        "performed": true,
+        "sourcesLoaded": true,
+        "handlerInvocations": 2,
+        "providerInvocations": 2,
+        "maxDeliveries": 2,
+        "maximumDeliveryRuntimeSeconds": 2
+      },
+      "deliveries": [
+        {
+          "index": 1,
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "receiveCount": 1,
+          "requestId": "local-worker-06b1108f2d124993b582cb5b34f45db0",
+          "input": {
+            "Records": [
+              {
+                "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+                "body": "{\"runId\":\"local-9f5e5a74d0514bb39d17e436d86b27aa\",\"mode\":\"vulnerable\",\"order\":{\"orderId\":\"LOCAL-ORDER-1042\",\"sku\":\"FIELD-NOTES-3PACK\",\"quantity\":1},\"fault\":\"crash-after-fulfillment\"}",
+                "attributes": {
+                  "ApproximateReceiveCount": "1"
+                }
+              }
+            ]
+          },
+          "startedAt": "2026-09-18T20:30:51.369258Z",
+          "returnedNormally": false,
+          "returned": null,
+          "error": {
+            "type": "RuntimeError",
+            "message": "Injected crash AFTER successful simulated fulfillment; SQS must redeliver"
+          },
+          "finishedAt": "2026-09-18T20:30:51.369388Z"
+        },
+        {
+          "index": 2,
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "receiveCount": 2,
+          "requestId": "local-worker-80f2584a5f594f90a9e65750d304864e",
+          "input": {
+            "Records": [
+              {
+                "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+                "body": "{\"runId\":\"local-9f5e5a74d0514bb39d17e436d86b27aa\",\"mode\":\"vulnerable\",\"order\":{\"orderId\":\"LOCAL-ORDER-1042\",\"sku\":\"FIELD-NOTES-3PACK\",\"quantity\":1},\"fault\":\"crash-after-fulfillment\"}",
+                "attributes": {
+                  "ApproximateReceiveCount": "2"
+                }
+              }
+            ]
+          },
+          "startedAt": "2026-09-18T20:30:51.369424Z",
+          "returnedNormally": true,
+          "returned": {
+            "receiptId": "43c632ecf5bf4e4f8885e93858e367ed",
+            "reused": false
+          },
+          "error": null,
+          "finishedAt": "2026-09-18T20:30:51.369522Z"
+        }
+      ],
+      "providerInvocations": [
+        {
+          "requestId": "local-provider-2545e29e1efc4c05839496a0380ef6cf",
+          "payload": {
+            "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+            "mode": "vulnerable",
+            "order": {
+              "orderId": "LOCAL-ORDER-1042",
+              "sku": "FIELD-NOTES-3PACK",
+              "quantity": 1
+            },
+            "fault": "crash-after-fulfillment",
+            "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+            "receiveCount": 1,
+            "workerRequestId": "local-worker-06b1108f2d124993b582cb5b34f45db0"
+          },
+          "functionError": null,
+          "returned": {
+            "receiptId": "47ddcc96af6a41a48436ae76392e97ec",
+            "accepted": true,
+            "reused": false,
+            "idempotencyKey": null,
+            "createdAt": "2026-09-18T20:30:51.369Z"
+          }
+        },
+        {
+          "requestId": "local-provider-03cf0d88029549b38d2580bcaa314835",
+          "payload": {
+            "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+            "mode": "vulnerable",
+            "order": {
+              "orderId": "LOCAL-ORDER-1042",
+              "sku": "FIELD-NOTES-3PACK",
+              "quantity": 1
+            },
+            "fault": "crash-after-fulfillment",
+            "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+            "receiveCount": 2,
+            "workerRequestId": "local-worker-80f2584a5f594f90a9e65750d304864e"
+          },
+          "functionError": null,
+          "returned": {
+            "receiptId": "43c632ecf5bf4e4f8885e93858e367ed",
+            "accepted": true,
+            "reused": false,
+            "idempotencyKey": null,
+            "createdAt": "2026-09-18T20:30:51.369Z"
+          }
+        }
+      ],
+      "events": [
+        {
+          "component": "worker",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": null,
+          "receiveCount": 1,
+          "requestId": "local-worker-06b1108f2d124993b582cb5b34f45db0",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "received",
+          "timestamp": "2026-09-18T20:30:51.369Z",
+          "localObservationIndex": 0,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "provider",
+          "idempotencyKey": null,
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "47ddcc96af6a41a48436ae76392e97ec",
+          "receiveCount": 1,
+          "requestId": "local-provider-2545e29e1efc4c05839496a0380ef6cf",
+          "reused": false,
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "accepted",
+          "timestamp": "2026-09-18T20:30:51.369Z",
+          "workerRequestId": "local-worker-06b1108f2d124993b582cb5b34f45db0",
+          "localObservationIndex": 1,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "worker",
+          "idempotencyKey": null,
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "47ddcc96af6a41a48436ae76392e97ec",
+          "receiveCount": 1,
+          "requestId": "local-worker-06b1108f2d124993b582cb5b34f45db0",
+          "reused": false,
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "fulfillment_succeeded",
+          "timestamp": "2026-09-18T20:30:51.369Z",
+          "localObservationIndex": 2,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "fault": "crash-after-fulfillment",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "47ddcc96af6a41a48436ae76392e97ec",
+          "receiveCount": 1,
+          "requestId": "local-worker-06b1108f2d124993b582cb5b34f45db0",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "fault_injected",
+          "timestamp": "2026-09-18T20:30:51.369Z",
+          "localObservationIndex": 3,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "error": "Injected crash AFTER successful simulated fulfillment; SQS must redeliver",
+          "errorType": "RuntimeError",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "47ddcc96af6a41a48436ae76392e97ec",
+          "receiveCount": 1,
+          "requestId": "local-worker-06b1108f2d124993b582cb5b34f45db0",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "failed",
+          "timestamp": "2026-09-18T20:30:51.369Z",
+          "localObservationIndex": 4,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": null,
+          "receiveCount": 2,
+          "requestId": "local-worker-80f2584a5f594f90a9e65750d304864e",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "received",
+          "timestamp": "2026-09-18T20:30:51.369Z",
+          "localObservationIndex": 5,
+          "localDeliveryIndex": 2
+        },
+        {
+          "accepted": true,
+          "component": "provider",
+          "idempotencyKey": null,
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "43c632ecf5bf4e4f8885e93858e367ed",
+          "receiveCount": 2,
+          "requestId": "local-provider-03cf0d88029549b38d2580bcaa314835",
+          "reused": false,
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "accepted",
+          "timestamp": "2026-09-18T20:30:51.369Z",
+          "workerRequestId": "local-worker-80f2584a5f594f90a9e65750d304864e",
+          "localObservationIndex": 6,
+          "localDeliveryIndex": 2
+        },
+        {
+          "accepted": true,
+          "component": "worker",
+          "idempotencyKey": null,
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "43c632ecf5bf4e4f8885e93858e367ed",
+          "receiveCount": 2,
+          "requestId": "local-worker-80f2584a5f594f90a9e65750d304864e",
+          "reused": false,
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "fulfillment_succeeded",
+          "timestamp": "2026-09-18T20:30:51.369Z",
+          "localObservationIndex": 7,
+          "localDeliveryIndex": 2
+        },
+        {
+          "component": "worker",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "43c632ecf5bf4e4f8885e93858e367ed",
+          "receiveCount": 2,
+          "requestId": "local-worker-80f2584a5f594f90a9e65750d304864e",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "completed",
+          "timestamp": "2026-09-18T20:30:51.369Z",
+          "localObservationIndex": 8,
+          "localDeliveryIndex": 2
+        }
+      ],
+      "ledgerSnapshot": [
+        {
+          "PK": "RUN#local-9f5e5a74d0514bb39d17e436d86b27aa#MODE#vulnerable",
+          "SK": "RECEIPT#43c632ecf5bf4e4f8885e93858e367ed",
+          "receiptId": "43c632ecf5bf4e4f8885e93858e367ed",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1,
+          "idempotencyKey": null,
+          "createdAt": "2026-09-18T20:30:51.369Z",
+          "invocationId": "local-provider-03cf0d88029549b38d2580bcaa314835",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "receiveCount": 2,
+          "expiresAt": 1789936251
+        },
+        {
+          "PK": "RUN#local-9f5e5a74d0514bb39d17e436d86b27aa#MODE#vulnerable",
+          "SK": "RECEIPT#47ddcc96af6a41a48436ae76392e97ec",
+          "receiptId": "47ddcc96af6a41a48436ae76392e97ec",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1,
+          "idempotencyKey": null,
+          "createdAt": "2026-09-18T20:30:51.369Z",
+          "invocationId": "local-provider-2545e29e1efc4c05839496a0380ef6cf",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "receiveCount": 1,
+          "expiresAt": 1789936251
+        }
+      ],
+      "ledgerOperations": [
+        {
+          "operation": "conditional-create",
+          "outcome": "created"
+        },
+        {
+          "operation": "conditional-create",
+          "outcome": "created"
+        }
+      ],
+      "errors": [
+        {
+          "type": "RuntimeError",
+          "message": "Injected crash AFTER successful simulated fulfillment; SQS must redeliver",
+          "deliveryIndex": 1,
+          "expectedInjectedFault": true
+        }
+      ],
+      "assertions": [
+        {
+          "id": "source-executed",
+          "status": "pass",
+          "expected": "existing worker and provider modules loaded",
+          "observed": true,
+          "detail": "The runner executes the captured handler source bytes at their existing entry points; the reported SHA-256 fingerprints those exact bytes."
+        },
+        {
+          "id": "no-forbidden-operations",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "detail": "Any handler network, SDK, subprocess or native FFI attempt is blocked and invalidates this local result."
+        },
+        {
+          "id": "finite-schedule-executed",
+          "status": "pass",
+          "expected": 2,
+          "observed": 2,
+          "detail": "Only the fixed declared deliveries execute; there are no automatic retries."
+        },
+        {
+          "id": "required-completions",
+          "status": "pass",
+          "expected": "all non-fault deliveries return normally after a completed event",
+          "observed": [],
+          "detail": "An immediate exception or missing completion cannot pass. Only a fully evidenced configured first-delivery crash is expected."
+        },
+        {
+          "id": "post-fulfillment-fault",
+          "status": "pass",
+          "expected": "provider acceptance \u2192 worker success \u2192 injected error \u2192 same-message retry",
+          "observed": true,
+          "detail": "The known exception text alone is insufficient: ordered real logs and an independently observed receipt are required."
+        },
+        {
+          "id": "independent-receipt-observation",
+          "status": "pass",
+          "expected": "observer snapshot after execution",
+          "observed": 2,
+          "detail": "Receipt counts come directly from MemoryLedger state, never a worker returned result."
+        },
+        {
+          "id": "receipt-input-integrity",
+          "status": "pass",
+          "expected": "all receipts belong to the executed logical order",
+          "observed": [],
+          "detail": "The same logical order identity spans the declared deliveries, including different message IDs."
+        },
+        {
+          "id": "single-fulfillment",
+          "status": "violation",
+          "expected": 1,
+          "observed": 2,
+          "detail": "One durable local receipt is the only modeled fulfillment effect. More than one is a directly observed safety violation."
+        }
+      ]
+    },
+    {
+      "caseId": "crash-after-fulfillment",
+      "title": "Same-message retry after successful fulfillment",
+      "mode": "repaired",
+      "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+      "provenance": "local-execution",
+      "expectedStatus": "pass",
+      "observedStatus": "violation",
+      "exitCode": 1,
+      "expectationMatched": false,
+      "case": {
+        "schemaVersion": 1,
+        "id": "crash-after-fulfillment",
+        "title": "Same-message retry after successful fulfillment",
+        "order": {
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1
+        },
+        "fault": "crash-after-fulfillment",
+        "deliveries": [
+          {
+            "messageKey": "message-a",
+            "receiveCount": 1
+          },
+          {
+            "messageKey": "message-a",
+            "receiveCount": 2
+          }
+        ],
+        "observation": "independent-ledger",
+        "effectModel": "receiver-owned-receipt",
+        "expectedStatus": {
+          "vulnerable": "violation",
+          "repaired": "pass"
+        },
+        "maxDeliveries": 2
+      },
+      "execution": {
+        "performed": true,
+        "sourcesLoaded": true,
+        "handlerInvocations": 2,
+        "providerInvocations": 2,
+        "maxDeliveries": 2,
+        "maximumDeliveryRuntimeSeconds": 2
+      },
+      "deliveries": [
+        {
+          "index": 1,
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "receiveCount": 1,
+          "requestId": "local-worker-b621efc5406948e4982f28abd396861a",
+          "input": {
+            "Records": [
+              {
+                "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+                "body": "{\"runId\":\"local-9f5e5a74d0514bb39d17e436d86b27aa\",\"mode\":\"repaired\",\"order\":{\"orderId\":\"LOCAL-ORDER-1042\",\"sku\":\"FIELD-NOTES-3PACK\",\"quantity\":1},\"fault\":\"crash-after-fulfillment\"}",
+                "attributes": {
+                  "ApproximateReceiveCount": "1"
+                }
+              }
+            ]
+          },
+          "startedAt": "2026-09-18T20:30:51.370972Z",
+          "returnedNormally": false,
+          "returned": null,
+          "error": {
+            "type": "RuntimeError",
+            "message": "Injected crash AFTER successful simulated fulfillment; SQS must redeliver"
+          },
+          "finishedAt": "2026-09-18T20:30:51.371101Z"
+        },
+        {
+          "index": 2,
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "receiveCount": 2,
+          "requestId": "local-worker-fd71998d0e114157be44944ce6729cf1",
+          "input": {
+            "Records": [
+              {
+                "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+                "body": "{\"runId\":\"local-9f5e5a74d0514bb39d17e436d86b27aa\",\"mode\":\"repaired\",\"order\":{\"orderId\":\"LOCAL-ORDER-1042\",\"sku\":\"FIELD-NOTES-3PACK\",\"quantity\":1},\"fault\":\"crash-after-fulfillment\"}",
+                "attributes": {
+                  "ApproximateReceiveCount": "2"
+                }
+              }
+            ]
+          },
+          "startedAt": "2026-09-18T20:30:51.371138Z",
+          "returnedNormally": true,
+          "returned": {
+            "receiptId": "e25b88dfc22e4c00acfee6b4c271572c",
+            "reused": false
+          },
+          "error": null,
+          "finishedAt": "2026-09-18T20:30:51.371236Z"
+        }
+      ],
+      "providerInvocations": [
+        {
+          "requestId": "local-provider-6982cf76343646b191ba6426219aa950",
+          "payload": {
+            "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+            "mode": "repaired",
+            "order": {
+              "orderId": "LOCAL-ORDER-1042",
+              "sku": "FIELD-NOTES-3PACK",
+              "quantity": 1
+            },
+            "fault": "crash-after-fulfillment",
+            "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+            "receiveCount": 1,
+            "workerRequestId": "local-worker-b621efc5406948e4982f28abd396861a"
+          },
+          "functionError": null,
+          "returned": {
+            "receiptId": "3af996fdb06c4bd4ac1dcd03663812a7",
+            "accepted": true,
+            "reused": false,
+            "idempotencyKey": null,
+            "createdAt": "2026-09-18T20:30:51.371Z"
+          }
+        },
+        {
+          "requestId": "local-provider-b8b67334fbea43d797962cbfbb5040e5",
+          "payload": {
+            "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+            "mode": "repaired",
+            "order": {
+              "orderId": "LOCAL-ORDER-1042",
+              "sku": "FIELD-NOTES-3PACK",
+              "quantity": 1
+            },
+            "fault": "crash-after-fulfillment",
+            "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+            "receiveCount": 2,
+            "workerRequestId": "local-worker-fd71998d0e114157be44944ce6729cf1"
+          },
+          "functionError": null,
+          "returned": {
+            "receiptId": "e25b88dfc22e4c00acfee6b4c271572c",
+            "accepted": true,
+            "reused": false,
+            "idempotencyKey": null,
+            "createdAt": "2026-09-18T20:30:51.371Z"
+          }
+        }
+      ],
+      "events": [
+        {
+          "component": "worker",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": null,
+          "receiveCount": 1,
+          "requestId": "local-worker-b621efc5406948e4982f28abd396861a",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "received",
+          "timestamp": "2026-09-18T20:30:51.370Z",
+          "localObservationIndex": 0,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "provider",
+          "idempotencyKey": null,
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "3af996fdb06c4bd4ac1dcd03663812a7",
+          "receiveCount": 1,
+          "requestId": "local-provider-6982cf76343646b191ba6426219aa950",
+          "reused": false,
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "accepted",
+          "timestamp": "2026-09-18T20:30:51.371Z",
+          "workerRequestId": "local-worker-b621efc5406948e4982f28abd396861a",
+          "localObservationIndex": 1,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "worker",
+          "idempotencyKey": null,
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "3af996fdb06c4bd4ac1dcd03663812a7",
+          "receiveCount": 1,
+          "requestId": "local-worker-b621efc5406948e4982f28abd396861a",
+          "reused": false,
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "fulfillment_succeeded",
+          "timestamp": "2026-09-18T20:30:51.371Z",
+          "localObservationIndex": 2,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "fault": "crash-after-fulfillment",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "3af996fdb06c4bd4ac1dcd03663812a7",
+          "receiveCount": 1,
+          "requestId": "local-worker-b621efc5406948e4982f28abd396861a",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "fault_injected",
+          "timestamp": "2026-09-18T20:30:51.371Z",
+          "localObservationIndex": 3,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "error": "Injected crash AFTER successful simulated fulfillment; SQS must redeliver",
+          "errorType": "RuntimeError",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "3af996fdb06c4bd4ac1dcd03663812a7",
+          "receiveCount": 1,
+          "requestId": "local-worker-b621efc5406948e4982f28abd396861a",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "failed",
+          "timestamp": "2026-09-18T20:30:51.371Z",
+          "localObservationIndex": 4,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": null,
+          "receiveCount": 2,
+          "requestId": "local-worker-fd71998d0e114157be44944ce6729cf1",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "received",
+          "timestamp": "2026-09-18T20:30:51.371Z",
+          "localObservationIndex": 5,
+          "localDeliveryIndex": 2
+        },
+        {
+          "accepted": true,
+          "component": "provider",
+          "idempotencyKey": null,
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "e25b88dfc22e4c00acfee6b4c271572c",
+          "receiveCount": 2,
+          "requestId": "local-provider-b8b67334fbea43d797962cbfbb5040e5",
+          "reused": false,
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "accepted",
+          "timestamp": "2026-09-18T20:30:51.371Z",
+          "workerRequestId": "local-worker-fd71998d0e114157be44944ce6729cf1",
+          "localObservationIndex": 6,
+          "localDeliveryIndex": 2
+        },
+        {
+          "accepted": true,
+          "component": "worker",
+          "idempotencyKey": null,
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "e25b88dfc22e4c00acfee6b4c271572c",
+          "receiveCount": 2,
+          "requestId": "local-worker-fd71998d0e114157be44944ce6729cf1",
+          "reused": false,
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "fulfillment_succeeded",
+          "timestamp": "2026-09-18T20:30:51.371Z",
+          "localObservationIndex": 7,
+          "localDeliveryIndex": 2
+        },
+        {
+          "component": "worker",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "e25b88dfc22e4c00acfee6b4c271572c",
+          "receiveCount": 2,
+          "requestId": "local-worker-fd71998d0e114157be44944ce6729cf1",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "stage": "completed",
+          "timestamp": "2026-09-18T20:30:51.371Z",
+          "localObservationIndex": 8,
+          "localDeliveryIndex": 2
+        }
+      ],
+      "ledgerSnapshot": [
+        {
+          "PK": "RUN#local-9f5e5a74d0514bb39d17e436d86b27aa#MODE#repaired",
+          "SK": "RECEIPT#3af996fdb06c4bd4ac1dcd03663812a7",
+          "receiptId": "3af996fdb06c4bd4ac1dcd03663812a7",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1,
+          "idempotencyKey": null,
+          "createdAt": "2026-09-18T20:30:51.371Z",
+          "invocationId": "local-provider-6982cf76343646b191ba6426219aa950",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "receiveCount": 1,
+          "expiresAt": 1789936251
+        },
+        {
+          "PK": "RUN#local-9f5e5a74d0514bb39d17e436d86b27aa#MODE#repaired",
+          "SK": "RECEIPT#e25b88dfc22e4c00acfee6b4c271572c",
+          "receiptId": "e25b88dfc22e4c00acfee6b4c271572c",
+          "runId": "local-9f5e5a74d0514bb39d17e436d86b27aa",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1,
+          "idempotencyKey": null,
+          "createdAt": "2026-09-18T20:30:51.371Z",
+          "invocationId": "local-provider-b8b67334fbea43d797962cbfbb5040e5",
+          "messageId": "local-9f5e5a74d0514bb39d17e436d86b27aa-message-a",
+          "receiveCount": 2,
+          "expiresAt": 1789936251
+        }
+      ],
+      "ledgerOperations": [
+        {
+          "operation": "conditional-create",
+          "outcome": "created"
+        },
+        {
+          "operation": "conditional-create",
+          "outcome": "created"
+        }
+      ],
+      "errors": [
+        {
+          "type": "RuntimeError",
+          "message": "Injected crash AFTER successful simulated fulfillment; SQS must redeliver",
+          "deliveryIndex": 1,
+          "expectedInjectedFault": true
+        }
+      ],
+      "assertions": [
+        {
+          "id": "source-executed",
+          "status": "pass",
+          "expected": "existing worker and provider modules loaded",
+          "observed": true,
+          "detail": "The runner executes the captured handler source bytes at their existing entry points; the reported SHA-256 fingerprints those exact bytes."
+        },
+        {
+          "id": "no-forbidden-operations",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "detail": "Any handler network, SDK, subprocess or native FFI attempt is blocked and invalidates this local result."
+        },
+        {
+          "id": "finite-schedule-executed",
+          "status": "pass",
+          "expected": 2,
+          "observed": 2,
+          "detail": "Only the fixed declared deliveries execute; there are no automatic retries."
+        },
+        {
+          "id": "required-completions",
+          "status": "pass",
+          "expected": "all non-fault deliveries return normally after a completed event",
+          "observed": [],
+          "detail": "An immediate exception or missing completion cannot pass. Only a fully evidenced configured first-delivery crash is expected."
+        },
+        {
+          "id": "post-fulfillment-fault",
+          "status": "pass",
+          "expected": "provider acceptance \u2192 worker success \u2192 injected error \u2192 same-message retry",
+          "observed": true,
+          "detail": "The known exception text alone is insufficient: ordered real logs and an independently observed receipt are required."
+        },
+        {
+          "id": "independent-receipt-observation",
+          "status": "pass",
+          "expected": "observer snapshot after execution",
+          "observed": 2,
+          "detail": "Receipt counts come directly from MemoryLedger state, never a worker returned result."
+        },
+        {
+          "id": "receipt-input-integrity",
+          "status": "pass",
+          "expected": "all receipts belong to the executed logical order",
+          "observed": [],
+          "detail": "The same logical order identity spans the declared deliveries, including different message IDs."
+        },
+        {
+          "id": "single-fulfillment",
+          "status": "violation",
+          "expected": 1,
+          "observed": 2,
+          "detail": "One durable local receipt is the only modeled fulfillment effect. More than one is a directly observed safety violation."
+        }
+      ]
+    },
+    {
+      "caseId": "different-message-ids",
+      "title": "Different messages for the same business order",
+      "mode": "vulnerable",
+      "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+      "provenance": "local-execution",
+      "expectedStatus": "violation",
+      "observedStatus": "violation",
+      "exitCode": 1,
+      "expectationMatched": true,
+      "case": {
+        "schemaVersion": 1,
+        "id": "different-message-ids",
+        "title": "Different messages for the same business order",
+        "order": {
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1
+        },
+        "fault": "none",
+        "deliveries": [
+          {
+            "messageKey": "message-a",
+            "receiveCount": 1
+          },
+          {
+            "messageKey": "message-b",
+            "receiveCount": 1
+          }
+        ],
+        "observation": "independent-ledger",
+        "effectModel": "receiver-owned-receipt",
+        "expectedStatus": {
+          "vulnerable": "violation",
+          "repaired": "pass"
+        },
+        "maxDeliveries": 2
+      },
+      "execution": {
+        "performed": true,
+        "sourcesLoaded": true,
+        "handlerInvocations": 2,
+        "providerInvocations": 2,
+        "maxDeliveries": 2,
+        "maximumDeliveryRuntimeSeconds": 2
+      },
+      "deliveries": [
+        {
+          "index": 1,
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+          "receiveCount": 1,
+          "requestId": "local-worker-8921124356ee4bfabf79fe6507ee18f9",
+          "input": {
+            "Records": [
+              {
+                "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+                "body": "{\"runId\":\"local-2e50912f53644d718ffc12fc3796eb95\",\"mode\":\"vulnerable\",\"order\":{\"orderId\":\"LOCAL-ORDER-1042\",\"sku\":\"FIELD-NOTES-3PACK\",\"quantity\":1},\"fault\":\"none\"}",
+                "attributes": {
+                  "ApproximateReceiveCount": "1"
+                }
+              }
+            ]
+          },
+          "startedAt": "2026-09-18T20:30:51.372824Z",
+          "returnedNormally": true,
+          "returned": {
+            "receiptId": "ee94ff5412cb4792b5458db020f48f6c",
+            "reused": false
+          },
+          "error": null,
+          "finishedAt": "2026-09-18T20:30:51.372956Z"
+        },
+        {
+          "index": 2,
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+          "receiveCount": 1,
+          "requestId": "local-worker-8a7e597877c74d5699ad49d6f36b0f59",
+          "input": {
+            "Records": [
+              {
+                "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+                "body": "{\"runId\":\"local-2e50912f53644d718ffc12fc3796eb95\",\"mode\":\"vulnerable\",\"order\":{\"orderId\":\"LOCAL-ORDER-1042\",\"sku\":\"FIELD-NOTES-3PACK\",\"quantity\":1},\"fault\":\"none\"}",
+                "attributes": {
+                  "ApproximateReceiveCount": "1"
+                }
+              }
+            ]
+          },
+          "startedAt": "2026-09-18T20:30:51.372990Z",
+          "returnedNormally": true,
+          "returned": {
+            "receiptId": "fc337af92783476a8c7e8a30324de0ad",
+            "reused": false
+          },
+          "error": null,
+          "finishedAt": "2026-09-18T20:30:51.373094Z"
+        }
+      ],
+      "providerInvocations": [
+        {
+          "requestId": "local-provider-862a76883a9f4395b26f9e684966df08",
+          "payload": {
+            "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+            "mode": "vulnerable",
+            "order": {
+              "orderId": "LOCAL-ORDER-1042",
+              "sku": "FIELD-NOTES-3PACK",
+              "quantity": 1
+            },
+            "fault": "none",
+            "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+            "receiveCount": 1,
+            "workerRequestId": "local-worker-8921124356ee4bfabf79fe6507ee18f9"
+          },
+          "functionError": null,
+          "returned": {
+            "receiptId": "ee94ff5412cb4792b5458db020f48f6c",
+            "accepted": true,
+            "reused": false,
+            "idempotencyKey": null,
+            "createdAt": "2026-09-18T20:30:51.372Z"
+          }
+        },
+        {
+          "requestId": "local-provider-2d3e3b5dc91c416381c4c919c7174a2d",
+          "payload": {
+            "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+            "mode": "vulnerable",
+            "order": {
+              "orderId": "LOCAL-ORDER-1042",
+              "sku": "FIELD-NOTES-3PACK",
+              "quantity": 1
+            },
+            "fault": "none",
+            "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+            "receiveCount": 1,
+            "workerRequestId": "local-worker-8a7e597877c74d5699ad49d6f36b0f59"
+          },
+          "functionError": null,
+          "returned": {
+            "receiptId": "fc337af92783476a8c7e8a30324de0ad",
+            "accepted": true,
+            "reused": false,
+            "idempotencyKey": null,
+            "createdAt": "2026-09-18T20:30:51.373Z"
+          }
+        }
+      ],
+      "events": [
+        {
+          "component": "worker",
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": null,
+          "receiveCount": 1,
+          "requestId": "local-worker-8921124356ee4bfabf79fe6507ee18f9",
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "received",
+          "timestamp": "2026-09-18T20:30:51.372Z",
+          "localObservationIndex": 0,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "provider",
+          "idempotencyKey": null,
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "ee94ff5412cb4792b5458db020f48f6c",
+          "receiveCount": 1,
+          "requestId": "local-provider-862a76883a9f4395b26f9e684966df08",
+          "reused": false,
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "accepted",
+          "timestamp": "2026-09-18T20:30:51.372Z",
+          "workerRequestId": "local-worker-8921124356ee4bfabf79fe6507ee18f9",
+          "localObservationIndex": 1,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "worker",
+          "idempotencyKey": null,
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "ee94ff5412cb4792b5458db020f48f6c",
+          "receiveCount": 1,
+          "requestId": "local-worker-8921124356ee4bfabf79fe6507ee18f9",
+          "reused": false,
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "fulfillment_succeeded",
+          "timestamp": "2026-09-18T20:30:51.372Z",
+          "localObservationIndex": 2,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "ee94ff5412cb4792b5458db020f48f6c",
+          "receiveCount": 1,
+          "requestId": "local-worker-8921124356ee4bfabf79fe6507ee18f9",
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "completed",
+          "timestamp": "2026-09-18T20:30:51.372Z",
+          "localObservationIndex": 3,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": null,
+          "receiveCount": 1,
+          "requestId": "local-worker-8a7e597877c74d5699ad49d6f36b0f59",
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "received",
+          "timestamp": "2026-09-18T20:30:51.373Z",
+          "localObservationIndex": 4,
+          "localDeliveryIndex": 2
+        },
+        {
+          "accepted": true,
+          "component": "provider",
+          "idempotencyKey": null,
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "fc337af92783476a8c7e8a30324de0ad",
+          "receiveCount": 1,
+          "requestId": "local-provider-2d3e3b5dc91c416381c4c919c7174a2d",
+          "reused": false,
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "accepted",
+          "timestamp": "2026-09-18T20:30:51.373Z",
+          "workerRequestId": "local-worker-8a7e597877c74d5699ad49d6f36b0f59",
+          "localObservationIndex": 5,
+          "localDeliveryIndex": 2
+        },
+        {
+          "accepted": true,
+          "component": "worker",
+          "idempotencyKey": null,
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "fc337af92783476a8c7e8a30324de0ad",
+          "receiveCount": 1,
+          "requestId": "local-worker-8a7e597877c74d5699ad49d6f36b0f59",
+          "reused": false,
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "fulfillment_succeeded",
+          "timestamp": "2026-09-18T20:30:51.373Z",
+          "localObservationIndex": 6,
+          "localDeliveryIndex": 2
+        },
+        {
+          "component": "worker",
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "fc337af92783476a8c7e8a30324de0ad",
+          "receiveCount": 1,
+          "requestId": "local-worker-8a7e597877c74d5699ad49d6f36b0f59",
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "completed",
+          "timestamp": "2026-09-18T20:30:51.373Z",
+          "localObservationIndex": 7,
+          "localDeliveryIndex": 2
+        }
+      ],
+      "ledgerSnapshot": [
+        {
+          "PK": "RUN#local-2e50912f53644d718ffc12fc3796eb95#MODE#vulnerable",
+          "SK": "RECEIPT#ee94ff5412cb4792b5458db020f48f6c",
+          "receiptId": "ee94ff5412cb4792b5458db020f48f6c",
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1,
+          "idempotencyKey": null,
+          "createdAt": "2026-09-18T20:30:51.372Z",
+          "invocationId": "local-provider-862a76883a9f4395b26f9e684966df08",
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+          "receiveCount": 1,
+          "expiresAt": 1789936251
+        },
+        {
+          "PK": "RUN#local-2e50912f53644d718ffc12fc3796eb95#MODE#vulnerable",
+          "SK": "RECEIPT#fc337af92783476a8c7e8a30324de0ad",
+          "receiptId": "fc337af92783476a8c7e8a30324de0ad",
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1,
+          "idempotencyKey": null,
+          "createdAt": "2026-09-18T20:30:51.373Z",
+          "invocationId": "local-provider-2d3e3b5dc91c416381c4c919c7174a2d",
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+          "receiveCount": 1,
+          "expiresAt": 1789936251
+        }
+      ],
+      "ledgerOperations": [
+        {
+          "operation": "conditional-create",
+          "outcome": "created"
+        },
+        {
+          "operation": "conditional-create",
+          "outcome": "created"
+        }
+      ],
+      "errors": [],
+      "assertions": [
+        {
+          "id": "source-executed",
+          "status": "pass",
+          "expected": "existing worker and provider modules loaded",
+          "observed": true,
+          "detail": "The runner executes the captured handler source bytes at their existing entry points; the reported SHA-256 fingerprints those exact bytes."
+        },
+        {
+          "id": "no-forbidden-operations",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "detail": "Any handler network, SDK, subprocess or native FFI attempt is blocked and invalidates this local result."
+        },
+        {
+          "id": "finite-schedule-executed",
+          "status": "pass",
+          "expected": 2,
+          "observed": 2,
+          "detail": "Only the fixed declared deliveries execute; there are no automatic retries."
+        },
+        {
+          "id": "required-completions",
+          "status": "pass",
+          "expected": "all non-fault deliveries return normally after a completed event",
+          "observed": [],
+          "detail": "An immediate exception or missing completion cannot pass. Only a fully evidenced configured first-delivery crash is expected."
+        },
+        {
+          "id": "independent-receipt-observation",
+          "status": "pass",
+          "expected": "observer snapshot after execution",
+          "observed": 2,
+          "detail": "Receipt counts come directly from MemoryLedger state, never a worker returned result."
+        },
+        {
+          "id": "receipt-input-integrity",
+          "status": "pass",
+          "expected": "all receipts belong to the executed logical order",
+          "observed": [],
+          "detail": "The same logical order identity spans the declared deliveries, including different message IDs."
+        },
+        {
+          "id": "single-fulfillment",
+          "status": "violation",
+          "expected": 1,
+          "observed": 2,
+          "detail": "One durable local receipt is the only modeled fulfillment effect. More than one is a directly observed safety violation."
+        }
+      ]
+    },
+    {
+      "caseId": "different-message-ids",
+      "title": "Different messages for the same business order",
+      "mode": "repaired",
+      "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+      "provenance": "local-execution",
+      "expectedStatus": "pass",
+      "observedStatus": "violation",
+      "exitCode": 1,
+      "expectationMatched": false,
+      "case": {
+        "schemaVersion": 1,
+        "id": "different-message-ids",
+        "title": "Different messages for the same business order",
+        "order": {
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1
+        },
+        "fault": "none",
+        "deliveries": [
+          {
+            "messageKey": "message-a",
+            "receiveCount": 1
+          },
+          {
+            "messageKey": "message-b",
+            "receiveCount": 1
+          }
+        ],
+        "observation": "independent-ledger",
+        "effectModel": "receiver-owned-receipt",
+        "expectedStatus": {
+          "vulnerable": "violation",
+          "repaired": "pass"
+        },
+        "maxDeliveries": 2
+      },
+      "execution": {
+        "performed": true,
+        "sourcesLoaded": true,
+        "handlerInvocations": 2,
+        "providerInvocations": 2,
+        "maxDeliveries": 2,
+        "maximumDeliveryRuntimeSeconds": 2
+      },
+      "deliveries": [
+        {
+          "index": 1,
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+          "receiveCount": 1,
+          "requestId": "local-worker-0ab7588cd8bf4784985e5c605e412ba3",
+          "input": {
+            "Records": [
+              {
+                "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+                "body": "{\"runId\":\"local-2e50912f53644d718ffc12fc3796eb95\",\"mode\":\"repaired\",\"order\":{\"orderId\":\"LOCAL-ORDER-1042\",\"sku\":\"FIELD-NOTES-3PACK\",\"quantity\":1},\"fault\":\"none\"}",
+                "attributes": {
+                  "ApproximateReceiveCount": "1"
+                }
+              }
+            ]
+          },
+          "startedAt": "2026-09-18T20:30:51.374589Z",
+          "returnedNormally": true,
+          "returned": {
+            "receiptId": "1d275bf8f42b436baaa0378945ddb89b",
+            "reused": false
+          },
+          "error": null,
+          "finishedAt": "2026-09-18T20:30:51.374697Z"
+        },
+        {
+          "index": 2,
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+          "receiveCount": 1,
+          "requestId": "local-worker-fa8f962efc064100a18982535d16076b",
+          "input": {
+            "Records": [
+              {
+                "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+                "body": "{\"runId\":\"local-2e50912f53644d718ffc12fc3796eb95\",\"mode\":\"repaired\",\"order\":{\"orderId\":\"LOCAL-ORDER-1042\",\"sku\":\"FIELD-NOTES-3PACK\",\"quantity\":1},\"fault\":\"none\"}",
+                "attributes": {
+                  "ApproximateReceiveCount": "1"
+                }
+              }
+            ]
+          },
+          "startedAt": "2026-09-18T20:30:51.374729Z",
+          "returnedNormally": true,
+          "returned": {
+            "receiptId": "df1f788c4a3147dea88a1900859d086d",
+            "reused": false
+          },
+          "error": null,
+          "finishedAt": "2026-09-18T20:30:51.374822Z"
+        }
+      ],
+      "providerInvocations": [
+        {
+          "requestId": "local-provider-601753337c1e4fa184fd5d9fc59de16d",
+          "payload": {
+            "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+            "mode": "repaired",
+            "order": {
+              "orderId": "LOCAL-ORDER-1042",
+              "sku": "FIELD-NOTES-3PACK",
+              "quantity": 1
+            },
+            "fault": "none",
+            "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+            "receiveCount": 1,
+            "workerRequestId": "local-worker-0ab7588cd8bf4784985e5c605e412ba3"
+          },
+          "functionError": null,
+          "returned": {
+            "receiptId": "1d275bf8f42b436baaa0378945ddb89b",
+            "accepted": true,
+            "reused": false,
+            "idempotencyKey": null,
+            "createdAt": "2026-09-18T20:30:51.374Z"
+          }
+        },
+        {
+          "requestId": "local-provider-81417c6cb764414f8c379300f75ab750",
+          "payload": {
+            "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+            "mode": "repaired",
+            "order": {
+              "orderId": "LOCAL-ORDER-1042",
+              "sku": "FIELD-NOTES-3PACK",
+              "quantity": 1
+            },
+            "fault": "none",
+            "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+            "receiveCount": 1,
+            "workerRequestId": "local-worker-fa8f962efc064100a18982535d16076b"
+          },
+          "functionError": null,
+          "returned": {
+            "receiptId": "df1f788c4a3147dea88a1900859d086d",
+            "accepted": true,
+            "reused": false,
+            "idempotencyKey": null,
+            "createdAt": "2026-09-18T20:30:51.374Z"
+          }
+        }
+      ],
+      "events": [
+        {
+          "component": "worker",
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": null,
+          "receiveCount": 1,
+          "requestId": "local-worker-0ab7588cd8bf4784985e5c605e412ba3",
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "received",
+          "timestamp": "2026-09-18T20:30:51.374Z",
+          "localObservationIndex": 0,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "provider",
+          "idempotencyKey": null,
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "1d275bf8f42b436baaa0378945ddb89b",
+          "receiveCount": 1,
+          "requestId": "local-provider-601753337c1e4fa184fd5d9fc59de16d",
+          "reused": false,
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "accepted",
+          "timestamp": "2026-09-18T20:30:51.374Z",
+          "workerRequestId": "local-worker-0ab7588cd8bf4784985e5c605e412ba3",
+          "localObservationIndex": 1,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "worker",
+          "idempotencyKey": null,
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "1d275bf8f42b436baaa0378945ddb89b",
+          "receiveCount": 1,
+          "requestId": "local-worker-0ab7588cd8bf4784985e5c605e412ba3",
+          "reused": false,
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "fulfillment_succeeded",
+          "timestamp": "2026-09-18T20:30:51.374Z",
+          "localObservationIndex": 2,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "1d275bf8f42b436baaa0378945ddb89b",
+          "receiveCount": 1,
+          "requestId": "local-worker-0ab7588cd8bf4784985e5c605e412ba3",
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "completed",
+          "timestamp": "2026-09-18T20:30:51.374Z",
+          "localObservationIndex": 3,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": null,
+          "receiveCount": 1,
+          "requestId": "local-worker-fa8f962efc064100a18982535d16076b",
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "received",
+          "timestamp": "2026-09-18T20:30:51.374Z",
+          "localObservationIndex": 4,
+          "localDeliveryIndex": 2
+        },
+        {
+          "accepted": true,
+          "component": "provider",
+          "idempotencyKey": null,
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "df1f788c4a3147dea88a1900859d086d",
+          "receiveCount": 1,
+          "requestId": "local-provider-81417c6cb764414f8c379300f75ab750",
+          "reused": false,
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "accepted",
+          "timestamp": "2026-09-18T20:30:51.374Z",
+          "workerRequestId": "local-worker-fa8f962efc064100a18982535d16076b",
+          "localObservationIndex": 5,
+          "localDeliveryIndex": 2
+        },
+        {
+          "accepted": true,
+          "component": "worker",
+          "idempotencyKey": null,
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "df1f788c4a3147dea88a1900859d086d",
+          "receiveCount": 1,
+          "requestId": "local-worker-fa8f962efc064100a18982535d16076b",
+          "reused": false,
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "fulfillment_succeeded",
+          "timestamp": "2026-09-18T20:30:51.374Z",
+          "localObservationIndex": 6,
+          "localDeliveryIndex": 2
+        },
+        {
+          "component": "worker",
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "df1f788c4a3147dea88a1900859d086d",
+          "receiveCount": 1,
+          "requestId": "local-worker-fa8f962efc064100a18982535d16076b",
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "stage": "completed",
+          "timestamp": "2026-09-18T20:30:51.374Z",
+          "localObservationIndex": 7,
+          "localDeliveryIndex": 2
+        }
+      ],
+      "ledgerSnapshot": [
+        {
+          "PK": "RUN#local-2e50912f53644d718ffc12fc3796eb95#MODE#repaired",
+          "SK": "RECEIPT#1d275bf8f42b436baaa0378945ddb89b",
+          "receiptId": "1d275bf8f42b436baaa0378945ddb89b",
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1,
+          "idempotencyKey": null,
+          "createdAt": "2026-09-18T20:30:51.374Z",
+          "invocationId": "local-provider-601753337c1e4fa184fd5d9fc59de16d",
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-a",
+          "receiveCount": 1,
+          "expiresAt": 1789936251
+        },
+        {
+          "PK": "RUN#local-2e50912f53644d718ffc12fc3796eb95#MODE#repaired",
+          "SK": "RECEIPT#df1f788c4a3147dea88a1900859d086d",
+          "receiptId": "df1f788c4a3147dea88a1900859d086d",
+          "runId": "local-2e50912f53644d718ffc12fc3796eb95",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1,
+          "idempotencyKey": null,
+          "createdAt": "2026-09-18T20:30:51.374Z",
+          "invocationId": "local-provider-81417c6cb764414f8c379300f75ab750",
+          "messageId": "local-2e50912f53644d718ffc12fc3796eb95-message-b",
+          "receiveCount": 1,
+          "expiresAt": 1789936251
+        }
+      ],
+      "ledgerOperations": [
+        {
+          "operation": "conditional-create",
+          "outcome": "created"
+        },
+        {
+          "operation": "conditional-create",
+          "outcome": "created"
+        }
+      ],
+      "errors": [],
+      "assertions": [
+        {
+          "id": "source-executed",
+          "status": "pass",
+          "expected": "existing worker and provider modules loaded",
+          "observed": true,
+          "detail": "The runner executes the captured handler source bytes at their existing entry points; the reported SHA-256 fingerprints those exact bytes."
+        },
+        {
+          "id": "no-forbidden-operations",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "detail": "Any handler network, SDK, subprocess or native FFI attempt is blocked and invalidates this local result."
+        },
+        {
+          "id": "finite-schedule-executed",
+          "status": "pass",
+          "expected": 2,
+          "observed": 2,
+          "detail": "Only the fixed declared deliveries execute; there are no automatic retries."
+        },
+        {
+          "id": "required-completions",
+          "status": "pass",
+          "expected": "all non-fault deliveries return normally after a completed event",
+          "observed": [],
+          "detail": "An immediate exception or missing completion cannot pass. Only a fully evidenced configured first-delivery crash is expected."
+        },
+        {
+          "id": "independent-receipt-observation",
+          "status": "pass",
+          "expected": "observer snapshot after execution",
+          "observed": 2,
+          "detail": "Receipt counts come directly from MemoryLedger state, never a worker returned result."
+        },
+        {
+          "id": "receipt-input-integrity",
+          "status": "pass",
+          "expected": "all receipts belong to the executed logical order",
+          "observed": [],
+          "detail": "The same logical order identity spans the declared deliveries, including different message IDs."
+        },
+        {
+          "id": "single-fulfillment",
+          "status": "violation",
+          "expected": 1,
+          "observed": 2,
+          "detail": "One durable local receipt is the only modeled fulfillment effect. More than one is a directly observed safety violation."
+        }
+      ]
+    },
+    {
+      "caseId": "missing-observation",
+      "title": "Receipt observation deliberately withheld",
+      "mode": "vulnerable",
+      "runId": "local-cb4ff6a60a874de88ec61aeadaab1f06",
+      "provenance": "local-execution",
+      "expectedStatus": "incomplete",
+      "observedStatus": "incomplete",
+      "exitCode": 2,
+      "expectationMatched": true,
+      "case": {
+        "schemaVersion": 1,
+        "id": "missing-observation",
+        "title": "Receipt observation deliberately withheld",
+        "order": {
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1
+        },
+        "fault": "none",
+        "deliveries": [
+          {
+            "messageKey": "message-a",
+            "receiveCount": 1
+          }
+        ],
+        "observation": "withhold-ledger",
+        "effectModel": "receiver-owned-receipt",
+        "expectedStatus": {
+          "vulnerable": "incomplete",
+          "repaired": "incomplete"
+        },
+        "maxDeliveries": 1
+      },
+      "execution": {
+        "performed": true,
+        "sourcesLoaded": true,
+        "handlerInvocations": 1,
+        "providerInvocations": 1,
+        "maxDeliveries": 1,
+        "maximumDeliveryRuntimeSeconds": 2
+      },
+      "deliveries": [
+        {
+          "index": 1,
+          "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+          "receiveCount": 1,
+          "requestId": "local-worker-9b5afe32f1064829b6b03c1a166978c5",
+          "input": {
+            "Records": [
+              {
+                "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+                "body": "{\"runId\":\"local-cb4ff6a60a874de88ec61aeadaab1f06\",\"mode\":\"vulnerable\",\"order\":{\"orderId\":\"LOCAL-ORDER-1042\",\"sku\":\"FIELD-NOTES-3PACK\",\"quantity\":1},\"fault\":\"none\"}",
+                "attributes": {
+                  "ApproximateReceiveCount": "1"
+                }
+              }
+            ]
+          },
+          "startedAt": "2026-09-18T20:30:51.376272Z",
+          "returnedNormally": true,
+          "returned": {
+            "receiptId": "cbba56d87a834b9c8dadae31cd6d7d6e",
+            "reused": false
+          },
+          "error": null,
+          "finishedAt": "2026-09-18T20:30:51.376383Z"
+        }
+      ],
+      "providerInvocations": [
+        {
+          "requestId": "local-provider-9d3868f6b3994260b16e1f08c68833ab",
+          "payload": {
+            "runId": "local-cb4ff6a60a874de88ec61aeadaab1f06",
+            "mode": "vulnerable",
+            "order": {
+              "orderId": "LOCAL-ORDER-1042",
+              "sku": "FIELD-NOTES-3PACK",
+              "quantity": 1
+            },
+            "fault": "none",
+            "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+            "receiveCount": 1,
+            "workerRequestId": "local-worker-9b5afe32f1064829b6b03c1a166978c5"
+          },
+          "functionError": null,
+          "returned": {
+            "receiptId": "cbba56d87a834b9c8dadae31cd6d7d6e",
+            "accepted": true,
+            "reused": false,
+            "idempotencyKey": null,
+            "createdAt": "2026-09-18T20:30:51.376Z"
+          }
+        }
+      ],
+      "events": [
+        {
+          "component": "worker",
+          "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": null,
+          "receiveCount": 1,
+          "requestId": "local-worker-9b5afe32f1064829b6b03c1a166978c5",
+          "runId": "local-cb4ff6a60a874de88ec61aeadaab1f06",
+          "stage": "received",
+          "timestamp": "2026-09-18T20:30:51.376Z",
+          "localObservationIndex": 0,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "provider",
+          "idempotencyKey": null,
+          "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "cbba56d87a834b9c8dadae31cd6d7d6e",
+          "receiveCount": 1,
+          "requestId": "local-provider-9d3868f6b3994260b16e1f08c68833ab",
+          "reused": false,
+          "runId": "local-cb4ff6a60a874de88ec61aeadaab1f06",
+          "stage": "accepted",
+          "timestamp": "2026-09-18T20:30:51.376Z",
+          "workerRequestId": "local-worker-9b5afe32f1064829b6b03c1a166978c5",
+          "localObservationIndex": 1,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "worker",
+          "idempotencyKey": null,
+          "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "cbba56d87a834b9c8dadae31cd6d7d6e",
+          "receiveCount": 1,
+          "requestId": "local-worker-9b5afe32f1064829b6b03c1a166978c5",
+          "reused": false,
+          "runId": "local-cb4ff6a60a874de88ec61aeadaab1f06",
+          "stage": "fulfillment_succeeded",
+          "timestamp": "2026-09-18T20:30:51.376Z",
+          "localObservationIndex": 2,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+          "mode": "vulnerable",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "cbba56d87a834b9c8dadae31cd6d7d6e",
+          "receiveCount": 1,
+          "requestId": "local-worker-9b5afe32f1064829b6b03c1a166978c5",
+          "runId": "local-cb4ff6a60a874de88ec61aeadaab1f06",
+          "stage": "completed",
+          "timestamp": "2026-09-18T20:30:51.376Z",
+          "localObservationIndex": 3,
+          "localDeliveryIndex": 1
+        }
+      ],
+      "ledgerSnapshot": null,
+      "ledgerOperations": [
+        {
+          "operation": "conditional-create",
+          "outcome": "created"
+        }
+      ],
+      "errors": [],
+      "assertions": [
+        {
+          "id": "source-executed",
+          "status": "pass",
+          "expected": "existing worker and provider modules loaded",
+          "observed": true,
+          "detail": "The runner executes the captured handler source bytes at their existing entry points; the reported SHA-256 fingerprints those exact bytes."
+        },
+        {
+          "id": "no-forbidden-operations",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "detail": "Any handler network, SDK, subprocess or native FFI attempt is blocked and invalidates this local result."
+        },
+        {
+          "id": "finite-schedule-executed",
+          "status": "pass",
+          "expected": 1,
+          "observed": 1,
+          "detail": "Only the fixed declared deliveries execute; there are no automatic retries."
+        },
+        {
+          "id": "required-completions",
+          "status": "pass",
+          "expected": "all non-fault deliveries return normally after a completed event",
+          "observed": [],
+          "detail": "An immediate exception or missing completion cannot pass. Only a fully evidenced configured first-delivery crash is expected."
+        },
+        {
+          "id": "independent-receipt-observation",
+          "status": "incomplete",
+          "expected": "observer reads the ledger independently",
+          "observed": null,
+          "detail": "The case deliberately withholds the snapshot; worker responses and logs cannot fill this evidence gap."
+        }
+      ]
+    },
+    {
+      "caseId": "missing-observation",
+      "title": "Receipt observation deliberately withheld",
+      "mode": "repaired",
+      "runId": "local-cb4ff6a60a874de88ec61aeadaab1f06",
+      "provenance": "local-execution",
+      "expectedStatus": "incomplete",
+      "observedStatus": "incomplete",
+      "exitCode": 2,
+      "expectationMatched": true,
+      "case": {
+        "schemaVersion": 1,
+        "id": "missing-observation",
+        "title": "Receipt observation deliberately withheld",
+        "order": {
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1
+        },
+        "fault": "none",
+        "deliveries": [
+          {
+            "messageKey": "message-a",
+            "receiveCount": 1
+          }
+        ],
+        "observation": "withhold-ledger",
+        "effectModel": "receiver-owned-receipt",
+        "expectedStatus": {
+          "vulnerable": "incomplete",
+          "repaired": "incomplete"
+        },
+        "maxDeliveries": 1
+      },
+      "execution": {
+        "performed": true,
+        "sourcesLoaded": true,
+        "handlerInvocations": 1,
+        "providerInvocations": 1,
+        "maxDeliveries": 1,
+        "maximumDeliveryRuntimeSeconds": 2
+      },
+      "deliveries": [
+        {
+          "index": 1,
+          "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+          "receiveCount": 1,
+          "requestId": "local-worker-3886c1eeb8274142aa70a4dcf284ec79",
+          "input": {
+            "Records": [
+              {
+                "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+                "body": "{\"runId\":\"local-cb4ff6a60a874de88ec61aeadaab1f06\",\"mode\":\"repaired\",\"order\":{\"orderId\":\"LOCAL-ORDER-1042\",\"sku\":\"FIELD-NOTES-3PACK\",\"quantity\":1},\"fault\":\"none\"}",
+                "attributes": {
+                  "ApproximateReceiveCount": "1"
+                }
+              }
+            ]
+          },
+          "startedAt": "2026-09-18T20:30:51.377900Z",
+          "returnedNormally": true,
+          "returned": {
+            "receiptId": "80255f09b02d4709a5ec549ca198db22",
+            "reused": false
+          },
+          "error": null,
+          "finishedAt": "2026-09-18T20:30:51.378009Z"
+        }
+      ],
+      "providerInvocations": [
+        {
+          "requestId": "local-provider-ff51ce716c7d4752bf95e41a741b30d4",
+          "payload": {
+            "runId": "local-cb4ff6a60a874de88ec61aeadaab1f06",
+            "mode": "repaired",
+            "order": {
+              "orderId": "LOCAL-ORDER-1042",
+              "sku": "FIELD-NOTES-3PACK",
+              "quantity": 1
+            },
+            "fault": "none",
+            "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+            "receiveCount": 1,
+            "workerRequestId": "local-worker-3886c1eeb8274142aa70a4dcf284ec79"
+          },
+          "functionError": null,
+          "returned": {
+            "receiptId": "80255f09b02d4709a5ec549ca198db22",
+            "accepted": true,
+            "reused": false,
+            "idempotencyKey": null,
+            "createdAt": "2026-09-18T20:30:51.377Z"
+          }
+        }
+      ],
+      "events": [
+        {
+          "component": "worker",
+          "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": null,
+          "receiveCount": 1,
+          "requestId": "local-worker-3886c1eeb8274142aa70a4dcf284ec79",
+          "runId": "local-cb4ff6a60a874de88ec61aeadaab1f06",
+          "stage": "received",
+          "timestamp": "2026-09-18T20:30:51.377Z",
+          "localObservationIndex": 0,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "provider",
+          "idempotencyKey": null,
+          "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "80255f09b02d4709a5ec549ca198db22",
+          "receiveCount": 1,
+          "requestId": "local-provider-ff51ce716c7d4752bf95e41a741b30d4",
+          "reused": false,
+          "runId": "local-cb4ff6a60a874de88ec61aeadaab1f06",
+          "stage": "accepted",
+          "timestamp": "2026-09-18T20:30:51.377Z",
+          "workerRequestId": "local-worker-3886c1eeb8274142aa70a4dcf284ec79",
+          "localObservationIndex": 1,
+          "localDeliveryIndex": 1
+        },
+        {
+          "accepted": true,
+          "component": "worker",
+          "idempotencyKey": null,
+          "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "80255f09b02d4709a5ec549ca198db22",
+          "receiveCount": 1,
+          "requestId": "local-worker-3886c1eeb8274142aa70a4dcf284ec79",
+          "reused": false,
+          "runId": "local-cb4ff6a60a874de88ec61aeadaab1f06",
+          "stage": "fulfillment_succeeded",
+          "timestamp": "2026-09-18T20:30:51.377Z",
+          "localObservationIndex": 2,
+          "localDeliveryIndex": 1
+        },
+        {
+          "component": "worker",
+          "messageId": "local-cb4ff6a60a874de88ec61aeadaab1f06-message-a",
+          "mode": "repaired",
+          "orderId": "LOCAL-ORDER-1042",
+          "receiptId": "80255f09b02d4709a5ec549ca198db22",
+          "receiveCount": 1,
+          "requestId": "local-worker-3886c1eeb8274142aa70a4dcf284ec79",
+          "runId": "local-cb4ff6a60a874de88ec61aeadaab1f06",
+          "stage": "completed",
+          "timestamp": "2026-09-18T20:30:51.377Z",
+          "localObservationIndex": 3,
+          "localDeliveryIndex": 1
+        }
+      ],
+      "ledgerSnapshot": null,
+      "ledgerOperations": [
+        {
+          "operation": "conditional-create",
+          "outcome": "created"
+        }
+      ],
+      "errors": [],
+      "assertions": [
+        {
+          "id": "source-executed",
+          "status": "pass",
+          "expected": "existing worker and provider modules loaded",
+          "observed": true,
+          "detail": "The runner executes the captured handler source bytes at their existing entry points; the reported SHA-256 fingerprints those exact bytes."
+        },
+        {
+          "id": "no-forbidden-operations",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "detail": "Any handler network, SDK, subprocess or native FFI attempt is blocked and invalidates this local result."
+        },
+        {
+          "id": "finite-schedule-executed",
+          "status": "pass",
+          "expected": 1,
+          "observed": 1,
+          "detail": "Only the fixed declared deliveries execute; there are no automatic retries."
+        },
+        {
+          "id": "required-completions",
+          "status": "pass",
+          "expected": "all non-fault deliveries return normally after a completed event",
+          "observed": [],
+          "detail": "An immediate exception or missing completion cannot pass. Only a fully evidenced configured first-delivery crash is expected."
+        },
+        {
+          "id": "independent-receipt-observation",
+          "status": "incomplete",
+          "expected": "observer reads the ledger independently",
+          "observed": null,
+          "detail": "The case deliberately withholds the snapshot; worker responses and logs cannot fill this evidence gap."
+        }
+      ]
+    },
+    {
+      "caseId": "ambiguous-side-effect",
+      "title": "External side effect without an atomic receiver contract",
+      "mode": "vulnerable",
+      "runId": "local-39f36b2eeb94442c9a42304852027075",
+      "provenance": "local-execution",
+      "expectedStatus": "unresolved",
+      "observedStatus": "unresolved",
+      "exitCode": 3,
+      "expectationMatched": true,
+      "case": {
+        "schemaVersion": 1,
+        "id": "ambiguous-side-effect",
+        "title": "External side effect without an atomic receiver contract",
+        "order": {
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1
+        },
+        "fault": "none",
+        "deliveries": [],
+        "observation": "independent-ledger",
+        "effectModel": "ambiguous-external-effect",
+        "expectedStatus": {
+          "vulnerable": "unresolved",
+          "repaired": "unresolved"
+        },
+        "maxDeliveries": 0
+      },
+      "execution": {
+        "performed": false,
+        "sourcesLoaded": false,
+        "handlerInvocations": 0,
+        "providerInvocations": 0,
+        "maxDeliveries": 0,
+        "maximumDeliveryRuntimeSeconds": 2,
+        "reasonNotExecuted": "Unsupported external side effect: no atomic receiver contract to model."
+      },
+      "deliveries": [],
+      "providerInvocations": [],
+      "events": [],
+      "ledgerSnapshot": null,
+      "ledgerOperations": [],
+      "errors": [],
+      "assertions": [
+        {
+          "id": "supported-effect-model",
+          "status": "unresolved",
+          "expected": "receiver atomically owns effect and idempotency",
+          "observed": "ambiguous-external-effect",
+          "detail": "Unsupported external side effect rejected before handler import/execution; no external outcome is invented."
+        }
+      ]
+    },
+    {
+      "caseId": "ambiguous-side-effect",
+      "title": "External side effect without an atomic receiver contract",
+      "mode": "repaired",
+      "runId": "local-39f36b2eeb94442c9a42304852027075",
+      "provenance": "local-execution",
+      "expectedStatus": "unresolved",
+      "observedStatus": "unresolved",
+      "exitCode": 3,
+      "expectationMatched": true,
+      "case": {
+        "schemaVersion": 1,
+        "id": "ambiguous-side-effect",
+        "title": "External side effect without an atomic receiver contract",
+        "order": {
+          "orderId": "LOCAL-ORDER-1042",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1
+        },
+        "fault": "none",
+        "deliveries": [],
+        "observation": "independent-ledger",
+        "effectModel": "ambiguous-external-effect",
+        "expectedStatus": {
+          "vulnerable": "unresolved",
+          "repaired": "unresolved"
+        },
+        "maxDeliveries": 0
+      },
+      "execution": {
+        "performed": false,
+        "sourcesLoaded": false,
+        "handlerInvocations": 0,
+        "providerInvocations": 0,
+        "maxDeliveries": 0,
+        "maximumDeliveryRuntimeSeconds": 2,
+        "reasonNotExecuted": "Unsupported external side effect: no atomic receiver contract to model."
+      },
+      "deliveries": [],
+      "providerInvocations": [],
+      "events": [],
+      "ledgerSnapshot": null,
+      "ledgerOperations": [],
+      "errors": [],
+      "assertions": [
+        {
+          "id": "supported-effect-model",
+          "status": "unresolved",
+          "expected": "receiver atomically owns effect and idempotency",
+          "observed": "ambiguous-external-effect",
+          "detail": "Unsupported external side effect rejected before handler import/execution; no external outcome is invented."
+        }
+      ]
+    }
+  ],
+  "suite": {
+    "status": "failed",
+    "exitCode": 1,
+    "expectationsMatched": false,
+    "matchedCount": 8,
+    "totalCount": 10,
+    "allHandlersSafe": false,
+    "meaning": "Suite passed means all declared outcomes matched, including expected vulnerable violations and explicit incomplete/unresolved cases."
+  },
+  "command": {
+    "kind": "expectation-suite",
+    "exitCode": 1
+  }
+}

@@ -1,0 +1,2085 @@
+{
+  "schemaVersion": 2,
+  "kind": "replayguard-repair-report",
+  "provenance": "local-execution",
+  "startedAt": "2026-09-19T03:58:15.621Z",
+  "recordedAt": "2026-09-19T03:58:15.634Z",
+  "candidates": [
+    {
+      "id": "external-1",
+      "title": "adapter.py",
+      "adapter": "/var/folders/wl/k_pqj23s4_z_bj35zbsyc2qm0000gn/T/replayguard-dispatchdesk-transfer-clbxhaue/reference/adapter.py",
+      "sourceSha256": {
+        "__init__.py": "ceea343ab2236b2d4137c3393afa6cea7517346b669fe32d2ad6e7ca13a9a280",
+        "adapter.py": "c717cd8b65fa2326425733cd20bbb7ca7847429f5713ce4876c742a367f761a8",
+        "worker.py": "1d42d2145e9134df90381a6e0c1f77322e460f0dbcdb78a1efc531f85a874854"
+      },
+      "sourceHashScope": "Captured .py files recursively within adapter directory; excludes dependencies and non-Python files."
+    }
+  ],
+  "cases": [
+    {
+      "id": "dispatchdesk-response-loss",
+      "title": "A lost response must not dispatch twice",
+      "description": "The fulfillment commits, then the response is lost. Redelivery and a new transport message for the same business order must reuse the receipt.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "messageId": "msg-c721",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "after-commit",
+          "expect": "crash",
+          "deliveryId": "dd-lost-01"
+        },
+        {
+          "messageId": "msg-c721",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-lost-02"
+        },
+        {
+          "messageId": "msg-r954",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-lost-03"
+        }
+      ]
+    },
+    {
+      "id": "dispatchdesk-interleaved-orders",
+      "title": "Two orders with the same SKU both dispatch",
+      "description": "A second valid order is interleaved between a committed crash and redelivery of the first order. A SKU-only key wrongly suppresses the second order.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "cedar-paper/DD-8452",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "messageId": "msg-v102",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "after-commit",
+          "expect": "crash",
+          "deliveryId": "dd-mix-01"
+        },
+        {
+          "messageId": "msg-v103",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-8452",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-mix-02"
+        },
+        {
+          "messageId": "msg-v102",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-mix-03"
+        },
+        {
+          "messageId": "msg-v103",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "cedar-paper/DD-8452",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-mix-04"
+        },
+        {
+          "messageId": "msg-v104",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-mix-05"
+        }
+      ]
+    },
+    {
+      "id": "dispatchdesk-distinct-references",
+      "title": "Distinct shop references remain separate",
+      "description": "Identical product, quantity and shipping details still represent two valid business orders when the complete references differ.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "orchard-books/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "messageId": "msg-z291",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-ref-01"
+        },
+        {
+          "messageId": "msg-z292",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "orchard-books/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-ref-02"
+        },
+        {
+          "messageId": "msg-z291",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-ref-03"
+        },
+        {
+          "messageId": "msg-z292",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "orchard-books/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-ref-04"
+        }
+      ]
+    },
+    {
+      "id": "dispatchdesk-quantity-conflict",
+      "title": "A reused reference cannot change its quantity",
+      "description": "After a successful dispatch, changed quantity under the same reference must be rejected. A later retry of the original payload remains reusable.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "cedar-paper/DD-9903",
+            "sku": "PENCIL-CARBON-6",
+            "quantity": 3,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "messageId": "msg-p683",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-9903",
+            "sku": "PENCIL-CARBON-6",
+            "quantity": 3,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-qty-01"
+        },
+        {
+          "messageId": "msg-p684",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-9903",
+            "sku": "PENCIL-CARBON-6",
+            "quantity": 4,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "conflict",
+          "deliveryId": "dd-qty-02"
+        },
+        {
+          "messageId": "msg-p683",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "cedar-paper/DD-9903",
+            "sku": "PENCIL-CARBON-6",
+            "quantity": 3,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-qty-03"
+        }
+      ]
+    },
+    {
+      "id": "dispatchdesk-shipping-conflict-after-crash",
+      "title": "Changed shipping is rejected after response loss",
+      "description": "The first dispatch commits before crashing. An altered destination is rejected under its existing reference, then the exact original payload retries successfully.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "orchard-books/DD-1407",
+            "sku": "INDEX-CARD-PLAIN",
+            "quantity": 5,
+            "attributes": {
+              "service": "express",
+              "destinationZone": "IN-WEST"
+            }
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "messageId": "msg-s761",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "orchard-books/DD-1407",
+            "sku": "INDEX-CARD-PLAIN",
+            "quantity": 5,
+            "attributes": {
+              "service": "express",
+              "destinationZone": "IN-WEST"
+            }
+          },
+          "fault": "after-commit",
+          "expect": "crash",
+          "deliveryId": "dd-ship-01"
+        },
+        {
+          "messageId": "msg-s762",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "orchard-books/DD-1407",
+            "sku": "INDEX-CARD-PLAIN",
+            "quantity": 5,
+            "attributes": {
+              "service": "express",
+              "destinationZone": "IN-NORTH"
+            }
+          },
+          "fault": "none",
+          "expect": "conflict",
+          "deliveryId": "dd-ship-02"
+        },
+        {
+          "messageId": "msg-s761",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "orchard-books/DD-1407",
+            "sku": "INDEX-CARD-PLAIN",
+            "quantity": 5,
+            "attributes": {
+              "service": "express",
+              "destinationZone": "IN-WEST"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-ship-03"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "candidateId": "external-1",
+      "caseId": "dispatchdesk-response-loss",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-7319",
+          "createdAt": "2026-09-19T03:58:15.627Z",
+          "acceptedDeliveryId": "dd-lost-01"
+        }
+      ],
+      "deliveries": [
+        {
+          "messageId": "msg-c721",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "after-commit",
+          "expect": "crash",
+          "deliveryId": "dd-lost-01",
+          "attempted": true,
+          "outcome": "crashed",
+          "error": {
+            "phase": "delivery",
+            "type": "CrashAfterCommit",
+            "message": "receiver committed fulfillment; response was lost"
+          },
+          "returned": null,
+          "faultInjected": true,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.627Z",
+          "finishedAt": "2026-09-19T03:58:15.627Z"
+        },
+        {
+          "messageId": "msg-c721",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-lost-02",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "dispatch_reference": "cedar-paper/DD-7319",
+            "fulfillment": {
+              "receipt_number": "receipt-001",
+              "new_dispatch": false
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.627Z",
+          "finishedAt": "2026-09-19T03:58:15.627Z"
+        },
+        {
+          "messageId": "msg-r954",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-lost-03",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "dispatch_reference": "cedar-paper/DD-7319",
+            "fulfillment": {
+              "receipt_number": "receipt-001",
+              "new_dispatch": false
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.627Z",
+          "finishedAt": "2026-09-19T03:58:15.627Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "dd-lost-01"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "dd-lost-01",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-7319"
+        },
+        {
+          "index": 2,
+          "type": "fault-injected",
+          "deliveryId": "dd-lost-01",
+          "receiptId": "receipt-001",
+          "fault": "after-commit"
+        },
+        {
+          "index": 3,
+          "type": "delivery-end",
+          "deliveryId": "dd-lost-01",
+          "outcome": "crashed"
+        },
+        {
+          "index": 4,
+          "type": "delivery-start",
+          "deliveryId": "dd-lost-02"
+        },
+        {
+          "index": 5,
+          "type": "receipt-reused",
+          "deliveryId": "dd-lost-02",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-7319"
+        },
+        {
+          "index": 6,
+          "type": "delivery-end",
+          "deliveryId": "dd-lost-02",
+          "outcome": "completed"
+        },
+        {
+          "index": 7,
+          "type": "delivery-start",
+          "deliveryId": "dd-lost-03"
+        },
+        {
+          "index": 8,
+          "type": "receipt-reused",
+          "deliveryId": "dd-lost-03",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-7319"
+        },
+        {
+          "index": 9,
+          "type": "delivery-end",
+          "deliveryId": "dd-lost-03",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:cedar-paper/DD-7319",
+          "status": "pass",
+          "message": "Order cedar-paper/DD-7319: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:dd-lost-01",
+          "status": "pass",
+          "message": "Delivery dd-lost-01: required crash, observed crashed."
+        },
+        {
+          "id": "delivery:dd-lost-02",
+          "status": "pass",
+          "message": "Delivery dd-lost-02: required complete, observed completed."
+        },
+        {
+          "id": "delivery:dd-lost-03",
+          "status": "pass",
+          "message": "Delivery dd-lost-03: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "external-1",
+      "caseId": "dispatchdesk-interleaved-orders",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "cedar-paper/DD-8452",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-7319",
+          "createdAt": "2026-09-19T03:58:15.629Z",
+          "acceptedDeliveryId": "dd-mix-01"
+        },
+        {
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "cedar-paper/DD-8452",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-8452",
+          "createdAt": "2026-09-19T03:58:15.629Z",
+          "acceptedDeliveryId": "dd-mix-02"
+        }
+      ],
+      "deliveries": [
+        {
+          "messageId": "msg-v102",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "after-commit",
+          "expect": "crash",
+          "deliveryId": "dd-mix-01",
+          "attempted": true,
+          "outcome": "crashed",
+          "error": {
+            "phase": "delivery",
+            "type": "CrashAfterCommit",
+            "message": "receiver committed fulfillment; response was lost"
+          },
+          "returned": null,
+          "faultInjected": true,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.629Z",
+          "finishedAt": "2026-09-19T03:58:15.629Z"
+        },
+        {
+          "messageId": "msg-v103",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-8452",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-mix-02",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "dispatch_reference": "cedar-paper/DD-8452",
+            "fulfillment": {
+              "receipt_number": "receipt-002",
+              "new_dispatch": true
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-002"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.629Z",
+          "finishedAt": "2026-09-19T03:58:15.629Z"
+        },
+        {
+          "messageId": "msg-v102",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-mix-03",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "dispatch_reference": "cedar-paper/DD-7319",
+            "fulfillment": {
+              "receipt_number": "receipt-001",
+              "new_dispatch": false
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.629Z",
+          "finishedAt": "2026-09-19T03:58:15.629Z"
+        },
+        {
+          "messageId": "msg-v103",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "cedar-paper/DD-8452",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-mix-04",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "dispatch_reference": "cedar-paper/DD-8452",
+            "fulfillment": {
+              "receipt_number": "receipt-002",
+              "new_dispatch": false
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-002"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.629Z",
+          "finishedAt": "2026-09-19T03:58:15.629Z"
+        },
+        {
+          "messageId": "msg-v104",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-mix-05",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "dispatch_reference": "cedar-paper/DD-7319",
+            "fulfillment": {
+              "receipt_number": "receipt-001",
+              "new_dispatch": false
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.629Z",
+          "finishedAt": "2026-09-19T03:58:15.629Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "dd-mix-01"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "dd-mix-01",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-7319"
+        },
+        {
+          "index": 2,
+          "type": "fault-injected",
+          "deliveryId": "dd-mix-01",
+          "receiptId": "receipt-001",
+          "fault": "after-commit"
+        },
+        {
+          "index": 3,
+          "type": "delivery-end",
+          "deliveryId": "dd-mix-01",
+          "outcome": "crashed"
+        },
+        {
+          "index": 4,
+          "type": "delivery-start",
+          "deliveryId": "dd-mix-02"
+        },
+        {
+          "index": 5,
+          "type": "receipt-accepted",
+          "deliveryId": "dd-mix-02",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "cedar-paper/DD-8452",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-8452"
+        },
+        {
+          "index": 6,
+          "type": "delivery-end",
+          "deliveryId": "dd-mix-02",
+          "outcome": "completed"
+        },
+        {
+          "index": 7,
+          "type": "delivery-start",
+          "deliveryId": "dd-mix-03"
+        },
+        {
+          "index": 8,
+          "type": "receipt-reused",
+          "deliveryId": "dd-mix-03",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-7319"
+        },
+        {
+          "index": 9,
+          "type": "delivery-end",
+          "deliveryId": "dd-mix-03",
+          "outcome": "completed"
+        },
+        {
+          "index": 10,
+          "type": "delivery-start",
+          "deliveryId": "dd-mix-04"
+        },
+        {
+          "index": 11,
+          "type": "receipt-reused",
+          "deliveryId": "dd-mix-04",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "cedar-paper/DD-8452",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-8452"
+        },
+        {
+          "index": 12,
+          "type": "delivery-end",
+          "deliveryId": "dd-mix-04",
+          "outcome": "completed"
+        },
+        {
+          "index": 13,
+          "type": "delivery-start",
+          "deliveryId": "dd-mix-05"
+        },
+        {
+          "index": 14,
+          "type": "receipt-reused",
+          "deliveryId": "dd-mix-05",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-7319"
+        },
+        {
+          "index": 15,
+          "type": "delivery-end",
+          "deliveryId": "dd-mix-05",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:cedar-paper/DD-7319",
+          "status": "pass",
+          "message": "Order cedar-paper/DD-7319: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "order:cedar-paper/DD-8452",
+          "status": "pass",
+          "message": "Order cedar-paper/DD-8452: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:dd-mix-01",
+          "status": "pass",
+          "message": "Delivery dd-mix-01: required crash, observed crashed."
+        },
+        {
+          "id": "delivery:dd-mix-02",
+          "status": "pass",
+          "message": "Delivery dd-mix-02: required complete, observed completed."
+        },
+        {
+          "id": "delivery:dd-mix-03",
+          "status": "pass",
+          "message": "Delivery dd-mix-03: required complete, observed completed."
+        },
+        {
+          "id": "delivery:dd-mix-04",
+          "status": "pass",
+          "message": "Delivery dd-mix-04: required complete, observed completed."
+        },
+        {
+          "id": "delivery:dd-mix-05",
+          "status": "pass",
+          "message": "Delivery dd-mix-05: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "external-1",
+      "caseId": "dispatchdesk-distinct-references",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "orchard-books/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-7319",
+          "createdAt": "2026-09-19T03:58:15.630Z",
+          "acceptedDeliveryId": "dd-ref-01"
+        },
+        {
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "orchard-books/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:orchard-books/DD-7319",
+          "createdAt": "2026-09-19T03:58:15.630Z",
+          "acceptedDeliveryId": "dd-ref-02"
+        }
+      ],
+      "deliveries": [
+        {
+          "messageId": "msg-z291",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-ref-01",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "dispatch_reference": "cedar-paper/DD-7319",
+            "fulfillment": {
+              "receipt_number": "receipt-001",
+              "new_dispatch": true
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.630Z",
+          "finishedAt": "2026-09-19T03:58:15.630Z"
+        },
+        {
+          "messageId": "msg-z292",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "orchard-books/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-ref-02",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "dispatch_reference": "orchard-books/DD-7319",
+            "fulfillment": {
+              "receipt_number": "receipt-002",
+              "new_dispatch": true
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-002"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.630Z",
+          "finishedAt": "2026-09-19T03:58:15.630Z"
+        },
+        {
+          "messageId": "msg-z291",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-ref-03",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "dispatch_reference": "cedar-paper/DD-7319",
+            "fulfillment": {
+              "receipt_number": "receipt-001",
+              "new_dispatch": false
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.630Z",
+          "finishedAt": "2026-09-19T03:58:15.630Z"
+        },
+        {
+          "messageId": "msg-z292",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "orchard-books/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-ref-04",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "dispatch_reference": "orchard-books/DD-7319",
+            "fulfillment": {
+              "receipt_number": "receipt-002",
+              "new_dispatch": false
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-002"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.630Z",
+          "finishedAt": "2026-09-19T03:58:15.630Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "dd-ref-01"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "dd-ref-01",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-7319"
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "dd-ref-01",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "dd-ref-02"
+        },
+        {
+          "index": 4,
+          "type": "receipt-accepted",
+          "deliveryId": "dd-ref-02",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "orchard-books/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:orchard-books/DD-7319"
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "dd-ref-02",
+          "outcome": "completed"
+        },
+        {
+          "index": 6,
+          "type": "delivery-start",
+          "deliveryId": "dd-ref-03"
+        },
+        {
+          "index": 7,
+          "type": "receipt-reused",
+          "deliveryId": "dd-ref-03",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-7319"
+        },
+        {
+          "index": 8,
+          "type": "delivery-end",
+          "deliveryId": "dd-ref-03",
+          "outcome": "completed"
+        },
+        {
+          "index": 9,
+          "type": "delivery-start",
+          "deliveryId": "dd-ref-04"
+        },
+        {
+          "index": 10,
+          "type": "receipt-reused",
+          "deliveryId": "dd-ref-04",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "orchard-books/DD-7319",
+            "sku": "NOTEBOOK-LINEN-A5",
+            "quantity": 2,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:orchard-books/DD-7319"
+        },
+        {
+          "index": 11,
+          "type": "delivery-end",
+          "deliveryId": "dd-ref-04",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:cedar-paper/DD-7319",
+          "status": "pass",
+          "message": "Order cedar-paper/DD-7319: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "order:orchard-books/DD-7319",
+          "status": "pass",
+          "message": "Order orchard-books/DD-7319: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:dd-ref-01",
+          "status": "pass",
+          "message": "Delivery dd-ref-01: required complete, observed completed."
+        },
+        {
+          "id": "delivery:dd-ref-02",
+          "status": "pass",
+          "message": "Delivery dd-ref-02: required complete, observed completed."
+        },
+        {
+          "id": "delivery:dd-ref-03",
+          "status": "pass",
+          "message": "Delivery dd-ref-03: required complete, observed completed."
+        },
+        {
+          "id": "delivery:dd-ref-04",
+          "status": "pass",
+          "message": "Delivery dd-ref-04: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "external-1",
+      "caseId": "dispatchdesk-quantity-conflict",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "cedar-paper/DD-9903",
+            "sku": "PENCIL-CARBON-6",
+            "quantity": 3,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-9903",
+            "sku": "PENCIL-CARBON-6",
+            "quantity": 3,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-9903",
+          "createdAt": "2026-09-19T03:58:15.632Z",
+          "acceptedDeliveryId": "dd-qty-01"
+        }
+      ],
+      "deliveries": [
+        {
+          "messageId": "msg-p683",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-9903",
+            "sku": "PENCIL-CARBON-6",
+            "quantity": 3,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-qty-01",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "dispatch_reference": "cedar-paper/DD-9903",
+            "fulfillment": {
+              "receipt_number": "receipt-001",
+              "new_dispatch": true
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.632Z",
+          "finishedAt": "2026-09-19T03:58:15.632Z"
+        },
+        {
+          "messageId": "msg-p684",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "cedar-paper/DD-9903",
+            "sku": "PENCIL-CARBON-6",
+            "quantity": 4,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "conflict",
+          "deliveryId": "dd-qty-02",
+          "attempted": true,
+          "outcome": "conflict",
+          "error": {
+            "phase": "delivery",
+            "type": "Conflict",
+            "message": "idempotency key already belongs to a different order payload"
+          },
+          "returned": null,
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.632Z",
+          "finishedAt": "2026-09-19T03:58:15.632Z"
+        },
+        {
+          "messageId": "msg-p683",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "cedar-paper/DD-9903",
+            "sku": "PENCIL-CARBON-6",
+            "quantity": 3,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-qty-03",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "dispatch_reference": "cedar-paper/DD-9903",
+            "fulfillment": {
+              "receipt_number": "receipt-001",
+              "new_dispatch": false
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.632Z",
+          "finishedAt": "2026-09-19T03:58:15.632Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "dd-qty-01"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "dd-qty-01",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-9903",
+            "sku": "PENCIL-CARBON-6",
+            "quantity": 3,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-9903"
+        },
+        {
+          "index": 2,
+          "type": "delivery-end",
+          "deliveryId": "dd-qty-01",
+          "outcome": "completed"
+        },
+        {
+          "index": 3,
+          "type": "delivery-start",
+          "deliveryId": "dd-qty-02"
+        },
+        {
+          "index": 4,
+          "type": "payload-conflict",
+          "deliveryId": "dd-qty-02",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-9903",
+            "sku": "PENCIL-CARBON-6",
+            "quantity": 4,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-9903"
+        },
+        {
+          "index": 5,
+          "type": "delivery-end",
+          "deliveryId": "dd-qty-02",
+          "outcome": "conflict"
+        },
+        {
+          "index": 6,
+          "type": "delivery-start",
+          "deliveryId": "dd-qty-03"
+        },
+        {
+          "index": 7,
+          "type": "receipt-reused",
+          "deliveryId": "dd-qty-03",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "cedar-paper/DD-9903",
+            "sku": "PENCIL-CARBON-6",
+            "quantity": 3,
+            "attributes": {
+              "service": "ground",
+              "destinationZone": "IN-SOUTH"
+            }
+          },
+          "key": "dispatchdesk:cedar-paper/DD-9903"
+        },
+        {
+          "index": 8,
+          "type": "delivery-end",
+          "deliveryId": "dd-qty-03",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:cedar-paper/DD-9903",
+          "status": "pass",
+          "message": "Order cedar-paper/DD-9903: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:dd-qty-01",
+          "status": "pass",
+          "message": "Delivery dd-qty-01: required complete, observed completed."
+        },
+        {
+          "id": "delivery:dd-qty-02",
+          "status": "pass",
+          "message": "Delivery dd-qty-02: required conflict, observed conflict."
+        },
+        {
+          "id": "delivery:dd-qty-03",
+          "status": "pass",
+          "message": "Delivery dd-qty-03: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    },
+    {
+      "candidateId": "external-1",
+      "caseId": "dispatchdesk-shipping-conflict-after-crash",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "orchard-books/DD-1407",
+            "sku": "INDEX-CARD-PLAIN",
+            "quantity": 5,
+            "attributes": {
+              "service": "express",
+              "destinationZone": "IN-WEST"
+            }
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "orchard-books/DD-1407",
+            "sku": "INDEX-CARD-PLAIN",
+            "quantity": 5,
+            "attributes": {
+              "service": "express",
+              "destinationZone": "IN-WEST"
+            }
+          },
+          "key": "dispatchdesk:orchard-books/DD-1407",
+          "createdAt": "2026-09-19T03:58:15.633Z",
+          "acceptedDeliveryId": "dd-ship-01"
+        }
+      ],
+      "deliveries": [
+        {
+          "messageId": "msg-s761",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "orchard-books/DD-1407",
+            "sku": "INDEX-CARD-PLAIN",
+            "quantity": 5,
+            "attributes": {
+              "service": "express",
+              "destinationZone": "IN-WEST"
+            }
+          },
+          "fault": "after-commit",
+          "expect": "crash",
+          "deliveryId": "dd-ship-01",
+          "attempted": true,
+          "outcome": "crashed",
+          "error": {
+            "phase": "delivery",
+            "type": "CrashAfterCommit",
+            "message": "receiver committed fulfillment; response was lost"
+          },
+          "returned": null,
+          "faultInjected": true,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.633Z",
+          "finishedAt": "2026-09-19T03:58:15.633Z"
+        },
+        {
+          "messageId": "msg-s762",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "orchard-books/DD-1407",
+            "sku": "INDEX-CARD-PLAIN",
+            "quantity": 5,
+            "attributes": {
+              "service": "express",
+              "destinationZone": "IN-NORTH"
+            }
+          },
+          "fault": "none",
+          "expect": "conflict",
+          "deliveryId": "dd-ship-02",
+          "attempted": true,
+          "outcome": "conflict",
+          "error": {
+            "phase": "delivery",
+            "type": "Conflict",
+            "message": "idempotency key already belongs to a different order payload"
+          },
+          "returned": null,
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [],
+          "conflictObserved": true,
+          "startedAt": "2026-09-19T03:58:15.633Z",
+          "finishedAt": "2026-09-19T03:58:15.633Z"
+        },
+        {
+          "messageId": "msg-s761",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "orchard-books/DD-1407",
+            "sku": "INDEX-CARD-PLAIN",
+            "quantity": 5,
+            "attributes": {
+              "service": "express",
+              "destinationZone": "IN-WEST"
+            }
+          },
+          "fault": "none",
+          "expect": "complete",
+          "deliveryId": "dd-ship-03",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "dispatch_reference": "orchard-books/DD-1407",
+            "fulfillment": {
+              "receipt_number": "receipt-001",
+              "new_dispatch": false
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T03:58:15.633Z",
+          "finishedAt": "2026-09-19T03:58:15.633Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "dd-ship-01"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "dd-ship-01",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "orchard-books/DD-1407",
+            "sku": "INDEX-CARD-PLAIN",
+            "quantity": 5,
+            "attributes": {
+              "service": "express",
+              "destinationZone": "IN-WEST"
+            }
+          },
+          "key": "dispatchdesk:orchard-books/DD-1407"
+        },
+        {
+          "index": 2,
+          "type": "fault-injected",
+          "deliveryId": "dd-ship-01",
+          "receiptId": "receipt-001",
+          "fault": "after-commit"
+        },
+        {
+          "index": 3,
+          "type": "delivery-end",
+          "deliveryId": "dd-ship-01",
+          "outcome": "crashed"
+        },
+        {
+          "index": 4,
+          "type": "delivery-start",
+          "deliveryId": "dd-ship-02"
+        },
+        {
+          "index": 5,
+          "type": "payload-conflict",
+          "deliveryId": "dd-ship-02",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "orchard-books/DD-1407",
+            "sku": "INDEX-CARD-PLAIN",
+            "quantity": 5,
+            "attributes": {
+              "service": "express",
+              "destinationZone": "IN-NORTH"
+            }
+          },
+          "key": "dispatchdesk:orchard-books/DD-1407"
+        },
+        {
+          "index": 6,
+          "type": "delivery-end",
+          "deliveryId": "dd-ship-02",
+          "outcome": "conflict"
+        },
+        {
+          "index": 7,
+          "type": "delivery-start",
+          "deliveryId": "dd-ship-03"
+        },
+        {
+          "index": 8,
+          "type": "receipt-reused",
+          "deliveryId": "dd-ship-03",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "orchard-books/DD-1407",
+            "sku": "INDEX-CARD-PLAIN",
+            "quantity": 5,
+            "attributes": {
+              "service": "express",
+              "destinationZone": "IN-WEST"
+            }
+          },
+          "key": "dispatchdesk:orchard-books/DD-1407"
+        },
+        {
+          "index": 9,
+          "type": "delivery-end",
+          "deliveryId": "dd-ship-03",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:orchard-books/DD-1407",
+          "status": "pass",
+          "message": "Order orchard-books/DD-1407: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:dd-ship-01",
+          "status": "pass",
+          "message": "Delivery dd-ship-01: required crash, observed crashed."
+        },
+        {
+          "id": "delivery:dd-ship-02",
+          "status": "pass",
+          "message": "Delivery dd-ship-02: required conflict, observed conflict."
+        },
+        {
+          "id": "delivery:dd-ship-03",
+          "status": "pass",
+          "message": "Delivery dd-ship-03: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    }
+  ],
+  "summary": {
+    "status": "pass",
+    "exitCode": 0,
+    "counts": {
+      "pass": 5,
+      "violation": 0,
+      "incomplete": 0,
+      "unresolved": 0
+    }
+  },
+  "errors": [],
+  "boundaries": [
+    "Trusted local Python adapters only; defense-in-depth guard is not a hostile-code sandbox.",
+    "Receiver-owned simulated effects and bounded explicit schedules; no real AWS execution or cloud equivalence claimed.",
+    "Independent local receipts establish effects; handler returns do not.",
+    "Source hashes cover captured .py files in each adapter folder only; not signatures or dependency attestation."
+  ],
+  "guard": {
+    "installedBeforeHandlerImport": true,
+    "mechanism": "CPython audit hook plus SDK/process/FFI import blocker",
+    "auditEventsSeen": 1163,
+    "blockedOperationCount": 4,
+    "handlerBlockedOperationCount": 0,
+    "blockedOperations": [
+      {
+        "event": "socket.__new__",
+        "detail": "",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "boto3",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "subprocess",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "ctypes",
+        "duringSelfTest": true
+      }
+    ],
+    "selfTests": [
+      {
+        "probe": "socket-construction",
+        "blocked": true
+      },
+      {
+        "probe": "aws-sdk-import",
+        "blocked": true
+      },
+      {
+        "probe": "child-process-import",
+        "blocked": true
+      },
+      {
+        "probe": "native-ffi-import",
+        "blocked": true
+      }
+    ],
+    "passed": true,
+    "boundary": "Blocks normal Python socket, SDK, subprocess and ctypes paths; not a hostile-native-code sandbox.",
+    "diagnosticsTruncated": false
+  }
+}

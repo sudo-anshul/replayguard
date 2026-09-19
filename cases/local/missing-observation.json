@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "missing-observation",
+  "title": "Receipt observation deliberately withheld",
+  "order": {
+    "orderId": "LOCAL-ORDER-1042",
+    "sku": "FIELD-NOTES-3PACK",
+    "quantity": 1
+  },
+  "fault": "none",
+  "deliveries": [
+    {
+      "messageKey": "message-a",
+      "receiveCount": 1
+    }
+  ],
+  "observation": "withhold-ledger",
+  "effectModel": "receiver-owned-receipt",
+  "expectedStatus": {
+    "vulnerable": "incomplete",
+    "repaired": "incomplete"
+  },
+  "maxDeliveries": 1
+}

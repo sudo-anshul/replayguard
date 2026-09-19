@@ -1,0 +1,2433 @@
+{
+  "schemaVersion": 1,
+  "kind": "narrated-captured-ui-and-recorded-cli-walkthrough",
+  "completedAt": "2026-09-19T04:20:30.512965+00:00",
+  "output": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard-repair-demo.mp4",
+  "outputSha256": "582537a547ff08a1cfd1118a60b8784a07bfe7d854974aa3abd0a4e2bf580339",
+  "durationSeconds": 163.064875,
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "codec": "h264",
+    "pixelFormat": "yuv420p"
+  },
+  "audio": {
+    "voice": "Samantha",
+    "wordsPerMinute": 148,
+    "codec": "aac",
+    "music": false
+  },
+  "limitations": [
+    "Edited actual UI captures, not continuous interaction footage.",
+    "CLI panels reproduce actual recorded argv, stdout, process exits and parsed report data; no simulated typing.",
+    "AWS evidence is retained from September 18 UTC; this video performs no new AWS execution.",
+    "Local simulated receipts and trusted-code restrictions do not guarantee an external shipment or payment.",
+    "Independent transfer was authored by AI agents on synthetic data, not human/customer validation."
+  ],
+  "captureManifestSha256": "fa26a93a1d6183708fc4054798116ab57dd237298468324954a1fe469b93b7c5",
+  "captureSource": {
+    "startedAt": "2026-09-19T04:17:24.243Z",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sourceBefore": {
+      "web/index.html": "9a1cb246628015dd387cd6d3fa37e1be43be0a6ca727155f861e26554c71ba1d",
+      "web/repair.html": "9a1cb246628015dd387cd6d3fa37e1be43be0a6ca727155f861e26554c71ba1d",
+      "web/adapter-guide.html": "2244ee423fc088217e584217f8beb6425f0673dd0ef108a55cd618c7b06fac4a",
+      "web/repair-app.js": "695a31c63ab0641d1f57d229f384affd6bf2394ac4e7302a88f47359c49dcc82",
+      "web/repair-contract.js": "dabd37feb58a92476ff8de7ba125237c5a6004c88967ecfcd743a069361b4a31",
+      "web/repair.css": "86f83ce1478a4c5dc7113a68821d8faadb3d88a3551b3502f0b16176ffb1cd73",
+      "web/repair-example.json": "a92089de5c85f1a1eb79bf48591607724b08a96279f4223b359b8298fd2490ce",
+      "web/repair-transfer.json": "9d4565a94e642747c559caa50c414fa6447a02aab56a182aca682ad994892224",
+      "web/aws-run.html": "85338cda28f0ecd56908601caffcc1c49eeedd28e261407fbdf65c2b124690fc",
+      "web/aws-run.js": "854bcac32c3ec077c2d0a562e8e41bbaabd2979c6b109281ebae67d44748aa4d",
+      "web/aws-run.css": "ca46572ab36b1a66a6fcca71e838944726ecdeae99b1a9dbc875c1a90772bcbf",
+      "web/evidence.json": "e32d3a8c68b7228b3014eb644f982824eab4a5c7147885be0dc51988a938adf3"
+    },
+    "captures": [
+      {
+        "file": "layout-320.png",
+        "url": "http://127.0.0.1:8088/index.html",
+        "viewport": {
+          "width": 320,
+          "height": 844
+        },
+        "clip": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 844
+        },
+        "sha256": "40824a09ddfc4145021a2d2d3ce945562b47d334823d59608e424c46d0a733d5",
+        "source": "Actual final viewport layout check",
+        "caseId": "interleaved-retries",
+        "imageDimensions": {
+          "width": 320,
+          "height": 844
+        }
+      },
+      {
+        "file": "layout-390.png",
+        "url": "http://127.0.0.1:8088/index.html",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "clip": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "840f3a91719641ca5c07836544dd8887831a6e6c6d846306ce5bc32f8f6d86f5",
+        "source": "Actual final viewport layout check",
+        "caseId": "interleaved-retries",
+        "imageDimensions": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      {
+        "file": "layout-768.png",
+        "url": "http://127.0.0.1:8088/index.html",
+        "viewport": {
+          "width": 768,
+          "height": 844
+        },
+        "clip": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 844
+        },
+        "sha256": "b434638009511a956c8191b4b0f0f761d238cdc9c33c750a086b896aff9f7dbc",
+        "source": "Actual final viewport layout check",
+        "caseId": "interleaved-retries",
+        "imageDimensions": {
+          "width": 768,
+          "height": 844
+        }
+      },
+      {
+        "file": "layout-1440.png",
+        "url": "http://127.0.0.1:8088/index.html",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "clip": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "128837480ce228f16652640d6ead79662f68364622a4cc49a87937b0e4484b91",
+        "source": "Actual final viewport layout check",
+        "caseId": "interleaved-retries",
+        "imageDimensions": {
+          "width": 1440,
+          "height": 1000
+        }
+      },
+      {
+        "file": "comparison.png",
+        "url": "http://127.0.0.1:8088/index.html",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "clip": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1526
+        },
+        "sha256": "9be9677b97b83f30fa1f1e767ace3026bba5fe20077162c7a5e10a58bbde0079",
+        "source": "Recorded local comparison",
+        "caseId": "interleaved-retries",
+        "candidateId": "overbroad-key",
+        "content": "Real main header, delivery plan and both expected-order rows.",
+        "imageDimensions": {
+          "width": 1440,
+          "height": 1526
+        }
+      },
+      {
+        "file": "comparison-detail.png",
+        "url": "http://127.0.0.1:8088/index.html",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "clip": {
+          "x": 88,
+          "y": 741,
+          "width": 1264,
+          "height": 771
+        },
+        "sha256": "3088a63b7c8c33da3f3af845019c1ce76c99e8f2cffdcb2b37f2fd280513a3d2",
+        "source": "Actual delivery plan, table headers and both order rows; tighter video crop of current main.",
+        "caseId": "interleaved-retries",
+        "imageDimensions": {
+          "width": 1264,
+          "height": 771
+        }
+      },
+      {
+        "file": "main-full.png",
+        "url": "http://127.0.0.1:8088/index.html",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "clip": "full page",
+        "sha256": "55b4af330127f2967f929d1459383acc64edafcd955fbe418f59fb2b7502b2da",
+        "source": "Recorded local comparison",
+        "caseId": "interleaved-retries",
+        "imageDimensions": {
+          "width": 1440,
+          "height": 4064
+        }
+      },
+      {
+        "file": "narrow.png",
+        "url": "http://127.0.0.1:8088/index.html",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "clip": "full page",
+        "sha256": "3ca7a2fdb742c74473af8211996a86727d61fb78c51becc753766baca76f4d46",
+        "source": "Current main at narrow viewport",
+        "caseId": "interleaved-retries",
+        "imageDimensions": {
+          "width": 390,
+          "height": 6005
+        }
+      },
+      {
+        "file": "independent.png",
+        "url": "http://127.0.0.1:8088/index.html",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "clip": {
+          "x": 80,
+          "y": 509,
+          "width": 1280,
+          "height": 1363
+        },
+        "sha256": "c9e819c0df68e869259cd97617637712a98d1154accd7000d16660737b6b3d2f",
+        "source": "Recorded independent DispatchDesk worker",
+        "caseId": "dispatchdesk-interleaved-orders",
+        "reportSha256": "9d4565a94e642747c559caa50c414fa6447a02aab56a182aca682ad994892224",
+        "content": "Report provenance, independent orders, receipts and inspected result.",
+        "imageDimensions": {
+          "width": 1280,
+          "height": 1363
+        }
+      },
+      {
+        "file": "incomplete.png",
+        "url": "http://127.0.0.1:8088/index.html",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "clip": {
+          "x": 80,
+          "y": 509,
+          "width": 1280,
+          "height": 1094
+        },
+        "sha256": "d6d3bd5061a7e27691aa7983b94b2ad501f069563714270949f5b20e9fa8f321",
+        "source": "Actual missing-observation control",
+        "caseId": "missing-snapshot",
+        "candidateId": "business-key",
+        "status": "incomplete",
+        "imageDimensions": {
+          "width": 1280,
+          "height": 1094
+        }
+      },
+      {
+        "file": "run-kit.png",
+        "url": "http://127.0.0.1:8088/index.html",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "region": "#run",
+        "source": "Actual extraction command, adapter and import workflow",
+        "sha256": "663eeac22a35a6c427aac958e0402b47d3813c0ed8edb569cf01e4a6a6042b3b",
+        "imageDimensions": {
+          "width": 1264,
+          "height": 747
+        }
+      },
+      {
+        "file": "aws.png",
+        "url": "http://127.0.0.1:8088/aws-run.html",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "clip": "full page",
+        "sha256": "2cf39b6943ed4cd1c1e6e86885f89c1de97cb2a451971dd27ab90437c78e76c5",
+        "source": "Actual retained AWS observations displayed at the AWS route",
+        "mode": "vulnerable",
+        "liveAWSExecution": false,
+        "evidenceSha256": "e32d3a8c68b7228b3014eb644f982824eab4a5c7147885be0dc51988a938adf3",
+        "imageDimensions": {
+          "width": 1440,
+          "height": 1686
+        }
+      },
+      {
+        "file": "adapter.png",
+        "url": "http://127.0.0.1:8088/adapter-guide.html",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "clip": {
+          "x": 268,
+          "y": 921,
+          "width": 904,
+          "height": 343
+        },
+        "sha256": "6be5019c2981d8dfbb89fd117c4f8092b3b7f1f872f09fff8a89de5360f1e256",
+        "source": "Actual local public adapter guide code and explanation.",
+        "imageDimensions": {
+          "width": 904,
+          "height": 343
+        }
+      }
+    ],
+    "layoutChecks": [
+      {
+        "viewport": 320,
+        "document": 320,
+        "title": "Your fix should protect every order.",
+        "runTitle": "A test you can take back to your code.",
+        "runCommandTabIndex": 0,
+        "jsonVisible": true,
+        "comparisonScrollWidth": 745,
+        "comparisonClientWidth": 284,
+        "passed": true
+      },
+      {
+        "viewport": 390,
+        "document": 390,
+        "title": "Your fix should protect every order.",
+        "runTitle": "A test you can take back to your code.",
+        "runCommandTabIndex": 0,
+        "jsonVisible": true,
+        "comparisonScrollWidth": 745,
+        "comparisonClientWidth": 354,
+        "passed": true
+      },
+      {
+        "viewport": 768,
+        "document": 768,
+        "title": "Your fix should protect every order.",
+        "runTitle": "A test you can take back to your code.",
+        "runCommandTabIndex": 0,
+        "jsonVisible": true,
+        "comparisonScrollWidth": 780,
+        "comparisonClientWidth": 722,
+        "passed": true
+      },
+      {
+        "viewport": 1440,
+        "document": 1440,
+        "title": "Your fix should protect every order.",
+        "runTitle": "A test you can take back to your code.",
+        "runCommandTabIndex": 0,
+        "jsonVisible": true,
+        "comparisonScrollWidth": 1262,
+        "comparisonClientWidth": 1262,
+        "passed": true
+      }
+    ],
+    "blockedRequests": [],
+    "pageErrors": [],
+    "scope": "Actual loopback-rendered product states. No DOM content changed, no AWS calls, no simulated typing.",
+    "browser": "153.0.8010.12",
+    "completedAt": "2026-09-19T04:17:27.805Z",
+    "sourceAfter": {
+      "web/index.html": "9a1cb246628015dd387cd6d3fa37e1be43be0a6ca727155f861e26554c71ba1d",
+      "web/repair.html": "9a1cb246628015dd387cd6d3fa37e1be43be0a6ca727155f861e26554c71ba1d",
+      "web/adapter-guide.html": "2244ee423fc088217e584217f8beb6425f0673dd0ef108a55cd618c7b06fac4a",
+      "web/repair-app.js": "695a31c63ab0641d1f57d229f384affd6bf2394ac4e7302a88f47359c49dcc82",
+      "web/repair-contract.js": "dabd37feb58a92476ff8de7ba125237c5a6004c88967ecfcd743a069361b4a31",
+      "web/repair.css": "86f83ce1478a4c5dc7113a68821d8faadb3d88a3551b3502f0b16176ffb1cd73",
+      "web/repair-example.json": "a92089de5c85f1a1eb79bf48591607724b08a96279f4223b359b8298fd2490ce",
+      "web/repair-transfer.json": "9d4565a94e642747c559caa50c414fa6447a02aab56a182aca682ad994892224",
+      "web/aws-run.html": "85338cda28f0ecd56908601caffcc1c49eeedd28e261407fbdf65c2b124690fc",
+      "web/aws-run.js": "854bcac32c3ec077c2d0a562e8e41bbaabd2979c6b109281ebae67d44748aa4d",
+      "web/aws-run.css": "ca46572ab36b1a66a6fcca71e838944726ecdeae99b1a9dbc875c1a90772bcbf",
+      "web/evidence.json": "e32d3a8c68b7228b3014eb644f982824eab4a5c7147885be0dc51988a938adf3"
+    },
+    "sourceStable": true
+  },
+  "narrationSourceSha256": "ef43df8c7964f7ae73b3e9653a296354b835fbf84f7ca2e723347593243586cc",
+  "narrationTranscriptSha256": "7b8060bdfd806ba2a1a81495f0a7f7e92bf4c38c9fc681f9f66ae1976a3e7934",
+  "subtitlesSha256": "d3a024f757f74a343dc9c73f933a18e59d337940441965fbfc4e48d951178a0a",
+  "rendererSha256": "681aecb0849a871f9e0f728c306f8e3e89878e5eedaac648c5dbb4d07e03c775",
+  "historicalVideosBefore": {
+    "replayguard-walkthrough-current.mp4": "7c576188e1f2556ce39eec6fd22b392b49d446127f375997c59e128007d469be",
+    "replayguard-demo.mp4": "5a7a92e6032b784e5a1b3ddc5774b609f26f9c6f0e73d6473c87f3f2daae6a4c"
+  },
+  "historicalVideosAfter": {
+    "replayguard-walkthrough-current.mp4": "7c576188e1f2556ce39eec6fd22b392b49d446127f375997c59e128007d469be",
+    "replayguard-demo.mp4": "5a7a92e6032b784e5a1b3ddc5774b609f26f9c6f0e73d6473c87f3f2daae6a4c"
+  },
+  "scenes": [
+    {
+      "id": "aws-origin",
+      "title": "A real failure, retained as evidence",
+      "duration": 10,
+      "kind": "screenshot",
+      "image": "aws.png",
+      "crop": [
+        36,
+        117,
+        1400,
+        480
+      ],
+      "label": "RECORDED AWS EVIDENCE \u00b7 SEPTEMBER 18, 2026 UTC",
+      "caption": "Current local viewer of retained observations. No new AWS run.",
+      "sentences": [
+        {
+          "text": "ReplayGuard began with a real Lambda and SQS failure on September eighteenth.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/01-aws-origin/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 5.115011,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/01-aws-origin/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/01-aws-origin/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "A simulated fulfillment succeeded, then the worker crashed.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/01-aws-origin/sentence-02.aiff",
+          "startSeconds": 5.115011,
+          "durationSeconds": 3.733152,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/01-aws-origin/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/01-aws-origin/sentence-02.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/01-aws-origin/frame.png",
+      "provenance": {
+        "screenshot": "docs/repair-lab/media/aws.png",
+        "screenshotSha256": "2cf39b6943ed4cd1c1e6e86885f89c1de97cb2a451971dd27ab90437c78e76c5",
+        "crop": [
+          36,
+          117,
+          1400,
+          480
+        ]
+      },
+      "index": 0,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/01-aws-origin",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/01-aws-origin/narration.wav",
+      "speechSeconds": 8.848163,
+      "durationSeconds": 10.0,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/01-aws-origin/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/01-aws-origin/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/01-aws-origin/narration.wav",
+        "-t",
+        "10.0",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/01-aws-origin/scene.mp4"
+      ],
+      "startSeconds": 0.0
+    },
+    {
+      "id": "aws-receipts",
+      "title": "The receipt ledger exposes the duplicate",
+      "duration": 10,
+      "kind": "screenshot",
+      "image": "aws.png",
+      "crop": [
+        48,
+        512,
+        1392,
+        1006
+      ],
+      "label": "RECORDED AWS EVIDENCE \u00b7 INDEPENDENT DYNAMODB OBSERVATION",
+      "caption": "Original AWS fault: after the fulfillment response, before worker completion.",
+      "sentences": [
+        {
+          "text": "SQS delivered again.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 1.689705,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "The independently queried DynamoDB ledger recorded two receipts for the vulnerable handler, and one for the repair.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/sentence-02.aiff",
+          "startSeconds": 1.689705,
+          "durationSeconds": 6.938821,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/sentence-02.aiff"
+          ]
+        },
+        {
+          "text": "These are retained observations.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/sentence-03.aiff",
+          "startSeconds": 8.628526,
+          "durationSeconds": 1.900136,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/sentence-03.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/sentence-03.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/frame.png",
+      "provenance": {
+        "screenshot": "docs/repair-lab/media/aws.png",
+        "screenshotSha256": "2cf39b6943ed4cd1c1e6e86885f89c1de97cb2a451971dd27ab90437c78e76c5",
+        "crop": [
+          48,
+          512,
+          1392,
+          1006
+        ]
+      },
+      "index": 1,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/narration.wav",
+      "speechSeconds": 10.528662,
+      "durationSeconds": 10.958333333333334,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/narration.wav",
+        "-t",
+        "10.958333333333334",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/02-aws-receipts/scene.mp4"
+      ],
+      "startSeconds": 10.0
+    },
+    {
+      "id": "local-plan",
+      "title": "Now test the repair against a second valid order",
+      "duration": 13,
+      "kind": "screenshot",
+      "image": "comparison-detail.png",
+      "crop": [
+        0,
+        0,
+        1264,
+        646
+      ],
+      "label": "CAPTURED LOCAL UI \u00b7 FINITE SIMULATED DELIVERY PLAN",
+      "caption": "The local fault commits a receipt, then crashes before returning the response.",
+      "sentences": [
+        {
+          "text": "The portable local lab asks a harder question.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 2.841451,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "Two valid orders share one product.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/sentence-02.aiff",
+          "startSeconds": 2.841451,
+          "durationSeconds": 2.132472,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/sentence-02.aiff"
+          ]
+        },
+        {
+          "text": "Order A commits, loses its response, then retries among deliveries for order B.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/sentence-03.aiff",
+          "startSeconds": 4.973923,
+          "durationSeconds": 5.725125,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/sentence-03.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/sentence-03.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/frame.png",
+      "provenance": {
+        "screenshot": "docs/repair-lab/media/comparison-detail.png",
+        "screenshotSha256": "3088a63b7c8c33da3f3af845019c1ce76c99e8f2cffdcb2b37f2fd280513a3d2",
+        "crop": [
+          0,
+          0,
+          1264,
+          646
+        ]
+      },
+      "index": 2,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/narration.wav",
+      "speechSeconds": 10.699048000000001,
+      "durationSeconds": 13.0,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/narration.wav",
+        "-t",
+        "13.0",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/03-local-plan/scene.mp4"
+      ],
+      "startSeconds": 20.958333333333336
+    },
+    {
+      "id": "wrong-keys",
+      "title": "A key can remove duplicates and still lose an order",
+      "duration": 10,
+      "kind": "screenshot",
+      "image": "comparison-detail.png",
+      "crop": [
+        0,
+        114,
+        1264,
+        646
+      ],
+      "label": "CAPTURED LOCAL UI \u00b7 RECEIPTS OBSERVED PER BUSINESS ORDER",
+      "caption": "No key: 2 / 2 receipts. SKU key: 1 / 0 receipts.",
+      "sentences": [
+        {
+          "text": "Without a key, both orders have duplicate receipts.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 3.332336,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "A product key looks safer, but suppresses order B.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/sentence-02.aiff",
+          "startSeconds": 3.332336,
+          "durationSeconds": 3.384943,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/sentence-02.aiff"
+          ]
+        },
+        {
+          "text": "Zero receipts is also a failure.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/sentence-03.aiff",
+          "startSeconds": 6.7172789999999996,
+          "durationSeconds": 2.211791,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/sentence-03.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/sentence-03.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/frame.png",
+      "provenance": {
+        "screenshot": "docs/repair-lab/media/comparison-detail.png",
+        "screenshotSha256": "3088a63b7c8c33da3f3af845019c1ce76c99e8f2cffdcb2b37f2fd280513a3d2",
+        "crop": [
+          0,
+          114,
+          1264,
+          646
+        ]
+      },
+      "index": 3,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/narration.wav",
+      "speechSeconds": 8.92907,
+      "durationSeconds": 10.0,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/narration.wav",
+        "-t",
+        "10.0",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/04-wrong-keys/scene.mp4"
+      ],
+      "startSeconds": 33.958333333333336
+    },
+    {
+      "id": "business-key",
+      "title": "Preserve every valid business order",
+      "duration": 9,
+      "kind": "screenshot",
+      "image": "comparison-detail.png",
+      "crop": [
+        0,
+        114,
+        1264,
+        646
+      ],
+      "label": "CAPTURED LOCAL UI \u00b7 BUSINESS ORDER KEY",
+      "caption": "Business order key: 1 / 1 receipts for these inputs and this receiver contract.",
+      "sentences": [
+        {
+          "text": "The stable business order key leaves one receipt for each order.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/05-business-key/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 3.51483,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/05-business-key/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/05-business-key/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "The comparison checks both duplicate prevention and valid order preservation.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/05-business-key/sentence-02.aiff",
+          "startSeconds": 3.51483,
+          "durationSeconds": 4.699048,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/05-business-key/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/05-business-key/sentence-02.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/05-business-key/frame.png",
+      "provenance": {
+        "screenshot": "docs/repair-lab/media/comparison-detail.png",
+        "screenshotSha256": "3088a63b7c8c33da3f3af845019c1ce76c99e8f2cffdcb2b37f2fd280513a3d2",
+        "crop": [
+          0,
+          114,
+          1264,
+          646
+        ]
+      },
+      "index": 4,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/05-business-key",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/05-business-key/narration.wav",
+      "speechSeconds": 8.213878000000001,
+      "durationSeconds": 9.0,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/05-business-key/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/05-business-key/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/05-business-key/narration.wav",
+        "-t",
+        "9.0",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/05-business-key/scene.mp4"
+      ],
+      "startSeconds": 43.958333333333336
+    },
+    {
+      "id": "adapter",
+      "title": "Bring a handler through one small adapter",
+      "duration": 15,
+      "kind": "screenshot",
+      "image": "adapter.png",
+      "crop": [
+        0,
+        0,
+        904,
+        343
+      ],
+      "label": "CAPTURED LOCAL ADAPTER GUIDE \u00b7 TRUSTED PYTHON CODE",
+      "caption": "The receiver owns the atomic key and receipt contract. External providers need their own guarantee.",
+      "sentences": [
+        {
+          "text": "A small adapter connects your handler to the injected receiver.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 3.709932,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "The handler chooses its key.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/sentence-02.aiff",
+          "startSeconds": 3.709932,
+          "durationSeconds": 1.750113,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/sentence-02.aiff"
+          ]
+        },
+        {
+          "text": "The receiver owns the atomic receipt contract, and the observer counts effects independently of the handler's return value.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/sentence-03.aiff",
+          "startSeconds": 5.460045,
+          "durationSeconds": 7.392562,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/sentence-03.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/sentence-03.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/frame.png",
+      "provenance": {
+        "screenshot": "docs/repair-lab/media/adapter.png",
+        "screenshotSha256": "6be5019c2981d8dfbb89fd117c4f8092b3b7f1f872f09fff8a89de5360f1e256",
+        "crop": [
+          0,
+          0,
+          904,
+          343
+        ]
+      },
+      "index": 5,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/narration.wav",
+      "speechSeconds": 12.852606999999999,
+      "durationSeconds": 15.0,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/narration.wav",
+        "-t",
+        "15.0",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/06-adapter/scene.mp4"
+      ],
+      "startSeconds": 52.958333333333336
+    },
+    {
+      "id": "bounded-result",
+      "title": "A pass belongs to the observed case",
+      "duration": 11,
+      "kind": "screenshot",
+      "image": "independent.png",
+      "crop": [
+        0,
+        1207,
+        1280,
+        1363
+      ],
+      "label": "CAPTURED LOCAL UI \u00b7 BOUNDED RESULT",
+      "caption": "A simulated receipt is the effect. No shipment, payment or arbitrary-code sandbox is claimed.",
+      "sentences": [
+        {
+          "text": "A pass belongs to the observed case and receiver assumptions.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/07-bounded-result/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 3.582313,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/07-bounded-result/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/07-bounded-result/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "It does not promise an external shipment, payment, or safety for arbitrary untrusted code.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/07-bounded-result/sentence-02.aiff",
+          "startSeconds": 3.582313,
+          "durationSeconds": 6.033061,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/07-bounded-result/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/07-bounded-result/sentence-02.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/07-bounded-result/frame.png",
+      "provenance": {
+        "screenshot": "docs/repair-lab/media/independent.png",
+        "screenshotSha256": "c9e819c0df68e869259cd97617637712a98d1154accd7000d16660737b6b3d2f",
+        "crop": [
+          0,
+          1207,
+          1280,
+          1363
+        ]
+      },
+      "index": 6,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/07-bounded-result",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/07-bounded-result/narration.wav",
+      "speechSeconds": 9.615374,
+      "durationSeconds": 11.0,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/07-bounded-result/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/07-bounded-result/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/07-bounded-result/narration.wav",
+        "-t",
+        "11.0",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/07-bounded-result/scene.mp4"
+      ],
+      "startSeconds": 67.95833333333334
+    },
+    {
+      "id": "cli-correct",
+      "title": "Fresh extraction \u00b7 correct candidate",
+      "duration": 12,
+      "kind": "cli",
+      "command": "01-correct",
+      "label": "RECORDED LOCAL SUBPROCESS OUTPUT \u00b7 SEPTEMBER 19, 2026 UTC",
+      "caption": "Actual fresh-kit execution with network denied by the operating system.",
+      "sentences": [
+        {
+          "text": "Here is recorded command output from a fresh kit extraction, with network access denied.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/08-cli-correct/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 5.588934,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/08-cli-correct/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/08-cli-correct/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "The correct adapter produces one receipt and exits zero.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/08-cli-correct/sentence-02.aiff",
+          "startSeconds": 5.588934,
+          "durationSeconds": 3.54966,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/08-cli-correct/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/08-cli-correct/sentence-02.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/08-cli-correct/frame.png",
+      "provenance": {
+        "executionManifest": "docs/repair-lab/media/execution/final/manifest.json",
+        "executionManifestSha256": "cd6fc4a238f1e28ee09d276e4de36f96e736222e51ae00dba4203f423a41dea3",
+        "actualCommand": {
+          "label": "01-correct",
+          "startedAt": "2026-09-19T04:08:15.881808+00:00",
+          "completedAt": "2026-09-19T04:08:15.946684+00:00",
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+            "-I",
+            "-S",
+            "scripts/test_repair.py",
+            "--adapter",
+            "candidate/adapter.py",
+            "--case",
+            "crash-retry",
+            "--output",
+            "01-correct.json"
+          ],
+          "networkWrapper": [
+            "/usr/bin/sandbox-exec",
+            "-p",
+            "(version 1)(allow default)(deny network*)"
+          ],
+          "cwd": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-actual-execution/extracted",
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "stdout": "01-correct.stdout.txt",
+          "stderr": "01-correct.stderr.txt",
+          "report": "01-correct.json",
+          "reportSha256": "ea468f4a4c1875e0d6f4ba70fe55735711c69e008864cb4bb19ed9eed369a475",
+          "sourceSha256": {
+            "adapter.py": "6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc"
+          },
+          "status": "pass",
+          "observedCases": [
+            {
+              "caseId": "crash-retry",
+              "status": "pass",
+              "orders": [
+                {
+                  "orderId": "ORDER-A",
+                  "observedReceipts": 1,
+                  "expectedReceipts": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "index": 7,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/08-cli-correct",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/08-cli-correct/narration.wav",
+      "speechSeconds": 9.138594,
+      "durationSeconds": 12.0,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/08-cli-correct/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/08-cli-correct/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/08-cli-correct/narration.wav",
+        "-t",
+        "12.0",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/08-cli-correct/scene.mp4"
+      ],
+      "startSeconds": 78.95833333333334
+    },
+    {
+      "id": "cli-broken",
+      "title": "Change the candidate \u00b7 expose the regression",
+      "duration": 13,
+      "kind": "cli",
+      "command": "02-broken-key",
+      "label": "RECORDED LOCAL SUBPROCESS OUTPUT \u00b7 DELIBERATE CANDIDATE MUTATION",
+      "caption": "Only the disposable candidate changes: key=order[\"orderId\"] \u2192 key=None.",
+      "sentences": [
+        {
+          "text": "Change the candidate to use no key, and run the same case again.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 4.05873,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "Two receipts appear.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/sentence-02.aiff",
+          "startSeconds": 4.05873,
+          "durationSeconds": 1.168844,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/sentence-02.aiff"
+          ]
+        },
+        {
+          "text": "The assertion fails, and the process exits one.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/sentence-03.aiff",
+          "startSeconds": 5.227574,
+          "durationSeconds": 3.279819,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/sentence-03.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/sentence-03.aiff"
+          ]
+        },
+        {
+          "text": "This is actual execution.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/sentence-04.aiff",
+          "startSeconds": 8.507393,
+          "durationSeconds": 1.807347,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/sentence-04.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/sentence-04.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/frame.png",
+      "provenance": {
+        "executionManifest": "docs/repair-lab/media/execution/final/manifest.json",
+        "executionManifestSha256": "cd6fc4a238f1e28ee09d276e4de36f96e736222e51ae00dba4203f423a41dea3",
+        "actualCommand": {
+          "label": "02-broken-key",
+          "startedAt": "2026-09-19T04:08:15.947912+00:00",
+          "completedAt": "2026-09-19T04:08:16.006467+00:00",
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+            "-I",
+            "-S",
+            "scripts/test_repair.py",
+            "--adapter",
+            "candidate/adapter.py",
+            "--case",
+            "crash-retry",
+            "--output",
+            "02-broken-key.json"
+          ],
+          "networkWrapper": [
+            "/usr/bin/sandbox-exec",
+            "-p",
+            "(version 1)(allow default)(deny network*)"
+          ],
+          "cwd": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-actual-execution/extracted",
+          "exitCode": 1,
+          "expectedExitCode": 1,
+          "stdout": "02-broken-key.stdout.txt",
+          "stderr": "02-broken-key.stderr.txt",
+          "report": "02-broken-key.json",
+          "reportSha256": "193e8c9c8f3483399a81684570906f0e96a986137cb5d3242baedd18deec794b",
+          "sourceSha256": {
+            "adapter.py": "06725bd7e37ac04613cd102e68a059288aa27ec4db25ac4f9c077b7f03b31b07"
+          },
+          "status": "violation",
+          "observedCases": [
+            {
+              "caseId": "crash-retry",
+              "status": "violation",
+              "orders": [
+                {
+                  "orderId": "ORDER-A",
+                  "observedReceipts": 2,
+                  "expectedReceipts": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "index": 8,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/narration.wav",
+      "speechSeconds": 10.31474,
+      "durationSeconds": 13.0,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/narration.wav",
+        "-t",
+        "13.0",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/09-cli-broken/scene.mp4"
+      ],
+      "startSeconds": 90.95833333333334
+    },
+    {
+      "id": "cli-restored",
+      "title": "Restore the candidate \u00b7 recover the pass",
+      "duration": 12,
+      "kind": "cli",
+      "command": "03-restored",
+      "label": "RECORDED LOCAL SUBPROCESS OUTPUT \u00b7 EXACT ORIGINAL BYTES RESTORED",
+      "caption": "Observed receipts: 1 \u2192 2 \u2192 1. Actual process exits: 0 \u2192 1 \u2192 0.",
+      "sentences": [
+        {
+          "text": "Restore the exact original source, and one receipt returns, with exit zero.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/10-cli-restored/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 5.345896,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/10-cli-restored/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/10-cli-restored/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "The recorded source hashes identify the changed and restored bytes.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/10-cli-restored/sentence-02.aiff",
+          "startSeconds": 5.345896,
+          "durationSeconds": 4.048889,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/10-cli-restored/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/10-cli-restored/sentence-02.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/10-cli-restored/frame.png",
+      "provenance": {
+        "executionManifest": "docs/repair-lab/media/execution/final/manifest.json",
+        "executionManifestSha256": "cd6fc4a238f1e28ee09d276e4de36f96e736222e51ae00dba4203f423a41dea3",
+        "actualCommand": {
+          "label": "03-restored",
+          "startedAt": "2026-09-19T04:08:16.007478+00:00",
+          "completedAt": "2026-09-19T04:08:16.065077+00:00",
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+            "-I",
+            "-S",
+            "scripts/test_repair.py",
+            "--adapter",
+            "candidate/adapter.py",
+            "--case",
+            "crash-retry",
+            "--output",
+            "03-restored.json"
+          ],
+          "networkWrapper": [
+            "/usr/bin/sandbox-exec",
+            "-p",
+            "(version 1)(allow default)(deny network*)"
+          ],
+          "cwd": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-actual-execution/extracted",
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "stdout": "03-restored.stdout.txt",
+          "stderr": "03-restored.stderr.txt",
+          "report": "03-restored.json",
+          "reportSha256": "4f4e582f3c9a63354179a0d7cce31c0ece55d726306ff33f38a00a499c77743a",
+          "sourceSha256": {
+            "adapter.py": "6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc"
+          },
+          "status": "pass",
+          "observedCases": [
+            {
+              "caseId": "crash-retry",
+              "status": "pass",
+              "orders": [
+                {
+                  "orderId": "ORDER-A",
+                  "observedReceipts": 1,
+                  "expectedReceipts": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "index": 9,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/10-cli-restored",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/10-cli-restored/narration.wav",
+      "speechSeconds": 9.394784999999999,
+      "durationSeconds": 12.0,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/10-cli-restored/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/10-cli-restored/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/10-cli-restored/narration.wav",
+        "-t",
+        "12.0",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/10-cli-restored/scene.mp4"
+      ],
+      "startSeconds": 103.95833333333334
+    },
+    {
+      "id": "independent-transfer",
+      "title": "A separate application crosses the same boundary",
+      "duration": 14,
+      "kind": "screenshot",
+      "image": "independent.png",
+      "crop": [
+        0,
+        346,
+        1280,
+        939
+      ],
+      "label": "CAPTURED LOCAL UI \u00b7 DISPATCHDESK ADAPTER",
+      "caption": "Independent AI-agent authorship; synthetic application inputs, not customer validation.",
+      "sentences": [
+        {
+          "text": "DispatchDesk uses a different business event and a separate adapter.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 3.95102,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "Its author froze five cases before reading the evaluator implementation.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/sentence-02.aiff",
+          "startSeconds": 3.95102,
+          "durationSeconds": 4.674694,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/sentence-02.aiff"
+          ]
+        },
+        {
+          "text": "Both authors were AI agents; this is not customer validation.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/sentence-03.aiff",
+          "startSeconds": 8.625714,
+          "durationSeconds": 4.087891,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/sentence-03.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/sentence-03.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/frame.png",
+      "provenance": {
+        "screenshot": "docs/repair-lab/media/independent.png",
+        "screenshotSha256": "c9e819c0df68e869259cd97617637712a98d1154accd7000d16660737b6b3d2f",
+        "crop": [
+          0,
+          346,
+          1280,
+          939
+        ]
+      },
+      "index": 10,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/narration.wav",
+      "speechSeconds": 12.713605000000001,
+      "durationSeconds": 14.0,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/narration.wav",
+        "-t",
+        "14.0",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/11-independent-transfer/scene.mp4"
+      ],
+      "startSeconds": 115.95833333333334
+    },
+    {
+      "id": "transfer-results",
+      "title": "The reference passes; both defects are detected",
+      "duration": 10,
+      "kind": "transfer",
+      "label": "RECORDED LOCAL TRANSFER RESULTS \u00b7 FIVE FROZEN APPLICATION CASES",
+      "caption": "The SKU-only defect passes simple retries, but loses valid orders in two multiorder cases.",
+      "sentences": [
+        {
+          "text": "All five reference cases pass.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 2.113878,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "Removing the business key fails all five.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/sentence-02.aiff",
+          "startSeconds": 2.113878,
+          "durationSeconds": 2.444717,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/sentence-02.aiff"
+          ]
+        },
+        {
+          "text": "A product-only key fails the two cases with distinct valid orders.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/sentence-03.aiff",
+          "startSeconds": 4.558595,
+          "durationSeconds": 4.174422,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/sentence-03.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/sentence-03.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/frame.png",
+      "provenance": {
+        "summary": "docs/repair-lab/transfer-results/final-numeric-runtime/summary.json",
+        "summarySha256": "e66160373674128c17b8a9b0e4c6da655339537cbaa3b00fe1dabb652a85c305",
+        "reports": {
+          "reference": "9d4565a94e642747c559caa50c414fa6447a02aab56a182aca682ad994892224",
+          "no-business-key": "99e184fd0e72bf33ddbbc9cee98ef7d6a0406ee1e437f6c19c996eaac9ae431a",
+          "sku-only-key": "c5210d2006e7d1b43baec80b9c25464308a286cc191e3be9cf1c2b9cca892c6d"
+        }
+      },
+      "index": 11,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/narration.wav",
+      "speechSeconds": 8.733017,
+      "durationSeconds": 10.0,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/narration.wav",
+        "-t",
+        "10.0",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/12-transfer-results/scene.mp4"
+      ],
+      "startSeconds": 129.95833333333334
+    },
+    {
+      "id": "portable-kit",
+      "title": "Keep the case, rerun it, inspect what changed",
+      "duration": 12,
+      "kind": "screenshot",
+      "image": "run-kit.png",
+      "crop": [
+        0,
+        20,
+        1264,
+        710
+      ],
+      "label": "CAPTURED LOCAL UI \u00b7 DOWNLOAD, EXECUTE AND IMPORT",
+      "caption": "The portable kit includes inputs, fault plans, assertions, adapters and evidence output.",
+      "sentences": [
+        {
+          "text": "Download the kit, run trusted Python locally, change your handler, and import the report.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/13-portable-kit/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 6.040907,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/13-portable-kit/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/13-portable-kit/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "Inputs, fault conditions, assertions, source hashes, and receipt evidence travel together.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/13-portable-kit/sentence-02.aiff",
+          "startSeconds": 6.040907,
+          "durationSeconds": 6.636735,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/13-portable-kit/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/13-portable-kit/sentence-02.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/13-portable-kit/frame.png",
+      "provenance": {
+        "screenshot": "docs/repair-lab/media/run-kit.png",
+        "screenshotSha256": "663eeac22a35a6c427aac958e0402b47d3813c0ed8edb569cf01e4a6a6042b3b",
+        "crop": [
+          0,
+          20,
+          1264,
+          710
+        ]
+      },
+      "index": 12,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/13-portable-kit",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/13-portable-kit/narration.wav",
+      "speechSeconds": 12.677641999999999,
+      "durationSeconds": 13.083333333333334,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/13-portable-kit/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/13-portable-kit/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/13-portable-kit/narration.wav",
+        "-t",
+        "13.083333333333334",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/13-portable-kit/scene.mp4"
+      ],
+      "startSeconds": 139.95833333333334
+    },
+    {
+      "id": "honest-states",
+      "title": "Keep the failure. Test the repair.",
+      "duration": 10,
+      "kind": "screenshot",
+      "image": "incomplete.png",
+      "crop": [
+        0,
+        105,
+        1280,
+        742
+      ],
+      "label": "CAPTURED LOCAL UI \u00b7 INCOMPLETE OBSERVATION CONTROL",
+      "caption": "Missing observation: incomplete. Unsupported receiver guarantees: unresolved.",
+      "sentences": [
+        {
+          "text": "Missing observations remain incomplete.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/sentence-01.aiff",
+          "startSeconds": 0.0,
+          "durationSeconds": 2.440136,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/sentence-01.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/sentence-01.aiff"
+          ]
+        },
+        {
+          "text": "Unsupported guarantees remain unresolved.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/sentence-02.aiff",
+          "startSeconds": 2.440136,
+          "durationSeconds": 2.662902,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/sentence-02.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/sentence-02.aiff"
+          ]
+        },
+        {
+          "text": "Keep the failure.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/sentence-03.aiff",
+          "startSeconds": 5.103038,
+          "durationSeconds": 1.040136,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/sentence-03.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/sentence-03.aiff"
+          ]
+        },
+        {
+          "text": "Test the repair.",
+          "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/sentence-04.aiff",
+          "startSeconds": 6.143174,
+          "durationSeconds": 1.018141,
+          "speechArgs": [
+            "/usr/bin/say",
+            "-v",
+            "Samantha",
+            "-r",
+            "148",
+            "-f",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/sentence-04.txt",
+            "-o",
+            "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/sentence-04.aiff"
+          ]
+        }
+      ],
+      "frame": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/frame.png",
+      "provenance": {
+        "screenshot": "docs/repair-lab/media/incomplete.png",
+        "screenshotSha256": "d6d3bd5061a7e27691aa7983b94b2ad501f069563714270949f5b20e9fa8f321",
+        "crop": [
+          0,
+          105,
+          1280,
+          742
+        ]
+      },
+      "index": 13,
+      "slot": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states",
+      "audio": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/narration.wav",
+      "speechSeconds": 7.161315,
+      "durationSeconds": 10.0,
+      "clip": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/scene.mp4",
+      "renderArgs": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-loop",
+        "1",
+        "-framerate",
+        "24",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/frame.png",
+        "-i",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/narration.wav",
+        "-t",
+        "10.0",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "19",
+        "-tune",
+        "stillimage",
+        "-pix_fmt",
+        "yuv420p",
+        "-vf",
+        "setsar=1",
+        "-af",
+        "apad",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-movflags",
+        "+faststart",
+        "-threads",
+        "2",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/14-honest-states/scene.mp4"
+      ],
+      "startSeconds": 153.04166666666669
+    }
+  ],
+  "probe": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "profile": "High",
+        "codec_type": "video",
+        "codec_tag_string": "avc1",
+        "codec_tag": "0x31637661",
+        "width": 1920,
+        "height": 1080,
+        "coded_width": 1920,
+        "coded_height": 1080,
+        "has_b_frames": 2,
+        "sample_aspect_ratio": "1:1",
+        "display_aspect_ratio": "16:9",
+        "pix_fmt": "yuv420p",
+        "level": 40,
+        "chroma_location": "left",
+        "field_order": "progressive",
+        "refs": 1,
+        "is_avc": "true",
+        "nal_length_size": "4",
+        "id": "0x1",
+        "r_frame_rate": "24/1",
+        "avg_frame_rate": "24/1",
+        "time_base": "1/12288",
+        "start_pts": 283,
+        "start_time": "0.023031",
+        "duration_ts": 2003456,
+        "duration": "163.041667",
+        "bit_rate": "91843",
+        "bits_per_raw_sample": "8",
+        "nb_frames": "3913",
+        "extradata_size": 47,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "VideoHandler",
+          "vendor_id": "[0][0][0][0]",
+          "encoder": "Lavc62.11.100 libx264"
+        }
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_long_name": "AAC (Advanced Audio Coding)",
+        "profile": "LC",
+        "codec_type": "audio",
+        "codec_tag_string": "mp4a",
+        "codec_tag": "0x6134706d",
+        "sample_fmt": "fltp",
+        "sample_rate": "44100",
+        "channels": 1,
+        "channel_layout": "mono",
+        "bits_per_sample": 0,
+        "initial_padding": 0,
+        "id": "0x2",
+        "r_frame_rate": "0/0",
+        "avg_frame_rate": "0/0",
+        "time_base": "1/44100",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 7191161,
+        "duration": "163.064875",
+        "bit_rate": "146226",
+        "nb_frames": "7039",
+        "extradata_size": 5,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "SoundHandler",
+          "vendor_id": "[0][0][0][0]"
+        }
+      }
+    ],
+    "format": {
+      "filename": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard-repair-demo.mp4",
+      "nb_streams": 2,
+      "nb_programs": 0,
+      "nb_stream_groups": 0,
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "format_long_name": "QuickTime / MOV",
+      "start_time": "0.000000",
+      "duration": "163.064875",
+      "size": "4979581",
+      "bit_rate": "244299",
+      "probe_score": 100,
+      "tags": {
+        "major_brand": "isom",
+        "minor_version": "512",
+        "compatible_brands": "isomiso2avc1mp41",
+        "encoder": "Lavf62.3.100"
+      }
+    }
+  },
+  "concatArgs": [
+    "/opt/homebrew/bin/ffmpeg",
+    "-v",
+    "error",
+    "-f",
+    "concat",
+    "-safe",
+    "0",
+    "-i",
+    "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-demo-render/video-concat.txt",
+    "-c",
+    "copy",
+    "-movflags",
+    "+faststart",
+    "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard-repair-demo.mp4"
+  ],
+  "fullDecode": {
+    "argv": [
+      "/opt/homebrew/bin/ffmpeg",
+      "-v",
+      "error",
+      "-i",
+      "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard-repair-demo.mp4",
+      "-f",
+      "null",
+      "-"
+    ],
+    "exitCode": 0
+  },
+  "validationFrames": [
+    {
+      "path": "docs/repair-lab/media/validation-frames/01-aws-origin.jpg",
+      "sha256": "e4faf4d12a0c24611c2c9f2a848a17404f99540d1c9b5d208638d94a0639f4de",
+      "timeSeconds": 2.0
+    },
+    {
+      "path": "docs/repair-lab/media/validation-frames/02-aws-receipts.jpg",
+      "sha256": "eb611fddf5ecc2c8f09e88c995e6b968f73c198ba95a7dd5f78017c435caf370",
+      "timeSeconds": 12.0
+    },
+    {
+      "path": "docs/repair-lab/media/validation-frames/03-local-plan.jpg",
+      "sha256": "fd6547a545adf80c76844b7067d5ea2688fad2ac17500983038a8e5258c24468",
+      "timeSeconds": 22.958
+    },
+    {
+      "path": "docs/repair-lab/media/validation-frames/04-wrong-keys.jpg",
+      "sha256": "93f833a29cf13d51c590d55b1e5c0322e8778da6f176b7127f76005f7126a1e6",
+      "timeSeconds": 35.958
+    },
+    {
+      "path": "docs/repair-lab/media/validation-frames/05-business-key.jpg",
+      "sha256": "9c255b9308900fada6d4c7e6c0d86dd0a363b6c3e7c8ef3701b9f5930b9a3001",
+      "timeSeconds": 45.958
+    },
+    {
+      "path": "docs/repair-lab/media/validation-frames/06-adapter.jpg",
+      "sha256": "6333ccc710b69d00074e673035c3892da1fdabeacdf250d53a419c73e321280a",
+      "timeSeconds": 54.958
+    },
+    {
+      "path": "docs/repair-lab/media/validation-frames/07-bounded-result.jpg",
+      "sha256": "cf979a8c2b44e1e551cf45135152b06f4adefe89feda0532c319e387f167df17",
+      "timeSeconds": 69.958
+    },
+    {
+      "path": "docs/repair-lab/media/validation-frames/08-cli-correct.jpg",
+      "sha256": "8aec196174601ef63e0397223a9490ea70f91ee3353e39e5a78ad1cf4e0add07",
+      "timeSeconds": 80.958
+    },
+    {
+      "path": "docs/repair-lab/media/validation-frames/09-cli-broken.jpg",
+      "sha256": "394e061a0bb6de34397f1c392a043189ad7c569f254d8fee4f7a336d79916d26",
+      "timeSeconds": 92.958
+    },
+    {
+      "path": "docs/repair-lab/media/validation-frames/10-cli-restored.jpg",
+      "sha256": "bd5be015b22fc72650519216e05d47790bc11ec005a8bd6f4c130d2b04b1a218",
+      "timeSeconds": 105.958
+    },
+    {
+      "path": "docs/repair-lab/media/validation-frames/11-independent-transfer.jpg",
+      "sha256": "804ac63d9504e8392655881cc90e5b41d8f67a8bc7ae42f68347a720fe1f8a72",
+      "timeSeconds": 117.958
+    },
+    {
+      "path": "docs/repair-lab/media/validation-frames/12-transfer-results.jpg",
+      "sha256": "a7d84a120fa3e8e4dc96d7f8e483c5e88aef89f97b337f13e26edef396499c13",
+      "timeSeconds": 131.958
+    },
+    {
+      "path": "docs/repair-lab/media/validation-frames/13-portable-kit.jpg",
+      "sha256": "0dc5a15c51bb571e81d6abe9ca1788d8f572685db751b64c671ff4a72a5c3c8a",
+      "timeSeconds": 141.958
+    },
+    {
+      "path": "docs/repair-lab/media/validation-frames/14-honest-states.jpg",
+      "sha256": "f365c9ca6ababdcc8036dcbbe19665ff0fae8f0db0937daa1d452f0c5e2ad705",
+      "timeSeconds": 155.042
+    }
+  ]
+}

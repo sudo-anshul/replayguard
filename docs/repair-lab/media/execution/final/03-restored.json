@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 2,
+  "kind": "replayguard-repair-report",
+  "provenance": "local-execution",
+  "startedAt": "2026-09-19T04:08:16.056Z",
+  "recordedAt": "2026-09-19T04:08:16.059Z",
+  "candidates": [
+    {
+      "id": "external-1",
+      "title": "adapter.py",
+      "adapter": "adapter.py",
+      "sourceSha256": {
+        "adapter.py": "6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc"
+      },
+      "sourceHashScope": "Captured .py files recursively within adapter directory; excludes dependencies and non-Python files."
+    }
+  ],
+  "cases": [
+    {
+      "id": "crash-retry",
+      "title": "Committed effect, lost response",
+      "description": "Committed effect, lost response. Receiver receipts define the business outcome.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "after-commit",
+          "expect": "crash"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-a",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "candidateId": "external-1",
+      "caseId": "crash-retry",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A",
+          "createdAt": "2026-09-19T04:08:16.058Z",
+          "acceptedDeliveryId": "d1"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "after-commit",
+          "expect": "crash",
+          "attempted": true,
+          "outcome": "crashed",
+          "error": {
+            "phase": "delivery",
+            "type": "CrashAfterCommit",
+            "message": "receiver committed fulfillment; response was lost"
+          },
+          "returned": null,
+          "faultInjected": true,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:08:16.058Z",
+          "finishedAt": "2026-09-19T04:08:16.058Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-a",
+          "receiveCount": 2,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": false,
+            "reused": true,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 1,
+          "acceptedReceiptIds": [],
+          "reusedReceiptIds": [
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:08:16.058Z",
+          "finishedAt": "2026-09-19T04:08:16.058Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 2,
+          "type": "fault-injected",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "fault": "after-commit"
+        },
+        {
+          "index": 3,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "crashed"
+        },
+        {
+          "index": 4,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 5,
+          "type": "receipt-reused",
+          "deliveryId": "d2",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 6,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required crash, observed crashed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    }
+  ],
+  "summary": {
+    "status": "pass",
+    "exitCode": 0,
+    "counts": {
+      "pass": 1,
+      "violation": 0,
+      "incomplete": 0,
+      "unresolved": 0
+    }
+  },
+  "errors": [],
+  "boundaries": [
+    "Trusted local Python adapters only; defense-in-depth guard is not a hostile-code sandbox.",
+    "Receiver-owned simulated effects and bounded explicit schedules; no real AWS execution or cloud equivalence claimed.",
+    "Independent local receipts establish effects; handler returns do not.",
+    "Source hashes cover captured .py files in each adapter folder only; not signatures or dependency attestation."
+  ],
+  "guard": {
+    "installedBeforeHandlerImport": true,
+    "mechanism": "CPython audit hook plus SDK/process/FFI import blocker",
+    "auditEventsSeen": 120,
+    "blockedOperationCount": 4,
+    "handlerBlockedOperationCount": 0,
+    "blockedOperations": [
+      {
+        "event": "socket.__new__",
+        "detail": "",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "boto3",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "subprocess",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "ctypes",
+        "duringSelfTest": true
+      }
+    ],
+    "selfTests": [
+      {
+        "probe": "socket-construction",
+        "blocked": true
+      },
+      {
+        "probe": "aws-sdk-import",
+        "blocked": true
+      },
+      {
+        "probe": "child-process-import",
+        "blocked": true
+      },
+      {
+        "probe": "native-ffi-import",
+        "blocked": true
+      }
+    ],
+    "passed": true,
+    "boundary": "Blocks normal Python socket, SDK, subprocess and ctypes paths; not a hostile-native-code sandbox.",
+    "diagnosticsTruncated": false
+  }
+}

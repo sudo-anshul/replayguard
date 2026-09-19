@@ -1,0 +1,40 @@
+{
+  "recordedAt": "2026-09-18T18:42:12.463552+00:00",
+  "status": "unresolved_conflicting_official_sources",
+  "date": "2026-09-20",
+  "submissionUiConfiguredCutoff": {
+    "utc": "2026-09-20T03:30:00Z",
+    "asiaKolkata": "2026-09-20T09:00:00+05:30",
+    "evidence": "public hackathon API end_date and submit UI closes after end_date"
+  },
+  "homepageCountdownTarget": {
+    "utc": "2026-09-20T14:30:00Z",
+    "asiaKolkata": "2026-09-20T20:00:00+05:30",
+    "evidence": "visible countdown time[datetime] plus FIRST_COMMIT_WINDOW constant"
+  },
+  "publicSchedule": "The hours are being finalised: the kickoff call, mentor sessions, and the deadline the clock stops on. They land on this page first, and everyone registered is told the same day.",
+  "signedOutSubmissionPage": "Sign in to submit; no exact deadline displayed in signed-out state.",
+  "recommendedPlanningBoundary": "Finish and submit well before 2026-09-20 09:00 IST; do not assume midnight or the later countdown is enforced.",
+  "codeExcerpts": [
+    {
+      "file": "assets/23nphn7_7clzr.js",
+      "needle": "let eC=p<=Date.now()",
+      "excerpt": "e:null;J[45]!==M.start_date?(p=new Date(M.start_date).getTime(),J[45]=M.start_date,J[46]=p):p=J[46];let eC=p<=Date.now();J[47]!==M.end_date?(b=new Date(M.end_date).getTime(),J[47]=M.end_date,J[48]=b):b=J[48];let ez=b<Date.now();J[49]!==M.submission_questions?(j=M.submission_questions??[],J[49]=M.submission_questions,J[50]=j):j=J[50];let eF=j;J[51]!==eF?(y=eF.some(O),J[51]=eF,J[52]=y):y=J[52];let eT=y,eD=eC&&!ez&&eT,eO=null!==eS&&\"registered\"===V.stage&&eS.leader_id===V.userId;if(eu){let e,n,s,a;if(ep){let e,n;if(ew){let e,n,i,s,r,a,o,d;J[53]===Symbol.for(\"react.memo_cache_sentinel\")?(n=(0,t.jsx)(\"p\",{className:\"font-mono text-xs uppercase tracking-wider text-theme-2-light\",children:\"Submission\"}),i=(0,t.jsx)(\"h2\",{className:\"mt-3 text-3xl f"
+    },
+    {
+      "file": "assets/23nphn7_7clzr.js",
+      "needle": "if(ez){",
+      "excerpt": "n\",heading:\"Submissions aren't open yet\",copy:l,children:s}),J[106]=l,J[107]=s,J[108]=r):r=J[108],r}if(ez){let e,n,s,r,a=M.title;J[109]!==M.end_date?(e=A.format(new Date(M.end_date)),J[109]=M.end_date,J[110]=e):e=J[110];let l=`${a} wrapped on ${e}, and nothing new goes in after that. Keep an eye out: the next one won't be far behind.`;return J[111]!==Q?(n=(0,t.jsx)(i.default,{href:Q}),J[111]=Q,J[112]=n):n=J[112],J[113]!==M.title||J[114]!==n?(s=(0,t.jsx)(T,{children:(0,t.jsxs)(d.Button,{variant:\"outline\",size:\"lg\",nativeButton:!1,render:n,children:[\"Back to \",M.title]})}),J[113]=M.title,J[114]=n,J[115]=s):s=J[115],J[116]!==l||J[117]!==s?(r=(0,t.jsx)(F,{eyebrow:\"Submission\",heading:\"Submissions are closed\",copy:l,children:s}),J[116]=l,J[117]="
+    },
+    {
+      "file": "assets/23nphn7_7clzr.js",
+      "needle": "heading:\"Submissions are closed\"",
+      "excerpt": "13]=M.title,J[114]=n,J[115]=s):s=J[115],J[116]!==l||J[117]!==s?(r=(0,t.jsx)(F,{eyebrow:\"Submission\",heading:\"Submissions are closed\",copy:l,children:s}),J[116]=l,J[117]=s,J[118]=r):r=J[118],r}if(!eT){let e,n,s,r=`The submission form for ${M.title} hasn't been set up yet. Nothing's wrong on your end, so check back, or ask an organiser.`;return J[119]!==Q?(e=(0,t.jsx)(i.default,{href:Q}),J[119]=Q,J[120]=e):e=J[120],J[121]!==M.title||J[122]!==e?(n=(0,t.jsx)(T,{children:(0,t.jsxs)(d.Button,{variant:\"outline\",size:\"lg\",nativeButton:!1,render:e,children:[\"Back to \",M.title]})}),J[121]=M.title,J[122]=e,J[123]=n):n=J[123],J[124]!==n||J[125]!==r?(s=(0,t.jsx)(F,{eyebrow:\"Submission\",heading:\"Not open yet\",copy:r,children:n}),J[124]=n,J[125]=r,J[126]="
+    },
+    {
+      "file": "assets/0avcoity_epag.js",
+      "needle": "FIRST_COMMIT_WINDOW",
+      "excerpt": "\"FIRST_COMMIT_WINDOW\",0,{start:\"2026-09-17T02:30:00Z\",end:\"2026-09-20T14:30:00Z\"}])},311233,e=>{\"use strict\";var t=e.i(500932),i=e.i(143174),n=e.i(733992);e.s(["
+    }
+  ]
+}

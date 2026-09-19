@@ -1,0 +1,218 @@
+{
+  "startedAt": "2026-09-19T04:11:01.893Z",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "sourceBefore": {
+    "web/index.html": "836279144eafd45c8006a59eeac45f5638002b64d5c3513e691d15b771f1a13d",
+    "web/repair-app.js": "695a31c63ab0641d1f57d229f384affd6bf2394ac4e7302a88f47359c49dcc82",
+    "web/repair-contract.js": "dabd37feb58a92476ff8de7ba125237c5a6004c88967ecfcd743a069361b4a31",
+    "web/repair.css": "139ca93c774bc57a066350782081e8d2d906a170ffcedec8c094ce39235a7112",
+    "web/repair-example.json": "a92089de5c85f1a1eb79bf48591607724b08a96279f4223b359b8298fd2490ce",
+    "web/repair-transfer.json": "9d4565a94e642747c559caa50c414fa6447a02aab56a182aca682ad994892224",
+    "web/aws-run.html": "85338cda28f0ecd56908601caffcc1c49eeedd28e261407fbdf65c2b124690fc",
+    "web/aws-run.js": "854bcac32c3ec077c2d0a562e8e41bbaabd2979c6b109281ebae67d44748aa4d",
+    "web/aws-run.css": "ca46572ab36b1a66a6fcca71e838944726ecdeae99b1a9dbc875c1a90772bcbf",
+    "web/evidence.json": "e32d3a8c68b7228b3014eb644f982824eab4a5c7147885be0dc51988a938adf3"
+  },
+  "captures": [
+    {
+      "file": "comparison.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 1526
+      },
+      "sha256": "9be9677b97b83f30fa1f1e767ace3026bba5fe20077162c7a5e10a58bbde0079",
+      "source": "Recorded local comparison",
+      "caseId": "interleaved-retries",
+      "candidateId": "overbroad-key",
+      "content": "Real main header, delivery plan and both expected-order rows.",
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1526
+      }
+    },
+    {
+      "file": "main-full.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": "full page",
+      "sha256": "55b4af330127f2967f929d1459383acc64edafcd955fbe418f59fb2b7502b2da",
+      "source": "Recorded local comparison",
+      "caseId": "interleaved-retries",
+      "imageDimensions": {
+        "width": 1440,
+        "height": 4064
+      }
+    },
+    {
+      "file": "narrow.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "clip": "full page",
+      "sha256": "faf392217058fb02ead6df9bac81e20bc8b4e8c80db2c8da2593148f769994ff",
+      "source": "Current main at narrow viewport",
+      "caseId": "interleaved-retries",
+      "imageDimensions": {
+        "width": 390,
+        "height": 6005
+      }
+    },
+    {
+      "file": "independent.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": {
+        "x": 80,
+        "y": 509,
+        "width": 1280,
+        "height": 1363
+      },
+      "sha256": "c9e819c0df68e869259cd97617637712a98d1154accd7000d16660737b6b3d2f",
+      "source": "Recorded independent DispatchDesk worker",
+      "caseId": "dispatchdesk-interleaved-orders",
+      "reportSha256": "9d4565a94e642747c559caa50c414fa6447a02aab56a182aca682ad994892224",
+      "content": "Report provenance, independent orders, receipts and inspected result.",
+      "imageDimensions": {
+        "width": 1280,
+        "height": 1363
+      }
+    },
+    {
+      "file": "incomplete.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": {
+        "x": 80,
+        "y": 509,
+        "width": 1280,
+        "height": 1094
+      },
+      "sha256": "d6d3bd5061a7e27691aa7983b94b2ad501f069563714270949f5b20e9fa8f321",
+      "source": "Actual missing-observation control",
+      "caseId": "missing-snapshot",
+      "candidateId": "business-key",
+      "status": "incomplete",
+      "imageDimensions": {
+        "width": 1280,
+        "height": 1094
+      }
+    },
+    {
+      "file": "run-kit.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "region": "#run",
+      "source": "Actual extraction command, adapter and import workflow",
+      "sha256": "663eeac22a35a6c427aac958e0402b47d3813c0ed8edb569cf01e4a6a6042b3b",
+      "imageDimensions": {
+        "width": 1264,
+        "height": 747
+      }
+    },
+    {
+      "file": "aws.png",
+      "url": "http://127.0.0.1:8088/aws-run.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": "full page",
+      "sha256": "2cf39b6943ed4cd1c1e6e86885f89c1de97cb2a451971dd27ab90437c78e76c5",
+      "source": "Actual retained AWS observations displayed at the AWS route",
+      "mode": "vulnerable",
+      "liveAWSExecution": false,
+      "evidenceSha256": "e32d3a8c68b7228b3014eb644f982824eab4a5c7147885be0dc51988a938adf3",
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1686
+      }
+    },
+    {
+      "file": "comparison-detail.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": {
+        "x": 88,
+        "y": 741,
+        "width": 1264,
+        "height": 772
+      },
+      "sha256": "a10cc306f70c8c545a8369a399cee9f4af6779be3e4c1ea43d0ce684a8a465cd",
+      "source": "Actual delivery plan, table headers and both order rows; tighter video crop of current main.",
+      "imageDimensions": {
+        "width": 1264,
+        "height": 772
+      }
+    },
+    {
+      "file": "adapter.png",
+      "url": "http://127.0.0.1:8088/adapter-guide.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": {
+        "x": 256,
+        "y": 904,
+        "width": 928,
+        "height": 372
+      },
+      "sha256": "04c7ae0b8505e33c6fcaf33e9538f33a17fbd290136532fef31059bb778d9907",
+      "source": "Actual local public adapter guide code and explanation.",
+      "sourceFiles": {
+        "web/adapter-guide.html": "2244ee423fc088217e584217f8beb6425f0673dd0ef108a55cd618c7b06fac4a",
+        "web/repair.css": "139ca93c774bc57a066350782081e8d2d906a170ffcedec8c094ce39235a7112"
+      },
+      "imageDimensions": {
+        "width": 928,
+        "height": 372
+      }
+    }
+  ],
+  "blockedRequests": [],
+  "pageErrors": [],
+  "scope": "Actual loopback-rendered product states. No DOM content changed, no AWS calls, no simulated typing.",
+  "browser": "153.0.8010.12",
+  "completedAt": "2026-09-19T04:11:04.690Z",
+  "sourceAfter": {
+    "web/index.html": "836279144eafd45c8006a59eeac45f5638002b64d5c3513e691d15b771f1a13d",
+    "web/repair-app.js": "695a31c63ab0641d1f57d229f384affd6bf2394ac4e7302a88f47359c49dcc82",
+    "web/repair-contract.js": "dabd37feb58a92476ff8de7ba125237c5a6004c88967ecfcd743a069361b4a31",
+    "web/repair.css": "139ca93c774bc57a066350782081e8d2d906a170ffcedec8c094ce39235a7112",
+    "web/repair-example.json": "a92089de5c85f1a1eb79bf48591607724b08a96279f4223b359b8298fd2490ce",
+    "web/repair-transfer.json": "9d4565a94e642747c559caa50c414fa6447a02aab56a182aca682ad994892224",
+    "web/aws-run.html": "85338cda28f0ecd56908601caffcc1c49eeedd28e261407fbdf65c2b124690fc",
+    "web/aws-run.js": "854bcac32c3ec077c2d0a562e8e41bbaabd2979c6b109281ebae67d44748aa4d",
+    "web/aws-run.css": "ca46572ab36b1a66a6fcca71e838944726ecdeae99b1a9dbc875c1a90772bcbf",
+    "web/evidence.json": "e32d3a8c68b7228b3014eb644f982824eab4a5c7147885be0dc51988a938adf3"
+  },
+  "sourceStable": true,
+  "additionalCapturedAt": "2026-09-19T04:12:25.816Z"
+}

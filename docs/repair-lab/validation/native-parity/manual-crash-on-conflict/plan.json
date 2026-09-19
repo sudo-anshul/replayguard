@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "kind": "replayguard-repair-plan",
+  "cases": [
+    {
+      "id": "payload-conflict",
+      "title": "Changed payload must be rejected",
+      "description": "Changed payload must be rejected. Receiver receipts define the business outcome.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "m-a",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "m-b",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 3
+          },
+          "fault": "none",
+          "expect": "conflict"
+        }
+      ]
+    }
+  ]
+}

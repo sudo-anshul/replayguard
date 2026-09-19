@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f4f7f9"><title>ReplayGuard — Recorded AWS evidence</title><link rel="icon" href="./mark.svg"><link rel="stylesheet" href="./aws-run.css?v=receipt-bench-1"><script src="./evidence-contract.js" defer></script><script src="./aws-run.js" defer></script></head>
+<body>
+<header><a class="wordmark" href="./index.html"><img src="./mark.svg" width="28" height="28" alt="">ReplayGuard<span>.</span></a><a href="./index.html">← Back to the comparison</a></header>
+<main>
+  <section class="intro" aria-labelledby="title"><div><p class="eyebrow">RECORDED AWS API EVIDENCE</p><h1 id="title">An actual AWS failure, captured.</h1><p class="description">Inspect the exported observations. This page does not run experiments or query your AWS account.</p></div><span class="verdict incomplete" id="verdict">AWAITING EVIDENCE</span></section>
+  <div class="run-meta"><span>REGION <strong id="region">—</strong></span><span>RUN <strong id="run-id">—</strong></span><span>RECORDED <strong id="recorded">—</strong></span></div>
+  <div class="columns">
+    <section class="panel resources" aria-labelledby="resources-title"><div class="panel-head"><div><p class="eyebrow">01 / DEPLOYED RESOURCES</p><h2 id="resources-title">A small AWS lab.</h2></div><span class="counter" id="resource-count">— resources</span></div><div class="flow" aria-label="Experiment architecture"><span>SQS</span><b>→</b><span>Lambda worker</span><b>→</b><span>Receipt ledger</span></div><div class="resource-list" id="resources" role="list"><p class="empty">Loading recorded CloudFormation resource statuses…</p></div><p class="footnote">Recorded CloudFormation resource statuses. The receipt ledger is queried independently of worker logs.</p></section>
+    <section class="panel log-panel" aria-labelledby="logs-title"><div class="panel-head"><div><p class="eyebrow">02 / THE FAILURE AND RETRY</p><h2 id="logs-title">The same message returns.</h2></div></div><div class="mode-tabs" role="group" aria-label="Choose recorded handler"><button type="button" data-mode="vulnerable" aria-pressed="true">Vulnerable <span id="vulnerable-count">—</span> receipts</button><button type="button" data-mode="repaired" aria-pressed="false">Repaired <span id="repaired-count">—</span> receipts</button></div><div class="logs" id="logs"><p class="empty">Loading worker log excerpts…</p></div><p class="footnote">Selected worker events from the CloudWatch export. Full identifiers and observations remain in the JSON.</p></section>
+  </div>
+  <footer><p id="notice" role="status">Loading recorded evidence. No live AWS connection.</p><nav aria-label="Raw evidence"><a href="./evidence.json" target="_blank" rel="noopener">Raw run JSON ↗</a><a href="./aws-resources.json" target="_blank" rel="noopener">Resource JSON ↗</a></nav></footer>
+</main>
+</body></html>

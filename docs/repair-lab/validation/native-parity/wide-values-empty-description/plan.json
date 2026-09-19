@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 2,
+  "kind": "replayguard-repair-plan",
+  "cases": [
+    {
+      "id": "clean-orders",
+      "title": "Two clean orders",
+      "description": "",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1000000
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1000000,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1000000
+          },
+          "fault": "none",
+          "expect": "complete"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "aws-origin", "title": "A real failure, retained as evidence", "duration": 10,
+    "kind": "screenshot", "image": "aws.png", "crop": [36, 117, 1400, 480],
+    "label": "RECORDED AWS EVIDENCE · SEPTEMBER 18, 2026 UTC",
+    "caption": "Current local viewer of retained observations. No new AWS run.",
+    "sentences": ["ReplayGuard began with a real Lambda and SQS failure on September eighteenth.", "A simulated fulfillment succeeded, then the worker crashed."]
+  },
+  {
+    "id": "aws-receipts", "title": "The receipt ledger exposes the duplicate", "duration": 10,
+    "kind": "screenshot", "image": "aws.png", "crop": [48, 512, 1392, 1006],
+    "label": "RECORDED AWS EVIDENCE · INDEPENDENT DYNAMODB OBSERVATION",
+    "caption": "Original AWS fault: after the fulfillment response, before worker completion.",
+    "sentences": ["SQS delivered again.", "The independently queried DynamoDB ledger recorded two receipts for the vulnerable handler, and one for the repair.", "These are retained observations."]
+  },
+  {
+    "id": "local-plan", "title": "Now test the repair against a second valid order", "duration": 13,
+    "kind": "screenshot", "image": "comparison-detail.png", "crop": [0, 0, 1264, 646],
+    "label": "CAPTURED LOCAL UI · FINITE SIMULATED DELIVERY PLAN",
+    "caption": "The local fault commits a receipt, then crashes before returning the response.",
+    "sentences": ["The portable local lab asks a harder question.", "Two valid orders share one product.", "Order A commits, loses its response, then retries among deliveries for order B."]
+  },
+  {
+    "id": "wrong-keys", "title": "A key can remove duplicates and still lose an order", "duration": 10,
+    "kind": "screenshot", "image": "comparison-detail.png", "crop": [0, 114, 1264, 646],
+    "label": "CAPTURED LOCAL UI · RECEIPTS OBSERVED PER BUSINESS ORDER",
+    "caption": "No key: 2 / 2 receipts. SKU key: 1 / 0 receipts.",
+    "sentences": ["Without a key, both orders have duplicate receipts.", "A product key looks safer, but suppresses order B.", "Zero receipts is also a failure."]
+  },
+  {
+    "id": "business-key", "title": "Preserve every valid business order", "duration": 9,
+    "kind": "screenshot", "image": "comparison-detail.png", "crop": [0, 114, 1264, 646],
+    "label": "CAPTURED LOCAL UI · BUSINESS ORDER KEY",
+    "caption": "Business order key: 1 / 1 receipts for these inputs and this receiver contract.",
+    "sentences": ["The stable business order key leaves one receipt for each order.", "The comparison checks both duplicate prevention and valid order preservation."]
+  },
+  {
+    "id": "adapter", "title": "Bring a handler through one small adapter", "duration": 15,
+    "kind": "screenshot", "image": "adapter.png", "crop": [0, 0, 904, 343],
+    "label": "CAPTURED LOCAL ADAPTER GUIDE · TRUSTED PYTHON CODE",
+    "caption": "The receiver owns the atomic key and receipt contract. External providers need their own guarantee.",
+    "sentences": ["A small adapter connects your handler to the injected receiver.", "The handler chooses its key.", "The receiver owns the atomic receipt contract, and the observer counts effects independently of the handler's return value."]
+  },
+  {
+    "id": "bounded-result", "title": "A pass belongs to the observed case", "duration": 11,
+    "kind": "screenshot", "image": "independent.png", "crop": [0, 1207, 1280, 1363],
+    "label": "CAPTURED LOCAL UI · BOUNDED RESULT",
+    "caption": "A simulated receipt is the effect. No shipment, payment or arbitrary-code sandbox is claimed.",
+    "sentences": ["A pass belongs to the observed case and receiver assumptions.", "It does not promise an external shipment, payment, or safety for arbitrary untrusted code."]
+  },
+  {
+    "id": "cli-correct", "title": "Fresh extraction · correct candidate", "duration": 12,
+    "kind": "cli", "command": "01-correct",
+    "label": "RECORDED LOCAL SUBPROCESS OUTPUT · SEPTEMBER 19, 2026 UTC",
+    "caption": "Actual fresh-kit execution with network denied by the operating system.",
+    "sentences": ["Here is recorded command output from a fresh kit extraction, with network access denied.", "The correct adapter produces one receipt and exits zero."]
+  },
+  {
+    "id": "cli-broken", "title": "Change the candidate · expose the regression", "duration": 13,
+    "kind": "cli", "command": "02-broken-key",
+    "label": "RECORDED LOCAL SUBPROCESS OUTPUT · DELIBERATE CANDIDATE MUTATION",
+    "caption": "Only the disposable candidate changes: key=order[\"orderId\"] → key=None.",
+    "sentences": ["Change the candidate to use no key, and run the same case again.", "Two receipts appear.", "The assertion fails, and the process exits one.", "This is actual execution."]
+  },
+  {
+    "id": "cli-restored", "title": "Restore the candidate · recover the pass", "duration": 12,
+    "kind": "cli", "command": "03-restored",
+    "label": "RECORDED LOCAL SUBPROCESS OUTPUT · EXACT ORIGINAL BYTES RESTORED",
+    "caption": "Observed receipts: 1 → 2 → 1. Actual process exits: 0 → 1 → 0.",
+    "sentences": ["Restore the exact original source, and one receipt returns, with exit zero.", "The recorded source hashes identify the changed and restored bytes."]
+  },
+  {
+    "id": "independent-transfer", "title": "A separate application crosses the same boundary", "duration": 14,
+    "kind": "screenshot", "image": "independent.png", "crop": [0, 346, 1280, 939],
+    "label": "CAPTURED LOCAL UI · DISPATCHDESK ADAPTER",
+    "caption": "Independent AI-agent authorship; synthetic application inputs, not customer validation.",
+    "sentences": ["DispatchDesk uses a different business event and a separate adapter.", "Its author froze five cases before reading the evaluator implementation.", "Both authors were AI agents; this is not customer validation."]
+  },
+  {
+    "id": "transfer-results", "title": "The reference passes; both defects are detected", "duration": 10,
+    "kind": "transfer",
+    "label": "RECORDED LOCAL TRANSFER RESULTS · FIVE FROZEN APPLICATION CASES",
+    "caption": "The SKU-only defect passes simple retries, but loses valid orders in two multiorder cases.",
+    "sentences": ["All five reference cases pass.", "Removing the business key fails all five.", "A product-only key fails the two cases with distinct valid orders."]
+  },
+  {
+    "id": "portable-kit", "title": "Keep the case, rerun it, inspect what changed", "duration": 12,
+    "kind": "screenshot", "image": "run-kit.png", "crop": [0, 20, 1264, 710],
+    "label": "CAPTURED LOCAL UI · DOWNLOAD, EXECUTE AND IMPORT",
+    "caption": "The portable kit includes inputs, fault plans, assertions, adapters and evidence output.",
+    "sentences": ["Download the kit, run trusted Python locally, change your handler, and import the report.", "Inputs, fault conditions, assertions, source hashes, and receipt evidence travel together."]
+  },
+  {
+    "id": "honest-states", "title": "Keep the failure. Test the repair.", "duration": 10,
+    "kind": "screenshot", "image": "incomplete.png", "crop": [0, 105, 1280, 742],
+    "label": "CAPTURED LOCAL UI · INCOMPLETE OBSERVATION CONTROL",
+    "caption": "Missing observation: incomplete. Unsupported receiver guarantees: unresolved.",
+    "sentences": ["Missing observations remain incomplete.", "Unsupported guarantees remain unresolved.", "Keep the failure.", "Test the repair."]
+  }
+]

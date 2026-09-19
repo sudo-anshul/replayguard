@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-19T03:58:21.768428+00:00",
+  "status": "passed",
+  "archive": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/work/repair-lab-candidate.zip",
+  "archiveSha256": "44b00a70bcc16cb3ed39992556138129afb1a18b9a55a5bf4de25cf2a6e9c576",
+  "python": "3.14.3 (v3.14.3:323c59a5e34, Feb  3 2026, 11:41:37) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "platform": "darwin",
+  "checks": [
+    {
+      "name": "archive-integrity-and-scope",
+      "status": "passed",
+      "files": 22
+    },
+    {
+      "name": "actual-candidate-pass-fail-restoration",
+      "status": "passed",
+      "correctSha256": "6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc",
+      "brokenSha256": "06725bd7e37ac04613cd102e68a059288aa27ec4db25ac4f9c077b7f03b31b07"
+    },
+    {
+      "name": "independent-application-plan",
+      "status": "passed"
+    },
+    {
+      "name": "deterministic-reexport",
+      "status": "passed",
+      "sha256": "44b00a70bcc16cb3ed39992556138129afb1a18b9a55a5bf4de25cf2a6e9c576"
+    },
+    {
+      "name": "historical-artifact-preservation",
+      "status": "passed",
+      "files": 50
+    }
+  ],
+  "runs": [
+    {
+      "label": "01-correct",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "scripts/test_repair.py",
+        "--adapter",
+        "candidate/adapter.py",
+        "--case",
+        "crash-retry",
+        "--output",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/validation/attempt-01/01-correct.json"
+      ],
+      "networkDenialPrefix": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "report": "01-correct.json",
+      "reportSha256": "9075beb7be0b0a704ba3be46e697339c361fbbbdc59d36a5f2a561098d5c8ff4"
+    },
+    {
+      "label": "02-broken-key",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "scripts/test_repair.py",
+        "--adapter",
+        "candidate/adapter.py",
+        "--case",
+        "crash-retry",
+        "--output",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/validation/attempt-01/02-broken-key.json"
+      ],
+      "networkDenialPrefix": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "report": "02-broken-key.json",
+      "reportSha256": "6b4904633df3761bbc68985fc3a33070b0817427b0a61c81677322df8a0f2121"
+    },
+    {
+      "label": "03-restored",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "scripts/test_repair.py",
+        "--adapter",
+        "candidate/adapter.py",
+        "--case",
+        "crash-retry",
+        "--output",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/validation/attempt-01/03-restored.json"
+      ],
+      "networkDenialPrefix": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "report": "03-restored.json",
+      "reportSha256": "f84619a95c61650fe1697e1cc7ead53450a9573fdf005a4a85142549b6b0fb08"
+    },
+    {
+      "label": "04-dispatchdesk",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "scripts/test_repair.py",
+        "--adapter",
+        "examples/dispatchdesk/adapter.py",
+        "--case-file",
+        "examples/dispatchdesk/cases.json",
+        "--output",
+        "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/validation/attempt-01/04-dispatchdesk.json"
+      ],
+      "networkDenialPrefix": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "report": "04-dispatchdesk.json",
+      "reportSha256": "81849df718f7fc7236d9778d5824ea56d1d853105e59693de113fae34fa578a4"
+    }
+  ],
+  "newAwsEvidence": false,
+  "historicalAwsEvidenceIncluded": false,
+  "completedAt": "2026-09-19T03:58:22.134093+00:00"
+}

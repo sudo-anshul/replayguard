@@ -1,0 +1,195 @@
+{
+  "startedAt": "2026-09-19T04:08:29.141Z",
+  "sourceAtStart": {
+    "web/repair-contract.js": "dabd37feb58a92476ff8de7ba125237c5a6004c88967ecfcd743a069361b4a31",
+    "web/repair-app.js": "695a31c63ab0641d1f57d229f384affd6bf2394ac4e7302a88f47359c49dcc82",
+    "web/repair.css": "139ca93c774bc57a066350782081e8d2d906a170ffcedec8c094ce39235a7112",
+    "web/repair.html": "836279144eafd45c8006a59eeac45f5638002b64d5c3513e691d15b771f1a13d"
+  },
+  "checks": [
+    {
+      "name": "native-0-wrong-payload-report.json",
+      "status": "pass",
+      "source": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/validation/native-parity/wrong-payload/report.json",
+      "sha256": "ccb2632db5d210880d5f032106c60215e63d02a563f51408095050df1e882e5a",
+      "observed": [
+        {
+          "caseId": "clean-orders",
+          "candidateId": "external-1",
+          "supplied": "violation",
+          "rendered": "Violation"
+        }
+      ],
+      "originalBytesPreserved": true,
+      "narrow": {
+        "viewport": 390,
+        "document": 390
+      }
+    },
+    {
+      "name": "native-1-repeated-reuse-report.json",
+      "status": "pass",
+      "source": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/validation/native-parity/repeated-reuse/report.json",
+      "sha256": "c95bfee9f8bd1b0f66e5ae83cf7604ee09b81ba403b0fa9a86152c8874ca9c69",
+      "observed": [
+        {
+          "caseId": "clean-orders",
+          "candidateId": "external-1",
+          "supplied": "pass",
+          "rendered": "Passed"
+        }
+      ],
+      "originalBytesPreserved": true,
+      "narrow": {
+        "viewport": 390,
+        "document": 390
+      }
+    },
+    {
+      "name": "native-2-manual-crash-on-conflict-report.json",
+      "status": "pass",
+      "source": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/validation/native-parity/manual-crash-on-conflict/report.json",
+      "sha256": "d1101b73ac4a308840ff9e9cb2bb7d5b2d2026482ccceea5ce7dfe633b3bb0b9",
+      "observed": [
+        {
+          "caseId": "payload-conflict",
+          "candidateId": "external-1",
+          "supplied": "incomplete",
+          "rendered": "Incomplete"
+        }
+      ],
+      "originalBytesPreserved": true,
+      "narrow": {
+        "viewport": 390,
+        "document": 390
+      }
+    },
+    {
+      "name": "native-3-call-exhaustion-report.json",
+      "status": "pass",
+      "source": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/validation/native-parity/call-exhaustion/report.json",
+      "sha256": "a9420c8105b703e9fc8166cb1baf79cdf9c0bdb7f7e66fdc786d1aac888d41b4",
+      "observed": [
+        {
+          "caseId": "clean-orders",
+          "candidateId": "external-1",
+          "supplied": "violation",
+          "rendered": "Violation"
+        }
+      ],
+      "originalBytesPreserved": true,
+      "narrow": {
+        "viewport": 390,
+        "document": 390
+      }
+    },
+    {
+      "name": "native-4-timeout-report.json",
+      "status": "pass",
+      "source": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/validation/native-parity/timeout/report.json",
+      "sha256": "524a0542090ecdb5b7726fae4409ae373b7ea3bb17ff17ad5f117a684a0b69a9",
+      "observed": [
+        {
+          "caseId": "clean-orders",
+          "candidateId": "external-1",
+          "supplied": "incomplete",
+          "rendered": "Incomplete"
+        }
+      ],
+      "originalBytesPreserved": true,
+      "narrow": {
+        "viewport": 390,
+        "document": 390
+      }
+    },
+    {
+      "name": "native-5-caught-protocol-error-report.json",
+      "status": "pass",
+      "source": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/validation/native-parity/caught-protocol-error/report.json",
+      "sha256": "89660b7fbfc338cbf5f21a5e66a238df3175afc3644d2b4e03321a85979a2ccd",
+      "observed": [
+        {
+          "caseId": "clean-orders",
+          "candidateId": "external-1",
+          "supplied": "incomplete",
+          "rendered": "Incomplete"
+        }
+      ],
+      "originalBytesPreserved": true,
+      "narrow": {
+        "viewport": 390,
+        "document": 390
+      }
+    },
+    {
+      "name": "native-6-wide-values-empty-description-report.json",
+      "status": "pass",
+      "source": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/validation/native-parity/wide-values-empty-description/report.json",
+      "sha256": "d83185cf5e2f370030412a357490e4d4c5b59271def00937c3565c1fa6d5c6c0",
+      "observed": [
+        {
+          "caseId": "clean-orders",
+          "candidateId": "external-1",
+          "supplied": "pass",
+          "rendered": "Passed"
+        }
+      ],
+      "originalBytesPreserved": true,
+      "narrow": {
+        "viewport": 390,
+        "document": 390
+      }
+    },
+    {
+      "name": "native-7-numeric-equivalence-report.json",
+      "status": "pass",
+      "source": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/validation/native-parity/numeric-equivalence/report.json",
+      "sha256": "8f0aed42aa3299852507dd901b7fab024190327f1b43a902b5f49dd5bf69e7ab",
+      "observed": [
+        {
+          "caseId": "clean-orders",
+          "candidateId": "external-1",
+          "supplied": "pass",
+          "rendered": "Passed"
+        }
+      ],
+      "originalBytesPreserved": true,
+      "narrow": {
+        "viewport": 390,
+        "document": 390
+      }
+    },
+    {
+      "name": "native-8-numeric-boolean-distinction-report.json",
+      "status": "pass",
+      "source": "/Users/anshul/Documents/Codex/2026-09-19/build-replayguard-for-wemakedevs-first-commit-2/outputs/replayguard/docs/repair-lab/validation/native-parity/numeric-boolean-distinction/report.json",
+      "sha256": "47bca0516e26ae0b0d69bf5958e4091792d63b862202f8008f669a9d530e0aea",
+      "observed": [
+        {
+          "caseId": "clean-orders",
+          "candidateId": "external-1",
+          "supplied": "violation",
+          "rendered": "Violation"
+        }
+      ],
+      "originalBytesPreserved": true,
+      "narrow": {
+        "viewport": 390,
+        "document": 390
+      }
+    }
+  ],
+  "blockedRequests": [],
+  "pageErrors": [],
+  "browser": "153.0.8010.12",
+  "sourceAtEnd": {
+    "web/repair-contract.js": "dabd37feb58a92476ff8de7ba125237c5a6004c88967ecfcd743a069361b4a31",
+    "web/repair-app.js": "695a31c63ab0641d1f57d229f384affd6bf2394ac4e7302a88f47359c49dcc82",
+    "web/repair.css": "139ca93c774bc57a066350782081e8d2d906a170ffcedec8c094ce39235a7112",
+    "web/repair.html": "836279144eafd45c8006a59eeac45f5638002b64d5c3513e691d15b771f1a13d"
+  },
+  "sourceStableDuringTest": true,
+  "completedAt": "2026-09-19T04:08:31.610Z",
+  "passed": 9,
+  "failed": 0
+}

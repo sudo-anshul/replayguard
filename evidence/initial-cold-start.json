@@ -1,0 +1,731 @@
+{
+  "schemaVersion": 1,
+  "provenance": "aws",
+  "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+  "recordedAt": "2026-09-18T18:52:18.868Z",
+  "region": "us-east-1",
+  "stack": "replayguard-lab",
+  "status": "unresolved",
+  "case": {
+    "schemaVersion": 1,
+    "name": "crash-after-fulfillment",
+    "orders": [
+      {
+        "orderId": "ORDER-1042",
+        "sku": "FIELD-NOTES-3PACK",
+        "quantity": 1
+      }
+    ],
+    "fault": {
+      "type": "crash-after-fulfillment"
+    },
+    "bounds": {
+      "maxWaitSeconds": 180,
+      "maxMessages": 2,
+      "drainGraceSeconds": 15
+    }
+  },
+  "inputs": {
+    "orders": [
+      {
+        "orderId": "ORDER-1042",
+        "sku": "FIELD-NOTES-3PACK",
+        "quantity": 1
+      }
+    ]
+  },
+  "fault": {
+    "type": "crash-after-fulfillment"
+  },
+  "messages": [
+    {
+      "mode": "vulnerable",
+      "orderId": "ORDER-1042",
+      "messageId": "9ff37922-56d2-4f6e-b76f-767dc63469aa",
+      "sentAt": "2026-09-18T18:49:59.786Z",
+      "bodySha256": "d8d21520a84931a35a23dd42c13433f425c840c2a6b7033a5e417d9685d25326"
+    },
+    {
+      "mode": "repaired",
+      "orderId": "ORDER-1042",
+      "messageId": "aa068c41-7fc5-43cd-b7e0-bbeacf8a4b92",
+      "sentAt": "2026-09-18T18:50:00.093Z",
+      "bodySha256": "7871c558f4a9a4796a9925e8d5573e9ee53bc581685b8982f7c41331fc764f8b"
+    }
+  ],
+  "receipts": {
+    "vulnerable": [],
+    "repaired": []
+  },
+  "attempts": {
+    "vulnerable": [
+      {
+        "component": "worker",
+        "messageId": "9ff37922-56d2-4f6e-b76f-767dc63469aa",
+        "mode": "vulnerable",
+        "orderId": "ORDER-1042",
+        "receiptId": null,
+        "receiveCount": 1,
+        "requestId": "5141f889-7bda-567b-ac52-9baef1d9f11f",
+        "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+        "stage": "received",
+        "timestamp": "2026-09-18T18:49:59.979Z",
+        "source": "worker",
+        "eventId": "39912923744116336247169339989162873361603281831793786882",
+        "eventTimestamp": 1789757399979,
+        "ingestionTime": 1789757400530,
+        "logStreamName": "2026/09/18/[$LATEST]71ce8f41b6a34337b1db28326afe94e0",
+        "sourceLogGroup": "/aws/lambda/replayguard-lab-worker"
+      },
+      {
+        "component": "worker",
+        "messageId": "9ff37922-56d2-4f6e-b76f-767dc63469aa",
+        "mode": "vulnerable",
+        "orderId": "ORDER-1042",
+        "receiptId": null,
+        "receiveCount": 2,
+        "requestId": "4ca55edc-cd7b-5462-bfff-3dfb47408040",
+        "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+        "stage": "received",
+        "timestamp": "2026-09-18T18:50:35.818Z",
+        "source": "worker",
+        "eventId": "39912924543352743417308342808605447053160083161235980289",
+        "eventTimestamp": 1789757435818,
+        "ingestionTime": 1789757441843,
+        "logStreamName": "2026/09/18/[$LATEST]df28999ffe354bc4ad1d6ee9b6761868",
+        "sourceLogGroup": "/aws/lambda/replayguard-lab-worker"
+      },
+      {
+        "component": "worker",
+        "messageId": "9ff37922-56d2-4f6e-b76f-767dc63469aa",
+        "mode": "vulnerable",
+        "orderId": "ORDER-1042",
+        "receiptId": null,
+        "receiveCount": 3,
+        "requestId": "3937ee15-9be3-52fd-903c-8d3211bc2599",
+        "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+        "stage": "received",
+        "timestamp": "2026-09-18T18:51:11.813Z",
+        "source": "worker",
+        "eventId": "39912925346068066838418122831711429634681470517373304833",
+        "eventTimestamp": 1789757471813,
+        "ingestionTime": 1789757477848,
+        "logStreamName": "2026/09/18/[$LATEST]71ce8f41b6a34337b1db28326afe94e0",
+        "sourceLogGroup": "/aws/lambda/replayguard-lab-worker"
+      }
+    ],
+    "repaired": [
+      {
+        "component": "worker",
+        "messageId": "aa068c41-7fc5-43cd-b7e0-bbeacf8a4b92",
+        "mode": "repaired",
+        "orderId": "ORDER-1042",
+        "receiptId": null,
+        "receiveCount": 1,
+        "requestId": "2c1c3c00-a4d1-59e6-accd-5f272ec69dc4",
+        "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+        "stage": "received",
+        "timestamp": "2026-09-18T18:50:00.264Z",
+        "source": "worker",
+        "eventId": "39912923750472048628750567591581398147691048609714405378",
+        "eventTimestamp": 1789757400264,
+        "ingestionTime": 1789757406387,
+        "logStreamName": "2026/09/18/[$LATEST]df28999ffe354bc4ad1d6ee9b6761868",
+        "sourceLogGroup": "/aws/lambda/replayguard-lab-worker"
+      },
+      {
+        "component": "worker",
+        "messageId": "aa068c41-7fc5-43cd-b7e0-bbeacf8a4b92",
+        "mode": "repaired",
+        "orderId": "ORDER-1042",
+        "receiptId": null,
+        "receiveCount": 2,
+        "requestId": "c2cb9e6a-b7ba-5b72-b06b-fd4d3d808c16",
+        "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+        "stage": "received",
+        "timestamp": "2026-09-18T18:50:36.120Z",
+        "source": "worker",
+        "eventId": "39912924550087568467264590997716094005305238049104330753",
+        "eventTimestamp": 1789757436120,
+        "ingestionTime": 1789757442146,
+        "logStreamName": "2026/09/18/[$LATEST]71ce8f41b6a34337b1db28326afe94e0",
+        "sourceLogGroup": "/aws/lambda/replayguard-lab-worker"
+      },
+      {
+        "component": "worker",
+        "messageId": "aa068c41-7fc5-43cd-b7e0-bbeacf8a4b92",
+        "mode": "repaired",
+        "orderId": "ORDER-1042",
+        "receiptId": null,
+        "receiveCount": 3,
+        "requestId": "de386574-d5f3-564e-9da4-06535faea26c",
+        "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+        "stage": "received",
+        "timestamp": "2026-09-18T18:51:12.118Z",
+        "source": "worker",
+        "eventId": "39912925352869794123969962890232761900629775930332741633",
+        "eventTimestamp": 1789757472118,
+        "ingestionTime": 1789757478140,
+        "logStreamName": "2026/09/18/[$LATEST]df28999ffe354bc4ad1d6ee9b6761868",
+        "sourceLogGroup": "/aws/lambda/replayguard-lab-worker"
+      }
+    ]
+  },
+  "events": [
+    {
+      "component": "worker",
+      "messageId": "9ff37922-56d2-4f6e-b76f-767dc63469aa",
+      "mode": "vulnerable",
+      "orderId": "ORDER-1042",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "5141f889-7bda-567b-ac52-9baef1d9f11f",
+      "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+      "stage": "received",
+      "timestamp": "2026-09-18T18:49:59.979Z",
+      "source": "worker",
+      "eventId": "39912923744116336247169339989162873361603281831793786882",
+      "eventTimestamp": 1789757399979,
+      "ingestionTime": 1789757400530,
+      "logStreamName": "2026/09/18/[$LATEST]71ce8f41b6a34337b1db28326afe94e0",
+      "sourceLogGroup": "/aws/lambda/replayguard-lab-worker"
+    },
+    {
+      "component": "worker",
+      "messageId": "aa068c41-7fc5-43cd-b7e0-bbeacf8a4b92",
+      "mode": "repaired",
+      "orderId": "ORDER-1042",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "2c1c3c00-a4d1-59e6-accd-5f272ec69dc4",
+      "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+      "stage": "received",
+      "timestamp": "2026-09-18T18:50:00.264Z",
+      "source": "worker",
+      "eventId": "39912923750472048628750567591581398147691048609714405378",
+      "eventTimestamp": 1789757400264,
+      "ingestionTime": 1789757406387,
+      "logStreamName": "2026/09/18/[$LATEST]df28999ffe354bc4ad1d6ee9b6761868",
+      "sourceLogGroup": "/aws/lambda/replayguard-lab-worker"
+    },
+    {
+      "component": "worker",
+      "messageId": "9ff37922-56d2-4f6e-b76f-767dc63469aa",
+      "mode": "vulnerable",
+      "orderId": "ORDER-1042",
+      "receiptId": null,
+      "receiveCount": 2,
+      "requestId": "4ca55edc-cd7b-5462-bfff-3dfb47408040",
+      "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+      "stage": "received",
+      "timestamp": "2026-09-18T18:50:35.818Z",
+      "source": "worker",
+      "eventId": "39912924543352743417308342808605447053160083161235980289",
+      "eventTimestamp": 1789757435818,
+      "ingestionTime": 1789757441843,
+      "logStreamName": "2026/09/18/[$LATEST]df28999ffe354bc4ad1d6ee9b6761868",
+      "sourceLogGroup": "/aws/lambda/replayguard-lab-worker"
+    },
+    {
+      "component": "worker",
+      "messageId": "aa068c41-7fc5-43cd-b7e0-bbeacf8a4b92",
+      "mode": "repaired",
+      "orderId": "ORDER-1042",
+      "receiptId": null,
+      "receiveCount": 2,
+      "requestId": "c2cb9e6a-b7ba-5b72-b06b-fd4d3d808c16",
+      "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+      "stage": "received",
+      "timestamp": "2026-09-18T18:50:36.120Z",
+      "source": "worker",
+      "eventId": "39912924550087568467264590997716094005305238049104330753",
+      "eventTimestamp": 1789757436120,
+      "ingestionTime": 1789757442146,
+      "logStreamName": "2026/09/18/[$LATEST]71ce8f41b6a34337b1db28326afe94e0",
+      "sourceLogGroup": "/aws/lambda/replayguard-lab-worker"
+    },
+    {
+      "component": "worker",
+      "messageId": "9ff37922-56d2-4f6e-b76f-767dc63469aa",
+      "mode": "vulnerable",
+      "orderId": "ORDER-1042",
+      "receiptId": null,
+      "receiveCount": 3,
+      "requestId": "3937ee15-9be3-52fd-903c-8d3211bc2599",
+      "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+      "stage": "received",
+      "timestamp": "2026-09-18T18:51:11.813Z",
+      "source": "worker",
+      "eventId": "39912925346068066838418122831711429634681470517373304833",
+      "eventTimestamp": 1789757471813,
+      "ingestionTime": 1789757477848,
+      "logStreamName": "2026/09/18/[$LATEST]71ce8f41b6a34337b1db28326afe94e0",
+      "sourceLogGroup": "/aws/lambda/replayguard-lab-worker"
+    },
+    {
+      "component": "worker",
+      "messageId": "aa068c41-7fc5-43cd-b7e0-bbeacf8a4b92",
+      "mode": "repaired",
+      "orderId": "ORDER-1042",
+      "receiptId": null,
+      "receiveCount": 3,
+      "requestId": "de386574-d5f3-564e-9da4-06535faea26c",
+      "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+      "stage": "received",
+      "timestamp": "2026-09-18T18:51:12.118Z",
+      "source": "worker",
+      "eventId": "39912925352869794123969962890232761900629775930332741633",
+      "eventTimestamp": 1789757472118,
+      "ingestionTime": 1789757478140,
+      "logStreamName": "2026/09/18/[$LATEST]df28999ffe354bc4ad1d6ee9b6761868",
+      "sourceLogGroup": "/aws/lambda/replayguard-lab-worker"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "aws-provenance",
+      "label": "AWS run identified",
+      "status": "passed",
+      "expected": "aws provenance, schema 1 and runId",
+      "observed": {
+        "schemaVersion": 1,
+        "provenance": "aws",
+        "runId": "3ca94e3d-2985-4c90-8d05-62a72d683127",
+        "region": "us-east-1"
+      },
+      "detail": "Offline verification checks the export's consistency; it cannot authenticate AWS provenance."
+    },
+    {
+      "id": "case-integrity",
+      "label": "Inputs match captured case",
+      "status": "passed",
+      "expected": "case inputs, fault and canonical hash agree",
+      "observed": {
+        "inputsMatch": true,
+        "hashMatches": true
+      },
+      "detail": "The exported case must be the case whose messages were sent."
+    },
+    {
+      "id": "collection-complete",
+      "label": "AWS observations collected",
+      "status": "passed",
+      "expected": "no collection errors",
+      "observed": [],
+      "detail": "Any AWS API failure leaves this run incomplete; retry with a fresh run after fixing the reported error."
+    },
+    {
+      "id": "bounded-dispatch",
+      "label": "Exact SQS messages recorded",
+      "status": "passed",
+      "expected": 2,
+      "observed": 2,
+      "detail": "Exactly one SendMessage per order per mode; SQS message IDs bind retries to those original messages."
+    },
+    {
+      "id": "vulnerable-ledger-inputs",
+      "label": "Vulnerable ledger matches inputs",
+      "status": "incomplete",
+      "expected": "independent ledger receipts for this run and exact order payload",
+      "observed": 0,
+      "detail": "Receipts are queried directly from DynamoDB with ConsistentRead, separately from worker success logs."
+    },
+    {
+      "id": "vulnerable-ORDER-1042-receipt-count",
+      "label": "Vulnerable: fulfillment count for ORDER-1042",
+      "status": "incomplete",
+      "expected": ">=2 distinct receipts",
+      "observed": 0,
+      "detail": "Each durable receipt represents one simulated fulfillment side effect; retries are counted independently of the worker."
+    },
+    {
+      "id": "vulnerable-ORDER-1042-redelivery",
+      "label": "Vulnerable: SQS redelivered ORDER-1042",
+      "status": "passed",
+      "expected": "same sent messageId, receiveCount 1 then >=2, distinct invocations",
+      "observed": [
+        {
+          "messageId": "9ff37922-56d2-4f6e-b76f-767dc63469aa",
+          "receiveCount": 1,
+          "requestId": "5141f889-7bda-567b-ac52-9baef1d9f11f"
+        },
+        {
+          "messageId": "9ff37922-56d2-4f6e-b76f-767dc63469aa",
+          "receiveCount": 2,
+          "requestId": "4ca55edc-cd7b-5462-bfff-3dfb47408040"
+        },
+        {
+          "messageId": "9ff37922-56d2-4f6e-b76f-767dc63469aa",
+          "receiveCount": 3,
+          "requestId": "3937ee15-9be3-52fd-903c-8d3211bc2599"
+        }
+      ],
+      "detail": "Two separately observed worker invocations must handle the exact SQS message originally sent."
+    },
+    {
+      "id": "vulnerable-ORDER-1042-fault-after-fulfillment",
+      "label": "Vulnerable: crash followed a durable fulfillment",
+      "status": "incomplete",
+      "expected": "received \u2192 success \u2192 injected crash \u2192 failed; receipt exists in ledger",
+      "observed": [],
+      "detail": "The injected failure must occur after a separately verified durable receipt, on receiveCount 1. Receipt clock comparisons permit 2 seconds of cross-Lambda clock skew."
+    },
+    {
+      "id": "vulnerable-ORDER-1042-completed",
+      "label": "Vulnerable: retry completed",
+      "status": "incomplete",
+      "expected": "retry returned success referencing an independent receipt",
+      "observed": [],
+      "detail": "Successful completion is required for both handlers, not just a receipt appearing."
+    },
+    {
+      "id": "repaired-ledger-inputs",
+      "label": "Repaired ledger matches inputs",
+      "status": "incomplete",
+      "expected": "independent ledger receipts for this run and exact order payload",
+      "observed": 0,
+      "detail": "Receipts are queried directly from DynamoDB with ConsistentRead, separately from worker success logs."
+    },
+    {
+      "id": "repaired-ORDER-1042-receipt-count",
+      "label": "Repaired: fulfillment count for ORDER-1042",
+      "status": "incomplete",
+      "expected": "exactly 1 receipt",
+      "observed": 0,
+      "detail": "Each durable receipt represents one simulated fulfillment side effect; retries are counted independently of the worker."
+    },
+    {
+      "id": "repaired-ORDER-1042-redelivery",
+      "label": "Repaired: SQS redelivered ORDER-1042",
+      "status": "passed",
+      "expected": "same sent messageId, receiveCount 1 then >=2, distinct invocations",
+      "observed": [
+        {
+          "messageId": "aa068c41-7fc5-43cd-b7e0-bbeacf8a4b92",
+          "receiveCount": 1,
+          "requestId": "2c1c3c00-a4d1-59e6-accd-5f272ec69dc4"
+        },
+        {
+          "messageId": "aa068c41-7fc5-43cd-b7e0-bbeacf8a4b92",
+          "receiveCount": 2,
+          "requestId": "c2cb9e6a-b7ba-5b72-b06b-fd4d3d808c16"
+        },
+        {
+          "messageId": "aa068c41-7fc5-43cd-b7e0-bbeacf8a4b92",
+          "receiveCount": 3,
+          "requestId": "de386574-d5f3-564e-9da4-06535faea26c"
+        }
+      ],
+      "detail": "Two separately observed worker invocations must handle the exact SQS message originally sent."
+    },
+    {
+      "id": "repaired-ORDER-1042-fault-after-fulfillment",
+      "label": "Repaired: crash followed a durable fulfillment",
+      "status": "incomplete",
+      "expected": "received \u2192 success \u2192 injected crash \u2192 failed; receipt exists in ledger",
+      "observed": [],
+      "detail": "The injected failure must occur after a separately verified durable receipt, on receiveCount 1. Receipt clock comparisons permit 2 seconds of cross-Lambda clock skew."
+    },
+    {
+      "id": "repaired-ORDER-1042-completed",
+      "label": "Repaired: retry completed",
+      "status": "incomplete",
+      "expected": "retry returned success referencing an independent receipt",
+      "observed": [],
+      "detail": "Successful completion is required for both handlers, not just a receipt appearing."
+    },
+    {
+      "id": "repaired-ORDER-1042-same-receipt",
+      "label": "Repaired retry reused the durable receipt",
+      "status": "incomplete",
+      "expected": "same receiptId, retry accepted=false and reused=true",
+      "observed": {
+        "fault": [],
+        "completed": []
+      },
+      "detail": "Receiver-side idempotency must preserve one receipt for the logical order across redelivery."
+    },
+    {
+      "id": "queues-drained",
+      "label": "Queues stayed drained after completed retries",
+      "status": "unresolved",
+      "expected": "source + DLQ empty for >= 15s, followed by final ledger reads",
+      "observed": {
+        "stableDrainSeconds": 0,
+        "deadLetterObserved": true,
+        "ledgerReadAfterFinalObservation": false
+      },
+      "detail": "SQS counts are approximate. This bounded grace observation supports this run only, not a global exactly-once guarantee."
+    }
+  ],
+  "queueObservations": [
+    {
+      "observedAt": "2026-09-18T18:49:57.998Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:50:00.093Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:50:09.257Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:50:18.383Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:50:26.922Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:50:35.826Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:50:44.371Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:50:53.034Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:51:01.529Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:51:10.661Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:51:19.458Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:51:28.444Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:51:37.544Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:51:47.182Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:51:56.791Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:52:05.484Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-18T18:52:14.956Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 2,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    }
+  ],
+  "apiErrors": [],
+  "limitations": [
+    "The receipt is the simulated fulfillment side effect. No payment, shipment, email or real customer order is created.",
+    "The repaired mode uses receiver-side atomic idempotency. This does not guarantee exactly once for arbitrary external APIs.",
+    "SQS queue counts are approximate; the result covers this bounded run and the recorded drain grace, not all future deliveries.",
+    "Logs can arrive late. Missing logs, partial API reads, expiry or deadline exhaustion produce incomplete evidence.",
+    "Offline exports are integrity-checked observations, not AWS-signed attestations. A fresh AWS replay provides independent confirmation."
+  ],
+  "collection": {
+    "logsStartTime": 1789757390662,
+    "startedAt": "2026-09-18T18:49:55.662Z",
+    "lastLedgerReadAt": {
+      "vulnerable": "2026-09-18T18:52:15.805Z",
+      "repaired": "2026-09-18T18:52:16.092Z"
+    },
+    "lastLogReadAt": "2026-09-18T18:52:18.868Z",
+    "unparsedLogEvents": 0,
+    "apiCalls": 117,
+    "maxApiCalls": 300,
+    "maxPagesPerRead": 5,
+    "stopReason": "Contradictory evidence requires investigation",
+    "finishedAt": "2026-09-18T18:52:18.868Z"
+  },
+  "artifacts": {
+    "sourceFiles": {
+      "src/provider.py": "912570e3764ae63f42bd3b384b756d2f234f24c9e95cc68129435c5854c47e16",
+      "src/worker.py": "cc405f614e443a0c626b7f24198f6a049a461e5f26a7aa00a2045505074ec385",
+      "infra/build_template.py": "011b569a6ebf4e505c190491feaa82820585f90b5f6f4b915078cf80d2f17751",
+      "scripts/deploy.py": "700b9821930f0048ebb5330b0601313fbcb91df81a7c38aeec4092b2d3adc81b",
+      "scripts/destroy.py": "72a1728d801eef4ed7dc2f4f102024559179e12f3fb4331eab8107b7c29a15c5",
+      "scripts/run_case.py": "f840a9bea2fd87c8dff826c674d1d29a9afc0b148c6a8ce99cfca1c88bb70ac9",
+      "scripts/verify_case.py": "e04ff80fd9b4747933e6bfb3aafb6070b826a30dac40117bbaeab2e69780db89",
+      "scripts/export_case.py": "fd46df16f6316d7986ef3322a98cc32f321916ecca5436eb21f9820330620760",
+      "requirements.txt": "59a1f0334858615197a9a232c0cee16fc4ab6bca8e02bf2f491f50529a5f18fa"
+    },
+    "caseSha256": "28d59217c497eb23377706150e0ae93b769134f727ac3120c947f05286717df4",
+    "canonicalCaseSha256": "bdf5281d94a0459c86a5b419185b19c3a4e1a1ee120fb5cb15217e702b18d918",
+    "runnerSha256": "f840a9bea2fd87c8dff826c674d1d29a9afc0b148c6a8ce99cfca1c88bb70ac9",
+    "verifierSha256": "e04ff80fd9b4747933e6bfb3aafb6070b826a30dac40117bbaeab2e69780db89"
+  },
+  "deployment": {
+    "stackStatus": "CREATE_COMPLETE",
+    "expiry": "1789843646",
+    "workerLogGroup": "/aws/lambda/replayguard-lab-worker",
+    "providerLogGroup": "/aws/lambda/replayguard-lab-provider",
+    "ledgerTable": "replayguard-lab-receipts"
+  }
+}

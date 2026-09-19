@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "ambiguous-side-effect",
+  "title": "External side effect without an atomic receiver contract",
+  "order": {
+    "orderId": "LOCAL-ORDER-1042",
+    "sku": "FIELD-NOTES-3PACK",
+    "quantity": 1
+  },
+  "fault": "none",
+  "deliveries": [],
+  "observation": "independent-ledger",
+  "effectModel": "ambiguous-external-effect",
+  "expectedStatus": {
+    "vulnerable": "unresolved",
+    "repaired": "unresolved"
+  },
+  "maxDeliveries": 0
+}

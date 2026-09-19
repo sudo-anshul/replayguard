@@ -1,0 +1,66 @@
+{
+  "iteration": "RG-SUP-001-9c7acfba",
+  "baselineCommit": "9c7acfba4bc0d6995dcf3d783aff2c7bf77325f5",
+  "declaredAtUtc": "2026-09-18T19:30:59.890806+00:00",
+  "scope": "Offline execution of unchanged worker/provider source through explicit local adapters; no AWS calls or publication",
+  "fixedScenarios": [
+    {
+      "id": "no-fault",
+      "fault": "none",
+      "messages": "one delivery of one synthetic order",
+      "expected": {
+        "vulnerable": "pass",
+        "repaired": "pass"
+      }
+    },
+    {
+      "id": "crash-after-fulfillment",
+      "fault": "crash-after-fulfillment",
+      "messages": "same message delivered at receiveCount 1 and 2",
+      "expected": {
+        "vulnerable": "violation",
+        "repaired": "pass"
+      }
+    },
+    {
+      "id": "different-message-ids",
+      "fault": "none",
+      "messages": "two different message IDs for the same business order and run, each receiveCount 1",
+      "expected": {
+        "vulnerable": "violation",
+        "repaired": "pass"
+      }
+    },
+    {
+      "id": "missing-observation",
+      "fault": "none",
+      "messages": "one real handler delivery; local observer deliberately withholds ledger snapshot",
+      "expected": {
+        "vulnerable": "incomplete",
+        "repaired": "incomplete"
+      }
+    },
+    {
+      "id": "ambiguous-side-effect",
+      "effectModel": "external effect with no atomic idempotency contract",
+      "messages": "unsupported model must be rejected without inventing an external effect",
+      "expected": {
+        "vulnerable": "unresolved",
+        "repaired": "unresolved"
+      }
+    }
+  ],
+  "tuningPolicy": "The different-message-ids variation and expected outcomes are fixed before implementation. Do not change them to make the candidate pass.",
+  "sensitivityChecks": [
+    "In a temporary clean copy remove only the repaired worker's stable idempotency key; crash and different-message-ids repaired cases must become non-passes",
+    "In a separate temporary clean copy replace worker.handler with an immediate exception; no-fault control must become a non-pass"
+  ],
+  "validation": "One documented python3 -I -S command in a clean git archive/export extraction with credentials removed and a no-network guard. Record fingerprints, individual outcomes and exit codes. Preserve historical AWS bytes and archives unchanged.",
+  "budget": {
+    "cumulativeGrossCapUsd": 25,
+    "safetyReserveUsd": 5,
+    "conservativeExposureCapUsd": 20,
+    "thisIterationChargeableAllowanceUsd": 0
+  },
+  "publication": "All Git and deliverables local. No pushes, new remotes, publications, uploads or AWS API calls."
+}

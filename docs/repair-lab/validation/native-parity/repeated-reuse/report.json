@@ -1,0 +1,392 @@
+{
+  "schemaVersion": 2,
+  "kind": "replayguard-repair-report",
+  "provenance": "local-execution",
+  "startedAt": "2026-09-19T04:07:06.957Z",
+  "recordedAt": "2026-09-19T04:07:06.961Z",
+  "candidates": [
+    {
+      "id": "external-1",
+      "title": "adapter.py",
+      "adapter": "adapter.py",
+      "sourceSha256": {
+        "adapter.py": "4a4d193cb40d8daba897c93ac5f29e728a2851f6478e24bcd7e59188fe97b7be"
+      },
+      "sourceHashScope": "Captured .py files recursively within adapter directory; excludes dependencies and non-Python files."
+    }
+  ],
+  "cases": [
+    {
+      "id": "clean-orders",
+      "title": "Two clean orders",
+      "description": "Two clean orders. Receiver receipts define the business outcome.",
+      "effectModel": "receiver-owned-receipt",
+      "observation": "independent-ledger",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "count": 1
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "d2",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "fault": "none",
+          "expect": "complete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "candidateId": "external-1",
+      "caseId": "clean-orders",
+      "status": "pass",
+      "expectedOrders": [
+        {
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "count": 1
+        },
+        {
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "count": 1
+        }
+      ],
+      "receipts": [
+        {
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A",
+          "createdAt": "2026-09-19T04:07:06.960Z",
+          "acceptedDeliveryId": "d1"
+        },
+        {
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "key": "ORDER-C",
+          "createdAt": "2026-09-19T04:07:06.960Z",
+          "acceptedDeliveryId": "d2"
+        }
+      ],
+      "deliveries": [
+        {
+          "deliveryId": "d1",
+          "messageId": "d1",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-001",
+            "accepted": false,
+            "reused": true,
+            "order": {
+              "orderId": "ORDER-A",
+              "sku": "FIELD-NOTES",
+              "quantity": 1
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 3,
+          "acceptedReceiptIds": [
+            "receipt-001"
+          ],
+          "reusedReceiptIds": [
+            "receipt-001",
+            "receipt-001"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:06.960Z",
+          "finishedAt": "2026-09-19T04:07:06.960Z"
+        },
+        {
+          "deliveryId": "d2",
+          "messageId": "d2",
+          "receiveCount": 1,
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "fault": "none",
+          "expect": "complete",
+          "attempted": true,
+          "outcome": "completed",
+          "error": null,
+          "returned": {
+            "receiptId": "receipt-002",
+            "accepted": false,
+            "reused": true,
+            "order": {
+              "orderId": "ORDER-C",
+              "sku": "TOTE",
+              "quantity": 2
+            }
+          },
+          "faultInjected": false,
+          "effectCalls": 3,
+          "acceptedReceiptIds": [
+            "receipt-002"
+          ],
+          "reusedReceiptIds": [
+            "receipt-002",
+            "receipt-002"
+          ],
+          "conflictObserved": false,
+          "startedAt": "2026-09-19T04:07:06.960Z",
+          "finishedAt": "2026-09-19T04:07:06.960Z"
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "delivery-start",
+          "deliveryId": "d1"
+        },
+        {
+          "index": 1,
+          "type": "receipt-accepted",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 2,
+          "type": "receipt-reused",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 3,
+          "type": "receipt-reused",
+          "deliveryId": "d1",
+          "receiptId": "receipt-001",
+          "order": {
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES",
+            "quantity": 1
+          },
+          "key": "ORDER-A"
+        },
+        {
+          "index": 4,
+          "type": "delivery-end",
+          "deliveryId": "d1",
+          "outcome": "completed"
+        },
+        {
+          "index": 5,
+          "type": "delivery-start",
+          "deliveryId": "d2"
+        },
+        {
+          "index": 6,
+          "type": "receipt-accepted",
+          "deliveryId": "d2",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "key": "ORDER-C"
+        },
+        {
+          "index": 7,
+          "type": "receipt-reused",
+          "deliveryId": "d2",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "key": "ORDER-C"
+        },
+        {
+          "index": 8,
+          "type": "receipt-reused",
+          "deliveryId": "d2",
+          "receiptId": "receipt-002",
+          "order": {
+            "orderId": "ORDER-C",
+            "sku": "TOTE",
+            "quantity": 2
+          },
+          "key": "ORDER-C"
+        },
+        {
+          "index": 9,
+          "type": "delivery-end",
+          "deliveryId": "d2",
+          "outcome": "completed"
+        }
+      ],
+      "assertions": [
+        {
+          "id": "order:ORDER-A",
+          "status": "pass",
+          "message": "Order ORDER-A: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "order:ORDER-C",
+          "status": "pass",
+          "message": "Order ORDER-C: expected 1 receipt with the full expected payload; observed 1."
+        },
+        {
+          "id": "delivery:d1",
+          "status": "pass",
+          "message": "Delivery d1: required complete, observed completed."
+        },
+        {
+          "id": "delivery:d2",
+          "status": "pass",
+          "message": "Delivery d2: required complete, observed completed."
+        }
+      ],
+      "errors": [],
+      "execution": {
+        "imported": true,
+        "built": true,
+        "sourceUnchanged": true,
+        "snapshotComplete": true,
+        "completedSchedule": true,
+        "console": "",
+        "consoleTruncated": false
+      },
+      "blockedOperationCount": 0
+    }
+  ],
+  "summary": {
+    "status": "pass",
+    "exitCode": 0,
+    "counts": {
+      "pass": 1,
+      "violation": 0,
+      "incomplete": 0,
+      "unresolved": 0
+    }
+  },
+  "errors": [],
+  "boundaries": [
+    "Trusted local Python adapters only; defense-in-depth guard is not a hostile-code sandbox.",
+    "Receiver-owned simulated effects and bounded explicit schedules; no real AWS execution or cloud equivalence claimed.",
+    "Independent local receipts establish effects; handler returns do not.",
+    "Source hashes cover captured .py files in each adapter folder only; not signatures or dependency attestation."
+  ],
+  "guard": {
+    "installedBeforeHandlerImport": true,
+    "mechanism": "CPython audit hook plus SDK/process/FFI import blocker",
+    "auditEventsSeen": 192,
+    "blockedOperationCount": 4,
+    "handlerBlockedOperationCount": 0,
+    "blockedOperations": [
+      {
+        "event": "socket.__new__",
+        "detail": "",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "boto3",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "subprocess",
+        "duringSelfTest": true
+      },
+      {
+        "event": "import",
+        "detail": "ctypes",
+        "duringSelfTest": true
+      }
+    ],
+    "selfTests": [
+      {
+        "probe": "socket-construction",
+        "blocked": true
+      },
+      {
+        "probe": "aws-sdk-import",
+        "blocked": true
+      },
+      {
+        "probe": "child-process-import",
+        "blocked": true
+      },
+      {
+        "probe": "native-ffi-import",
+        "blocked": true
+      }
+    ],
+    "passed": true,
+    "boundary": "Blocks normal Python socket, SDK, subprocess and ctypes paths; not a hostile-native-code sandbox.",
+    "diagnosticsTruncated": false
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "startedAt": "2026-09-19T04:07:27.684Z",
+  "base": "http://127.0.0.1:8088/recorded-lab.html",
+  "checks": [
+    {
+      "name": "journey connects comparison, repair, local execution and import with local targets",
+      "status": "passed",
+      "observed": [
+        {
+          "text": "01 Compare receipts",
+          "href": "#receipts"
+        },
+        {
+          "text": "02 Inspect repair",
+          "href": "#reference-repair"
+        },
+        {
+          "text": "03 Run locally",
+          "href": "#regression"
+        },
+        {
+          "text": "04 Import result",
+          "href": "#import-result"
+        }
+      ]
+    },
+    {
+      "name": "keyboard repair link opens disclosure and keeps focus on its summary",
+      "status": "passed",
+      "observed": {
+        "open": true,
+        "summaryFocused": true
+      }
+    },
+    {
+      "name": "all displayed reference snippets preserve exact source lines and whole-file hashes",
+      "status": "passed",
+      "observed": {
+        "version": "63bc428117f9df20427f2aa789c78ca61348845e",
+        "excerpts": [
+          "workerRepair",
+          "workerKey",
+          "providerWrite",
+          "providerSelection",
+          "providerValidation"
+        ],
+        "hashes": {
+          "worker": {
+            "path": "src/worker.py",
+            "sha256": "de7873c61f4d140e7229d7ae4eb1c03aaf0f2ec34b22d00291c25c7a3cea5b4f"
+          },
+          "provider": {
+            "path": "src/provider.py",
+            "sha256": "0c053a5cbf7f57da3aeb0fef2c2ddf6312682a70cdeccd9618bcbdccaeb91a8a"
+          }
+        }
+      }
+    },
+    {
+      "name": "reference details and scrollable code are keyboard accessible",
+      "status": "passed",
+      "observed": {
+        "receiverContext": true,
+        "sourceIdentity": true,
+        "labeledCode": true,
+        "codeScrollBefore": {
+          "top": 0,
+          "scroll": 545,
+          "client": 388
+        },
+        "codeScrollAfter": 5
+      }
+    },
+    {
+      "name": "local regression download preserves the runnable package and copy action provides exact CLI",
+      "status": "passed",
+      "observed": {
+        "command": "python3 -I -S scripts/run_local.py --output local-results.json",
+        "copyHandlerExact": true,
+        "operatingSystemClipboardTouched": false,
+        "filename": "replayguard-local-regression.zip",
+        "sha256": "064b9422ad7655665581ddccd3124430844af786ca655d3f9363635c93e235a0"
+      }
+    },
+    {
+      "name": "dedicated import action loads the normal five-case report while preserving reference code",
+      "status": "passed",
+      "observed": {
+        "source": "YOUR LOCAL REPORT",
+        "suite": "Suite expectations: 10 / 10 matched. This includes intentional violations and non-passes; not all handlers are safe.",
+        "referencePreserved": true
+      }
+    },
+    {
+      "name": "broken-key report stays a violation and never replaces included reference source",
+      "status": "passed",
+      "observed": {
+        "repaired": "VIOLATION",
+        "referencePreserved": true,
+        "rawBytesPreserved": true
+      }
+    },
+    {
+      "name": "exact supervisor wrong-delivery report rejects with view, source and raw-byte rollback",
+      "status": "passed",
+      "observed": {
+        "fixtureSha256": "f62c67662317f48287652b439320415272ac64caa2202f4b2ace7313ce3a1b12",
+        "message": "Import rejected: results[5].ledgerSnapshot[0]: messageId and receiveCount must match the original accepting provider invocation, not a later reuse delivery. Import a fresh full report from python3 -I -S scripts/run_local.py --output local-results.json. Previous data and view are unchanged.",
+        "viewAndReferencePreserved": true,
+        "rawBytesPreserved": true
+      }
+    },
+    {
+      "name": "source switches retain included reference and preserve incomplete/unresolved controls",
+      "status": "passed",
+      "observed": {
+        "missing": "INCOMPLETE / unknown",
+        "unsupported": "UNRESOLVED / no execution",
+        "aws": "UNVERIFIED",
+        "referencePreserved": true,
+        "importedBytesPreserved": true
+      }
+    },
+    {
+      "name": "reference journey reflows without page overflow at 390px",
+      "status": "passed",
+      "observed": {
+        "dimensions": {
+          "width": 390,
+          "body": 390,
+          "document": 390
+        },
+        "exactCodePreserved": true
+      }
+    },
+    {
+      "name": "reference journey reflows without page overflow at 320px",
+      "status": "passed",
+      "observed": {
+        "dimensions": {
+          "width": 320,
+          "body": 320,
+          "document": 320
+        },
+        "exactCodePreserved": true
+      }
+    },
+    {
+      "name": "refresh main comparison screenshot with current journey and actual recorded receipts",
+      "status": "passed",
+      "observed": {
+        "source": "Recorded AWS sample",
+        "receipts": [
+          2,
+          1
+        ],
+        "includesJourney": true,
+        "sha256": "6d4ceb4d8bf0b8b8c6d5374dfa3679c362b5d0eb61e3cb30914b68d482c153cd"
+      }
+    },
+    {
+      "name": "protected source, historical AWS files and old video remain byte-identical",
+      "status": "passed",
+      "observed": {
+        "src/worker.py": "de7873c61f4d140e7229d7ae4eb1c03aaf0f2ec34b22d00291c25c7a3cea5b4f",
+        "src/provider.py": "0c053a5cbf7f57da3aeb0fef2c2ddf6312682a70cdeccd9618bcbdccaeb91a8a",
+        "scripts/run_local.py": "0a3ceb0c0e91379e224aa4f593d06175fe591ceae79749f3cc841425ac4bf46e",
+        "web/evidence.json": "e32d3a8c68b7228b3014eb644f982824eab4a5c7147885be0dc51988a938adf3",
+        "web/regression-case.zip": "fbc7ba0a3fe4efa6bf26dbc76a0380ff1c96abcd23c4524662e4e618fd5290ef",
+        "evidence/latest.json": "e32d3a8c68b7228b3014eb644f982824eab4a5c7147885be0dc51988a938adf3",
+        "../replayguard-demo.mp4": "5a7a92e6032b784e5a1b3ddc5774b609f26f9c6f0e73d6473c87f3f2daae6a4c"
+      }
+    },
+    {
+      "name": "all page requests stayed local and no uncaught error occurred",
+      "status": "passed",
+      "observed": {
+        "blockedRequests": [],
+        "pageErrors": []
+      }
+    }
+  ],
+  "blockedRequests": [],
+  "pageErrors": [],
+  "requests": [
+    "http://127.0.0.1:8088/recorded-lab.html",
+    "http://127.0.0.1:8088/styles.css?v=receipt-bench-8",
+    "http://127.0.0.1:8088/evidence-contract.js",
+    "http://127.0.0.1:8088/local-report-contract.js",
+    "http://127.0.0.1:8088/reference-repair.js",
+    "http://127.0.0.1:8088/app.js?v=receipt-bench-8",
+    "http://127.0.0.1:8088/mark.svg",
+    "http://127.0.0.1:8088/evidence.json",
+    "http://127.0.0.1:8088/local-example.json",
+    "http://127.0.0.1:8088/evidence.json",
+    "http://127.0.0.1:8088/evidence.json",
+    "http://127.0.0.1:8088/evidence.json",
+    "http://127.0.0.1:8088/evidence.json"
+  ],
+  "fixtureSha256": "f62c67662317f48287652b439320415272ac64caa2202f4b2ace7313ce3a1b12",
+  "normalSha256": "f3f1c27d85eb33d11db00a166f3537f770d7db3d6bd91fd1208cdfe76f6756d2",
+  "mutatedSha256": "4914525e287ff5cfa29983c7d0bb95dc496a7455743b5ad81f90bf3c7424ecc6",
+  "scope": "New reference journey. Native source/case popup keyboard behavior has separate attributed supervisor evidence.",
+  "browser": "153.0.8010.12",
+  "completedAt": "2026-09-19T04:07:34.390Z",
+  "status": "passed"
+}

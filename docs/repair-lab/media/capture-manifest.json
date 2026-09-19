@@ -1,0 +1,348 @@
+{
+  "startedAt": "2026-09-19T04:17:24.243Z",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "sourceBefore": {
+    "web/index.html": "9a1cb246628015dd387cd6d3fa37e1be43be0a6ca727155f861e26554c71ba1d",
+    "web/repair.html": "9a1cb246628015dd387cd6d3fa37e1be43be0a6ca727155f861e26554c71ba1d",
+    "web/adapter-guide.html": "2244ee423fc088217e584217f8beb6425f0673dd0ef108a55cd618c7b06fac4a",
+    "web/repair-app.js": "695a31c63ab0641d1f57d229f384affd6bf2394ac4e7302a88f47359c49dcc82",
+    "web/repair-contract.js": "dabd37feb58a92476ff8de7ba125237c5a6004c88967ecfcd743a069361b4a31",
+    "web/repair.css": "86f83ce1478a4c5dc7113a68821d8faadb3d88a3551b3502f0b16176ffb1cd73",
+    "web/repair-example.json": "a92089de5c85f1a1eb79bf48591607724b08a96279f4223b359b8298fd2490ce",
+    "web/repair-transfer.json": "9d4565a94e642747c559caa50c414fa6447a02aab56a182aca682ad994892224",
+    "web/aws-run.html": "85338cda28f0ecd56908601caffcc1c49eeedd28e261407fbdf65c2b124690fc",
+    "web/aws-run.js": "854bcac32c3ec077c2d0a562e8e41bbaabd2979c6b109281ebae67d44748aa4d",
+    "web/aws-run.css": "ca46572ab36b1a66a6fcca71e838944726ecdeae99b1a9dbc875c1a90772bcbf",
+    "web/evidence.json": "e32d3a8c68b7228b3014eb644f982824eab4a5c7147885be0dc51988a938adf3"
+  },
+  "captures": [
+    {
+      "file": "layout-320.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 844
+      },
+      "sha256": "40824a09ddfc4145021a2d2d3ce945562b47d334823d59608e424c46d0a733d5",
+      "source": "Actual final viewport layout check",
+      "caseId": "interleaved-retries",
+      "imageDimensions": {
+        "width": 320,
+        "height": 844
+      }
+    },
+    {
+      "file": "layout-390.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "840f3a91719641ca5c07836544dd8887831a6e6c6d846306ce5bc32f8f6d86f5",
+      "source": "Actual final viewport layout check",
+      "caseId": "interleaved-retries",
+      "imageDimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "file": "layout-768.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 768,
+        "height": 844
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 844
+      },
+      "sha256": "b434638009511a956c8191b4b0f0f761d238cdc9c33c750a086b896aff9f7dbc",
+      "source": "Actual final viewport layout check",
+      "caseId": "interleaved-retries",
+      "imageDimensions": {
+        "width": 768,
+        "height": 844
+      }
+    },
+    {
+      "file": "layout-1440.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "128837480ce228f16652640d6ead79662f68364622a4cc49a87937b0e4484b91",
+      "source": "Actual final viewport layout check",
+      "caseId": "interleaved-retries",
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "file": "comparison.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 1526
+      },
+      "sha256": "9be9677b97b83f30fa1f1e767ace3026bba5fe20077162c7a5e10a58bbde0079",
+      "source": "Recorded local comparison",
+      "caseId": "interleaved-retries",
+      "candidateId": "overbroad-key",
+      "content": "Real main header, delivery plan and both expected-order rows.",
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1526
+      }
+    },
+    {
+      "file": "comparison-detail.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": {
+        "x": 88,
+        "y": 741,
+        "width": 1264,
+        "height": 771
+      },
+      "sha256": "3088a63b7c8c33da3f3af845019c1ce76c99e8f2cffdcb2b37f2fd280513a3d2",
+      "source": "Actual delivery plan, table headers and both order rows; tighter video crop of current main.",
+      "caseId": "interleaved-retries",
+      "imageDimensions": {
+        "width": 1264,
+        "height": 771
+      }
+    },
+    {
+      "file": "main-full.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": "full page",
+      "sha256": "55b4af330127f2967f929d1459383acc64edafcd955fbe418f59fb2b7502b2da",
+      "source": "Recorded local comparison",
+      "caseId": "interleaved-retries",
+      "imageDimensions": {
+        "width": 1440,
+        "height": 4064
+      }
+    },
+    {
+      "file": "narrow.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "clip": "full page",
+      "sha256": "3ca7a2fdb742c74473af8211996a86727d61fb78c51becc753766baca76f4d46",
+      "source": "Current main at narrow viewport",
+      "caseId": "interleaved-retries",
+      "imageDimensions": {
+        "width": 390,
+        "height": 6005
+      }
+    },
+    {
+      "file": "independent.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": {
+        "x": 80,
+        "y": 509,
+        "width": 1280,
+        "height": 1363
+      },
+      "sha256": "c9e819c0df68e869259cd97617637712a98d1154accd7000d16660737b6b3d2f",
+      "source": "Recorded independent DispatchDesk worker",
+      "caseId": "dispatchdesk-interleaved-orders",
+      "reportSha256": "9d4565a94e642747c559caa50c414fa6447a02aab56a182aca682ad994892224",
+      "content": "Report provenance, independent orders, receipts and inspected result.",
+      "imageDimensions": {
+        "width": 1280,
+        "height": 1363
+      }
+    },
+    {
+      "file": "incomplete.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": {
+        "x": 80,
+        "y": 509,
+        "width": 1280,
+        "height": 1094
+      },
+      "sha256": "d6d3bd5061a7e27691aa7983b94b2ad501f069563714270949f5b20e9fa8f321",
+      "source": "Actual missing-observation control",
+      "caseId": "missing-snapshot",
+      "candidateId": "business-key",
+      "status": "incomplete",
+      "imageDimensions": {
+        "width": 1280,
+        "height": 1094
+      }
+    },
+    {
+      "file": "run-kit.png",
+      "url": "http://127.0.0.1:8088/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "region": "#run",
+      "source": "Actual extraction command, adapter and import workflow",
+      "sha256": "663eeac22a35a6c427aac958e0402b47d3813c0ed8edb569cf01e4a6a6042b3b",
+      "imageDimensions": {
+        "width": 1264,
+        "height": 747
+      }
+    },
+    {
+      "file": "aws.png",
+      "url": "http://127.0.0.1:8088/aws-run.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": "full page",
+      "sha256": "2cf39b6943ed4cd1c1e6e86885f89c1de97cb2a451971dd27ab90437c78e76c5",
+      "source": "Actual retained AWS observations displayed at the AWS route",
+      "mode": "vulnerable",
+      "liveAWSExecution": false,
+      "evidenceSha256": "e32d3a8c68b7228b3014eb644f982824eab4a5c7147885be0dc51988a938adf3",
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1686
+      }
+    },
+    {
+      "file": "adapter.png",
+      "url": "http://127.0.0.1:8088/adapter-guide.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "clip": {
+        "x": 268,
+        "y": 921,
+        "width": 904,
+        "height": 343
+      },
+      "sha256": "6be5019c2981d8dfbb89fd117c4f8092b3b7f1f872f09fff8a89de5360f1e256",
+      "source": "Actual local public adapter guide code and explanation.",
+      "imageDimensions": {
+        "width": 904,
+        "height": 343
+      }
+    }
+  ],
+  "layoutChecks": [
+    {
+      "viewport": 320,
+      "document": 320,
+      "title": "Your fix should protect every order.",
+      "runTitle": "A test you can take back to your code.",
+      "runCommandTabIndex": 0,
+      "jsonVisible": true,
+      "comparisonScrollWidth": 745,
+      "comparisonClientWidth": 284,
+      "passed": true
+    },
+    {
+      "viewport": 390,
+      "document": 390,
+      "title": "Your fix should protect every order.",
+      "runTitle": "A test you can take back to your code.",
+      "runCommandTabIndex": 0,
+      "jsonVisible": true,
+      "comparisonScrollWidth": 745,
+      "comparisonClientWidth": 354,
+      "passed": true
+    },
+    {
+      "viewport": 768,
+      "document": 768,
+      "title": "Your fix should protect every order.",
+      "runTitle": "A test you can take back to your code.",
+      "runCommandTabIndex": 0,
+      "jsonVisible": true,
+      "comparisonScrollWidth": 780,
+      "comparisonClientWidth": 722,
+      "passed": true
+    },
+    {
+      "viewport": 1440,
+      "document": 1440,
+      "title": "Your fix should protect every order.",
+      "runTitle": "A test you can take back to your code.",
+      "runCommandTabIndex": 0,
+      "jsonVisible": true,
+      "comparisonScrollWidth": 1262,
+      "comparisonClientWidth": 1262,
+      "passed": true
+    }
+  ],
+  "blockedRequests": [],
+  "pageErrors": [],
+  "scope": "Actual loopback-rendered product states. No DOM content changed, no AWS calls, no simulated typing.",
+  "browser": "153.0.8010.12",
+  "completedAt": "2026-09-19T04:17:27.805Z",
+  "sourceAfter": {
+    "web/index.html": "9a1cb246628015dd387cd6d3fa37e1be43be0a6ca727155f861e26554c71ba1d",
+    "web/repair.html": "9a1cb246628015dd387cd6d3fa37e1be43be0a6ca727155f861e26554c71ba1d",
+    "web/adapter-guide.html": "2244ee423fc088217e584217f8beb6425f0673dd0ef108a55cd618c7b06fac4a",
+    "web/repair-app.js": "695a31c63ab0641d1f57d229f384affd6bf2394ac4e7302a88f47359c49dcc82",
+    "web/repair-contract.js": "dabd37feb58a92476ff8de7ba125237c5a6004c88967ecfcd743a069361b4a31",
+    "web/repair.css": "86f83ce1478a4c5dc7113a68821d8faadb3d88a3551b3502f0b16176ffb1cd73",
+    "web/repair-example.json": "a92089de5c85f1a1eb79bf48591607724b08a96279f4223b359b8298fd2490ce",
+    "web/repair-transfer.json": "9d4565a94e642747c559caa50c414fa6447a02aab56a182aca682ad994892224",
+    "web/aws-run.html": "85338cda28f0ecd56908601caffcc1c49eeedd28e261407fbdf65c2b124690fc",
+    "web/aws-run.js": "854bcac32c3ec077c2d0a562e8e41bbaabd2979c6b109281ebae67d44748aa4d",
+    "web/aws-run.css": "ca46572ab36b1a66a6fcca71e838944726ecdeae99b1a9dbc875c1a90772bcbf",
+    "web/evidence.json": "e32d3a8c68b7228b3014eb644f982824eab4a5c7147885be0dc51988a938adf3"
+  },
+  "sourceStable": true
+}
