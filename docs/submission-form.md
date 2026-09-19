@@ -71,7 +71,7 @@ A new **silent local video is complete**: 154.000 seconds, 1920×1080 H.264/30 f
 
 https://prod.d2w687q4ucx6dk.amplifyapp.com/
 
-The accepted interface and three-candidate AWS viewer are **published in Amplify Deployment 4**. Anonymous HTTPS checks matched the root and all 37 staged assets. Live-browser checks confirmed the main/AWS navigation, expected results, control focus and 390-pixel layouts. [Deployment and verification records](releases/2026-09-20.md#deployed-website-verification). The current Git source revision still has its separate commit/export/publication gate; the new silent video is complete locally.
+The accepted interface and three-candidate AWS viewer are **published in Amplify Deployment 4**. Anonymous HTTPS checks matched the root and all 37 staged assets. Live-browser checks confirmed the main/AWS navigation, expected results, control focus and 390-pixel layouts. [Deployment and verification records](releases/2026-09-20.md#deployed-website-verification). Source commit [`0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664`](https://github.com/sudo-anshul/replayguard/commit/0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664) is published and [anonymously verified](releases/2026-09-20-github-public.json). [Clean-source validation](releases/2026-09-20-source-validation.json) passed 149 Python tests, 112 JavaScript tests, 45 transfer checks and 19 release checks with network denied and identical re-export. The source ZIP and silent video are local companions; later docs-only updates are separate from the tested source.
 
 ## AI disclosure
 
@@ -80,9 +80,9 @@ OpenAI Codex assisted with research, implementation, tests, interface design and
 ## Remaining submission checks
 
 - Fill and confirm the leader/team fields; verify registration/check-in and applicable student requirements.
-- Confirm the exact source release, deployed interface and selected video. Link the [new local tutorial evidence](repair-lab/key-scope-tutorial/README.md) without implying that the existing video shows it.
+- Use the verified source release and deployed interface above; confirm the selected existing video. Link the [new local tutorial evidence](repair-lab/key-scope-tutorial/README.md) without implying that the existing video shows it.
 - Retain the completed final AWS report/archive and verified cleanup alongside both earlier attempts. Their exact published bytes passed Deployment 4's anonymous verification.
-- Hosted GitHub Actions previously did not start because of a billing block. Local checks do not establish a hosted CI pass.
+- [Hosted CI run 35466519733 at the published source commit](releases/2026-09-20-github-ci.json) remains incomplete: the account billing block prevented all job steps from starting. This is not a test failure; local checks do not establish a hosted pass.
 - No outside-developer trial has been recorded. [Trial protocol and status](first-user-trial.md).
 - The [latest official API read](releases/2026-09-20-deadline.json) still gives September 20, 2026, **09:00 IST**. Target submission by 07:30 IST; conflicting official countdown information remains unresolved. See [earlier deadline evidence](deadline.md).
 - Retain the actual successful submission screen/receipt. Prepared answers and an accessible form are not proof of submission.

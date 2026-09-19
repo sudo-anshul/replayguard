@@ -32,7 +32,7 @@ AI disclosure: **OpenAI Codex** assisted with research, implementation, testing,
 
 | Item | Confirmed state / remaining gate |
 | --- | --- |
-| Public repository | [sudo-anshul/replayguard](https://github.com/sudo-anshul/replayguard) was published September 19 with actual publication timestamps. The current release still needs its publication/verification gate recorded. |
+| Public repository | **Published** at [`0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664`](https://github.com/sudo-anshul/replayguard/commit/0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664). [Anonymous pinned-file checks](releases/2026-09-20-github-public.json) passed; [network-denied source validation](releases/2026-09-20-source-validation.json) passed 149 Python tests, 112 JavaScript tests, 45 transfer checks and 19 release checks with identical re-export. The ZIP is a local companion; later docs-only updates are separate from the tested source. |
 | Live AWS URL | [AWS Amplify static lab](https://prod.d2w687q4ucx6dk.amplifyapp.com). **Deployment 4 published the accepted interface and AWS comparison**; anonymous checks matched the root and all 37 staged assets, followed by scoped live-browser checks. [Verification](releases/2026-09-20.md#deployed-website-verification). Static hosting does not execute regressions or expose a cloud fault endpoint. |
 | Original AWS evidence | **Passed, dated September 18.** Two unsafe receipts versus one repaired receipt, 16 recomputed assertions. The original stacks were subsequently deleted; that cleanup does not describe a new stack. |
 | New three-candidate AWS experiment | Final third run **passed 22/22 experiment checks with verified cleanup**, observing 2/2 violation, 1/0 violation and 1/1 passed. Exact report and captured hardened verifier/archive retained. First two attempts remain unchanged. [Chronology and artifacts](releases/2026-09-20.md#aws-evidence). |
@@ -40,7 +40,7 @@ AI disclosure: **OpenAI Codex** assisted with research, implementation, testing,
 | Existing YouTube demo | [September 19 published video](https://youtu.be/CGE19upS66A), **unlisted, 2:43**. Signed-out playback was verified September 19. It shows the earlier UI and key-removal/restoration tutorial; it does not show the September 20 revision. |
 | New silent video | **Completed local artifact**, 154.000 seconds, 1920×1080 H.264/30 fps with zero audio streams. Full decode and 14 technical checks passed; 28 sampled encoded frames reviewed. [Metadata and limits](releases/2026-09-20.md#media-and-publication). No new voice or YouTube upload; the existing link does not play this revision. |
 | Outside-developer validation | **Not obtained.** [Trial protocol and status](first-user-trial.md); no outreach or participant outcome is claimed. |
-| Hosted CI | **Incomplete: did not start** because GitHub blocked the runner for account billing. Recorded local checks are separate. |
+| Hosted CI | **Incomplete: did not start.** [Run 35466519733 at the published source commit](releases/2026-09-20-github-ci.json) executed no steps because of the account billing block. This is not a test failure; recorded local checks are separate. |
 | Event submission | **Not submitted.** Required owner fields and actual submission confirmation remain outstanding. |
 
 ## Video and submission boundary

@@ -6,14 +6,14 @@ The accepted interface and new AWS viewer are published in **Amplify Deployment 
 
 | Deliverable | Current state |
 | --- | --- |
-| Current source release | Local changes prepared; the final commit, publication and clean-source verification are pending. The existing public repository remains [sudo-anshul/replayguard](https://github.com/sudo-anshul/replayguard). |
+| Current source release | **Published** at [`0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664`](https://github.com/sudo-anshul/replayguard/commit/0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664), with [anonymous pinned-file verification](releases/2026-09-20-github-public.json). [Network-denied clean extraction](releases/2026-09-20-source-validation.json) passed 149 Python tests, 112 JavaScript tests, 45 transfer checks and 19 release checks; deterministic re-export matched. The source ZIP is a local companion artifact. Later docs-only records are separate from the tested source. |
 | Accepted interface | **Published and verified** at the [Amplify URL](https://prod.d2w687q4ucx6dk.amplifyapp.com): [Deployment 4 SUCCEED](releases/2026-09-20-hosting.json), [root plus all 37 assets matched](releases/2026-09-20-anonymous-https.json), and [scoped live-browser checks](releases/2026-09-20-browser.json). |
 | New local key-scope tutorial | Passed: actual order-ID → SKU → restored-source executions produced 1/1 → 1/0 → 1/1 receipts, with identical inputs and faults. [Evidence](repair-lab/key-scope-tutorial/README.md). |
 | New AWS comparison | Final third run `82a1155f-c729-4b56-a32f-b4bc9a70a3ad` **passed 22/22 experiment checks with verified cleanup**, observing no-key 2/2 violation, SKU-key 1/0 violation and order-key 1/1 passed. Captured hardened verifier and exact report/archive retained. First two attempts remain preserved; [chronology and hashes](releases/2026-09-20.md#aws-evidence). |
 | Current silent video | **Completed local MP4**, `outputs/replayguard-demo-silent.mp4`: 154.000 seconds, 1920×1080 H.264/30 fps, 4,620 frames, zero audio streams, 9,472,219 bytes. Full decode and [14 technical checks](releases/2026-09-20-silent-video.json) passed; [28 encoded samples covering every scene reviewed](releases/2026-09-20-silent-video-review.json). [Hash, production method and source-rebuild limits](releases/2026-09-20.md#media-and-publication). No new narration or YouTube upload occurred. |
 | Existing YouTube video | [September 19 published video](https://youtu.be/CGE19upS66A), unlisted, 2:43. It remains the older film and does not show the new UI or newly executed SKU-key tutorial. Its previous verification is recorded below. |
 | Outside-developer trial | Not conducted; [protocol and unfilled record](first-user-trial.md). Synthetic fixtures and agent reviews are not user adoption. |
-| Hosted CI | Incomplete: the recorded GitHub run never started because of account billing. Current local checks are separate. |
+| Hosted CI | **Incomplete**: [run 35466519733](releases/2026-09-20-github-ci.json) at published source commit `0d0ec11` executed no steps because of the account billing block. This is not a test failure; local checks are separate. |
 | Event submission | Not submitted. Required owner fields and final confirmation remain outstanding in the [form draft](submission-form.md). |
 
 Current work permits a silent local video and prohibits a new YouTube upload or new voice. Earlier authorization and publication statements below describe the September 19 release. A local video does not replace the event's required YouTube link; claims used in the judged pitch must match the selected published film.
@@ -43,6 +43,8 @@ The original `replayguard-lab` and `replayguard-hosting` stacks reached `DELETE_
 Use **September 20, 2026, 09:00 IST (03:30 UTC)** as the earliest observed official cutoff. Exact organizer-approved cutoff remains unresolved because official sources conflict; see [deadline evidence](deadline.md).
 
 ## Verification status
+
+For the September 20 source commit `0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664`, [anonymous publication checks](releases/2026-09-20-github-public.json) passed and [clean-source validation](releases/2026-09-20-source-validation.json) recorded 149 Python tests, 112 JavaScript tests, 45 transfer checks and 19 release checks passing. [Current CI run 35466519733](releases/2026-09-20-github-ci.json) completed with an API failure conclusion but zero executed steps. Its exact annotation remains: “The job was not started because your account is locked due to a billing issue.” Hosted verification is incomplete, not a test failure or a pass. The following observations retain the earlier September 19 publication history.
 
 The [first public commit](https://github.com/sudo-anshul/replayguard/commit/480a7333954ea3532d9ec3d24cdc4154d212836a) was created at **2026-09-19 05:00:06 UTC**, with no parent commits. GitHub verified the repository is public, its default branch is `main`, and its license is MIT.
 

@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-09-19T20:10:32.275239+00:00",
+  "repository": "https://github.com/sudo-anshul/replayguard",
+  "sourceCommit": "0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664",
+  "method": "Anonymous HTTPS GET at pinned commit; no cookies/authentication/proxy/redirects; TLS verified with installed CA bundle.",
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/sudo-anshul/replayguard/0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664/README.md",
+      "httpStatus": 200,
+      "sha256": "912771482dda092d9c32b8db2d427df0a95fb0a3afeea09ce314502995a7f0ae",
+      "matchesCommitSource": true
+    },
+    {
+      "path": "scripts/verify_key_case.py",
+      "url": "https://raw.githubusercontent.com/sudo-anshul/replayguard/0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664/scripts/verify_key_case.py",
+      "httpStatus": 200,
+      "sha256": "a3cc1a2612fdadfe88a04a84825e199040c10becf4a4ff4913a94ec9ed361dbc",
+      "matchesCommitSource": true
+    },
+    {
+      "path": "demo/silent-20260920/source-manifest.json",
+      "url": "https://raw.githubusercontent.com/sudo-anshul/replayguard/0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664/demo/silent-20260920/source-manifest.json",
+      "httpStatus": 200,
+      "sha256": "2ebdfc62f7fc9c7ddacaca08467590f5b69fec5de72b50d31dcf2a1ea3f67dd3",
+      "matchesCommitSource": true
+    }
+  ],
+  "passed": true
+}

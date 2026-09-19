@@ -1,0 +1,449 @@
+{
+  "schemaVersion": 1,
+  "kind": "allowlisted-source-release-validation",
+  "completedAt": "2026-09-19T20:08:42.945509+00:00",
+  "archive": "<release-workspace>/outputs/replayguard-source-20260920.zip",
+  "archiveSha256": "c100abac4a3361b8f153594de83a68373ae207a701ffb040d9f5207ceec85859",
+  "archiveBytes": 18950557,
+  "files": 679,
+  "newCloudEvidence": true,
+  "cloudCallsByValidation": false,
+  "published": false,
+  "checks": [
+    {
+      "name": "unique-safe-paths",
+      "status": "pass",
+      "observed": 679
+    },
+    {
+      "name": "no-private-directories-or-config",
+      "status": "pass",
+      "observed": "Checked archive path allowlist boundary"
+    },
+    {
+      "name": "checksum-scope-complete",
+      "status": "pass",
+      "observed": 678
+    },
+    {
+      "name": "every-checksum-matches",
+      "status": "pass",
+      "observed": 678
+    },
+    {
+      "name": "source-hash-scope-complete",
+      "status": "pass",
+      "observed": 677
+    },
+    {
+      "name": "every-source-hash-matches",
+      "status": "pass",
+      "observed": 677
+    },
+    {
+      "name": "separate-video-not-in-source-zip",
+      "status": "pass",
+      "observed": "Video is a separate companion artifact"
+    },
+    {
+      "name": "selected-case",
+      "status": "pass",
+      "observed": {
+        "label": "selected-case",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "-I",
+          "-S",
+          "-B",
+          "scripts/test_repair.py",
+          "--candidate",
+          "business-key",
+          "--case",
+          "crash-retry",
+          "--output",
+          "<release-workspace>/work/release-20260920/source-validation-final/selected-case.json"
+        ],
+        "networkWrapper": [
+          "/usr/bin/sandbox-exec",
+          "-p",
+          "(version 1)(allow default)(deny network*)"
+        ],
+        "exitCode": 0,
+        "expectedExitCode": 0
+      }
+    },
+    {
+      "name": "selected-case-passes",
+      "status": "pass",
+      "observed": {
+        "status": "pass",
+        "exitCode": 0,
+        "counts": {
+          "pass": 1,
+          "violation": 0,
+          "incomplete": 0,
+          "unresolved": 0
+        }
+      }
+    },
+    {
+      "name": "complete-comparison-expected-nonzero",
+      "status": "pass",
+      "observed": {
+        "label": "complete-comparison-expected-nonzero",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "-I",
+          "-S",
+          "-B",
+          "scripts/test_repair.py",
+          "--output",
+          "<release-workspace>/work/release-20260920/source-validation-final/complete-comparison.json"
+        ],
+        "networkWrapper": [
+          "/usr/bin/sandbox-exec",
+          "-p",
+          "(version 1)(allow default)(deny network*)"
+        ],
+        "exitCode": 3,
+        "expectedExitCode": 3
+      }
+    },
+    {
+      "name": "independent-transfer",
+      "status": "pass",
+      "observed": {
+        "label": "independent-transfer",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "-B",
+          "tests/repair_holdout/run_transfer.py",
+          "--output-dir",
+          "<release-workspace>/work/release-20260920/source-validation-final/transfer"
+        ],
+        "networkWrapper": [
+          "/usr/bin/sandbox-exec",
+          "-p",
+          "(version 1)(allow default)(deny network*)"
+        ],
+        "exitCode": 0,
+        "expectedExitCode": 0
+      }
+    },
+    {
+      "name": "transfer-outcomes-and-integrity",
+      "status": "pass",
+      "observed": {
+        "passed": 45,
+        "failed": 0
+      }
+    },
+    {
+      "name": "all-offline-python-tests",
+      "status": "pass",
+      "observed": {
+        "label": "all-offline-python-tests",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "-I",
+          "-S",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "networkWrapper": [
+          "/usr/bin/sandbox-exec",
+          "-p",
+          "(version 1)(allow default)(deny network*)"
+        ],
+        "exitCode": 0,
+        "expectedExitCode": 0
+      }
+    },
+    {
+      "name": "deterministic-web-build",
+      "status": "pass",
+      "observed": {
+        "label": "deterministic-web-build",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "-I",
+          "-S",
+          "-B",
+          "scripts/build_web.py",
+          "--check"
+        ],
+        "networkWrapper": [
+          "/usr/bin/sandbox-exec",
+          "-p",
+          "(version 1)(allow default)(deny network*)"
+        ],
+        "exitCode": 0,
+        "expectedExitCode": 0
+      }
+    },
+    {
+      "name": "aws-key-scope-evidence-offline",
+      "status": "pass",
+      "observed": {
+        "label": "aws-key-scope-evidence-offline",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "-I",
+          "-S",
+          "-B",
+          "scripts/verify_key_case.py",
+          "web/aws-key-scope-report.json",
+          "--case",
+          "cases/aws-key-scope.json"
+        ],
+        "networkWrapper": [
+          "/usr/bin/sandbox-exec",
+          "-p",
+          "(version 1)(allow default)(deny network*)"
+        ],
+        "exitCode": 0,
+        "expectedExitCode": 0
+      }
+    },
+    {
+      "name": "javascript-contract-tests",
+      "status": "pass",
+      "observed": {
+        "label": "javascript-contract-tests",
+        "argv": [
+          "/Users/anshul/.nvm/versions/node/v22.20.0/bin/node",
+          "--test",
+          "tests/test_aws_key_scope_ui.cjs",
+          "tests/test_evidence_contract.cjs",
+          "tests/test_local_report_contract.cjs",
+          "tests/test_reference_repair.cjs",
+          "tests/test_repair_ui_data.cjs",
+          "tests/test_repair_ui_imports.cjs"
+        ],
+        "networkWrapper": [
+          "/usr/bin/sandbox-exec",
+          "-p",
+          "(version 1)(allow default)(deny network*)"
+        ],
+        "exitCode": 0,
+        "expectedExitCode": 0
+      }
+    },
+    {
+      "name": "source-reexport",
+      "status": "pass",
+      "observed": {
+        "label": "source-reexport",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "-I",
+          "-S",
+          "-B",
+          "scripts/export_source_release.py",
+          "--output",
+          "<release-workspace>/work/release-20260920/source-validation-final/source-recreated.zip"
+        ],
+        "networkWrapper": [
+          "/usr/bin/sandbox-exec",
+          "-p",
+          "(version 1)(allow default)(deny network*)"
+        ],
+        "exitCode": 0,
+        "expectedExitCode": 0
+      }
+    },
+    {
+      "name": "deterministic-reexport-identical",
+      "status": "pass",
+      "observed": {
+        "originalSha256": "c100abac4a3361b8f153594de83a68373ae207a701ffb040d9f5207ceec85859",
+        "recreatedSha256": "c100abac4a3361b8f153594de83a68373ae207a701ffb040d9f5207ceec85859"
+      }
+    },
+    {
+      "name": "included-source-bytes-unchanged",
+      "status": "pass",
+      "observed": 678
+    }
+  ],
+  "commands": [
+    {
+      "label": "selected-case",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "scripts/test_repair.py",
+        "--candidate",
+        "business-key",
+        "--case",
+        "crash-retry",
+        "--output",
+        "<release-workspace>/work/release-20260920/source-validation-final/selected-case.json"
+      ],
+      "networkWrapper": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0
+    },
+    {
+      "label": "complete-comparison-expected-nonzero",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "scripts/test_repair.py",
+        "--output",
+        "<release-workspace>/work/release-20260920/source-validation-final/complete-comparison.json"
+      ],
+      "networkWrapper": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "exitCode": 3,
+      "expectedExitCode": 3
+    },
+    {
+      "label": "independent-transfer",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "tests/repair_holdout/run_transfer.py",
+        "--output-dir",
+        "<release-workspace>/work/release-20260920/source-validation-final/transfer"
+      ],
+      "networkWrapper": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0
+    },
+    {
+      "label": "all-offline-python-tests",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "networkWrapper": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0
+    },
+    {
+      "label": "deterministic-web-build",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "scripts/build_web.py",
+        "--check"
+      ],
+      "networkWrapper": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0
+    },
+    {
+      "label": "aws-key-scope-evidence-offline",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "scripts/verify_key_case.py",
+        "web/aws-key-scope-report.json",
+        "--case",
+        "cases/aws-key-scope.json"
+      ],
+      "networkWrapper": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0
+    },
+    {
+      "label": "javascript-contract-tests",
+      "argv": [
+        "/Users/anshul/.nvm/versions/node/v22.20.0/bin/node",
+        "--test",
+        "tests/test_aws_key_scope_ui.cjs",
+        "tests/test_evidence_contract.cjs",
+        "tests/test_local_report_contract.cjs",
+        "tests/test_reference_repair.cjs",
+        "tests/test_repair_ui_data.cjs",
+        "tests/test_repair_ui_imports.cjs"
+      ],
+      "networkWrapper": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0
+    },
+    {
+      "label": "source-reexport",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "scripts/export_source_release.py",
+        "--output",
+        "<release-workspace>/work/release-20260920/source-validation-final/source-recreated.zip"
+      ],
+      "networkWrapper": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0
+    }
+  ],
+  "passed": 19,
+  "failed": 0,
+  "sourceCommit": "0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664",
+  "verifiedRepositoryFilesMatchingCommit": 676,
+  "pythonTests": 149,
+  "javascriptTests": 112,
+  "independentTransferChecks": 45,
+  "recordHandling": {
+    "originalRecordSha256": "b7d02f4c2fd0d89b713aaba2a68c5cd6e3a152229ed12e0ad9eef73cec632641",
+    "sanitization": "Private workspace prefix replaced by <release-workspace>; original record retained locally. Source ZIP is a local companion artifact; source commit is public."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-09-19T20:11:26.079348+00:00",
+  "sourceCommit": "0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664",
+  "runId": 35466519733,
+  "runUrl": "https://github.com/sudo-anshul/replayguard/actions/runs/35466519733",
+  "apiStatus": "completed",
+  "apiConclusion": "failure",
+  "jobName": "regression",
+  "jobSteps": [],
+  "hostedTestsExecuted": false,
+  "readinessState": "incomplete",
+  "failureAnnotation": "The job was not started because your account is locked due to a billing issue.",
+  "accountOrBillingSettingsChanged": false,
+  "localEvidence": "2026-09-20-source-validation.json"
+}
