@@ -33,14 +33,20 @@
   "supersededUpload": {
     "url": "https://youtu.be/2ufAV4Ovat4",
     "originalPublicationRecord": "youtube-publication.json",
-    "deletionStatus": "pending",
-    "historicalEvidencePreserved": true
+    "deletionStatus": "confirmed-permanently-deleted",
+    "historicalEvidencePreserved": true,
+    "authorization": "Explicit action-time user confirmation",
+    "watchPageVerification": {
+      "heading": "Video unavailable",
+      "message": "This video has been removed by the uploader"
+    },
+    "localOriginalMasterRetained": true
   },
   "mediaProvenance": "../repair-lab/media/revision-2/provenance.json",
   "sourceVideoFile": "replayguard-demo-neha.mp4",
   "sourceVideoBytes": 13108071,
   "technicalValidation": "../repair-lab/media/revision-2/validation/final-video.json",
-  "recordUpdatedAt": "2026-09-19T10:05:45.770709+00:00",
+  "recordUpdatedAt": "2026-09-19T10:15:26.085384+00:00",
   "verificationSource": "YouTube Studio and signed-in watch-page observations reported by the root agent in this session.",
   "confirmation": "YouTube Studio displayed Video published; Unlisted was selected and saved.",
   "watchPlayerDisplay": "2:43",
@@ -66,5 +72,13 @@
     "quality": "1080p HD available and selected",
     "completeManualWatchThroughClaimed": false,
     "perceptualListeningClaimed": false
+  },
+  "anonymousPublicMetadata": {
+    "status": "passed",
+    "record": "youtube-public-metadata-v2.json",
+    "sha256": "330f1cdf6028da83ec83abe6a63553375fa722a46bcd4b754bfc2e9228bfd3d1",
+    "credentialsSent": false,
+    "httpStatus": 200,
+    "signedOutPlaybackEstablished": false
   }
 }

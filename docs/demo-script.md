@@ -29,4 +29,4 @@ All [19 technical checks](repair-lab/media/revision-2/validation/final-video.jso
 
 ## Preserved earlier version
 
-The [previous walkthrough script](demo-script-v1.md) is retained byte-for-byte. Its original media manifests, transcript, command evidence, hashes and publication record remain preserved. The replacement upload has a new URL; removal of the superseded YouTube upload is tracked separately from preservation of its local evidence.
+The [previous walkthrough script](demo-script-v1.md) is retained byte-for-byte. Its original media manifests, transcript, command evidence, hashes and publication record remain preserved. The replacement upload has a new URL. The superseded YouTube upload was permanently deleted after explicit user confirmation, and its watch page confirms removal by the uploader. Its local original master and evidence remain preserved.

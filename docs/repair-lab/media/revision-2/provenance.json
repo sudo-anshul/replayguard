@@ -19,19 +19,25 @@
       "captionUpload": "English (India) captions saved in Studio; full transcript and enabled watch-page caption verified",
       "watchPagePlayback": "Passed signed-in: playback advanced through AWS evidence and local code tutorial",
       "signedOutPlayback": "not-yet-verified",
-      "priorUploadDeletion": "pending",
+      "priorUploadDeletion": "confirmed: old watch page states Video unavailable and This video has been removed by the uploader",
       "finalEncodedVisualReview": "passed for nine sampled frames; not end-to-end motion or perceptual audio review",
       "watchPageMetadata": "Correct title, Unlisted badge, AI label and 2:43 player visible",
       "watchPageChapters": "All eight chapters recognized",
       "watchPageDescriptionLinks": "Live lab, repository and ElevenLabs links verified",
       "watchPageQuality": "1080p HD available and selected",
       "watchPageCaptionExample": "One receipt. Pass. visible at 1:21 with CC enabled; CC switched off after verification",
-      "siteVideoLinkDeployment": "pending"
+      "siteVideoLinkDeployment": "pending",
+      "anonymousPublicMetadata": "passed: public oEmbed returned HTTP 200 without credentials; signed-out playback not established"
     },
     "finalVideoFile": "replayguard-demo-neha.mp4",
     "finalVideoBytes": 13108071,
     "technicalValidation": "validation/final-video.json",
-    "recordUpdatedAt": "2026-09-19T10:05:45.769935+00:00"
+    "recordUpdatedAt": "2026-09-19T10:15:26.086892+00:00",
+    "anonymousPublicMetadata": {
+      "record": "../../../publication/youtube-public-metadata-v2.json",
+      "sha256": "330f1cdf6028da83ec83abe6a63553375fa722a46bcd4b754bfc2e9228bfd3d1",
+      "signedOutPlaybackEstablished": false
+    }
   },
   "narration": {
     "provider": "ElevenLabs",
@@ -284,6 +290,9 @@
     "priorScript": "../../../demo-script-v1.md",
     "priorScriptSha256": "90706cdcd7d5deabbcbe3240e04d4af18af23896f58d788818cccae5f6fe471b",
     "priorSourceMediaEvidenceAltered": false,
-    "priorUploadDeletionStatus": "pending"
+    "priorUploadDeletionStatus": "confirmed-permanently-deleted",
+    "deletionAuthorization": "Explicit action-time user confirmation",
+    "priorWatchPageAfterDeletion": "Video unavailable; This video has been removed by the uploader",
+    "priorLocalMasterRetained": true
   }
 }
