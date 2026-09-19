@@ -218,7 +218,7 @@
       "observed": {
         "label": "javascript-contract-tests",
         "argv": [
-          "/Users/anshul/.nvm/versions/node/v22.20.0/bin/node",
+          "node",
           "--test",
           "tests/test_aws_key_scope_ui.cjs",
           "tests/test_evidence_contract.cjs",
@@ -398,7 +398,7 @@
     {
       "label": "javascript-contract-tests",
       "argv": [
-        "/Users/anshul/.nvm/versions/node/v22.20.0/bin/node",
+        "node",
         "--test",
         "tests/test_aws_key_scope_ui.cjs",
         "tests/test_evidence_contract.cjs",
@@ -444,6 +444,6 @@
   "independentTransferChecks": 45,
   "recordHandling": {
     "originalRecordSha256": "b7d02f4c2fd0d89b713aaba2a68c5cd6e3a152229ed12e0ad9eef73cec632641",
-    "sanitization": "Private workspace prefix replaced by <release-workspace>; original record retained locally. Source ZIP is a local companion artifact; source commit is public."
+    "sanitization": "Private workspace prefix replaced by <release-workspace>; absolute Node executable path replaced by node (tested v22.20.0). Original record retained locally. Source ZIP is a local companion artifact; source commit is public."
   }
 }
