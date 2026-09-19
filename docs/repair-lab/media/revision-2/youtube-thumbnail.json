@@ -1,0 +1,23 @@
+{
+  "kind": "youtube-thumbnail",
+  "width": 1280,
+  "height": 720,
+  "outputSha256": "570757170f6d4785e71fbff77ee0430412e95a3d78e7197d937b86ba9767a51f",
+  "brandAsset": "web/mark.svg",
+  "brandAssetSha256": "b6c59d8ec2e2a0bfab5770b6055006c88b07e5e016748f0e8bb1a938d0121574",
+  "font": "Installed Avenir Next",
+  "claim": "One retry. Two receipts.",
+  "visualization": "Actual local crash/retry receipt counts: broken 2, repaired 1",
+  "evidence": {
+    "broken": {
+      "count": 2,
+      "reportSha256": "7e1d461df37c7d1117629b7a90de9cc4654addf6f9d307959aee45ec6bd73949"
+    },
+    "repaired": {
+      "count": 1,
+      "reportSha256": "bbdc634ae8bfbdfb8126edd6b858a1d651b1caa9d32e7246dfadbfd9cceeb805"
+    }
+  },
+  "illustrationNotProductScreenshot": true,
+  "externalGenerationUsed": false
+}

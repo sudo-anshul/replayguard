@@ -1,0 +1,9 @@
+baseline: actual exit 0; 1 receipts; pass
+broken: actual exit 1; 2 receipts; violation
+repaired: actual exit 0; 1 receipts; pass
+{
+  "status": "passed",
+  "passed": 73,
+  "total": 73,
+  "failures": []
+}

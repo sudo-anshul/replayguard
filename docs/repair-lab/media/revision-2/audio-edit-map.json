@@ -1,0 +1,39 @@
+{
+  "source": "neha-full.mp3",
+  "sourceSha256": "e2319b41242bc7456bfb0eac86b7bc184e52a8ad290a88a24fe520bb891fec5f",
+  "sourceDuration": 152.044263,
+  "edits": [
+    {
+      "at": 84.75,
+      "seconds": 4.0,
+      "reason": "Quiet time for the actual key removal and rerun"
+    },
+    {
+      "at": 105.077,
+      "seconds": 5.0,
+      "reason": "Quiet time for restoring the real adapter before rerun"
+    }
+  ],
+  "tailSilenceSeconds": 2.0,
+  "output": "neha-master.wav",
+  "outputSha256": "19ef3c2e09b72a19116029ab2cf454e883f805f73db893b16b66077ff1461e20",
+  "outputDuration": 163.044263,
+  "speakingSpeedChanged": false,
+  "pitchChanged": false,
+  "preMasterLoudness": {
+    "input_i": "-24.97",
+    "input_tp": "-4.73",
+    "input_lra": "4.20",
+    "input_thresh": "-35.54",
+    "output_i": "-16.74",
+    "output_tp": "-1.50",
+    "output_lra": "3.50",
+    "output_thresh": "-27.36",
+    "normalization_type": "dynamic",
+    "target_offset": "0.74"
+  },
+  "masterMeasuredIntegratedLUFS": -16.11,
+  "masterMeasuredTruePeakDBTP": -1.47,
+  "fullDecodeExitCode": 0,
+  "captionTiming": "Source machine alignment transformed by the same exact silence insertion edit map; not new independent manual validation."
+}

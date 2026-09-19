@@ -2,7 +2,7 @@
 
 **A retry repair should protect every order.**
 
-[Live lab](https://prod.d2w687q4ucx6dk.amplifyapp.com) · [Watch the 2:43 demo](https://youtu.be/2ufAV4Ovat4) · [Download the regression kit](web/replayguard-repair-lab.zip)
+[Live lab](https://prod.d2w687q4ucx6dk.amplifyapp.com) · [Watch the 2:43 demo](https://youtu.be/CGE19upS66A) · [Download the regression kit](web/replayguard-repair-lab.zip)
 
 A worker fulfills an order, crashes, and retries. Adding an idempotency key can stop the duplicate—but a key that is too broad can also reject the next legitimate order. ReplayGuard checks both outcomes: **one correct receipt for each valid business order**.
 
@@ -95,7 +95,7 @@ CloudFormation deployment and teardown sources remain available for reproducibil
 
 ## Delivery status and deadline
 
-Source: [sudo-anshul/replayguard](https://github.com/sudo-anshul/replayguard). Publication resumed on **September 19, 2026**. The public tree was prepared from an audited source snapshot and starts with a new commit dated when it was actually published. The [static lab](https://prod.d2w687q4ucx6dk.amplifyapp.com) is hosted on AWS Amplify, and the [demo](https://youtu.be/2ufAV4Ovat4) is published unlisted on YouTube. [Publication status](docs/publication-status.md) records the verification and event submission state.
+Source: [sudo-anshul/replayguard](https://github.com/sudo-anshul/replayguard). Publication resumed on **September 19, 2026**. The public tree was prepared from an audited source snapshot and starts with a new commit dated when it was actually published. The [static lab](https://prod.d2w687q4ucx6dk.amplifyapp.com) is hosted on AWS Amplify, and the [revised demo](https://youtu.be/CGE19upS66A) is published unlisted on YouTube. [Publication status](docs/publication-status.md) records the verification and event submission state.
 
 AWS work is authorized within a **US$25 cumulative gross project ceiling, with US$5 kept in reserve**. Further billable work depends on confirmed remaining headroom; credits are not a substitute for measured gross spending. The release gate observed about **$0.23 gross for September 17–18** before credits/refunds, with current-day and billing-lag uncertainty. Allowing **$2 for prior lag and $2 for static hosting** gives about **$4.23 conservative exposure**, below the $20 working envelope. This is an operating budget, not an AWS-enforced hard billing cap. The repair bench itself runs locally without AWS calls. See [public operating limits](docs/repair-lab/results.md#aws-evidence-and-present-limits).
 
@@ -103,6 +103,6 @@ Use **September 20, 2026, 09:00 IST (03:30 UTC)** as the earliest observed offic
 
 ## Local demo
 
-The repair-bench demo is **2:43 (163.065 seconds)**. Video decoding and audio checks passed. It combines actual UI captures and recorded local executions with narration; it does not claim a new AWS run. [Watch it on YouTube](https://youtu.be/2ufAV4Ovat4). The [script and transcript](docs/demo-script.md) are public source. Earlier demo footage is retained as historical material.
+The revised repair-bench demo is **2:43 (163.033333 seconds)**, with Neha's synthetic English narration in an Indian accent. It follows real code edits, Python execution and report imports, with explanatory motion. All 19 technical checks and a nine-frame independent review of the final MP4 passed. [Watch it on YouTube](https://youtu.be/CGE19upS66A), read the [script and chapters](docs/demo-script.md), or inspect the [recorded execution and production evidence](docs/repair-lab/media/revision-2/README.md). The dated AWS experiment remains separate; no new cloud fault run is claimed. Earlier scripts and media evidence are retained as historical material.
 
 Built with OpenAI Codex for research, implementation, testing, UI, and demo preparation. The developer remains responsible for review and submission. MIT licensed.

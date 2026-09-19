@@ -1,0 +1,79 @@
+{
+  "video": "outputs/replayguard-demo-neha.mp4",
+  "videoSha256": "f59eeaf60918c0be3b98cdbfae39db474bc3909604f463751ddd0274994c8621",
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "side_data_list": [
+          {}
+        ]
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 1,
+        "r_frame_rate": "0/0"
+      }
+    ],
+    "format": {
+      "duration": "163.033333"
+    }
+  },
+  "frames": [
+    {
+      "timeSeconds": 20,
+      "path": "work/video-revision/review/encoded-output/0020.0.png",
+      "sha256": "f0f0907296a79f4c256bccc4aed286570fcd4fad7c26a6648200bab74866264a"
+    },
+    {
+      "timeSeconds": 50,
+      "path": "work/video-revision/review/encoded-output/0050.0.png",
+      "sha256": "7142a93f9978042573edc19a2ccd4759590aa3554d2200126360a0e98d521b63"
+    },
+    {
+      "timeSeconds": 82,
+      "path": "work/video-revision/review/encoded-output/0082.0.png",
+      "sha256": "545799d5a8f4eeb750d29d6562f1bc9fbaf9803eae71a4bd4e52f194a5ef2938"
+    },
+    {
+      "timeSeconds": 87,
+      "path": "work/video-revision/review/encoded-output/0087.0.png",
+      "sha256": "7aab16897af2a7c6a0a003d132346aa6c0248a6aa69d2edd61fd247f31121111"
+    },
+    {
+      "timeSeconds": 94,
+      "path": "work/video-revision/review/encoded-output/0094.0.png",
+      "sha256": "c737f28c86073259cf95a211e31adf87acd5269d7195932f0c4b21439daa0db4"
+    },
+    {
+      "timeSeconds": 103,
+      "path": "work/video-revision/review/encoded-output/0103.0.png",
+      "sha256": "c9b5a5006b01d0a9cf750ba3d2cefa653b416db0a9a2d0106c437dbea1bf44a2"
+    },
+    {
+      "timeSeconds": 112,
+      "path": "work/video-revision/review/encoded-output/0112.0.png",
+      "sha256": "ea775e03cef36320fcb3e78f44f79fc89a64e55b9cc15d246d26240dccac5897"
+    },
+    {
+      "timeSeconds": 118.5,
+      "path": "work/video-revision/review/encoded-output/0118.5.png",
+      "sha256": "397b408cfe632c830b1a349b95b2d9e35f051136554c996cc76196c32b7f8c17"
+    },
+    {
+      "timeSeconds": 135,
+      "path": "work/video-revision/review/encoded-output/0135.0.png",
+      "sha256": "0226eae16b7e8a1909e545d93655c4ca3d3675805f6e01ac2cc1e6ba38db5afa"
+    }
+  ],
+  "originalManifestSha256": "37855e5bd7257506ec44a4a3a774166d15e35aa5ce51283c53d1f64b520bef88",
+  "rawFramesIncludedInPublicCopy": false
+}

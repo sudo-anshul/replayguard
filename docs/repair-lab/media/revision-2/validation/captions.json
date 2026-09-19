@@ -1,0 +1,30 @@
+{
+  "kind": "post-edit-caption-structure-validation",
+  "validatedAt": "2026-09-19T09:47:22.415729+00:00",
+  "status": "passed",
+  "captions": "narration.srt",
+  "captionsSha256": "3c9de79204441c6433f56d619c2e1cb3ecb518f1cb985318ad31812b0e6f9328",
+  "sourceCaptionFile": "narration-master.srt",
+  "copiedByteForByte": true,
+  "cueCount": 47,
+  "maximumLines": 2,
+  "maximumLineCharacters": 42,
+  "overlapCount": 0,
+  "lastCueEndSeconds": 160.754,
+  "audioMasterDurationSeconds": 163.044263,
+  "editMapSha256": "aafaee94fd68e5e76bb51322981f8ef0a537cb0a4e85aa7db6311b5ae961f6bf",
+  "timingBasis": "Original machine-aligned captions transformed by the same 4-second and 5-second silence insertions as the audio master.",
+  "independentManualTimingValidation": false,
+  "finalVideoTimingValidation": "All cue ranges fit final 163.033333-second video; nine sampled encoded frames passed caption/evidence visibility review. No complete watch-through claimed.",
+  "finalVideoDurationSeconds": 163.033333,
+  "finalVideoSha256": "f59eeaf60918c0be3b98cdbfae39db474bc3909604f463751ddd0274994c8621",
+  "encodedVisualReview": "independent-review.json",
+  "publishedCaptionVerification": {
+    "status": "passed-sampled",
+    "language": "English (India)",
+    "fullTranscriptVisible": true,
+    "ccSamplePlayerTime": "1:21",
+    "ccSampleText": "One receipt. Pass.",
+    "completeManualTimingValidation": false
+  }
+}

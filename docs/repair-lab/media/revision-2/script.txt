@@ -1,0 +1,27 @@
+Your retry fix can stop duplicates… and still lose a customer’s order. Let me show you.
+
+This began with a real AWS experiment. An SQS worker called fulfillment successfully, then the Lambda crashed. When the message returned, the unsafe handler fulfilled it again. A separate DynamoDB receipt check caught the duplicate. The repair left one receipt. That run is preserved here.
+
+Now watch the harder case. Two valid orders share a product. With no key, both orders get duplicate receipts. Use the product as the key, and the second order gets nothing. One receipt, zero receipts. That is not a repair.
+
+Use the business order instead: one receipt for each customer. The test checks both promises—no duplicates, and no missing valid order.
+
+Let’s try it with code. This portable test runs locally. Its crash happens after the receipt commits, before the response returns.
+
+Download the kit and open the small Python adapter. This line chooses the order ID. The observer checks the receiver’s receipts independently.
+
+I’ll run the crash-and-retry case first. One receipt. Pass.
+
+Now remove the key. Same inputs, same fault. Run again.
+
+There it is: violation. Two receipts. Import the report, and the exact order that broke is right here. Expand its evidence: the effect committed, the response was lost, and the retry created another receipt.
+
+Put the business key back. Run the same case, import the new report… one receipt, and the check passes again.
+
+A separate synthetic application, DispatchDesk, also uses this adapter contract. Its five frozen cases pass with the reference repair. Remove the key, all five fail. Use only the product, and two valid-order cases fail.
+
+Download the report and keep the regression with your code. It carries the inputs, fault plan, assertions, source hashes, and observed receipts.
+
+Missing evidence stays incomplete. Unsupported effects stay unresolved.
+
+ReplayGuard. Keep the failure. Test the repair.

@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "kind": "replayguard-demo-revision-2-handoff",
+  "preparedAt": "2026-09-19T09:34:25.008715+00:00",
+  "publication": {
+    "status": "published-unlisted; signed-in-playback-captions-chapters-and-1080p-verified",
+    "videoUrl": "https://youtu.be/CGE19upS66A",
+    "videoUrlPlaceholder": null,
+    "finalVideoSha256": "f59eeaf60918c0be3b98cdbfae39db474bc3909604f463751ddd0274994c8621",
+    "finalVideoDurationSeconds": 163.033333,
+    "publicRepository": "https://github.com/sudo-anshul/replayguard",
+    "liveViewer": "https://prod.d2w687q4ucx6dk.amplifyapp.com/",
+    "verification": {
+      "finalVideoDecode": "passed",
+      "finalVideoAudio": "passed",
+      "finalVideoCaptionTiming": "post-edit structure/range passed; nine sampled final frames visually passed",
+      "uploadPublication": "confirmed: YouTube Studio displayed Video published",
+      "visibility": "unlisted confirmed/saved",
+      "captionUpload": "English (India) captions saved in Studio; full transcript and enabled watch-page caption verified",
+      "watchPagePlayback": "Passed signed-in: playback advanced through AWS evidence and local code tutorial",
+      "signedOutPlayback": "not-yet-verified",
+      "priorUploadDeletion": "pending",
+      "finalEncodedVisualReview": "passed for nine sampled frames; not end-to-end motion or perceptual audio review",
+      "watchPageMetadata": "Correct title, Unlisted badge, AI label and 2:43 player visible",
+      "watchPageChapters": "All eight chapters recognized",
+      "watchPageDescriptionLinks": "Live lab, repository and ElevenLabs links verified",
+      "watchPageQuality": "1080p HD available and selected",
+      "watchPageCaptionExample": "One receipt. Pass. visible at 1:21 with CC enabled; CC switched off after verification",
+      "siteVideoLinkDeployment": "pending"
+    },
+    "finalVideoFile": "replayguard-demo-neha.mp4",
+    "finalVideoBytes": 13108071,
+    "technicalValidation": "validation/final-video.json",
+    "recordUpdatedAt": "2026-09-19T10:05:45.769935+00:00"
+  },
+  "narration": {
+    "provider": "ElevenLabs",
+    "voiceCatalogName": "Neha - Messy and Relatable",
+    "voiceId": null,
+    "voiceIdNote": "Exact catalog name confirmed in task; no non-secret voice identifier supplied for this handoff.",
+    "language": "English",
+    "accent": "Indian",
+    "model": "Eleven Multilingual v2",
+    "settings": {
+      "speed": 0.86,
+      "stability": 0.45,
+      "similarityBoost": 0.75,
+      "style": 0.15,
+      "speakerBoost": true
+    },
+    "sourceAudioSha256": "e2319b41242bc7456bfb0eac86b7bc184e52a8ad290a88a24fe520bb891fec5f",
+    "sourceAudioDurationSeconds": 152.044263,
+    "scriptFile": "script.txt",
+    "scriptSha256": "fa6f148b680a3b1586981e5bbf0d1c91e4f1c4fc9331e502614f19e271f8ea63",
+    "scriptWordCount": 309,
+    "scriptAndCaptionAlignment": "Offline tiny-model ASR and forced alignment; pronunciation was not manually certified by that automated pass.",
+    "masterAudioSha256": "19ef3c2e09b72a19116029ab2cf454e883f805f73db893b16b66077ff1461e20",
+    "masterAudioDurationSeconds": 163.044263,
+    "speakingSpeedChangedDuringEdit": false,
+    "pitchChangedDuringEdit": false,
+    "masterMeasuredIntegratedLUFS": -16.11,
+    "masterMeasuredTruePeakDBTP": -1.47,
+    "audioEditMap": "audio-edit-map.json",
+    "audioEditMapSha256": "aafaee94fd68e5e76bb51322981f8ef0a537cb0a4e85aa7db6311b5ae961f6bf"
+  },
+  "capture": {
+    "method": "Actual CUA browser frame sampling during genuine UI interaction and local Python execution",
+    "approximateSamplingFramesPerSecond": "3–12; per-clip means in capture-provenance.json",
+    "compositedFramesPerSecond": 30,
+    "native30FpsClaimed": false,
+    "synthesizedTyping": false,
+    "syntheticResultPixels": false,
+    "sourceCatalog": "capture-provenance.json"
+  },
+  "executionValidation": {
+    "status": "passed",
+    "checksPassed": 73,
+    "checksTotal": 73,
+    "summary": "validation/summary.json",
+    "actualProcessExits": [
+      0,
+      1,
+      0
+    ],
+    "actualReceiptCounts": [
+      1,
+      2,
+      1
+    ],
+    "newAwsExecution": false
+  },
+  "executions": [
+    {
+      "stage": "baseline",
+      "startedAt": "2026-09-19T09:27:44.573510+00:00",
+      "completedAt": "2026-09-19T09:27:44.687048+00:00",
+      "command": "python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case crash-retry --output baseline.json",
+      "recordedArgv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "scripts/test_repair.py",
+        "--adapter",
+        "candidate/adapter.py",
+        "--case",
+        "crash-retry",
+        "--output",
+        "baseline.json"
+      ],
+      "networkWrapper": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "processExitCode": 0,
+      "reportedStatus": "pass",
+      "observedReceipts": 1,
+      "sourceArchiveSha256": "e01bdcaef59a813f56c96a4ba9e10c25175d41dd33c56d7e9b29b5b29d9d2555",
+      "sourceBeforeSha256": "8c1192c44128fb355e90a5fffba7207152f7edf40e3aab2d35d941cc5b180553",
+      "sourceAfterSha256": "8c1192c44128fb355e90a5fffba7207152f7edf40e3aab2d35d941cc5b180553",
+      "reportSha256": "bd2c6cee76a36e66e58ba1b29f0c7b5ecf90b5cce33923747fdc23142cd05776",
+      "originalExecutionRecordSha256": "64904c1d3e1854dd14b716346029b06fab8cb6921cbea7ea3bf97c78fb20fcf0",
+      "copiedFileSha256": {
+        "report.json": "bd2c6cee76a36e66e58ba1b29f0c7b5ecf90b5cce33923747fdc23142cd05776",
+        "stdout.txt": "eee3910aec3b352e8bd14f598c39b1ec9f977cb034367f67c9e6f0f8dcc737d3",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "adapter.before.py": "8c1192c44128fb355e90a5fffba7207152f7edf40e3aab2d35d941cc5b180553",
+        "adapter.after.py": "8c1192c44128fb355e90a5fffba7207152f7edf40e3aab2d35d941cc5b180553",
+        "execution.json": "64904c1d3e1854dd14b716346029b06fab8cb6921cbea7ea3bf97c78fb20fcf0"
+      },
+      "newAwsExecution": false
+    },
+    {
+      "stage": "broken",
+      "startedAt": "2026-09-19T09:28:23.400841+00:00",
+      "completedAt": "2026-09-19T09:28:23.497439+00:00",
+      "command": "python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case crash-retry --output broken.json",
+      "recordedArgv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "scripts/test_repair.py",
+        "--adapter",
+        "candidate/adapter.py",
+        "--case",
+        "crash-retry",
+        "--output",
+        "broken.json"
+      ],
+      "networkWrapper": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "processExitCode": 1,
+      "reportedStatus": "violation",
+      "observedReceipts": 2,
+      "sourceArchiveSha256": "e01bdcaef59a813f56c96a4ba9e10c25175d41dd33c56d7e9b29b5b29d9d2555",
+      "sourceBeforeSha256": "89740e731a4c93b1319dff698ac9142874c384c98acbd229eb3a572d573c7cc4",
+      "sourceAfterSha256": "89740e731a4c93b1319dff698ac9142874c384c98acbd229eb3a572d573c7cc4",
+      "reportSha256": "7e1d461df37c7d1117629b7a90de9cc4654addf6f9d307959aee45ec6bd73949",
+      "originalExecutionRecordSha256": "10ee15c627c52bf2fb72a2e8bb3a05288732374182914ee48a1055632899738c",
+      "copiedFileSha256": {
+        "report.json": "7e1d461df37c7d1117629b7a90de9cc4654addf6f9d307959aee45ec6bd73949",
+        "stdout.txt": "4fec703911b1e771df90b258257cad1319c78a1d5769e8c5efedca4fbe9db4b3",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "adapter.before.py": "89740e731a4c93b1319dff698ac9142874c384c98acbd229eb3a572d573c7cc4",
+        "adapter.after.py": "89740e731a4c93b1319dff698ac9142874c384c98acbd229eb3a572d573c7cc4",
+        "execution.json": "10ee15c627c52bf2fb72a2e8bb3a05288732374182914ee48a1055632899738c"
+      },
+      "newAwsExecution": false
+    },
+    {
+      "stage": "repaired",
+      "startedAt": "2026-09-19T09:29:59.237512+00:00",
+      "completedAt": "2026-09-19T09:29:59.361302+00:00",
+      "command": "python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case crash-retry --output repaired.json",
+      "recordedArgv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-I",
+        "-S",
+        "scripts/test_repair.py",
+        "--adapter",
+        "candidate/adapter.py",
+        "--case",
+        "crash-retry",
+        "--output",
+        "repaired.json"
+      ],
+      "networkWrapper": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)"
+      ],
+      "processExitCode": 0,
+      "reportedStatus": "pass",
+      "observedReceipts": 1,
+      "sourceArchiveSha256": "e01bdcaef59a813f56c96a4ba9e10c25175d41dd33c56d7e9b29b5b29d9d2555",
+      "sourceBeforeSha256": "8c1192c44128fb355e90a5fffba7207152f7edf40e3aab2d35d941cc5b180553",
+      "sourceAfterSha256": "8c1192c44128fb355e90a5fffba7207152f7edf40e3aab2d35d941cc5b180553",
+      "reportSha256": "bbdc634ae8bfbdfb8126edd6b858a1d651b1caa9d32e7246dfadbfd9cceeb805",
+      "originalExecutionRecordSha256": "ab298dcdcc993a02a0832dc4e9603ec0b62b1c841ff58276c909da420f5fe292",
+      "copiedFileSha256": {
+        "report.json": "bbdc634ae8bfbdfb8126edd6b858a1d651b1caa9d32e7246dfadbfd9cceeb805",
+        "stdout.txt": "1a60350340dc2ee339c8b7e5e16221cf33ee968bca1fdb67b5aca5eef8df3f9b",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "adapter.before.py": "8c1192c44128fb355e90a5fffba7207152f7edf40e3aab2d35d941cc5b180553",
+        "adapter.after.py": "8c1192c44128fb355e90a5fffba7207152f7edf40e3aab2d35d941cc5b180553",
+        "execution.json": "ab298dcdcc993a02a0832dc4e9603ec0b62b1c841ff58276c909da420f5fe292"
+      },
+      "newAwsExecution": false
+    }
+  ],
+  "scope": {
+    "historicalAwsDate": "2026-09-18",
+    "historicalAwsFault": "Lambda worker crashed after simulated fulfillment returned success.",
+    "newLocalFault": "Receiver receipt commits, then the fulfillment response is interrupted before returning.",
+    "effect": "Simulated fulfillment receipt owned by the receiver.",
+    "externalProviderCertification": false
+  },
+  "sanitization": {
+    "originalFilesAltered": false,
+    "reportsAndExecutionRecordsCopiedByteForByte": true,
+    "privateUserPathsInPublicMetadata": false,
+    "captureMetadataIsDerivedSubset": true,
+    "originalCaptureMetadataHashRetained": true,
+    "recordedPythonSystemPathRetained": "The actual argv uses the standard macOS Python framework executable; no user home path occurs in it."
+  },
+  "captions": {
+    "file": "narration.srt",
+    "sha256": "3c9de79204441c6433f56d619c2e1cb3ecb518f1cb985318ad31812b0e6f9328",
+    "source": "post-hold narration-master.srt",
+    "cueCount": 47,
+    "structureValidation": "validation/captions.json",
+    "finalVideoTimingValidation": "cue ranges fit final video and sampled caption/evidence visibility passed",
+    "finalVideoDurationSeconds": 163.033333
+  },
+  "finalVideo": {
+    "file": "replayguard-demo-neha.mp4",
+    "bytes": 13108071,
+    "sha256": "f59eeaf60918c0be3b98cdbfae39db474bc3909604f463751ddd0274994c8621",
+    "durationSeconds": 163.033333,
+    "videoStreamDurationSeconds": 163.033333,
+    "containerTailSeconds": 0.0,
+    "width": 1920,
+    "height": 1080,
+    "videoCodec": "h264",
+    "containerFrameRate": 30.0,
+    "audioCodec": "aac",
+    "audioSampleRate": 48000,
+    "audioChannels": 1,
+    "measuredIntegratedLUFS": -16.12,
+    "measuredTruePeakDBTP": -1.4,
+    "technicalChecksPassed": 19,
+    "technicalChecksTotal": 19,
+    "technicalValidation": "validation/final-video.json",
+    "technicalValidationSha256": "fd7aa0123330f796bb9e96604dd9210afdfbac139727e3de55138dfc962271da",
+    "finalMux": "validation/final-mux.json",
+    "finalMuxSha256": "a9131d377ab1e7e4cf42ecebf66d2c661215577b0013ce8bb2def273a399f24d",
+    "realCapturedFootageSeconds": 130.1666666666,
+    "realCapturedFootageRatio": 0.7984052341030464,
+    "native30FpsCaptureClaimed": false,
+    "completeManualWatchThroughClaimed": false,
+    "independentVisualReview": "validation/independent-review.json",
+    "independentVisualReviewSha256": "6c304cc52a90cedb519f95acf63c8588fe7f99751c7190db9cc49f92bd2d4a5f",
+    "independentVisualReviewScope": "Nine frames independently extracted from final MP4 and visually inspected; no end-to-end motion or direct listening claim."
+  },
+  "thumbnail": {
+    "file": "youtube-thumbnail.png",
+    "sha256": "570757170f6d4785e71fbff77ee0430412e95a3d78e7197d937b86ba9767a51f",
+    "width": 1280,
+    "height": 720,
+    "bytes": 105779,
+    "provenance": "youtube-thumbnail.json",
+    "source": "create_youtube_thumbnail.py",
+    "sourcePortabilityChange": "Only repository/report relative paths adapted to this public folder. Original source hash retained.",
+    "originalSourceSha256": "69f8b7e0daf3e60d3dfc7780db8ba3ca8a554f0aadaf746fb17a1734a7a50b13",
+    "publicSourceSha256": "6e3e226abf65453d16d79bd35e16410bd4d0a04a38afafd77fcae50c0a29dade",
+    "uploadStatus": "custom thumbnail uploaded in Studio; watch-page image availability not separately verified"
+  },
+  "historicalDemoPreservation": {
+    "priorVideoUrl": "https://youtu.be/2ufAV4Ovat4",
+    "priorPublicationRecord": "../../../publication/youtube-publication.json",
+    "priorScript": "../../../demo-script-v1.md",
+    "priorScriptSha256": "90706cdcd7d5deabbcbe3240e04d4af18af23896f58d788818cccae5f6fe471b",
+    "priorSourceMediaEvidenceAltered": false,
+    "priorUploadDeletionStatus": "pending"
+  }
+}

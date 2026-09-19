@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "passed": 73,
+  "total": 73,
+  "failures": [],
+  "kind": "read-only-tutorial-evidence-validation",
+  "validatedAt": "2026-09-19T09:34:24.989503+00:00",
+  "command": "python3 validate_demo.py",
+  "processExitCode": 0,
+  "regressionCasesExecutedByValidation": 0,
+  "stdoutSha256": "8dd9cd41ca354dcc8e8aa21514f13a59c3a4c8ac902790db02372c5769ad567c",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "validatorSha256": "0b587707ff7900ad0640502db9de48a3d7fa95e0b43b07bb6d94d632c6f3c492"
+}

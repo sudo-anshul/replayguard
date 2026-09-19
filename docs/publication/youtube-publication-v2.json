@@ -1,0 +1,70 @@
+{
+  "kind": "youtube-publication-revision-2",
+  "preparedAt": "2026-09-19T09:47:22.449238+00:00",
+  "url": "https://youtu.be/CGE19upS66A",
+  "urlPlaceholder": null,
+  "title": "ReplayGuard — Keep the failure. Test the repair. | First Commit",
+  "publication": "confirmed",
+  "visibility": "unlisted",
+  "sourceVideoSha256": "f59eeaf60918c0be3b98cdbfae39db474bc3909604f463751ddd0274994c8621",
+  "sourceDurationSeconds": 163.033333,
+  "finalVideoVerification": "19/19 technical checks and independent sampled encoded-output review passed.",
+  "englishCaptions": {
+    "file": "../repair-lab/media/revision-2/narration.srt",
+    "sha256": "3c9de79204441c6433f56d619c2e1cb3ecb518f1cb985318ad31812b0e6f9328",
+    "uploadStatus": "saved in Studio as by-you captions",
+    "language": "English (India)",
+    "watchPageAvailability": "verified: full English (India) transcript and enabled caption visible",
+    "watchPageSample": {
+      "playerTime": "1:21",
+      "text": "One receipt. Pass.",
+      "ccReturnedToOffAfterCheck": true
+    }
+  },
+  "watchPagePlayback": "Passed signed-in: playback advanced through AWS evidence and local code tutorial.",
+  "signedOutPlayback": "not-yet-verified",
+  "description": {
+    "liveUrl": "https://prod.d2w687q4ucx6dk.amplifyapp.com/",
+    "repository": "https://github.com/sudo-anshul/replayguard",
+    "savedLinksVerifiedOnWatchPage": true,
+    "draftDescriptionSha256": "4231e6aef588129664f15a6dda01c267f3ad511cd8a82a66d76cd514b11a76d9",
+    "narrationProvider": "https://elevenlabs.io/"
+  },
+  "supersededUpload": {
+    "url": "https://youtu.be/2ufAV4Ovat4",
+    "originalPublicationRecord": "youtube-publication.json",
+    "deletionStatus": "pending",
+    "historicalEvidencePreserved": true
+  },
+  "mediaProvenance": "../repair-lab/media/revision-2/provenance.json",
+  "sourceVideoFile": "replayguard-demo-neha.mp4",
+  "sourceVideoBytes": 13108071,
+  "technicalValidation": "../repair-lab/media/revision-2/validation/final-video.json",
+  "recordUpdatedAt": "2026-09-19T10:05:45.770709+00:00",
+  "verificationSource": "YouTube Studio and signed-in watch-page observations reported by the root agent in this session.",
+  "confirmation": "YouTube Studio displayed Video published; Unlisted was selected and saved.",
+  "watchPlayerDisplay": "2:43",
+  "studioDisplay": "2:44",
+  "independentVisualReview": "../repair-lab/media/revision-2/validation/independent-review.json",
+  "initialChecks": {
+    "copyright": "complete; no issues",
+    "communityGuidelines": "complete; no issues"
+  },
+  "uploadSettings": {
+    "paidPromotion": false,
+    "aiUseDisclosure": true,
+    "category": "Science & Technology",
+    "customThumbnailUploaded": true
+  },
+  "signedInWatchPage": {
+    "title": "verified",
+    "unlistedBadge": "visible",
+    "aiDisclosureLabel": "visible",
+    "playerRuntime": "2:43",
+    "chapterCount": 8,
+    "chaptersRecognized": true,
+    "quality": "1080p HD available and selected",
+    "completeManualWatchThroughClaimed": false,
+    "perceptualListeningClaimed": false
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "reviewedAt": "2026-09-19T09:48:03.125505+00:00",
+  "reviewer": "independent video_review agent",
+  "status": "passed: source evidence, proof frames, and sampled final encoded output",
+  "scope": "Source truth boundaries, recorded execution integrity, subtitle/highlight visibility, and rendered proof-frame states.",
+  "frames": [
+    {
+      "path": "work/video-revision/renderer/previews/final-review/0120-hook.png",
+      "sha256": "8db0932d7c4c5e4f4a269f9846b0928bb0f99ed9b1fee8473fb8710fb488105e"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/0600-aws-unsafe.png",
+      "sha256": "896528949128c6c7ecd5fe2903634f4faeef1dcac0bce62b26ef1883b15ad86a"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/0810-aws-repaired.png",
+      "sha256": "130dc5d60076f32bb4672563cc8429e0363df13f1e7301646ca189674af521fd"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/1500-business-key.png",
+      "sha256": "fb49154a6c9d70e95941fd087f24d56eb032fac2c117b3bd5e9752e2e7e9664f"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/1950-fault.png",
+      "sha256": "329a9bbeb0a58e19255032f4176dc9c47f3d374e009f8f791e3a0ccccfa254fb"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/2220-adapter.png",
+      "sha256": "45b9db9060ca66a0c01b1c382bd35dd5cda10c175a26f06b9b6ac6728276379c"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/2460-baseline.png",
+      "sha256": "a2f0f8a7f505d21f3160936b8d0a82dfecf6046fc1f8117a6b23392477007fc4"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/2610-removed-key.png",
+      "sha256": "ad89adc5a4cf18e097c26d108dd97f2aefed6e34552342f0977fecda4922df03"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/2820-broken-result.png",
+      "sha256": "45e8e74fa921bfd10aa8e72841a64ebc4a3236330f22b10dcf878347fade5449"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/3090-failure-trace.png",
+      "sha256": "73e93288d6d983f4d787459429b59f0d3b888f954c543e2898d4d3c63f3ec0d1"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/3360-restored-key.png",
+      "sha256": "86f0f2847cdc4a8530feea34274133219a51d0cca712e43b4aca851ebdf2c570"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/3555-import-pass.png",
+      "sha256": "bde97a5e780d5e769354e55df7e07277ff8d25957c6958fb9f272afa9e1d1f79"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/4050-transfer.png",
+      "sha256": "750fff993c1a26a53fb97dc29d58c6f48f13d1cab9824a9296fe27a7d0952787"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/4350-export.png",
+      "sha256": "ae682707b9a6d839bdf7e67bcfc0b627e1dc1e7622cfccfcac9d132927579ba8"
+    },
+    {
+      "path": "work/video-revision/renderer/previews/final-review/4770-closing.png",
+      "sha256": "7fd1ca18d37a329bdab9cd652d3ef88cddf40145dee303b48391be2120408269"
+    }
+  ],
+  "sourceExecutionValidation": {
+    "command": "python3 work/video-revision/tutorial/validate_demo.py",
+    "exitCode": 0,
+    "passed": 73,
+    "total": 73,
+    "receipts": [
+      1,
+      2,
+      1
+    ],
+    "processExits": [
+      0,
+      1,
+      0
+    ]
+  },
+  "transferReportCounts": {
+    "reference": {
+      "pass": 5,
+      "violation": 0
+    },
+    "noBusinessKey": {
+      "pass": 0,
+      "violation": 5
+    },
+    "productOnlyKey": {
+      "pass": 3,
+      "violation": 2
+    }
+  },
+  "timelineSeconds": 163.03333333333333,
+  "findingsResolved": [
+    "Workbench footage reserves subtitle space; actual receipt count and process exit remain readable.",
+    "Business-key comparison reserves subtitle space; ORDER-B one-receipt count remains visible during two-line captions.",
+    "AWS close-up is split across the source page scroll so both unsafe and repaired receipt counts remain visible.",
+    "Fault/transfer scope notes moved above the two-line subtitle area.",
+    "Code highlight borders moved above key glyphs in removed/restored reading-hold frames."
+  ],
+  "remainingConcreteProofBlockers": [],
+  "directPerceptualAudioReviewPerformed": false,
+  "audioReviewLimit": "No listening claim. Existing signal and ASR checks cannot establish subjective naturalness, accent, or pronunciation quality.",
+  "finalEncodedOutputCheck": {
+    "status": "passed",
+    "method": "Independent ffprobe and SHA-256, plus visual inspection of nine frames extracted from the completed MP4 with FFmpeg; not an end-to-end motion or perceptual audio review.",
+    "video": "outputs/replayguard-demo-neha.mp4",
+    "videoSha256": "f59eeaf60918c0be3b98cdbfae39db474bc3909604f463751ddd0274994c8621",
+    "durationSeconds": 163.033333,
+    "videoFormat": "1920\u00d71080 H.264, 30 fps",
+    "audioFormat": "AAC, 48 kHz, mono",
+    "frames": [
+      {
+        "timeSeconds": 20,
+        "path": "work/video-revision/review/encoded-output/0020.0.png",
+        "sha256": "f0f0907296a79f4c256bccc4aed286570fcd4fad7c26a6648200bab74866264a"
+      },
+      {
+        "timeSeconds": 50,
+        "path": "work/video-revision/review/encoded-output/0050.0.png",
+        "sha256": "7142a93f9978042573edc19a2ccd4759590aa3554d2200126360a0e98d521b63"
+      },
+      {
+        "timeSeconds": 82,
+        "path": "work/video-revision/review/encoded-output/0082.0.png",
+        "sha256": "545799d5a8f4eeb750d29d6562f1bc9fbaf9803eae71a4bd4e52f194a5ef2938"
+      },
+      {
+        "timeSeconds": 87,
+        "path": "work/video-revision/review/encoded-output/0087.0.png",
+        "sha256": "7aab16897af2a7c6a0a003d132346aa6c0248a6aa69d2edd61fd247f31121111"
+      },
+      {
+        "timeSeconds": 94,
+        "path": "work/video-revision/review/encoded-output/0094.0.png",
+        "sha256": "c737f28c86073259cf95a211e31adf87acd5269d7195932f0c4b21439daa0db4"
+      },
+      {
+        "timeSeconds": 103,
+        "path": "work/video-revision/review/encoded-output/0103.0.png",
+        "sha256": "c9b5a5006b01d0a9cf750ba3d2cefa653b416db0a9a2d0106c437dbea1bf44a2"
+      },
+      {
+        "timeSeconds": 112,
+        "path": "work/video-revision/review/encoded-output/0112.0.png",
+        "sha256": "ea775e03cef36320fcb3e78f44f79fc89a64e55b9cc15d246d26240dccac5897"
+      },
+      {
+        "timeSeconds": 118.5,
+        "path": "work/video-revision/review/encoded-output/0118.5.png",
+        "sha256": "397b408cfe632c830b1a349b95b2d9e35f051136554c996cc76196c32b7f8c17"
+      },
+      {
+        "timeSeconds": 135,
+        "path": "work/video-revision/review/encoded-output/0135.0.png",
+        "sha256": "0226eae16b7e8a1909e545d93655c4ca3d3675805f6e01ac2cc1e6ba38db5afa"
+      }
+    ],
+    "observations": "The encoded output retains the corrected AWS crop, visible ORDER-B count, readable baseline/failing terminal counts and exits, unoccluded key edits, matching failed/passed report states, independent receipt assertions, and synthetic transfer scope note.",
+    "remainingConcreteBlockers": []
+  },
+  "reviewedBuildFiles": [
+    {
+      "path": "work/video-revision/assembly.json",
+      "sha256": "85a6eb5b53734530113c864da46402f73bc8d3cf6ad55ba4f5f5291f121f289a"
+    },
+    {
+      "path": "work/video-revision/renderer/prepared.json",
+      "sha256": "7d993956228c6f22a401e4f33cc2a88076692ae2b3b6dd429d4288c6dd495ce1"
+    },
+    {
+      "path": "work/video-revision/renderer/asset-manifest.json",
+      "sha256": "bf16efc482106dfbb973f2bb9c3c93ba1f3a2ef10f515ef157200747621fdb46"
+    },
+    {
+      "path": "work/video-revision/audio/neha-master.wav",
+      "sha256": "19ef3c2e09b72a19116029ab2cf454e883f805f73db893b16b66077ff1461e20"
+    },
+    {
+      "path": "work/video-revision/audio/narration-master.srt",
+      "sha256": "3c9de79204441c6433f56d619c2e1cb3ecb518f1cb985318ad31812b0e6f9328"
+    },
+    {
+      "path": "work/video-revision/tutorial/baseline.json",
+      "sha256": "bd2c6cee76a36e66e58ba1b29f0c7b5ecf90b5cce33923747fdc23142cd05776"
+    },
+    {
+      "path": "work/video-revision/tutorial/broken.json",
+      "sha256": "7e1d461df37c7d1117629b7a90de9cc4654addf6f9d307959aee45ec6bd73949"
+    },
+    {
+      "path": "work/video-revision/tutorial/repaired.json",
+      "sha256": "bbdc634ae8bfbdfb8126edd6b858a1d651b1caa9d32e7246dfadbfd9cceeb805"
+    }
+  ],
+  "completedAt": "2026-09-19T10:00:33.729348+00:00",
+  "publicationCopy": {
+    "originalRecordSha256": "a2d41058a5d7b82acbc396c310a3770ad9ff0155b4d3cc029e22f3c62fad5ffd",
+    "transformation": "Absolute local workspace prefix removed from path identifiers; all review findings, source hashes and limits retained.",
+    "originalRecordAltered": false,
+    "rawFramesIncludedInThisPublicCopy": false,
+    "pathNote": "Paths identify production artifacts; source frames remain retained locally and the reviewed final video is published."
+  }
+}

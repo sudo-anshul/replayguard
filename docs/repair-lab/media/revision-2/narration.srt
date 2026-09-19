@@ -1,0 +1,205 @@
+1
+00:00:00,000 --> 00:00:03,230
+Your retry fix can stop duplicates…
+
+2
+00:00:03,260 --> 00:00:05,400
+and still lose a customer’s order.
+
+3
+00:00:05,460 --> 00:00:06,460
+Let me show you.
+
+4
+00:00:07,324 --> 00:00:10,734
+This began with a real AWS experiment.
+
+5
+00:00:11,454 --> 00:00:15,114
+An SQS worker called
+fulfillment successfully,
+
+6
+00:00:15,674 --> 00:00:17,194
+then the Lambda crashed.
+
+7
+00:00:17,294 --> 00:00:21,294
+When the message returned, the
+unsafe handler fulfilled it again.
+
+8
+00:00:21,854 --> 00:00:25,474
+A separate DynamoDB receipt
+check caught the duplicate.
+
+9
+00:00:25,987 --> 00:00:27,934
+The repair left one receipt.
+
+10
+00:00:28,335 --> 00:00:30,354
+That run is preserved here.
+
+11
+00:00:30,360 --> 00:00:32,040
+Now watch the harder case.
+
+12
+00:00:32,440 --> 00:00:34,860
+Two valid orders share a product.
+
+13
+00:00:35,320 --> 00:00:39,080
+With no key, both orders
+get duplicate receipts.
+
+14
+00:00:39,540 --> 00:00:43,000
+Use the product as the key, and
+the second order gets nothing.
+
+15
+00:00:43,460 --> 00:00:45,370
+One receipt, zero receipts.
+
+16
+00:00:45,400 --> 00:00:46,860
+That is not a repair.
+
+17
+00:00:47,529 --> 00:00:51,494
+Use the business order instead:
+one receipt for each customer.
+
+18
+00:00:52,234 --> 00:00:57,494
+The test checks both promises—no
+duplicates, and no missing valid order.
+
+19
+00:00:57,917 --> 00:01:01,174
+Let’s try it with code. This
+portable test runs locally.
+
+20
+00:01:01,694 --> 00:01:05,575
+Its crash happens after
+the receipt commits,
+
+21
+00:01:05,754 --> 00:01:07,094
+before the response returns.
+
+22
+00:01:07,794 --> 00:01:10,991
+Download the kit and open
+the small Python adapter.
+
+23
+00:01:11,571 --> 00:01:14,151
+This line chooses the order ID.
+
+24
+00:01:14,637 --> 00:01:17,631
+The observer checks the
+receiver’s receipts independently.
+
+25
+00:01:18,271 --> 00:01:20,969
+I’ll run the crash-and-retry case first.
+
+26
+00:01:21,150 --> 00:01:23,049
+One receipt. Pass.
+
+27
+00:01:23,221 --> 00:01:29,274
+Now remove the key.
+
+28
+00:01:29,304 --> 00:01:31,364
+Same inputs, same fault. Run again.
+
+29
+00:01:31,916 --> 00:01:35,645
+There it is: violation. Two receipts.
+
+30
+00:01:36,025 --> 00:01:39,625
+Import the report, and the exact
+order that broke is right here.
+
+31
+00:01:40,225 --> 00:01:42,865
+Expand its evidence: the effect committed,
+
+32
+00:01:42,945 --> 00:01:46,905
+the response was lost, and the
+retry created another receipt.
+
+33
+00:01:47,476 --> 00:01:54,217
+Put the business key back.
+
+34
+00:01:54,437 --> 00:01:56,967
+Run the same case, import the new report…
+
+35
+00:01:56,997 --> 00:01:59,357
+one receipt, and the check passes again.
+
+36
+00:02:00,182 --> 00:02:03,390
+A separate synthetic
+application, DispatchDesk,
+
+37
+00:02:03,610 --> 00:02:06,170
+also uses this adapter contract.
+
+38
+00:02:06,770 --> 00:02:11,130
+Its five frozen cases pass
+with the reference repair.
+
+39
+00:02:12,004 --> 00:02:14,550
+Remove the key, all five fail.
+
+40
+00:02:14,790 --> 00:02:18,170
+Use only the product, and
+two valid-order cases fail.
+
+41
+00:02:18,551 --> 00:02:21,739
+Download the report and keep
+the regression with your code.
+
+42
+00:02:22,039 --> 00:02:26,089
+It carries the inputs,
+fault plan, assertions,
+
+43
+00:02:26,119 --> 00:02:28,799
+source hashes, and observed receipts.
+
+44
+00:02:29,330 --> 00:02:31,834
+Missing evidence stays incomplete.
+
+45
+00:02:32,694 --> 00:02:35,314
+Unsupported effects stay unresolved.
+
+46
+00:02:35,869 --> 00:02:37,654
+ReplayGuard.
+
+47
+00:02:38,014 --> 00:02:40,754
+Keep the failure. Test the repair.

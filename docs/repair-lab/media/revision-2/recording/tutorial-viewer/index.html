@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ReplayGuard · Local adapter workbench</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+  <header><a class="brand" href="/" aria-label="ReplayGuard workbench"><span class="mark" aria-hidden="true">↻</span> ReplayGuard</a><p><span class="dot"></span> Local adapter workbench · actual Python execution</p></header>
+  <main>
+    <div class="heading"><div><p class="eyebrow">THE SAME CASE. YOUR CODE.</p><h1>Change one line. Test the repair.</h1></div><span class="case-tag">Committed effect, lost response</span></div>
+    <section class="editor-panel" aria-labelledby="editor-label">
+      <div class="panel-bar"><h2 id="editor-label">candidate / <strong>adapter.py</strong></h2><span id="save-state" class="save-state">Loading actual file…</span><button id="save" class="button save-button" disabled>Save adapter</button></div>
+      <label class="sr-only" for="code">Python adapter source</label><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" wrap="off" aria-describedby="editor-help" disabled></textarea>
+      <div class="editor-foot"><p id="editor-help">The handler chooses the key. The receiver owns the receipt.</p><span id="key-state">—</span></div>
+    </section>
+    <div class="run-controls" aria-label="Run a recorded tutorial stage"><p>Crash after commit.<br><strong>Then deliver again.</strong></p><div class="run-buttons"><button id="run-baseline" class="button run-button" data-stage="baseline" disabled><span>01</span> Run baseline</button><button id="run-broken" class="button run-button" data-stage="broken" disabled><span>02</span> Run broken</button><button id="run-repaired" class="button run-button" data-stage="repaired" disabled><span>03</span> Run repaired</button></div></div>
+    <section class="terminal-panel" aria-labelledby="terminal-label"><div class="terminal-bar"><h2 id="terminal-label">Actual command output</h2><div id="result" class="result">No execution yet</div></div><pre id="output" tabindex="0" aria-label="Actual shell output">Save your adapter, then run the case.</pre><div class="terminal-foot"><span id="report-path">Reports stay in the disposable tutorial folder.</span><span>Python 3 · local simulated fulfillment</span></div></section>
+    <p id="message" class="message" role="status" aria-live="polite"></p>
+  </main>
+</body></html>

@@ -1,0 +1,95 @@
+{
+  "validatedAtUTC": "2026-09-19T09:57:49.288515+00:00",
+  "video": {
+    "file": "replayguard-demo-neha.mp4",
+    "bytes": 13108071,
+    "sha256": "f59eeaf60918c0be3b98cdbfae39db474bc3909604f463751ddd0274994c8621",
+    "durationSeconds": 163.033333,
+    "videoStreamDurationSeconds": 163.033333,
+    "containerTailSeconds": 0.0,
+    "width": 1920,
+    "height": 1080,
+    "videoCodec": "h264",
+    "containerFrameRate": 30.0,
+    "audioCodec": "aac",
+    "audioSampleRate": 48000,
+    "audioChannels": 1
+  },
+  "audio": {
+    "measuredIntegratedLUFS": -16.12,
+    "measuredTruePeakDBTP": -1.4,
+    "measuredLoudnessRangeLU": 3.5,
+    "fullDecodeExitCode": 0
+  },
+  "checks": {
+    "fullAudioAndVideoDecode": true,
+    "durationUnderThreeMinutes": true,
+    "videoDurationMatchesPreparedWithinOneFrame": true,
+    "containerTailWithinAACPaddingAllowance": true,
+    "video1920x1080": true,
+    "videoH264": true,
+    "containerFrameRate30": true,
+    "audioAAC": true,
+    "audio48kHz": true,
+    "integratedLoudnessInTargetRange": true,
+    "truePeakBelowClipping": true,
+    "preparedDraftFalse": true,
+    "captionsBurnedIn": true,
+    "narrationSpeakingSpeedUnchanged": true,
+    "narrationPitchUnchanged": true,
+    "genuineFootageAtLeastTwoThirds": true,
+    "preparedInputsUnchangedDuringRender": true,
+    "finalMuxPreservesRenderedVideoPackets": true,
+    "finalMuxMatchesCurrentFile": true
+  },
+  "allTechnicalChecksPassed": true,
+  "realCapturedFootageSeconds": 130.1666666666,
+  "realCapturedFootageRatio": 0.7984052341030464,
+  "captureMethod": "Continuous timestamped CUA screenshot stream of genuine browser interaction and actual Python execution. Captured at approximately 3\u201312 fps and encoded into a 30 fps container by repeating captured pixels; not native 30 fps screen recording.",
+  "editorialHolds": [
+    "08-read-edited-key: final frame held 2.967s",
+    "10-read-restored-key: final frame held 3.967s"
+  ],
+  "sourceInputs": [
+    {
+      "file": "renderer/prepared.json",
+      "bytes": 17289,
+      "sha256": "7d993956228c6f22a401e4f33cc2a88076692ae2b3b6dd429d4288c6dd495ce1"
+    },
+    {
+      "file": "renderer/asset-manifest.json",
+      "bytes": 37610,
+      "sha256": "bf16efc482106dfbb973f2bb9c3c93ba1f3a2ef10f515ef157200747621fdb46"
+    },
+    {
+      "file": "assembly.json",
+      "bytes": 14642,
+      "sha256": "85a6eb5b53734530113c864da46402f73bc8d3cf6ad55ba4f5f5291f121f289a"
+    },
+    {
+      "file": "audio/audio-edit-map.json",
+      "bytes": 1213,
+      "sha256": "aafaee94fd68e5e76bb51322981f8ef0a537cb0a4e85aa7db6311b5ae961f6bf"
+    },
+    {
+      "file": "audio/narration-master.srt",
+      "bytes": 3532,
+      "sha256": "3c9de79204441c6433f56d619c2e1cb3ecb518f1cb985318ad31812b0e6f9328"
+    },
+    {
+      "file": "audio/neha-master.wav",
+      "bytes": 15652330,
+      "sha256": "19ef3c2e09b72a19116029ab2cf454e883f805f73db893b16b66077ff1461e20"
+    },
+    {
+      "file": "final-mux.json",
+      "bytes": 1475,
+      "sha256": "a9131d377ab1e7e4cf42ecebf66d2c661215577b0013ce8bb2def273a399f24d"
+    }
+  ],
+  "limitations": [
+    "Technical validation does not certify subjective narration quality.",
+    "Caption timing was machine-aligned and transformed by the exact audio silence edit map.",
+    "This report does not claim a complete manual watch-through."
+  ]
+}
