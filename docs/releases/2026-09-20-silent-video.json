@@ -1,0 +1,195 @@
+{
+  "validatedAt": "2026-09-19T19:57:34.199Z",
+  "status": "passed",
+  "video": {
+    "file": "replayguard-demo-silent.mp4",
+    "sha256": "bf6af0ae5585a044ce58eae3dafedc64374ddd86362710fdf6d7d8f8f79f120c",
+    "bytes": 9472219,
+    "durationSeconds": 154,
+    "width": 1920,
+    "height": 1080,
+    "codec": "h264",
+    "frames": 4620,
+    "containerFrameRate": "30/1",
+    "audioStreams": 0
+  },
+  "checks": {
+    "fullDecodePassed": true,
+    "zeroAudioStreams": true,
+    "singleVideoStream": true,
+    "fullHD": true,
+    "h264": true,
+    "containerFrameRate30": true,
+    "frameCountMatchesComposition": true,
+    "underThreeMinutes": true,
+    "withinEditorialBudget": true,
+    "durationMatchesComposition": true,
+    "notDraft": true,
+    "explicitlySilent": true,
+    "capturedActionContentAtLeast66Percent": true,
+    "sourceAssetsUnchanged": true
+  },
+  "sourceChecks": [
+    {
+      "id": "historical-first-run",
+      "role": "supporting-evidence",
+      "unchanged": true
+    },
+    {
+      "id": "historical-cleanup-followup",
+      "role": "supporting-evidence",
+      "unchanged": true
+    },
+    {
+      "id": "historical-provider-diagnosis",
+      "role": "supporting-evidence",
+      "unchanged": true
+    },
+    {
+      "id": "final-aws-run",
+      "role": "supporting-evidence",
+      "unchanged": true
+    },
+    {
+      "id": "aws-hook",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "aws-first-failure",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "aws-comparison",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "aws-comparison",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "aws-comparison",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "two-orders",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "two-orders-final",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "kit-download",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "baseline-run",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "edit-sku",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "edit-sku",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "run-sku",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "import-broken",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "failure-trace",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "failure-trace",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "failure-trace",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "restore-order-id",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "restore-order-id",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "run-restored",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "import-restored",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "before",
+      "role": "recorded-report",
+      "unchanged": true
+    },
+    {
+      "id": "broken",
+      "role": "recorded-report",
+      "unchanged": true
+    },
+    {
+      "id": "restored",
+      "role": "recorded-report",
+      "unchanged": true
+    },
+    {
+      "id": "export-evidence",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "states",
+      "role": "captured-actions",
+      "unchanged": true
+    },
+    {
+      "id": "states",
+      "role": "captured-actions",
+      "unchanged": true
+    }
+  ],
+  "capturedActionContentSeconds": 117,
+  "capturedActionContentRatio": 0.7597402597402597,
+  "editorialReadingHoldSeconds": 98.11900010108947,
+  "metricScope": "Captured-action content includes explicitly documented reading holds. It is not continuous native-video footage or a claim about execution duration.",
+  "preparedSha256": "1d487edb1b4a7f4d3b0b4bc99b20547a3271c24542315c4f7d6945d0bb702425",
+  "assetManifestSha256": "354d022d5d4aeed1b25f2b75a283da96a6cbe913b5bda79e702456f274e57859",
+  "scope": "Technical validation. Captured source rate is documented per asset; 30 fps describes the final composition, not necessarily capture rate. Visual pacing/readability review is recorded separately.",
+  "recordHandling": {
+    "originalRecordSha256": "4841a9d8519a50d1d1a05aa7705f014571ef2889b5f1edde98f90b41267f4fd7",
+    "sanitization": "Local absolute artifact path replaced by output filename where present. Original record retained in the release workspace."
+  }
+}

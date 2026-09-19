@@ -1,5 +1,29 @@
 # Publication status
 
+## September 20 release checkpoint
+
+The accepted interface and new AWS viewer are published in **Amplify Deployment 4**. The root and all 37 staged assets passed anonymous exact-byte verification. The published browser review exercised the main/AWS views and 390-pixel layouts; earlier local review covered actual repair imports, invalid-file recovery, original-byte download and scroll/manual ownership. [Exact observations and limits](releases/2026-09-20.md) keep those scopes separate.
+
+| Deliverable | Current state |
+| --- | --- |
+| Current source release | Local changes prepared; the final commit, publication and clean-source verification are pending. The existing public repository remains [sudo-anshul/replayguard](https://github.com/sudo-anshul/replayguard). |
+| Accepted interface | **Published and verified** at the [Amplify URL](https://prod.d2w687q4ucx6dk.amplifyapp.com): [Deployment 4 SUCCEED](releases/2026-09-20-hosting.json), [root plus all 37 assets matched](releases/2026-09-20-anonymous-https.json), and [scoped live-browser checks](releases/2026-09-20-browser.json). |
+| New local key-scope tutorial | Passed: actual order-ID → SKU → restored-source executions produced 1/1 → 1/0 → 1/1 receipts, with identical inputs and faults. [Evidence](repair-lab/key-scope-tutorial/README.md). |
+| New AWS comparison | Final third run `82a1155f-c729-4b56-a32f-b4bc9a70a3ad` **passed 22/22 experiment checks with verified cleanup**, observing no-key 2/2 violation, SKU-key 1/0 violation and order-key 1/1 passed. Captured hardened verifier and exact report/archive retained. First two attempts remain preserved; [chronology and hashes](releases/2026-09-20.md#aws-evidence). |
+| Current silent video | **Completed local MP4**, `outputs/replayguard-demo-silent.mp4`: 154.000 seconds, 1920×1080 H.264/30 fps, 4,620 frames, zero audio streams, 9,472,219 bytes. Full decode and [14 technical checks](releases/2026-09-20-silent-video.json) passed; [28 encoded samples covering every scene reviewed](releases/2026-09-20-silent-video-review.json). [Hash, production method and source-rebuild limits](releases/2026-09-20.md#media-and-publication). No new narration or YouTube upload occurred. |
+| Existing YouTube video | [September 19 published video](https://youtu.be/CGE19upS66A), unlisted, 2:43. It remains the older film and does not show the new UI or newly executed SKU-key tutorial. Its previous verification is recorded below. |
+| Outside-developer trial | Not conducted; [protocol and unfilled record](first-user-trial.md). Synthetic fixtures and agent reviews are not user adoption. |
+| Hosted CI | Incomplete: the recorded GitHub run never started because of account billing. Current local checks are separate. |
+| Event submission | Not submitted. Required owner fields and final confirmation remain outstanding in the [form draft](submission-form.md). |
+
+Current work permits a silent local video and prohibits a new YouTube upload or new voice. Earlier authorization and publication statements below describe the September 19 release. A local video does not replace the event's required YouTube link; claims used in the judged pitch must match the selected published film.
+
+The first [anonymous verification attempt](releases/2026-09-20-anonymous-initial-tls.json) remains incomplete because of a local trust-store error. The successful rerun used the installed botocore CA bundle while preserving certificate and hostname verification; TLS was never disabled. The live review did not test 200% zoom, runtime reduced motion or a new native kit-save completion. Public kit bytes were verified separately.
+
+The gross project ceiling remains $25 with $5 reserved. The historical spending estimate below is not a fresh reading or an AWS-enforced cap. All three September 20 experimental stacks have verified deletion: a separate follow-up for the first, recorded cleanup for the second, and recorded cleanup at **2026-09-19 19:36:17.789 UTC** without errors for the third. [A fresh exact-ARN postflight](releases/2026-09-20-cloud-postflight.json) reconfirmed all three at `DELETE_COMPLETE`. Earlier reports/archives retain their original source and assertion versions. The Amplify host remains active; this is not an account-wide inventory claim. The [current deadline refresh](releases/2026-09-20-deadline.json) still returns September 20, 09:00 IST.
+
+## September 19 publication record
+
 Updated September 19, 2026. The user resumed the remaining delivery work, including public source, AWS hosting, the demo upload and entry preparation. The previous local-only stop and zero-new-spend constraint have been superseded.
 
 | Deliverable | Confirmed state |

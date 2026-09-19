@@ -34,7 +34,7 @@ def main():
     with zipfile.ZipFile(archive) as zipped:
         names = zipped.namelist()
         check('unique-safe-paths', len(set(names)) == len(names) and all(not PurePosixPath(n).is_absolute() and '..' not in PurePosixPath(n).parts for n in names), len(names))
-        check('no-private-directories-or-config', not any(any(p in {'.git', '.aws', '.venv', 'node_modules', 'competitive-review', 'accounts', 'account'} for p in PurePosixPath(n).parts) or PurePosixPath(n).name in {'deployment.local.json', 'credentials', 'credentials.json', '.env', 'config.local.json'} for n in names), 'Checked archive path allowlist boundary')
+        check('no-private-directories-or-config', not any(any(p in {'.git', '.aws', '.venv', 'node_modules', 'competitive-review', 'accounts', 'account'} for p in PurePosixPath(n).parts) or PurePosixPath(n).name in {'deployment.local.json', 'deployment-key-scope.local.json', 'credentials', 'credentials.json', '.env', 'config.local.json'} for n in names), 'Checked archive path allowlist boundary')
         zipped.extractall(extracted)
     sums = dict(line.split('  ', 1)[::-1] for line in (extracted / 'SOURCE-SHA256SUMS').read_text().splitlines())
     check('checksum-scope-complete', set(sums) == set(names) - {'SOURCE-SHA256SUMS'}, len(sums))
@@ -64,8 +64,10 @@ def main():
     command('independent-transfer', [sys.executable, '-B', 'tests/repair_holdout/run_transfer.py', '--output-dir', dest / 'transfer'])
     transfer = json.loads((dest / 'transfer/summary.json').read_text())
     check('transfer-outcomes-and-integrity', transfer['passed'] == 45 and transfer['failed'] == 0, {'passed': transfer['passed'], 'failed': transfer['failed']})
-    command('repair-engine-and-export-tests', py + ['-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_repair*.py', '-v'])
-    command('source-export-tests', py + ['-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_source_export.py', '-v'])
+    command('all-offline-python-tests', py + ['-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_*.py', '-v'])
+    command('deterministic-web-build', py + ['scripts/build_web.py', '--check'])
+    if (extracted / 'web/aws-key-scope-report.json').is_file():
+        command('aws-key-scope-evidence-offline', py + ['scripts/verify_key_case.py', 'web/aws-key-scope-report.json', '--case', 'cases/aws-key-scope.json'])
     node = shutil.which('node')
     if node:
         testfiles = sorted(str(p.relative_to(extracted)) for p in (extracted / 'tests').glob('test_*.cjs'))
@@ -74,7 +76,7 @@ def main():
     command('source-reexport', py + ['scripts/export_source_release.py', '--output', recreated])
     check('deterministic-reexport-identical', archive.read_bytes() == recreated.read_bytes(), {'originalSha256': sha(archive), 'recreatedSha256': sha(recreated)})
     check('included-source-bytes-unchanged', all(sha(extracted / name) == digest for name, digest in sums.items()), len(sums))
-    result = {'schemaVersion': 1, 'kind': 'allowlisted-source-release-validation', 'completedAt': dt.datetime.now(dt.timezone.utc).isoformat(), 'archive': str(archive), 'archiveSha256': sha(archive), 'archiveBytes': archive.stat().st_size, 'files': len(names), 'newCloudEvidence': False, 'published': False, 'checks': checks, 'commands': commands, 'passed': len(checks), 'failed': 0}
+    result = {'schemaVersion': 1, 'kind': 'allowlisted-source-release-validation', 'completedAt': dt.datetime.now(dt.timezone.utc).isoformat(), 'archive': str(archive), 'archiveSha256': sha(archive), 'archiveBytes': archive.stat().st_size, 'files': len(names), 'newCloudEvidence': metadata.get('newCloudEvidence', False), 'cloudCallsByValidation': False, 'published': False, 'checks': checks, 'commands': commands, 'passed': len(checks), 'failed': 0}
     (dest / 'source-release-validation.json').write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps({k: result[k] for k in ('archive', 'archiveSha256', 'archiveBytes', 'files', 'passed', 'failed')}))
 

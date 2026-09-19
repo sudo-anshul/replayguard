@@ -1,0 +1,24 @@
+{
+  "stage": "broken",
+  "startedAt": "2026-09-19T18:37:46.493623+00:00",
+  "completedAt": "2026-09-19T18:37:46.550199+00:00",
+  "command": [
+    "-I",
+    "-S",
+    "scripts/test_repair.py",
+    "--adapter",
+    "candidate/adapter.py",
+    "--case",
+    "interleaved-retries",
+    "--output",
+    "broken.json"
+  ],
+  "processExitCode": 1,
+  "sourceSha256": "65003a7a00cfdee6d2975ba41b8caa3a65c1789cb28309793ed50654531e41ed",
+  "reportSha256": "7c6639cd0d1abff079f511fcf6ec6f10176c83e517cee4ea157c15febb3466b9",
+  "receiptCounts": {
+    "ORDER-A": 1,
+    "ORDER-B": 0
+  },
+  "status": "violation"
+}

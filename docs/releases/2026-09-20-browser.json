@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-09-19T19:57:20.343797+00:00",
+  "tool": "Codex in-app browser",
+  "baseUrl": "https://prod.d2w687q4ucx6dk.amplifyapp.com/",
+  "deploymentJobId": "4",
+  "checks": [
+    "Published root renders accepted interface",
+    "Order-key selection updates result to one receipt per order and preserves control focus",
+    "Main page link reaches new AWS evidence page",
+    "AWS report loaded with expected final run ID and original SHA-256",
+    "AWS page shows experiment passed, one business pass, two business violations and cleanup passed",
+    "Product-key event selector displays terminal conflicting-order rejection",
+    "Main and AWS pages show no document overflow at 390x844",
+    "Rendered main mobile composition inspected",
+    "AWS page captured console warning/error list empty",
+    "Temporary viewport override reset"
+  ],
+  "awsRunId": "82a1155f-c729-4b56-a32f-b4bc9a70a3ad",
+  "notExecuted": [
+    "200% browser zoom",
+    "Runtime reduced-motion preference",
+    "New native browser kit-save completion"
+  ],
+  "priorLocalReview": {
+    "date": "2026-09-20",
+    "tool": "Codex in-app browser",
+    "layouts": [
+      {
+        "width": 1280,
+        "height": 800,
+        "inspected": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "horizontalOverflow": false
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "horizontalOverflow": false
+      }
+    ],
+    "passed": [
+      "Candidate keyboard activation preserves focused logical control",
+      "DispatchDesk source selectable",
+      "Actual fresh before/broken/restored imports produce 1/1,1/0,1/1",
+      "Contradictory summary and invalid UTF-8 retain previous report",
+      "Original JSON dialog preserves imported text",
+      "Dialog close returns focus to view-json",
+      "Downloaded original restored.json matches original bytes",
+      "Scroll progresses and reverses recorded comparison",
+      "Manual replay remains unchanged on scroll",
+      "Incomplete missing snapshot shows unknown counts",
+      "Unsupported effect remains unresolved",
+      "No captured console warnings/errors"
+    ],
+    "notExecuted": [
+      "200% browser zoom",
+      "OS reduced-motion preference"
+    ],
+    "downloadNote": "Kit HTTP response verified byte-identical to current ZIP. Native IAB kit save completion not verified; original JSON save was verified."
+  },
+  "scope": "Rendered checks complement exact public byte verification. No public execution endpoint or new AWS run."
+}

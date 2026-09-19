@@ -1,6 +1,16 @@
 # Repair-bench results
 
-Local repair evidence recorded September 19, 2026. These tests execute trusted Python adapters locally and do not perform AWS calls. Publication resumed later that day; [current delivery status](../publication-status.md) distinguishes the public release from these recorded test results.
+## September 20 release checkpoint
+
+The [new key-scope tutorial](key-scope-tutorial/README.md) was executed from a clean extraction of the kit, using its own runner with network access denied. With the same two-order inputs and faults, the order-ID key passed with 1/1 receipts, the SKU mutation produced a violation with 1/0, and exact source restoration passed with 1/1. Reports, process exits, source snapshots and the archive hash at execution are retained in that record. This is local simulated fulfillment, not a cloud run or outside-user trial.
+
+The accepted interface imported those three actual reports, preserved the prior view/bytes after contradictory and invalid-UTF-8 files, and downloaded the restored report byte-for-byte unchanged. The [release record](../releases/2026-09-20.md) lists the specific responsive, keyboard and scroll checks and the untested zoom/reduced-motion states. The first new AWS attempt remains unresolved; the corrected second attempt passed and retains its original verifier/assertions. The final third run with the hardened verifier **passed 22/22 experiment checks and verified cleanup**, observing no-key 2/2 violation, SKU-key 1/0 violation and order-key 1/1 passed. Its [exact report](../../web/aws-key-scope-report.json) and [captured-source archive](../../web/aws-key-scope-regression.zip) are now published with the accepted interface in **Amplify Deployment 4**. [All attempts and verifier chronology](../releases/2026-09-20.md#aws-evidence).
+
+[Anonymous HTTPS checks](../releases/2026-09-20-anonymous-https.json) matched the root and all 37 staged assets, and [scoped live-browser checks](../releases/2026-09-20-browser.json) covered the main/AWS interactions and 390-pixel layouts. The [silent local video is complete](../releases/2026-09-20.md#media-and-publication): 154.000 seconds, zero audio streams, full decode and 14 technical checks passed. The visual review covered 28 sampled encoded frames. Final source commit/export/publication remain pending. No new narration or YouTube upload occurred; the existing 2:43 film remains the older published video.
+
+## September 19 reference evidence
+
+The reference results below were recorded September 19, 2026. These tests execute trusted Python adapters locally and do not perform AWS calls. [Current delivery status](../publication-status.md) distinguishes later release work from these dated observations.
 
 ## A repair must preserve both orders
 
@@ -47,13 +57,15 @@ The [separate browser pass](native-browser-results/final/results.json) imported 
 
 The [current-page import checks](import-tampering-results/final-main/results.json) rejected contradictory receipt, input, fault, and summary claims while preserving the previous view and imported bytes. The [legacy comparison check](legacy-preservation/browser-reference-results.json) verifies the retained original experience separately.
 
-## Portable-kit reproduction
+## September 19 portable-kit reproduction
 
-The final [regression kit](../../web/replayguard-repair-lab.zip) contains **22 files / 32,330 bytes**. SHA-256:
+The September 19 validated regression kit contained **22 files / 32,330 bytes**. Its recorded SHA-256 was:
 
 ```text
 e01bdcaef59a813f56c96a4ba9e10c25175d41dd33c56d7e9b29b5b29d9d2555
 ```
+
+The [current kit download](../../web/replayguard-repair-lab.zip) may be a later release. Do not apply this historical hash to it; the [September 20 tutorial summary](key-scope-tutorial/summary.json) identifies the exact newer archive executed there.
 
 [Final clean extraction validation](validation/numeric-parity-final/package-validation.json) completed at **04:08:15 UTC**. Four actual CLI executions used the archive's own sources, Python `-I -S`, a sanitized environment, the local guard, and macOS network denial:
 
@@ -72,7 +84,7 @@ The original AWS crash followed a successful fulfillment response. The new local
 
 Both original AWS stacks reached `DELETE_COMPLETE` on **September 18 at 19:13:43 UTC**. That cleanup is historical evidence. Publication and hosting resumed on September 19 under a **US$25 cumulative gross project ceiling, with US$5 reserved**. Gross-spend headroom must be confirmed before new billable work; AWS credits do not establish it. The release gate observed about **$0.23 gross for September 17–18** before credits/refunds, with current-day and billing-lag uncertainty. Allowing **$2 for prior lag and $2 for static hosting** gives about **$4.23 conservative exposure**, below the $20 working envelope. This is an operating budget, not an AWS-enforced hard billing cap. Current hosting, repository, video and submission links are recorded in [publication status](../publication-status.md).
 
-The [revised local demo](https://youtu.be/CGE19upS66A) is **163.033333 seconds (2:43)** and 13,108,071 bytes, SHA-256 `f59eeaf60918c0be3b98cdbfae39db474bc3909604f463751ddd0274994c8621`. It uses Neha's synthetic Indian-English narration, real adapter edits/executions/imports and explanatory motion. All [19 technical checks](media/revision-2/validation/final-video.json) passed; an independent review of nine final-output frames found no remaining concrete blocker. The [newly recorded tutorial evidence](media/revision-2/README.md) passed 73/73 checks and preserved the observed 1 → 2 → 1 receipt sequence. Earlier MP4s and their [original render evidence](media/manifest.json) remain unchanged. The current YouTube verification and live-site link refresh are tracked in [publication status](../publication-status.md).
+The [September 19 published demo](https://youtu.be/CGE19upS66A) is **163.033333 seconds (2:43)** and 13,108,071 bytes, SHA-256 `f59eeaf60918c0be3b98cdbfae39db474bc3909604f463751ddd0274994c8621`. It uses Neha's synthetic Indian-English narration, real adapter edits/executions/imports and explanatory motion. All [19 technical checks](media/revision-2/validation/final-video.json) passed; an independent review of nine final-output frames found no remaining concrete blocker. The [September 19 tutorial evidence](media/revision-2/README.md) passed 73/73 checks and preserved the observed 1 → 2 → 1 receipt sequence. These facts describe the earlier video; the completed silent local revision has its own metadata and checks above. Earlier MP4s and their [original render evidence](media/manifest.json) remain preserved. [Publication status](../publication-status.md) distinguishes the versions and their checks.
 
 The earliest observed official deadline is **September 20, 09:00 IST**. Exact organizer confirmation remains unresolved because the form configuration and countdown conflict. See [deadline evidence](../deadline.md).
 

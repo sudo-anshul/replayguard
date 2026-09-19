@@ -1,0 +1,197 @@
+{
+  "reviewedAt": "2026-09-19T20:00:48.922381+00:00",
+  "status": "passed",
+  "scope": "Sampled visual review of28 late-scene frames extracted from the encoded final MP4, covering every scene. This is not a claim of full real-time playback or inspection of every frame. Full decoding and technical properties are checked separately.",
+  "videoSha256": "bf6af0ae5585a044ce58eae3dafedc64374ddd86362710fdf6d7d8f8f79f120c",
+  "reviewers": [
+    "video_motion",
+    "root independent contact-sheet review"
+  ],
+  "reviewedFrames": [
+    {
+      "scene": "01-aws-hook",
+      "frame": 173,
+      "seconds": 5.766666666666667,
+      "sha256": "c71f728274efeb281c244e6a5912bcacfd51b894ddbd97fa87f1a8659ced4a25"
+    },
+    {
+      "scene": "02-fault-explanation",
+      "frame": 413,
+      "seconds": 13.766666666666667,
+      "sha256": "5772ccda652c89f3a8e3b7766998b3a7d071837763d81e45d6c8ec67cb403a61"
+    },
+    {
+      "scene": "02-first-failure",
+      "frame": 610,
+      "seconds": 20.333333333333332,
+      "sha256": "906cc278695abe0a8d24f2676899c0462b5d07132d13c16c897b87bb7bb1c41c"
+    },
+    {
+      "scene": "03-aws-comparison",
+      "frame": 790,
+      "seconds": 26.333333333333332,
+      "sha256": "db5770893ffc940af82547e3b3cb9b09fae6d918343e8b3eced1661b42aec713"
+    },
+    {
+      "scene": "03-aws-commit",
+      "frame": 905,
+      "seconds": 30.166666666666668,
+      "sha256": "1bf292354708aef46e520d7301e2fc73ebb16a532c39207b8553059c1ea8f836"
+    },
+    {
+      "scene": "03-aws-worker",
+      "frame": 995,
+      "seconds": 33.166666666666664,
+      "sha256": "2f43075ff55b812ef3767359063047842f6f350446273c29e1a3edea2bcaab26"
+    },
+    {
+      "scene": "04-two-orders",
+      "frame": 1106,
+      "seconds": 36.86666666666667,
+      "sha256": "93c324a0a65431ee7670b5dca2cf99eabf996c050adcb3f582c170447ccffcf8"
+    },
+    {
+      "scene": "04-final-snapshot",
+      "frame": 1270,
+      "seconds": 42.333333333333336,
+      "sha256": "736aeb00abde4448f4a9f91e54f151fad48c5a4118098bb1f8e13e8e2932707c"
+    },
+    {
+      "scene": "05-key-scope",
+      "frame": 1536,
+      "seconds": 51.2,
+      "sha256": "53f3f5b0b4336e16b204dff7f0a22634c6d9967b146bf62d282495eba1bf9a3d"
+    },
+    {
+      "scene": "06-download",
+      "frame": 1750,
+      "seconds": 58.333333333333336,
+      "sha256": "f0ae4f132142538dcf205260ea0f3f59e66b606b08cf677c94b17b755e69b2c7"
+    },
+    {
+      "scene": "07-baseline",
+      "frame": 1973,
+      "seconds": 65.76666666666667,
+      "sha256": "e2c46414b3ac88da0af318572986f0c834901776b37f69d745931d5ad9f0c8a4"
+    },
+    {
+      "scene": "08-edit-sku",
+      "frame": 2135,
+      "seconds": 71.16666666666667,
+      "sha256": "d8e3640a9b8ff5050b22653a3abfb8b4deb4288b1d997a17d92418b1f3cd4d74"
+    },
+    {
+      "scene": "08-edit-sku-saved",
+      "frame": 2250,
+      "seconds": 75.0,
+      "sha256": "d756b5d9acf5b7e8198c7aacd95e73d922d073f91e80da50c29b2e7b38d910f9"
+    },
+    {
+      "scene": "09-run-sku",
+      "frame": 2410,
+      "seconds": 80.33333333333333,
+      "sha256": "a18d05a5e5207c6d49ff416616a21762273e2ad07c3a3e927e938a974ea49c72"
+    },
+    {
+      "scene": "10-import-broken",
+      "frame": 2611,
+      "seconds": 87.03333333333333,
+      "sha256": "dbfcb37a5007b4db688e1ec76bb9a493f659b116a6b8547b669b7f49f9268046"
+    },
+    {
+      "scene": "11-failure-trace",
+      "frame": 2756,
+      "seconds": 91.86666666666666,
+      "sha256": "059971f5706c19e3f824c5d2fdb58067b7b6a0d3149980376162e0052651d77d"
+    },
+    {
+      "scene": "11-failure-trace-trail",
+      "frame": 2855,
+      "seconds": 95.16666666666667,
+      "sha256": "f82dab121712692f5ceaaaea9d6db5e784aa348dcc965c0b731200812eb2971d"
+    },
+    {
+      "scene": "11-failure-trace-retry",
+      "frame": 2945,
+      "seconds": 98.16666666666667,
+      "sha256": "5a0b4b5eacbcc55a6082c838d3dbf9e55a7e3cee0934053813e7875dd40134da"
+    },
+    {
+      "scene": "12-restore",
+      "frame": 3069,
+      "seconds": 102.3,
+      "sha256": "385c5b4067dcd8526f3bda4cabccc2029b19cbab533a67beb32d0135ff63bc92"
+    },
+    {
+      "scene": "12-restore-saved",
+      "frame": 3181,
+      "seconds": 106.03333333333333,
+      "sha256": "661a3e4826f6c76fd3c551a4a9d7cd789fe0fa190ce3acea5241b83d1f3fd43f"
+    },
+    {
+      "scene": "13-run-restored",
+      "frame": 3340,
+      "seconds": 111.33333333333333,
+      "sha256": "08e6c902a96c04af5c45c80a4b5a802e376817bab09ca92881c0c90d9dd1a700"
+    },
+    {
+      "scene": "14-import-restored",
+      "frame": 3541,
+      "seconds": 118.03333333333333,
+      "sha256": "8728bfc2c6aa4f4a8d3da4e2aabbd1ab9999f445ef465e4d01f0c78a1c33dc85"
+    },
+    {
+      "scene": "15-recorded-summary",
+      "frame": 3773,
+      "seconds": 125.76666666666667,
+      "sha256": "773710352fb7a86f8e68143067d25a2863665c05c617f278390ca5b001810aff"
+    },
+    {
+      "scene": "16-package",
+      "frame": 3948,
+      "seconds": 131.6,
+      "sha256": "4737fa739e080c5f333eeb8e51463d2eb3de8cecd60a733cc2b52540daaa32bd"
+    },
+    {
+      "scene": "17-export",
+      "frame": 4141,
+      "seconds": 138.03333333333333,
+      "sha256": "bf9cbb6af21f05a34b088b8f4a9ff04747aa48cfd6c50c5752529c5597bc4866"
+    },
+    {
+      "scene": "18-states",
+      "frame": 4289,
+      "seconds": 142.96666666666667,
+      "sha256": "66fbfe99a0927a44e5fa2e8360dc2abe82752dbd8c67a4e93614ec037c0f990f"
+    },
+    {
+      "scene": "18-unresolved",
+      "frame": 4408,
+      "seconds": 146.93333333333334,
+      "sha256": "7d3a020e2b2cedf6fcae61ae1d95769f66345eb347a5c859e98d3fb375294e34"
+    },
+    {
+      "scene": "19-close",
+      "frame": 4570,
+      "seconds": 152.33333333333334,
+      "sha256": "6e8350f02fc1d782993f4ca63a159e473ef3e0ddc61507f5b6048704b8cc1cf3"
+    }
+  ],
+  "findings": [
+    "No concrete visual or claim blocker found in the reviewed samples.",
+    "Code edits and saved keys are legible; unsaved shots exclude stale prior-result footers.",
+    "AWS counts remain2/2,1/0,1/1; experiment success is separate from two business violations.",
+    "Historical first attempt is labeled unresolved with date, unauthenticated origin, and later cleanup confirmation.",
+    "Actual local helper and AWS observations retain separate labels.",
+    "Missing order, repaired receipts, incomplete snapshot, unsupported effect, and closing URLs remain legible."
+  ],
+  "limitations": [
+    "Browser sources are timestamped screenshots with explicit editorial reading holds and documented omitted elapsed gaps.",
+    "Capture origin is not authenticated by file hashes.",
+    "Video has no narration, music, or audio streams."
+  ],
+  "recordHandling": {
+    "originalRecordSha256": "b5a0b084630f786c60df8e5bb2e523793d7913ec5ba72c1a9b150f094818d2fd",
+    "sanitization": "Local absolute artifact path replaced by output filename where present. Original record retained in the release workspace."
+  }
+}

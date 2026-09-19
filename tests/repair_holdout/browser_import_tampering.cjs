@@ -47,7 +47,7 @@ function installedPlaywright() {
 }
 const { chromium } = installedPlaywright();
 const checks = [], blockedRequests = [], pageErrors = [];
-const sourceFiles = ['web/repair-contract.js', 'web/repair-app.js', 'web/repair.css', 'web/repair.html', 'web/index.html'];
+const sourceFiles = ['web/repair-contract.js', 'web/repair-data.js', 'web/repair-imports.js', 'web/repair-app.js', 'web/repair-motion.js', 'web/repair.css', 'web/repair.html', 'web/index.html'];
 const record = { startedAt: new Date().toISOString(), referenceSha256: digest(referenceBytes), mutantSha256: digest(mutantBytes), checks, blockedRequests, pageErrors,
   sourceAtStart: Object.fromEntries(sourceFiles.map(name => [name, digest(fs.readFileSync(path.join(root, name)))])) };
 const assert = (condition, text) => { if (!condition) throw Error(text); };
@@ -65,17 +65,23 @@ let browser;
     await page.waitForFunction(prior => document.querySelector('#import-status').textContent.trim() !== prior && document.querySelector('#report-file').value === '', prior);
     return text('#import-status');
   }
-  async function display() { return page.evaluate(() => ({ case: document.querySelector('#case-select').value, candidate: document.querySelector('#candidate-select').value, source: document.querySelector('#report-select').value,
-    values: Object.fromEntries(['comparison-head','comparison-body','finding-status','finding-title','finding-description','assertion-list','execution-trace','source-details'].map(id => [id, document.getElementById(id).textContent])) })); }
+  async function choose(kind, id) {
+    for (const button of await page.locator('[data-' + kind + ']').all()) {
+      if (await button.getAttribute('data-' + kind) === id) { await button.click(); return; }
+    }
+    throw Error('Missing ' + kind + ': ' + id);
+  }
+  async function display() { return page.evaluate(() => ({ case: document.querySelector('#case-list [aria-current="true"]').dataset.case, candidate: document.querySelector('#candidate-buttons [aria-pressed="true"]').dataset.candidate, source: document.querySelector('#source-select').value,
+    values: Object.fromEntries(['order-receipts','verdict','result-title','result-description','check-list','delivery-trail','fingerprints'].map(id => [id, document.getElementById(id).textContent])) })); }
   async function originalDownload() {
-    await page.locator('#json-button').click();
+    await page.locator('#view-json').click();
     const [download] = await Promise.all([page.waitForEvent('download'), page.locator('#download-json').click()]);
     const stream = await download.createReadStream(), chunks = []; for await (const chunk of stream) chunks.push(chunk);
     await page.locator('#close-json').click();
     return Buffer.concat(chunks);
   }
   await page.goto(base + pagePath, { waitUntil: 'networkidle' });
-  await page.locator('#bench-content').waitFor({ state: 'visible' });
+  await page.locator('#result-panel').waitFor({ state: 'visible' });
   await page.screenshot({ path: path.join(out, 'current-main-desktop.png'), fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.screenshot({ path: path.join(out, 'current-main-narrow.png'), fullPage: true });
@@ -84,15 +90,15 @@ let browser;
   for (const state of ['pass', 'violation', 'incomplete', 'unresolved']) {
     const result = bundled.results.find(item => item.status === state);
     if (!result) continue;
-    await page.locator('#case-select').selectOption(result.caseId);
-    await page.locator('#candidate-select').selectOption(result.candidateId);
-    await page.locator('#inspector').screenshot({ path: path.join(out, 'current-main-state-' + state + '.png') });
+    await choose('case', result.caseId);
+    await choose('candidate', result.candidateId);
+    await page.locator('#result-panel').screenshot({ path: path.join(out, 'current-main-state-' + state + '.png') });
   }
   await test('genuine-transfer-report-imports-and-round-trips', async () => {
     contract.validate(reference);
     const message = await upload('transfer-control.json', referenceBytes);
     assert(message.startsWith('Imported '), message);
-    assert((await text('#report-origin')).includes('origin unauthenticated'), 'Origin caveat absent.');
+    assert((await text('#source-context')).includes('origin unauthenticated'), 'Origin caveat absent.');
     assert(digest(await originalDownload()) === digest(referenceBytes), 'Original report bytes changed.');
     return { message, downloadedSha256: digest(referenceBytes) };
   });
@@ -119,8 +125,8 @@ let browser;
     const bytes = Buffer.from(JSON.stringify(changed));
     const message = await upload('different-source-claim.json', bytes);
     assert(message.startsWith('Imported '), 'Viewer pretends to authenticate unknown source bytes: ' + message);
-    assert((await text('#report-origin')).includes('origin unauthenticated'), 'Origin caveat absent.');
-    assert((await page.locator('.source-detail').textContent()).includes('supplied claim'), 'Source identity caveat absent.');
+    assert((await text('#source-context')).includes('origin unauthenticated'), 'Origin caveat absent.');
+    assert((await page.locator('.technical-details').textContent()).includes('do not authenticate'), 'Source identity caveat absent.');
     return { acceptedAsClaim: true, sourceOriginAuthenticated: false };
   });
   await upload('final-control.json', referenceBytes);

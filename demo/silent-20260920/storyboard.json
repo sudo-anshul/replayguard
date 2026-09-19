@@ -1,0 +1,528 @@
+{
+  "title": "ReplayGuard — a failure you can replay, a repair you can verify",
+  "silent": true,
+  "assetsFile": "assets.json",
+  "scenes": [
+    {
+      "id": "01-aws-hook",
+      "kind": "recorded",
+      "duration": 8,
+      "title": "Committed. Failed. Retried.",
+      "support": "The receipt persisted. The invocation failed. SQS retried.",
+      "scope": "Recorded AWS run",
+      "chapter": "01 / Start with the failure",
+      "capture": "aws-hook",
+      "focus": {
+        "at": 2.2,
+        "until": 9,
+        "crop": {
+          "x": 20,
+          "y": 15,
+          "w": 1230,
+          "h": 360
+        }
+      },
+      "proofNote": "19 Sep 2026, 19:36 UTC\nSimulated fulfillment on AWS\nExport origin unauthenticated"
+    },
+    {
+      "id": "02-fault-explanation",
+      "kind": "fault",
+      "duration": 8,
+      "title": "A failed response does not undo fulfillment.",
+      "support": "AWS experiment: the provider fails after receipt commit, before success returns.",
+      "scope": "Explanation",
+      "chapter": "01 / Start with the failure",
+      "faultBoundary": "before-response"
+    },
+    {
+      "id": "02-first-failure",
+      "kind": "recorded",
+      "duration": 6,
+      "title": "Our first run caught our own provider defect.",
+      "support": "Plausible counts were not enough. The experiment stayed unresolved.",
+      "scope": "Recorded AWS run",
+      "chapter": "01 / Start with the failure",
+      "capture": "aws-first-failure",
+      "videoStart": 1.4,
+      "crop": {
+        "x": 25,
+        "y": 120,
+        "w": 790,
+        "h": 180
+      },
+      "proofNote": "19 Sep 2026, 19:04 UTC\nHistorical · origin unauthenticated\nCleanup later confirmed"
+    },
+    {
+      "id": "03-aws-comparison",
+      "kind": "recorded",
+      "duration": 6,
+      "title": "Same two orders. Three keys. One fault.",
+      "support": "Count each order’s receipts independently of the worker.",
+      "scope": "Recorded AWS run",
+      "chapter": "01 / Start with the failure",
+      "capture": "aws-comparison",
+      "crop": {
+        "x": 25,
+        "y": 278,
+        "w": 1225,
+        "h": 411
+      },
+      "proofNote": "19 Sep 2026, 19:36 UTC\nSimulated fulfillment on AWS\nExport origin unauthenticated"
+    },
+    {
+      "id": "03-aws-commit",
+      "kind": "recorded",
+      "duration": 3,
+      "title": "The receiver commits before the response fails.",
+      "support": "First delivery: a durable receipt exists before the worker reports failure.",
+      "scope": "Recorded AWS run",
+      "chapter": "01 / Start with the failure",
+      "capture": "aws-comparison",
+      "crop": {
+        "x": 25,
+        "y": 319,
+        "w": 1230,
+        "h": 384
+      },
+      "proofNote": "Recorded AWS events\nElapsed capture gap omitted",
+      "videoStart": 6
+    },
+    {
+      "id": "03-aws-worker",
+      "kind": "recorded",
+      "duration": 3,
+      "title": "The worker fails. The receipt remains.",
+      "support": "Then ORDER-B reaches the same product key and is rejected.",
+      "scope": "Recorded AWS run",
+      "chapter": "01 / Start with the failure",
+      "capture": "aws-comparison",
+      "crop": {
+        "x": 25,
+        "y": 482,
+        "w": 1230,
+        "h": 235
+      },
+      "proofNote": "Recorded AWS events\nPaused for reading",
+      "videoStart": 9
+    },
+    {
+      "id": "04-two-orders",
+      "kind": "recorded",
+      "duration": 4,
+      "title": "A passing retry test can hide a broken key.",
+      "support": "Two valid orders. One shared product.",
+      "scope": "Local regression",
+      "chapter": "02 / Challenge the key",
+      "capture": "two-orders",
+      "proofNote": "Recorded local comparison\nCounts provisional during playback"
+    },
+    {
+      "id": "04-final-snapshot",
+      "kind": "recorded",
+      "duration": 6,
+      "title": "Check both valid orders.",
+      "support": "A product key prevents the retry—and loses the other order.",
+      "scope": "Local regression",
+      "chapter": "02 / Challenge the key",
+      "capture": "two-orders-final",
+      "proofNote": "Earlier recorded final snapshot\nPaused for reading",
+      "crop": {
+        "x": 547,
+        "y": 85,
+        "w": 692,
+        "h": 642
+      }
+    },
+    {
+      "id": "05-key-scope",
+      "kind": "scope",
+      "duration": 10,
+      "title": "Same product ≠ same order.",
+      "support": "The fulfillment key must identify the business order.",
+      "scope": "Explanation",
+      "chapter": "02 / Challenge the key"
+    },
+    {
+      "id": "06-download",
+      "kind": "recorded",
+      "duration": 6,
+      "title": "Take the case to your handler.",
+      "support": "Local regression: interrupt after commit, before the response returns.",
+      "scope": "Local regression",
+      "chapter": "03 / Break and repair",
+      "capture": "kit-download",
+      "proofNote": "Kit bytes verified over HTTP\nLocal run uses a clean extraction"
+    },
+    {
+      "id": "07-baseline",
+      "kind": "recorded",
+      "duration": 8,
+      "title": "Start with the order ID.",
+      "support": "Same two orders. Same local fault. Actual Python execution.",
+      "scope": "Local regression",
+      "chapter": "03 / Break and repair",
+      "capture": "baseline-run",
+      "helper": true,
+      "proofNote": "Captured actions\nPaused for reading",
+      "focus": {
+        "at": 1.7,
+        "until": 9,
+        "crop": {
+          "x": 35,
+          "y": 360,
+          "w": 1210,
+          "h": 350
+        }
+      }
+    },
+    {
+      "id": "08-edit-sku",
+      "kind": "recorded",
+      "duration": 4.4,
+      "title": "Change only the key: orderId → sku.",
+      "support": "Save the real adapter, then run the same case.",
+      "scope": "Local regression",
+      "chapter": "03 / Break and repair",
+      "capture": "edit-sku",
+      "helper": true,
+      "proofNote": "Actual recorded edit\nPaused for reading",
+      "crop": {
+        "x": 40,
+        "y": 0,
+        "w": 1200,
+        "h": 322
+      },
+      "highlights": [
+        {
+          "x": 933.5,
+          "y": 662.9,
+          "w": 523.0,
+          "h": 69.2,
+          "at": 2.4,
+          "until": 4.25,
+          "tone": "red",
+          "label": "Product key"
+        }
+      ]
+    },
+    {
+      "id": "08-edit-sku-saved",
+      "kind": "recorded",
+      "duration": 3.5999999999999996,
+      "title": "Change only the key: orderId → sku.",
+      "support": "Saved to the actual adapter. The next action runs this source.",
+      "scope": "Local regression",
+      "chapter": "03 / Break and repair",
+      "capture": "edit-sku",
+      "helper": true,
+      "proofNote": "Actual recorded edit\nPaused for reading",
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 608
+      },
+      "videoStart": 4.4,
+      "highlights": [
+        {
+          "x": 937.5,
+          "y": 686.0,
+          "w": 443.8,
+          "h": 67.5,
+          "at": 0.4,
+          "until": 3.4499999999999997,
+          "tone": "red",
+          "label": "Saved SKU key"
+        }
+      ]
+    },
+    {
+      "id": "09-run-sku",
+      "kind": "recorded",
+      "duration": 6,
+      "title": "A green retry can hide a missing order.",
+      "support": "Read each order’s receipt count, not only the worker’s return.",
+      "scope": "Local regression",
+      "chapter": "03 / Break and repair",
+      "capture": "run-sku",
+      "helper": true,
+      "proofNote": "Captured actions\nPaused for reading",
+      "focus": {
+        "at": 1.7,
+        "until": 7,
+        "crop": {
+          "x": 35,
+          "y": 360,
+          "w": 1210,
+          "h": 350
+        }
+      }
+    },
+    {
+      "id": "10-import-broken",
+      "kind": "recorded",
+      "duration": 7,
+      "title": "Import the actual result.",
+      "support": "The report carries its original receipt and source evidence.",
+      "scope": "Local regression",
+      "chapter": "03 / Break and repair",
+      "capture": "import-broken"
+    },
+    {
+      "id": "11-failure-trace",
+      "kind": "recorded",
+      "duration": 4,
+      "title": "Open the assertion. Inspect the receipts.",
+      "support": "ORDER-B expected one receipt. The observed count is zero.",
+      "scope": "Local regression",
+      "chapter": "03 / Break and repair",
+      "capture": "failure-trace",
+      "crop": {
+        "x": 307,
+        "y": 95,
+        "w": 930,
+        "h": 485
+      },
+      "proofNote": "Imported local report\nObservation checks only",
+      "highlights": [
+        {
+          "x": 975.7,
+          "y": 481.2,
+          "w": 673.8,
+          "h": 304.0,
+          "at": 1.3,
+          "until": 3.8,
+          "tone": "red",
+          "label": "A valid order has no receipt"
+        }
+      ]
+    },
+    {
+      "id": "11-failure-trace-trail",
+      "kind": "recorded",
+      "duration": 3,
+      "title": "The receipt survived the crash.",
+      "support": "ORDER-A committed. The product key then rejects ORDER-B.",
+      "scope": "Local regression",
+      "chapter": "03 / Break and repair",
+      "capture": "failure-trace",
+      "videoStart": 4,
+      "crop": {
+        "x": 325,
+        "y": 75,
+        "w": 890,
+        "h": 373
+      },
+      "proofNote": "Actual delivery observations\nElapsed capture gap omitted"
+    },
+    {
+      "id": "11-failure-trace-retry",
+      "kind": "recorded",
+      "duration": 3,
+      "title": "The retry reuses A. B is still rejected.",
+      "support": "One shared product key cannot represent two business orders.",
+      "scope": "Local regression",
+      "chapter": "03 / Break and repair",
+      "capture": "failure-trace",
+      "videoStart": 7,
+      "crop": {
+        "x": 325,
+        "y": 447,
+        "w": 890,
+        "h": 335
+      },
+      "proofNote": "Actual delivery observations\nElapsed capture gap omitted"
+    },
+    {
+      "id": "12-restore",
+      "kind": "recorded",
+      "duration": 4.6,
+      "title": "Restore orderId. Run the same case.",
+      "support": "Only the fulfillment key changes.",
+      "scope": "Local regression",
+      "chapter": "03 / Break and repair",
+      "capture": "restore-order-id",
+      "helper": true,
+      "proofNote": "Actual recorded edit\nPaused for reading",
+      "crop": {
+        "x": 40,
+        "y": 0,
+        "w": 1200,
+        "h": 322
+      },
+      "highlights": [
+        {
+          "x": 933.5,
+          "y": 662.9,
+          "w": 523.0,
+          "h": 69.2,
+          "at": 2.4,
+          "until": 4.449999999999999,
+          "tone": "green",
+          "label": "Business order key"
+        }
+      ]
+    },
+    {
+      "id": "12-restore-saved",
+      "kind": "recorded",
+      "duration": 3.4000000000000004,
+      "title": "Restore orderId. Run the same case.",
+      "support": "Saved to the actual adapter. The next action runs this source.",
+      "scope": "Local regression",
+      "chapter": "03 / Break and repair",
+      "capture": "restore-order-id",
+      "helper": true,
+      "proofNote": "Actual recorded edit\nPaused for reading",
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 608
+      },
+      "videoStart": 4.6,
+      "highlights": [
+        {
+          "x": 937.5,
+          "y": 686.0,
+          "w": 443.8,
+          "h": 67.5,
+          "at": 0.4,
+          "until": 3.2500000000000004,
+          "tone": "green",
+          "label": "Saved order ID key"
+        }
+      ]
+    },
+    {
+      "id": "13-run-restored",
+      "kind": "recorded",
+      "duration": 6,
+      "title": "Test the repair against the same fault.",
+      "support": "Actual Python execution · same two orders, same fault.",
+      "scope": "Local regression",
+      "chapter": "03 / Break and repair",
+      "capture": "run-restored",
+      "helper": true,
+      "proofNote": "Captured actions\nPaused for reading",
+      "focus": {
+        "at": 1.7,
+        "until": 7,
+        "crop": {
+          "x": 35,
+          "y": 360,
+          "w": 1210,
+          "h": 350
+        }
+      }
+    },
+    {
+      "id": "14-import-restored",
+      "kind": "recorded",
+      "duration": 7,
+      "title": "Check every valid business order.",
+      "support": "Import the repaired report and inspect the observed receipts.",
+      "scope": "Local regression",
+      "chapter": "03 / Break and repair",
+      "capture": "import-restored",
+      "crop": {
+        "x": 307,
+        "y": 150,
+        "w": 930,
+        "h": 475
+      },
+      "proofNote": "Imported local report\nObservation checks only"
+    },
+    {
+      "id": "15-recorded-summary",
+      "kind": "report",
+      "duration": 8,
+      "title": "One line. Three recorded executions.",
+      "support": "Same case and fault. Source restored exactly.",
+      "scope": "Recorded report comparison",
+      "chapter": "04 / Keep the regression",
+      "reportSources": [
+        "before",
+        "broken",
+        "restored"
+      ],
+      "proofNote": "Actual local reports · independent receipt ledger"
+    },
+    {
+      "id": "16-package",
+      "kind": "package",
+      "duration": 5,
+      "title": "Keep the failure with your code.",
+      "support": "A runnable regression case, with the evidence needed to inspect it.",
+      "scope": "Explanation",
+      "chapter": "04 / Keep the regression"
+    },
+    {
+      "id": "17-export",
+      "kind": "recorded",
+      "duration": 7,
+      "title": "Export the original report.",
+      "support": "Inputs · fault conditions · assertions · receipts",
+      "scope": "Local regression",
+      "chapter": "04 / Keep the regression",
+      "capture": "export-evidence",
+      "focus": {
+        "at": 1.1,
+        "until": 8,
+        "crop": {
+          "x": 208,
+          "y": 86,
+          "w": 864,
+          "h": 628
+        }
+      },
+      "proofNote": "Original JSON download\nExact bytes verified"
+    },
+    {
+      "id": "18-states",
+      "kind": "recorded",
+      "duration": 4.133333333333334,
+      "title": "Incomplete: the receipt snapshot is missing.",
+      "support": "Unknown is not zero. A missing snapshot cannot establish a pass.",
+      "scope": "Local regression",
+      "chapter": "04 / Keep the regression",
+      "capture": "states",
+      "proofNote": "Recorded evidence-limit control\nPaused for reading",
+      "crop": {
+        "x": 327,
+        "y": 109,
+        "w": 888,
+        "h": 370
+      }
+    },
+    {
+      "id": "18-unresolved",
+      "kind": "recorded",
+      "duration": 3.8666666666666663,
+      "title": "Unresolved: the effect contract is unsupported.",
+      "support": "This external effect was not tested. No passing result is claimed.",
+      "scope": "Local regression",
+      "chapter": "04 / Keep the regression",
+      "capture": "states",
+      "proofNote": "Recorded evidence-limit control\nPaused for reading",
+      "videoStart": 4.133333333333334,
+      "crop": {
+        "x": 327,
+        "y": 84,
+        "w": 890,
+        "h": 290
+      }
+    },
+    {
+      "id": "19-close",
+      "kind": "close",
+      "duration": 6,
+      "title": "A failure you can replay. A repair you can verify.",
+      "support": "",
+      "scope": "Explanation",
+      "chapter": "ReplayGuard",
+      "localUrl": "prod.d2w687q4ucx6dk.amplifyapp.com",
+      "repositoryUrl": "github.com/sudo-anshul/replayguard"
+    }
+  ]
+}

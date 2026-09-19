@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Catch retry repairs that duplicate fulfillment or lose a valid order. Compare recorded receipts, test trusted Python handlers, and retain runnable regressions.">
+  <title>ReplayGuard — One receipt. For every order.</title>
+  <meta name="theme-color" content="#f6f7f2">
+  <link rel="icon" href="./mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="{{repair.css}}">
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"><span id="reading-progress-fill"></span></div>
+  <a class="skip" href="#bench">Skip to the repair inspector</a>
+  <header class="site-head">
+    <a class="brand" href="#top" aria-label="ReplayGuard home"><svg class="brand-mark" width="37" height="37" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+  <rect width="40" height="40" rx="11" fill="#D9F481"/>
+  <g stroke="#1B3025" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 17C11.3 11.1 17.8 8 23.2 10.5C25.3 11.5 26.9 13.1 28 15M22 15H28V9"/>
+    <path d="M30 23C28.7 28.9 22.2 32 16.8 29.5C14.7 28.5 13.1 26.9 12 25M18 25H12V31"/>
+  </g>
+</svg><span>ReplayGuard</span></a>
+    <span class="preview-label">Failure lab</span>
+    <nav aria-label="Main navigation"><a href="#replay">See the failure</a><a href="#run">Test your repair</a><a href="#evidence">AWS evidence</a></nav>
+    <button class="button small outline header-import" data-import>Import a run <span aria-hidden="true">↗</span></button>
+  </header>
+  <p id="header-feedback" class="import-feedback header-feedback shell" role="status" hidden></p>
+  <main id="top">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-track"><div class="hero-copy">
+        <p class="intro-label"><span class="line-icon" aria-hidden="true">↻</span> The failure lab for queued workers</p>
+        <span id="page-title" class="anchor-target" aria-hidden="true"></span><h1 id="hero-title">One receipt.<br>For every order.</h1>
+        <p class="hero-deck">A retry can fulfill twice. A careless fix can lose a valid order. ReplayGuard catches both.</p>
+        <div class="hero-actions"><button class="button primary" id="hero-play"><svg width="16" height="18" viewBox="0 0 16 18" aria-hidden="true"><path d="M2 1.5v15L15 9Z" fill="currentColor"/></svg>Replay the failure</button><a href="#run" class="link-action">Try it with code <span aria-hidden="true">↗</span></a></div>
+        <p class="hero-caption">Recorded local comparison · simulated fulfillment.<br>Separate AWS observations are linked below.</p>
+        <p class="scroll-cue"><span aria-hidden="true">↓</span> Scroll to follow the failure <span class="scroll-cue-count">01 — 04</span></p>
+      </div>
+      <div class="story-chapters" aria-label="The four recorded deliveries">
+        <article class="story-chapter" id="story-commit" data-chapter="1">
+          <span class="chapter-number" aria-hidden="true">01</span>
+          <div class="chapter-copy"><p class="chapter-kicker">ORDER-A · receipt committed</p><h2>The receipt exists.<br>The response doesn’t.</h2><p>A’s receipt is committed. The configured fault interrupts the response. Retrying now could fulfill the order twice.</p><div class="chapter-outcomes" aria-label="Receipt counts after delivery 1"></div></div>
+        </article>
+        <article class="story-chapter" id="story-collision" data-chapter="2">
+          <span class="chapter-number" aria-hidden="true">02</span>
+          <div class="chapter-copy"><p class="chapter-kicker">ORDER-B · same product, different order</p><h2>A valid order.<br>The wrong key.</h2><p>B requests the same product. The product key raises a payload conflict and leaves B without a receipt.</p><div class="chapter-outcomes" aria-label="Receipt counts after delivery 2"></div></div>
+        </article>
+        <article class="story-chapter" id="story-retry" data-chapter="3">
+          <span class="chapter-number" aria-hidden="true">03</span>
+          <div class="chapter-copy"><p class="chapter-kicker">ORDER-A · delivered again</p><h2>One retry.<br>A second fulfillment.</h2><p>Without a key, A’s retry creates another receipt. Both keyed handlers reuse A’s original receipt.</p><div class="chapter-outcomes" aria-label="Receipt counts after delivery 3"></div></div>
+        </article>
+        <article class="story-chapter" id="story-repaired" data-chapter="4">
+          <span class="chapter-number" aria-hidden="true">04</span>
+          <div class="chapter-copy"><p class="chapter-kicker">ORDER-B · returns in a new message</p><h2>One receipt.<br>For each order.</h2><p>B returns through another message. Only the order key finishes with one receipt for A and one for B.</p><div class="chapter-outcomes" aria-label="Final independent receipt counts"></div></div>
+        </article>
+      </div></div>
+      <div class="replay-stage" id="replay" data-source="recorded-reference" aria-label="Recorded four-delivery replay">
+        <div class="stage-top"><span class="recorded-label"><span aria-hidden="true"></span> Recorded local example</span><span id="stage-progress">4 of 4 deliveries</span></div>
+        <div class="stage-title"><div><h2>Two orders. Same product.</h2><p>One crash. Three choices of key.</p></div><svg class="notebook" width="64" height="62" viewBox="0 0 64 62" fill="none" aria-hidden="true"><path d="m21 6 33 6v39l-33-6z" fill="#cce0c2" stroke="#395e4c" stroke-width="1.5"/><path d="m10 14 31-7v39l-31 7z" fill="#fffef6" stroke="#395e4c" stroke-width="1.5"/><path d="m16 20 18-4m-18 9 18-4m-18 9 11-2m-21-4 5-1m-5 8 5-1m-5 8 5-1" stroke="#7b9886" stroke-width="1.5"/><path d="m31 41 5-1v5l-2-1-3 2z" fill="#a25338"/></svg></div>
+        <div class="replay-matrix" id="replay-matrix" aria-label="Receipts per order for three candidate handlers"></div>
+        <div class="replay-narration"><span id="step-mark" aria-hidden="true">✓</span><div><strong id="replay-title">The order key protects both orders.</strong><p id="replay-detail">Each order has one receipt. The other repairs duplicate work or lose ORDER-B.</p></div></div>
+        <div class="replay-controls"><button id="replay-toggle" class="icon-button" aria-label="Replay recorded deliveries"><svg width="14" height="16" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 1v14l12-7Z" fill="currentColor"/></svg></button><div class="step-buttons" id="step-buttons" role="group" aria-label="Jump to a recorded delivery"></div><button class="icon-button" id="replay-back" aria-label="Previous delivery">←</button><button class="icon-button" id="replay-next" aria-label="Next delivery">→</button></div>
+        <div class="scroll-replay-mode" hidden><span>Scroll back to rewind the recording</span><button id="scroll-mode" type="button" aria-pressed="true">Scroll linked ↕</button></div>
+        <p class="replay-basis" id="replay-basis">Final counts checked against independent receipt snapshots.</p>
+      </div>
+    </section>
+    <div class="proof-strip shell" aria-label="Project evidence"><a href="#evidence"><span class="proof-icon" aria-hidden="true">↳</span><span>Started with a real AWS failure<strong>Lambda + SQS + DynamoDB</strong></span><span aria-hidden="true">↗</span></a><a href="https://youtu.be/CGE19upS66A" target="_blank" rel="noopener"><span class="proof-icon" aria-hidden="true">▷</span><span>Earlier demo (2:43)<strong>Earlier interface and cases</strong></span><span aria-hidden="true">↗</span></a><a href="https://github.com/sudo-anshul/replayguard" target="_blank" rel="noopener"><span class="proof-icon code-icon" aria-hidden="true">{ }</span><span>Take the failure with you<strong>Open source. Runnable regression.</strong></span><span aria-hidden="true">↗</span></a></div>
+
+    <section class="bench-section shell" id="bench" aria-labelledby="bench-title">
+      <div class="section-heading"><div><p class="section-kicker">Inspect the repair</p><h2 id="bench-title" tabindex="-1">Find the order your fix missed.</h2><p>Choose a handler. See every case it passed, broke or could not resolve.</p></div><div class="bench-actions"><button class="button outline" data-import>Import a run <span aria-hidden="true">↗</span></button><button class="text-button" id="view-json">View original JSON</button></div></div>
+      <p id="import-status" class="import-feedback" role="status" hidden></p>
+      <div class="bench-frame">
+        <div class="bench-source"><div><span class="source-mark" aria-hidden="true"></span><strong id="source-label">Recorded example</strong><span id="source-meta">19 September 2026 · Python execution</span></div><label class="sr-only" for="source-select">Report source</label><select id="source-select"><option value="reference">Recorded comparison</option><option value="transfer">DispatchDesk example</option><option value="import" disabled>Imported run</option></select></div>
+        <p id="source-context" class="source-context">Bundled local comparison. The opening story always follows this recording; imported files only change this inspector.</p>
+        <div class="policy-bar"><span class="policy-label">Inspect a handler</span><div id="candidate-buttons" class="candidate-buttons" role="group" aria-label="Candidate handler"></div></div>
+        <div id="coverage" class="coverage" aria-label="Coverage across all cases"></div>
+        <div class="inspection-grid">
+          <aside class="case-sidebar"><div class="case-sidebar-title"><h3>Case coverage</h3><span id="case-count">8 cases</span></div><div id="case-list"></div><p class="case-note">Evidence-limit controls intentionally stay incomplete or unresolved.</p></aside>
+          <div class="result-panel" id="result-panel"><span id="inspector" class="anchor-target" aria-hidden="true"></span>
+            <div class="result-heading"><p id="case-context" class="section-kicker"></p><span id="verdict" class="status"></span></div>
+            <h3 id="result-title" tabindex="-1"></h3><p id="result-description" class="result-description"></p>
+            <div id="order-receipts" class="order-receipts"></div>
+            <div id="business-checks" class="business-checks"></div>
+            <div class="technical-details"><details id="checks-details"><summary><span>Execution &amp; source checks</span><span id="check-count"></span></summary><div id="check-list"></div></details><details><summary><span>Follow the delivery trail</span><span id="delivery-count"></span></summary><div id="delivery-trail"></div></details><details><summary><span>Source fingerprints</span><span>Inspect</span></summary><p class="detail-note">Captured Python source files. Hashes identify the supplied code; they do not authenticate the report’s origin.</p><div id="fingerprints"></div></details></div>
+            <p class="result-boundary" id="result-boundary"></p>
+          </div>
+        </div>
+      </div>
+      <p class="bench-footnote">Your file stays in this browser. Importing checks the supplied observations; it does not run Python or authenticate their origin.</p>
+    </section>
+
+    <section class="run-section" id="run" aria-labelledby="run-title"><div class="shell run-grid">
+      <div class="run-copy"><p class="section-kicker">A small test. A useful habit.</p><h2 id="run-title">Break the repair.<br>Keep the proof.</h2><p>Change the key from order to product. Watch a valid order lose its receipt. Restore the key, and keep the same case as a regression.</p><a class="button lime" id="download-kit" href="./replayguard-repair-lab.zip" download="replayguard-repair-lab-20260920.zip">Download the regression kit <span aria-hidden="true">↓</span></a><p class="run-requirements">Extract the kit, then open a terminal in its folder.<br>Python 3.11+ · macOS or Linux · No packages or AWS credentials</p><div class="tutorial-steps" role="group" aria-label="Local repair tutorial"><button data-tutorial="0" aria-pressed="true"><span>1</span><span>Protect both orders<small>Run the order-key handler</small></span><span aria-hidden="true">↗</span></button><button data-tutorial="1" aria-pressed="false"><span>2</span><span>Lose a different valid order<small>Change orderId to sku</small></span><span aria-hidden="true">↗</span></button><button data-tutorial="2" aria-pressed="false"><span>3</span><span>Restore the repair<small>Same two orders. Both fulfilled.</small></span><span aria-hidden="true">↗</span></button></div></div>
+      <div class="tutorial-panel"><div class="editor-label"><span><span class="file-icon" aria-hidden="true">⌘</span> candidate/adapter.py</span><span>Python</span></div><pre class="adapter-code"><code><span class="code-muted">def</span> build(effects):
+    <span class="code-muted">def</span> handle(delivery):
+        order = delivery[<span class="code-string">"order"</span>]
+        <span class="code-muted">return</span> effects.fulfill(
+            order, <mark id="code-key">key=order["orderId"]</mark>
+        )
+    <span class="code-muted">return</span> handle</code></pre><div class="terminal-area"><div class="terminal-heading"><span id="tutorial-action">Copy the handler and run one case</span><button class="copy-button" id="copy-command">Copy commands</button></div><p id="edit-instruction" hidden></p><pre><code id="tutorial-command"></code></pre></div><div class="expected-result"><span>Expected result</span><strong id="expected-result"></strong><code id="expected-exit"></code></div><div class="tutorial-import"><div><strong id="import-prompt">Inspect one receipt for each order.</strong><p id="import-filename">Import before.json after the command finishes.</p></div><button class="button primary" data-import>Import result <span aria-hidden="true">↗</span></button></div><p class="import-feedback tutorial-feedback" id="tutorial-feedback" role="status" hidden></p></div>
+      <details class="advanced"><summary>Ready for your own worker? <span>Adapter guide &amp; evidence limits <span aria-hidden="true">↗</span></span></summary><div><p>Your trusted Python adapter connects to the simulated receiver. <a href="./adapter-guide.html" target="_blank" rel="noopener">Read the adapter guide</a>.</p><p><strong>Check the limits:</strong> the full example suite includes three handlers and deliberate evidence-limit controls. An aggregate <strong>Unresolved / exit 3</strong> is expected.</p><code>python3 -I -S scripts/test_repair.py --output repair-results.json</code></div></details>
+    </div></section>
+
+    <section class="evidence-section shell" id="evidence" aria-labelledby="evidence-title"><a class="aws-current-callout" href="./aws-key-scope.html"><div><p class="section-kicker">The two-order AWS experiment</p><strong>Three keys. Two valid orders.</strong><p>{{AWS_KEY_SCOPE_LABEL}}</p></div><span>Inspect the AWS comparison <span aria-hidden="true">↗</span></span></a><div class="evidence-copy"><p class="section-kicker">Earlier AWS experiment · 18 September 2026</p><h2 id="evidence-title">The retry was real.<br>The lesson travels.</h2><p>A Lambda worker crashed after simulated fulfillment succeeded. Standard SQS redelivered the message. A separate observer counted the receipts in DynamoDB.</p><a class="link-action" href="./aws-run.html" target="_blank" rel="noopener">Inspect the recorded AWS evidence <span aria-hidden="true">↗</span></a></div><div class="aws-proof"><div class="aws-flow" aria-label="SQS to Lambda to fulfillment Lambda to DynamoDB"><span>SQS<small>redelivers</small></span><b aria-hidden="true">→</b><span>Lambda<small>worker</small></span><b aria-hidden="true">→</b><span>Fulfillment<small>Lambda</small></span><b aria-hidden="true">→</b><span>DynamoDB<small>receipts</small></span></div><div class="aws-outcomes"><div><span>Vulnerable handler</span><strong>2 <small>receipts</small></strong></div><div><span>Repaired handler</span><strong>1 <small>receipt</small></strong></div><p><span aria-hidden="true">✓</span><strong>16 assertions</strong> passed in the recorded AWS run.</p></div><p class="aws-boundary">The experiment stacks were removed after capture. AWS Amplify hosts the current viewer. New regressions run locally; this replay makes no AWS calls.</p></div></section>
+    <footer class="shell"><div><a class="brand footer-brand" href="#top"><svg class="brand-mark" width="37" height="37" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+  <rect width="40" height="40" rx="11" fill="#D9F481"/>
+  <g stroke="#1B3025" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 17C11.3 11.1 17.8 8 23.2 10.5C25.3 11.5 26.9 13.1 28 15M22 15H28V9"/>
+    <path d="M30 23C28.7 28.9 22.2 32 16.8 29.5C14.7 28.5 13.1 26.9 12 25M18 25H12V31"/>
+  </g>
+</svg><span class="brand-word">ReplayGuard</span></a><p>Keep the failure. Test the repair.</p></div><nav aria-label="Project links"><a href="https://github.com/sudo-anshul/replayguard" target="_blank" rel="noopener">Source</a><a href="https://youtu.be/CGE19upS66A" target="_blank" rel="noopener">Earlier demo · 2:43</a><a href="./adapter-guide.html">Use your worker</a></nav><p class="footer-note">Built for WeMakeDevs First Commit.<br>Declared faults. Independently checked receipts.</p></footer>
+  </main>
+  <input id="report-file" type="file" accept="application/json,.json" hidden>
+  <dialog id="json-dialog" aria-labelledby="json-title"><div class="dialog-head"><div><p class="section-kicker">Original evidence</p><h2 id="json-title">The supplied report.</h2></div><button class="icon-button" id="close-json" aria-label="Close original JSON">×</button></div><p class="detail-note">Preserved as imported. Case selection does not rewrite the evidence.</p><pre id="raw-json" tabindex="0" aria-label="Original report JSON"></pre><button class="button primary" id="download-json">Download original JSON <span aria-hidden="true">↓</span></button></dialog>
+  <div class="toast" id="toast" role="status" hidden></div><p class="sr-only" id="selection-announcement" role="status" aria-live="polite" aria-atomic="true"></p>
+  <noscript><p class="noscript">Enable JavaScript to inspect the embedded evidence. The <a href="https://github.com/sudo-anshul/replayguard">source and regression kit</a> are available separately.</p></noscript>
+  <script id="example-report" type="application/json" data-encoding="original-json-text">/* REPORT_JSON */</script>
+  <script id="transfer-report" type="application/json" data-encoding="original-json-text">/* TRANSFER_JSON */</script>
+  <script src="{{repair-contract.js}}"></script>
+  <script src="{{repair-data.js}}"></script>
+  <script src="{{repair-imports.js}}"></script>
+  <script src="{{repair-app.js}}"></script>
+  <script src="{{repair-motion.js}}"></script>
+</body>
+</html>

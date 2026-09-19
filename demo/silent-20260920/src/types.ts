@@ -1,0 +1,22 @@
+export type Tone = 'green' | 'red' | 'amber' | 'muted';
+export type Scope = 'Recorded AWS run' | 'Local regression' | 'Explanation' | 'Recorded report comparison';
+export type Highlight = {at:number; until:number; x:number; y:number; w:number; h:number; label?:string; tone?:Tone};
+export type EvidenceRow = {label:string; status:string; exitCode?:number; expected: {id:string; count:number}[]; observed:{id:string; count:number}[]; sourceHash:string};
+export type Scene = {
+  id:string; kind:'recorded'|'scope'|'fault'|'report'|'package'|'close';
+  duration:number; durationFrames:number; startFrame:number;
+  chapter:string; title:string; support?:string; scope:Scope;
+  video?:string; videoStart?:number; playbackRate?:number;
+  sourceWidth?:number; sourceHeight?:number;
+  crop?:{x:number;y:number;w:number;h:number};
+  framing?:'wide'|'code'|'full';
+  focus?:{at:number;until:number;crop:{x:number;y:number;w:number;h:number}};
+  helper?:boolean;
+  editorialReadingHoldSeconds?:number;
+  sourceElapsedSeconds?:number;
+  highlights?:Highlight[]; proofNote?:string; captureMethod?:string;
+  rows?:EvidenceRow[]; sourceHashes?:string[];
+  faultBoundary?:'after-response'|'before-response';
+  localUrl?:string; repositoryUrl?:string;
+};
+export type Film = {title:string; fps:number; durationFrames:number; scenes:Scene[]; draft:boolean; silent:true};

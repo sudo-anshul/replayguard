@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-09-19T19:48:16.671067+00:00",
+  "method": "CloudFormation.DescribeStacks against exact recorded experiment ARNs",
+  "experiments": [
+    {
+      "evidence": "key-scope-20260920.json",
+      "runId": "85500aff-3d08-483e-9e63-78a9723eb67a",
+      "exactStackArn": "arn:aws:cloudformation:us-east-1:570082421930:stack/replayguard-keys-20260920/97630a70-b45b-11f1-a9d2-0affedd6353d",
+      "status": "DELETE_COMPLETE",
+      "deleted": true
+    },
+    {
+      "evidence": "key-scope-20260920-r2.json",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "exactStackArn": "arn:aws:cloudformation:us-east-1:570082421930:stack/replayguard-keys-20260920-r2/8aeb2320-b45d-11f1-88be-0afffbc0c917",
+      "status": "DELETE_COMPLETE",
+      "deleted": true
+    },
+    {
+      "evidence": "key-scope-20260920-r3.json",
+      "runId": "82a1155f-c729-4b56-a32f-b4bc9a70a3ad",
+      "exactStackArn": "arn:aws:cloudformation:us-east-1:570082421930:stack/replayguard-keys-20260920-r3/31f9ca70-b460-11f1-927d-0e169744b13b",
+      "status": "DELETE_COMPLETE",
+      "deleted": true
+    }
+  ],
+  "hosting": {
+    "name": "replayguard-hosting",
+    "status": "CREATE_COMPLETE"
+  },
+  "allExperimentsDeleted": true
+}

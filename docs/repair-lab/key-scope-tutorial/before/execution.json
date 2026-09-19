@@ -1,0 +1,24 @@
+{
+  "stage": "before",
+  "startedAt": "2026-09-19T18:37:46.426069+00:00",
+  "completedAt": "2026-09-19T18:37:46.493220+00:00",
+  "command": [
+    "-I",
+    "-S",
+    "scripts/test_repair.py",
+    "--adapter",
+    "candidate/adapter.py",
+    "--case",
+    "interleaved-retries",
+    "--output",
+    "before.json"
+  ],
+  "processExitCode": 0,
+  "sourceSha256": "6f0a7f303d7a7b6c8a1ef2ca629cdcce88b9c8afe113319c18459ae94fd2c6fc",
+  "reportSha256": "4bc572d87955d30379f1d86038fd1b77ff39a1a962f81bd43f5427e09dfaccd6",
+  "receiptCounts": {
+    "ORDER-A": 1,
+    "ORDER-B": 1
+  },
+  "status": "pass"
+}

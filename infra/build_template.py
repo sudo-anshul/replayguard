@@ -5,6 +5,7 @@ No build container, deployment bucket, SAM, CDK or packaging service is required
 Run this script after changing either Lambda; commit the generated template.
 """
 
+import argparse
 import json
 from pathlib import Path
 
@@ -44,7 +45,10 @@ def role(statements):
     }
 
 
-def build_template():
+def build_template(experiment="baseline"):
+    if experiment not in ("baseline", "key-scope"):
+        raise ValueError("Unknown experiment")
+    source_prefix = "key_" if experiment == "key-scope" else ""
     resources = {
         "Ledger": {
             "Type": "AWS::DynamoDB::Table",
@@ -96,7 +100,7 @@ def build_template():
                 "ReservedConcurrentExecutions": {"Fn::If": ["HasReservation", ref("ReservedConcurrency"), ref("AWS::NoValue")]},
                 "Architectures": ["arm64"],
                 "Environment": {"Variables": {"LEDGER_TABLE": ref("Ledger"), "LAB_EXPIRES_AT": ref("LabExpiresAt")}},
-                "Code": {"ZipFile": (ROOT / "src/provider.py").read_text()},
+                "Code": {"ZipFile": (ROOT / ("src/" + source_prefix + "provider.py")).read_text()},
                 "Tags": [{"Key": "Project", "Value": "ReplayGuard"}],
             },
         },
@@ -108,7 +112,7 @@ def build_template():
                 "ReservedConcurrentExecutions": {"Fn::If": ["HasReservation", ref("ReservedConcurrency"), ref("AWS::NoValue")]},
                 "Architectures": ["arm64"],
                 "Environment": {"Variables": {"PROVIDER_FUNCTION_ARN": arn("ProviderFunction"), "LAB_EXPIRES_AT": ref("LabExpiresAt")}},
-                "Code": {"ZipFile": (ROOT / "src/worker.py").read_text()},
+                "Code": {"ZipFile": (ROOT / ("src/" + source_prefix + "worker.py")).read_text()},
                 "Tags": [{"Key": "Project", "Value": "ReplayGuard"}],
             },
         },
@@ -121,7 +125,7 @@ def build_template():
             },
         },
     }
-    return {
+    template = {
         "AWSTemplateFormatVersion": "2010-09-09",
         "Description": "ReplayGuard: bounded, expiring SQS/Lambda failure lab and independent simulated fulfillment receipts.",
         "Parameters": {
@@ -139,9 +143,15 @@ def build_template():
             "Region": {"Value": ref("AWS::Region")}, "Expiry": {"Value": ref("LabExpiresAt")},
         },
     }
+    if experiment == "key-scope":
+        template["Outputs"].update({"Experiment": {"Value": "key-scope"}, "MappingId": {"Value": ref("WorkerQueueMapping")}})
+    return template
 
 
 if __name__ == "__main__":
-    target = ROOT / "infra/template.json"
-    target.write_text(json.dumps(build_template(), indent=2) + "\n")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--experiment", choices=("baseline", "key-scope"), default="baseline")
+    args = parser.parse_args()
+    target = ROOT / ("infra/template-key-scope.json" if args.experiment == "key-scope" else "infra/template.json")
+    target.write_text(json.dumps(build_template(args.experiment), indent=2) + "\n")
     print(f"Generated {target.relative_to(ROOT)} ({target.stat().st_size:,} bytes)")

@@ -1,0 +1,74 @@
+{
+  "id": "states",
+  "method": "timestamped browser screenshots of actual UI actions; editorial holds allowed; not native video",
+  "startedAt": "2026-09-19T18:55:22.886Z",
+  "tabUrl": "http://127.0.0.1:4178/index.html",
+  "sourceManifestSha256": "f1e8e0843a10c010ee22fcb67634d8e449f712521ec7ba1df8bed0f0d078d6d0",
+  "pathMappingNote": "Original machine-specific paths replaced with package-relative deduplicated original screenshot containers. Original timestamps, names, detected formats and encoded-byte hashes retained. No additional lossy conversion. Canonical RGBA hashes use the FFmpeg build recorded in source-manifest.json.",
+  "frames": [
+    {
+      "timestamp": 1789844122888,
+      "path": "../../frames/7ca8dbfddddb212b5354b6223ef6b8d3cf6794f085b45b3f5a59a8ee61dec93d.jpg",
+      "sourceOriginalName": "0000.png",
+      "sourceDetectedFormat": "JPEG",
+      "sourceFrameSha256": "7ca8dbfddddb212b5354b6223ef6b8d3cf6794f085b45b3f5a59a8ee61dec93d",
+      "rgbaSha256": "de060c46cbecbb7e23164da9dc2b2a303a7470ec60f0419ef89089a8c86e79ad"
+    },
+    {
+      "timestamp": 1789844122940,
+      "path": "../../frames/50eccded8ab7e779f22dc2e3e7d465705d2f4c7a03cbfb66cdbca079706ed0c3.jpg",
+      "sourceOriginalName": "0001.png",
+      "sourceDetectedFormat": "JPEG",
+      "sourceFrameSha256": "50eccded8ab7e779f22dc2e3e7d465705d2f4c7a03cbfb66cdbca079706ed0c3",
+      "rgbaSha256": "8c21d5137f0617cea7d789a7a52e4997ffaea10d391ab74061f8322280505011"
+    },
+    {
+      "timestamp": 1789844123042,
+      "path": "../../frames/9cda886014320b55adbe1d726cee4af1016818f6dac5b31697e5af86dbd68e4a.jpg",
+      "sourceOriginalName": "0002.png",
+      "sourceDetectedFormat": "JPEG",
+      "sourceFrameSha256": "9cda886014320b55adbe1d726cee4af1016818f6dac5b31697e5af86dbd68e4a",
+      "rgbaSha256": "5f3fab619d097c7a506082ff5b5a7293944c175200776cbaac55f52b28090042"
+    },
+    {
+      "timestamp": 1789844123062,
+      "path": "../../frames/57afda6242b92dcc90a7d666b6fb753bb2b81a88075dfc5656356493ee2bd8dd.jpg",
+      "sourceOriginalName": "0003.png",
+      "sourceDetectedFormat": "JPEG",
+      "sourceFrameSha256": "57afda6242b92dcc90a7d666b6fb753bb2b81a88075dfc5656356493ee2bd8dd",
+      "rgbaSha256": "818af1f79bd0668fdb4871803b91ef3f0eb6dd0c2098f6876b1eb30a6a7c1b76"
+    },
+    {
+      "timestamp": 1789844123611,
+      "path": "../../frames/dd4376b8b3beb64e1c9bf1b4d86daa47d8ed1c75bbb709c526792a4f5069f775.jpg",
+      "sourceOriginalName": "0004.png",
+      "sourceDetectedFormat": "JPEG",
+      "sourceFrameSha256": "dd4376b8b3beb64e1c9bf1b4d86daa47d8ed1c75bbb709c526792a4f5069f775",
+      "rgbaSha256": "493cc466c36021d8c547621dcb785dcaf57d23ae2c2666362e0965d841032203"
+    },
+    {
+      "timestamp": 1789844123655,
+      "path": "../../frames/dd4376b8b3beb64e1c9bf1b4d86daa47d8ed1c75bbb709c526792a4f5069f775.jpg",
+      "sourceOriginalName": "0005.png",
+      "sourceDetectedFormat": "JPEG",
+      "sourceFrameSha256": "dd4376b8b3beb64e1c9bf1b4d86daa47d8ed1c75bbb709c526792a4f5069f775",
+      "rgbaSha256": "493cc466c36021d8c547621dcb785dcaf57d23ae2c2666362e0965d841032203"
+    },
+    {
+      "timestamp": 1789844123758,
+      "path": "../../frames/c54f5c24e705535b68efe0a366c3e78914fb3b3f1051eb502689546f880df18f.jpg",
+      "sourceOriginalName": "0006.png",
+      "sourceDetectedFormat": "JPEG",
+      "sourceFrameSha256": "c54f5c24e705535b68efe0a366c3e78914fb3b3f1051eb502689546f880df18f",
+      "rgbaSha256": "869df2426ef71fb060cc9e38efe943633fa4d71ecc0ca3ce25af1e9461ca73e0"
+    },
+    {
+      "timestamp": 1789844123793,
+      "path": "../../frames/3586b419e01ce99dcce5ca21f74fbbc61553807fb167664db5e38ad854b21c45.jpg",
+      "sourceOriginalName": "0007.png",
+      "sourceDetectedFormat": "JPEG",
+      "sourceFrameSha256": "3586b419e01ce99dcce5ca21f74fbbc61553807fb167664db5e38ad854b21c45",
+      "rgbaSha256": "d9b72b34a215264a7a11b7fea28e28517c75805205b4d7d6399908b26c1cb6a5"
+    }
+  ]
+}

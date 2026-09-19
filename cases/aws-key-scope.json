@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 2,
+  "kind": "replayguard-aws-key-scope-case",
+  "name": "two-orders-one-sku",
+  "orders": [
+    {"orderId": "ORDER-A", "sku": "FIELD-NOTES-3PACK", "quantity": 1},
+    {"orderId": "ORDER-B", "sku": "FIELD-NOTES-3PACK", "quantity": 1}
+  ],
+  "candidates": ["no-key", "sku-key", "order-key"],
+  "fault": {"type": "after-commit-first-receive"},
+  "sequence": "first-order-commit-and-failure-before-second-order-send",
+  "bounds": {"maxWaitSeconds": 420, "maxMessages": 6, "drainGraceSeconds": 20}
+}

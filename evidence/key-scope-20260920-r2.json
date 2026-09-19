@@ -1,0 +1,3333 @@
+{
+  "schemaVersion": 2,
+  "kind": "replayguard-aws-key-scope-report",
+  "provenance": "aws",
+  "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+  "recordedAt": "2026-09-19T19:17:48.569Z",
+  "region": "us-east-1",
+  "requestedStack": "replayguard-keys-20260920-r2",
+  "case": {
+    "schemaVersion": 2,
+    "kind": "replayguard-aws-key-scope-case",
+    "name": "two-orders-one-sku",
+    "orders": [
+      {
+        "orderId": "ORDER-A",
+        "sku": "FIELD-NOTES-3PACK",
+        "quantity": 1
+      },
+      {
+        "orderId": "ORDER-B",
+        "sku": "FIELD-NOTES-3PACK",
+        "quantity": 1
+      }
+    ],
+    "candidates": [
+      "no-key",
+      "sku-key",
+      "order-key"
+    ],
+    "fault": {
+      "type": "after-commit-first-receive"
+    },
+    "sequence": "first-order-commit-and-failure-before-second-order-send",
+    "bounds": {
+      "maxWaitSeconds": 420,
+      "maxMessages": 6,
+      "drainGraceSeconds": 20
+    }
+  },
+  "messages": [
+    {
+      "candidate": "no-key",
+      "orderId": "ORDER-A",
+      "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+      "phase": 1,
+      "sentAt": "2026-09-19T19:12:46.225Z",
+      "bodySha256": "bdabf55e95ecaaa8936365617257322581fd9a9cce0cce08c6128c45980636b4"
+    },
+    {
+      "candidate": "sku-key",
+      "orderId": "ORDER-A",
+      "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+      "phase": 1,
+      "sentAt": "2026-09-19T19:12:46.528Z",
+      "bodySha256": "cc86424e80d2cb1f211a3f99347ae7c7639cdf5be0fffdbf912bcc1013d2187f"
+    },
+    {
+      "candidate": "order-key",
+      "orderId": "ORDER-A",
+      "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+      "phase": 1,
+      "sentAt": "2026-09-19T19:12:46.821Z",
+      "bodySha256": "dc7110c669e5c9e8649ec9cad1afe2e9aab6759385fcb3b5fc5de28b18495bc2"
+    },
+    {
+      "candidate": "no-key",
+      "orderId": "ORDER-B",
+      "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+      "phase": 2,
+      "sentAt": "2026-09-19T19:13:05.175Z",
+      "bodySha256": "f0435555802994378b0c67fd153b583fc81258c16d3f85c325ba414210c47823"
+    },
+    {
+      "candidate": "sku-key",
+      "orderId": "ORDER-B",
+      "messageId": "0ae8beac-6837-4dcb-a344-bb8e17030f9c",
+      "phase": 2,
+      "sentAt": "2026-09-19T19:13:05.488Z",
+      "bodySha256": "9f434871a959f2850447aebcf2da444c65ca7e97688d1a44aaec80a77898d22e"
+    },
+    {
+      "candidate": "order-key",
+      "orderId": "ORDER-B",
+      "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+      "phase": 2,
+      "sentAt": "2026-09-19T19:13:05.791Z",
+      "bodySha256": "59b1ae9e6a39fb66d1abe2a6fca62206e9342ec3d323638fbed5550dd6e5bc32"
+    }
+  ],
+  "receipts": {
+    "no-key": [
+      {
+        "invocationId": "de3d349e-e83a-43a1-a0e9-3cfaaeb87ebd",
+        "createdAt": "2026-09-19T19:13:05.095Z",
+        "receiptId": "06a339ea95f742ceb7f559f18b7b3ee7",
+        "order": {
+          "sku": "FIELD-NOTES-3PACK",
+          "orderId": "ORDER-B",
+          "quantity": 1
+        },
+        "receiveCount": 1,
+        "expiresAt": 1790017985,
+        "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+        "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+        "candidate": "no-key",
+        "workerRequestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+        "key": null,
+        "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+        "SK": "RECEIPT#06a339ea95f742ceb7f559f18b7b3ee7"
+      },
+      {
+        "invocationId": "f412ca4b-bf16-4f06-a18a-611b9682eb34",
+        "createdAt": "2026-09-19T19:13:58.171Z",
+        "receiptId": "18bcc67b07fc43a5894de7cb09cb287b",
+        "order": {
+          "sku": "FIELD-NOTES-3PACK",
+          "orderId": "ORDER-A",
+          "quantity": 1
+        },
+        "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+        "receiveCount": 2,
+        "expiresAt": 1790018038,
+        "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+        "candidate": "no-key",
+        "workerRequestId": "88d6da4d-01c8-5d9b-a740-b965e0fa01b9",
+        "key": null,
+        "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+        "SK": "RECEIPT#18bcc67b07fc43a5894de7cb09cb287b"
+      },
+      {
+        "invocationId": "95ab65a0-e1a3-4d79-be26-ae14c8a9436f",
+        "createdAt": "2026-09-19T19:14:17.099Z",
+        "receiptId": "806354e22db64b0695a510037e3a4f6a",
+        "order": {
+          "orderId": "ORDER-B",
+          "quantity": 1,
+          "sku": "FIELD-NOTES-3PACK"
+        },
+        "receiveCount": 2,
+        "expiresAt": 1790018057,
+        "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+        "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+        "candidate": "no-key",
+        "workerRequestId": "f94f2f5b-f869-5a44-a933-4c731955ab9b",
+        "key": null,
+        "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+        "SK": "RECEIPT#806354e22db64b0695a510037e3a4f6a"
+      },
+      {
+        "invocationId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+        "createdAt": "2026-09-19T19:12:47.966Z",
+        "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+        "order": {
+          "sku": "FIELD-NOTES-3PACK",
+          "orderId": "ORDER-A",
+          "quantity": 1
+        },
+        "receiveCount": 1,
+        "expiresAt": 1790017967,
+        "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+        "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+        "candidate": "no-key",
+        "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+        "key": null,
+        "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+        "SK": "RECEIPT#b5a8e0bc5eca4f6ab203f08598943844"
+      }
+    ],
+    "sku-key": [
+      {
+        "invocationId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+        "createdAt": "2026-09-19T19:12:48.094Z",
+        "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+        "order": {
+          "orderId": "ORDER-A",
+          "quantity": 1,
+          "sku": "FIELD-NOTES-3PACK"
+        },
+        "expiresAt": 1790017968,
+        "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+        "receiveCount": 1,
+        "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+        "candidate": "sku-key",
+        "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+        "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+        "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#sku-key",
+        "SK": "RECEIPT#8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2"
+      }
+    ],
+    "order-key": [
+      {
+        "invocationId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+        "createdAt": "2026-09-19T19:12:52.756Z",
+        "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+        "order": {
+          "quantity": 1,
+          "orderId": "ORDER-A",
+          "sku": "FIELD-NOTES-3PACK"
+        },
+        "receiveCount": 1,
+        "expiresAt": 1790017972,
+        "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+        "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+        "candidate": "order-key",
+        "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+        "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+        "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+        "SK": "RECEIPT#321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c"
+      },
+      {
+        "invocationId": "2adedbc5-4ef3-4867-990e-2628ebadd5de",
+        "createdAt": "2026-09-19T19:13:06.863Z",
+        "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+        "order": {
+          "orderId": "ORDER-B",
+          "sku": "FIELD-NOTES-3PACK",
+          "quantity": 1
+        },
+        "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+        "receiveCount": 1,
+        "expiresAt": 1790017986,
+        "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+        "candidate": "order-key",
+        "workerRequestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+        "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+        "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+        "SK": "RECEIPT#5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a"
+      }
+    ]
+  },
+  "events": [
+    {
+      "candidate": "no-key",
+      "component": "worker",
+      "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "received",
+      "timestamp": "2026-09-19T19:12:46.364Z",
+      "source": "worker",
+      "eventId": "39914880999927518132472906653734571042023921728360284162",
+      "eventTimestamp": 1789845166365,
+      "ingestionTime": 1789845171084,
+      "logStreamName": "2026/09/19/[$LATEST]5dd132bec99f44c894a4a9109c15d618",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:03.563Z"
+    },
+    {
+      "candidate": "sku-key",
+      "component": "worker",
+      "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "received",
+      "timestamp": "2026-09-19T19:12:46.657Z",
+      "source": "worker",
+      "eventId": "39914881006439335730443848612999485705960111365862391810",
+      "eventTimestamp": 1789845166657,
+      "ingestionTime": 1789845172686,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:03.563Z"
+    },
+    {
+      "accepted": true,
+      "candidate": "no-key",
+      "component": "provider",
+      "key": null,
+      "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+      "receiveCount": 1,
+      "requestId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+      "reused": false,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "accepted",
+      "timestamp": "2026-09-19T19:12:49.445Z",
+      "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+      "source": "provider",
+      "eventId": "39914881068613813343947225933079905135969102032480043010",
+      "eventTimestamp": 1789845169445,
+      "ingestionTime": 1789845173909,
+      "logStreamName": "2026/09/19/[$LATEST]701708556e6548c59968da6bdb7a08d1",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:13:04.457Z"
+    },
+    {
+      "candidate": "no-key",
+      "component": "provider",
+      "fault": "after-commit-first-receive",
+      "key": null,
+      "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+      "receiveCount": 1,
+      "requestId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "fault_injected",
+      "timestamp": "2026-09-19T19:12:49.445Z",
+      "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+      "source": "provider",
+      "eventId": "39914881068613813343947225933079905135969102032480043011",
+      "eventTimestamp": 1789845169445,
+      "ingestionTime": 1789845173909,
+      "logStreamName": "2026/09/19/[$LATEST]701708556e6548c59968da6bdb7a08d1",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:13:04.457Z"
+    },
+    {
+      "candidate": "no-key",
+      "component": "worker",
+      "errorType": "InjectedAfterCommit",
+      "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "provider_failed",
+      "timestamp": "2026-09-19T19:12:49.449Z",
+      "source": "worker",
+      "eventId": "39914881068703016324741348422230726194871468612803887107",
+      "eventTimestamp": 1789845169449,
+      "ingestionTime": 1789845171084,
+      "logStreamName": "2026/09/19/[$LATEST]5dd132bec99f44c894a4a9109c15d618",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:03.563Z"
+    },
+    {
+      "candidate": "no-key",
+      "component": "worker",
+      "error": "Provider failed: InjectedAfterCommit",
+      "errorType": "RuntimeError",
+      "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "failed",
+      "timestamp": "2026-09-19T19:12:49.449Z",
+      "source": "worker",
+      "eventId": "39914881068703016324741348422230726194871468612803887108",
+      "eventTimestamp": 1789845169449,
+      "ingestionTime": 1789845171084,
+      "logStreamName": "2026/09/19/[$LATEST]5dd132bec99f44c894a4a9109c15d618",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:03.563Z"
+    },
+    {
+      "accepted": true,
+      "candidate": "sku-key",
+      "component": "provider",
+      "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+      "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+      "receiveCount": 1,
+      "requestId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+      "reused": false,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "accepted",
+      "timestamp": "2026-09-19T19:12:49.541Z",
+      "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+      "source": "provider",
+      "eventId": "39914881070754684883006165754954575398064629114778025986",
+      "eventTimestamp": 1789845169541,
+      "ingestionTime": 1789845174147,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:13:04.457Z"
+    },
+    {
+      "candidate": "sku-key",
+      "component": "provider",
+      "fault": "after-commit-first-receive",
+      "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+      "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+      "receiveCount": 1,
+      "requestId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "fault_injected",
+      "timestamp": "2026-09-19T19:12:49.541Z",
+      "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+      "source": "provider",
+      "eventId": "39914881070754684883006165754954575398064629114778025987",
+      "eventTimestamp": 1789845169541,
+      "ingestionTime": 1789845174147,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:13:04.457Z"
+    },
+    {
+      "candidate": "sku-key",
+      "component": "worker",
+      "errorType": "InjectedAfterCommit",
+      "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "provider_failed",
+      "timestamp": "2026-09-19T19:12:49.545Z",
+      "source": "worker",
+      "eventId": "39914881070843887863800288245754640077368579395133833219",
+      "eventTimestamp": 1789845169545,
+      "ingestionTime": 1789845172686,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:03.563Z"
+    },
+    {
+      "candidate": "sku-key",
+      "component": "worker",
+      "error": "Provider failed: InjectedAfterCommit",
+      "errorType": "RuntimeError",
+      "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "failed",
+      "timestamp": "2026-09-19T19:12:49.545Z",
+      "source": "worker",
+      "eventId": "39914881070866188608998818868896175795641227756639813636",
+      "eventTimestamp": 1789845169546,
+      "ingestionTime": 1789845172686,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:03.563Z"
+    },
+    {
+      "candidate": "order-key",
+      "component": "worker",
+      "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "received",
+      "timestamp": "2026-09-19T19:12:52.724Z",
+      "source": "worker",
+      "eventId": "39914881141737956849929139223640975960014606146266136577",
+      "eventTimestamp": 1789845172724,
+      "ingestionTime": 1789845181739,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:03.563Z"
+    },
+    {
+      "accepted": true,
+      "candidate": "order-key",
+      "component": "provider",
+      "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+      "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+      "receiveCount": 1,
+      "requestId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+      "reused": false,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "accepted",
+      "timestamp": "2026-09-19T19:12:52.763Z",
+      "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+      "source": "provider",
+      "eventId": "39914881142607685912671833516982659672537649887046926344",
+      "eventTimestamp": 1789845172763,
+      "ingestionTime": 1789845174147,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:13:04.457Z"
+    },
+    {
+      "candidate": "order-key",
+      "component": "provider",
+      "fault": "after-commit-first-receive",
+      "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+      "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+      "receiveCount": 1,
+      "requestId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "fault_injected",
+      "timestamp": "2026-09-19T19:12:52.763Z",
+      "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+      "source": "provider",
+      "eventId": "39914881142607685912671833516982659672537649887046926345",
+      "eventTimestamp": 1789845172763,
+      "ingestionTime": 1789845174147,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:13:04.457Z"
+    },
+    {
+      "candidate": "order-key",
+      "component": "worker",
+      "errorType": "InjectedAfterCommit",
+      "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "provider_failed",
+      "timestamp": "2026-09-19T19:12:52.767Z",
+      "source": "worker",
+      "eventId": "39914881142696888893465956018727011845738485691023294466",
+      "eventTimestamp": 1789845172767,
+      "ingestionTime": 1789845181739,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:03.563Z"
+    },
+    {
+      "candidate": "order-key",
+      "component": "worker",
+      "error": "Provider failed: InjectedAfterCommit",
+      "errorType": "RuntimeError",
+      "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "failed",
+      "timestamp": "2026-09-19T19:12:52.767Z",
+      "source": "worker",
+      "eventId": "39914881142696888893465956018727011845738485691023294467",
+      "eventTimestamp": 1789845172767,
+      "ingestionTime": 1789845181739,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:03.563Z"
+    },
+    {
+      "candidate": "no-key",
+      "component": "worker",
+      "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "received",
+      "timestamp": "2026-09-19T19:13:05.084Z",
+      "source": "worker",
+      "eventId": "39914881417375167503767641267968814503769963517063725057",
+      "eventTimestamp": 1789845185084,
+      "ingestionTime": 1789845194102,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:18.660Z"
+    },
+    {
+      "accepted": true,
+      "candidate": "no-key",
+      "component": "provider",
+      "key": null,
+      "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": "06a339ea95f742ceb7f559f18b7b3ee7",
+      "receiveCount": 1,
+      "requestId": "de3d349e-e83a-43a1-a0e9-3cfaaeb87ebd",
+      "reused": false,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "accepted",
+      "timestamp": "2026-09-19T19:13:05.104Z",
+      "workerRequestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+      "source": "provider",
+      "eventId": "39914881417821182407738253730809172668818885452495650817",
+      "eventTimestamp": 1789845185104,
+      "ingestionTime": 1789845194110,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:13:19.601Z"
+    },
+    {
+      "candidate": "no-key",
+      "component": "provider",
+      "fault": "after-commit-first-receive",
+      "key": null,
+      "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": "06a339ea95f742ceb7f559f18b7b3ee7",
+      "receiveCount": 1,
+      "requestId": "de3d349e-e83a-43a1-a0e9-3cfaaeb87ebd",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "fault_injected",
+      "timestamp": "2026-09-19T19:13:05.104Z",
+      "workerRequestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+      "source": "provider",
+      "eventId": "39914881417821182407738253730809172668818885452495650818",
+      "eventTimestamp": 1789845185104,
+      "ingestionTime": 1789845194110,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:13:19.601Z"
+    },
+    {
+      "candidate": "no-key",
+      "component": "worker",
+      "errorType": "InjectedAfterCommit",
+      "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "provider_failed",
+      "timestamp": "2026-09-19T19:13:05.106Z",
+      "source": "worker",
+      "eventId": "39914881417865783898135314977082600305768227470195294210",
+      "eventTimestamp": 1789845185106,
+      "ingestionTime": 1789845194102,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:18.660Z"
+    },
+    {
+      "candidate": "no-key",
+      "component": "worker",
+      "error": "Provider failed: InjectedAfterCommit",
+      "errorType": "RuntimeError",
+      "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "failed",
+      "timestamp": "2026-09-19T19:13:05.106Z",
+      "source": "worker",
+      "eventId": "39914881417865783898135314977082600305768227470195294211",
+      "eventTimestamp": 1789845185106,
+      "ingestionTime": 1789845194102,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:18.660Z"
+    },
+    {
+      "candidate": "sku-key",
+      "component": "worker",
+      "messageId": "0ae8beac-6837-4dcb-a344-bb8e17030f9c",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "d35233cf-d253-5c8e-b39a-50e732a740ac",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "received",
+      "timestamp": "2026-09-19T19:13:05.395Z",
+      "source": "worker",
+      "eventId": "39914881424310699260510665064986422886563603945423634440",
+      "eventTimestamp": 1789845185395,
+      "ingestionTime": 1789845194102,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:18.660Z"
+    },
+    {
+      "candidate": "sku-key",
+      "component": "provider",
+      "existingOrder": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+      "messageId": "0ae8beac-6837-4dcb-a344-bb8e17030f9c",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+      "receiveCount": 1,
+      "requestId": "90c59810-947a-40c5-bab9-bbf309c2a12c",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "payload_conflict",
+      "timestamp": "2026-09-19T19:13:05.421Z",
+      "workerRequestId": "d35233cf-d253-5c8e-b39a-50e732a740ac",
+      "source": "provider",
+      "eventId": "39914881424890518635672461266675995361248416049891442695",
+      "eventTimestamp": 1789845185421,
+      "ingestionTime": 1789845194110,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:13:19.601Z"
+    },
+    {
+      "candidate": "sku-key",
+      "component": "worker",
+      "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+      "messageId": "0ae8beac-6837-4dcb-a344-bb8e17030f9c",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "reason": "payload-conflict",
+      "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+      "receiveCount": 1,
+      "requestId": "d35233cf-d253-5c8e-b39a-50e732a740ac",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "business_rejected",
+      "timestamp": "2026-09-19T19:13:05.424Z",
+      "source": "worker",
+      "eventId": "39914881424957420871268053136090958716470406429097066505",
+      "eventTimestamp": 1789845185424,
+      "ingestionTime": 1789845194102,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:18.660Z"
+    },
+    {
+      "candidate": "sku-key",
+      "component": "worker",
+      "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+      "messageId": "0ae8beac-6837-4dcb-a344-bb8e17030f9c",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "outcome": "rejected",
+      "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+      "receiveCount": 1,
+      "requestId": "d35233cf-d253-5c8e-b39a-50e732a740ac",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "completed",
+      "timestamp": "2026-09-19T19:13:05.424Z",
+      "source": "worker",
+      "eventId": "39914881424957420871268053136090958716470406429097066506",
+      "eventTimestamp": 1789845185424,
+      "ingestionTime": 1789845194102,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:18.660Z"
+    },
+    {
+      "candidate": "order-key",
+      "component": "worker",
+      "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "received",
+      "timestamp": "2026-09-19T19:13:06.849Z",
+      "source": "worker",
+      "eventId": "39914881456735982779174191112779357254994321575119159310",
+      "eventTimestamp": 1789845186849,
+      "ingestionTime": 1789845194102,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:18.660Z"
+    },
+    {
+      "accepted": true,
+      "candidate": "order-key",
+      "component": "provider",
+      "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+      "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+      "receiveCount": 1,
+      "requestId": "2adedbc5-4ef3-4867-990e-2628ebadd5de",
+      "reused": false,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "accepted",
+      "timestamp": "2026-09-19T19:13:06.869Z",
+      "workerRequestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+      "source": "provider",
+      "eventId": "39914881457181997683144803575619715420043243510551085068",
+      "eventTimestamp": 1789845186869,
+      "ingestionTime": 1789845194110,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:13:19.601Z"
+    },
+    {
+      "candidate": "order-key",
+      "component": "provider",
+      "fault": "after-commit-first-receive",
+      "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+      "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+      "receiveCount": 1,
+      "requestId": "2adedbc5-4ef3-4867-990e-2628ebadd5de",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "fault_injected",
+      "timestamp": "2026-09-19T19:13:06.869Z",
+      "workerRequestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+      "source": "provider",
+      "eventId": "39914881457181997683144803575619715420043243510551085069",
+      "eventTimestamp": 1789845186869,
+      "ingestionTime": 1789845194110,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:13:19.601Z"
+    },
+    {
+      "candidate": "order-key",
+      "component": "worker",
+      "errorType": "InjectedAfterCommit",
+      "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "provider_failed",
+      "timestamp": "2026-09-19T19:13:06.872Z",
+      "source": "worker",
+      "eventId": "39914881457248899918740395445034678775265233889756708879",
+      "eventTimestamp": 1789845186872,
+      "ingestionTime": 1789845194102,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:18.660Z"
+    },
+    {
+      "candidate": "order-key",
+      "component": "worker",
+      "error": "Provider failed: InjectedAfterCommit",
+      "errorType": "RuntimeError",
+      "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": null,
+      "receiveCount": 1,
+      "requestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "failed",
+      "timestamp": "2026-09-19T19:13:06.872Z",
+      "source": "worker",
+      "eventId": "39914881457248899918740395445034678775265233889756708880",
+      "eventTimestamp": 1789845186872,
+      "ingestionTime": 1789845194102,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:13:18.660Z"
+    },
+    {
+      "candidate": "no-key",
+      "component": "worker",
+      "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": null,
+      "receiveCount": 2,
+      "requestId": "88d6da4d-01c8-5d9b-a740-b965e0fa01b9",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "received",
+      "timestamp": "2026-09-19T19:13:58.136Z",
+      "source": "worker",
+      "eventId": "39914882600474301776214260236852772743504532176915136513",
+      "eventTimestamp": 1789845238136,
+      "ingestionTime": 1789845247150,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:18.362Z"
+    },
+    {
+      "accepted": true,
+      "candidate": "no-key",
+      "component": "provider",
+      "key": null,
+      "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": "18bcc67b07fc43a5894de7cb09cb287b",
+      "receiveCount": 2,
+      "requestId": "f412ca4b-bf16-4f06-a18a-611b9682eb34",
+      "reused": false,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "accepted",
+      "timestamp": "2026-09-19T19:13:58.178Z",
+      "workerRequestId": "88d6da4d-01c8-5d9b-a740-b965e0fa01b9",
+      "source": "provider",
+      "eventId": "39914882601410933074552546408838391834973467623589412865",
+      "eventTimestamp": 1789845238178,
+      "ingestionTime": 1789845247184,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:14:19.321Z"
+    },
+    {
+      "accepted": true,
+      "candidate": "no-key",
+      "component": "worker",
+      "key": null,
+      "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": "18bcc67b07fc43a5894de7cb09cb287b",
+      "receiveCount": 2,
+      "requestId": "88d6da4d-01c8-5d9b-a740-b965e0fa01b9",
+      "reused": false,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "fulfillment_succeeded",
+      "timestamp": "2026-09-19T19:13:58.181Z",
+      "source": "worker",
+      "eventId": "39914882601477835310148138278221880065773708444684255234",
+      "eventTimestamp": 1789845238181,
+      "ingestionTime": 1789845247150,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:18.362Z"
+    },
+    {
+      "candidate": "no-key",
+      "component": "worker",
+      "key": null,
+      "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "outcome": "fulfilled",
+      "receiptId": "18bcc67b07fc43a5894de7cb09cb287b",
+      "receiveCount": 2,
+      "requestId": "88d6da4d-01c8-5d9b-a740-b965e0fa01b9",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "completed",
+      "timestamp": "2026-09-19T19:13:58.181Z",
+      "source": "worker",
+      "eventId": "39914882601477835310148138278221880065773708444684255235",
+      "eventTimestamp": 1789845238181,
+      "ingestionTime": 1789845247150,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:18.362Z"
+    },
+    {
+      "candidate": "sku-key",
+      "component": "worker",
+      "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": null,
+      "receiveCount": 2,
+      "requestId": "728ea9be-8891-5f71-a8f5-ca9669a1ebca",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "received",
+      "timestamp": "2026-09-19T19:13:58.440Z",
+      "source": "worker",
+      "eventId": "39914882607253728316567569671879631098389634074733182983",
+      "eventTimestamp": 1789845238440,
+      "ingestionTime": 1789845247150,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:18.362Z"
+    },
+    {
+      "accepted": false,
+      "candidate": "sku-key",
+      "component": "provider",
+      "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+      "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+      "receiveCount": 2,
+      "requestId": "4936e550-4217-4c98-bcb3-e363e758c669",
+      "reused": true,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "reused",
+      "timestamp": "2026-09-19T19:13:58.464Z",
+      "workerRequestId": "728ea9be-8891-5f71-a8f5-ca9669a1ebca",
+      "source": "provider",
+      "eventId": "39914882607788946201332304627317607260950899014299811845",
+      "eventTimestamp": 1789845238464,
+      "ingestionTime": 1789845247184,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:14:19.321Z"
+    },
+    {
+      "accepted": false,
+      "candidate": "sku-key",
+      "component": "worker",
+      "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+      "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+      "receiveCount": 2,
+      "requestId": "728ea9be-8891-5f71-a8f5-ca9669a1ebca",
+      "reused": true,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "fulfillment_succeeded",
+      "timestamp": "2026-09-19T19:13:58.467Z",
+      "source": "worker",
+      "eventId": "39914882607855848436927896496701095491751139835394654216",
+      "eventTimestamp": 1789845238467,
+      "ingestionTime": 1789845247150,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:18.362Z"
+    },
+    {
+      "candidate": "sku-key",
+      "component": "worker",
+      "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+      "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "outcome": "fulfilled",
+      "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+      "receiveCount": 2,
+      "requestId": "728ea9be-8891-5f71-a8f5-ca9669a1ebca",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "completed",
+      "timestamp": "2026-09-19T19:13:58.467Z",
+      "source": "worker",
+      "eventId": "39914882607878149182126427119842631210023788196900634633",
+      "eventTimestamp": 1789845238468,
+      "ingestionTime": 1789845247150,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:18.362Z"
+    },
+    {
+      "candidate": "order-key",
+      "component": "worker",
+      "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": null,
+      "receiveCount": 2,
+      "requestId": "60ffaaa1-4a26-5952-bb30-c989ab107de9",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "received",
+      "timestamp": "2026-09-19T19:14:04.720Z",
+      "source": "worker",
+      "eventId": "39914882747302408163339883000723941850621344332290195469",
+      "eventTimestamp": 1789845244720,
+      "ingestionTime": 1789845247150,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:18.362Z"
+    },
+    {
+      "accepted": false,
+      "candidate": "order-key",
+      "component": "provider",
+      "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+      "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+      "receiveCount": 2,
+      "requestId": "cd228962-f5b1-4a75-916b-0a4c2995999f",
+      "reused": true,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "reused",
+      "timestamp": "2026-09-19T19:14:04.739Z",
+      "workerRequestId": "60ffaaa1-4a26-5952-bb30-c989ab107de9",
+      "source": "provider",
+      "eventId": "39914882747726122322111964840454239421819367464326922249",
+      "eventTimestamp": 1789845244739,
+      "ingestionTime": 1789845247184,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:14:19.321Z"
+    },
+    {
+      "accepted": false,
+      "candidate": "order-key",
+      "component": "worker",
+      "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+      "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+      "receiveCount": 2,
+      "requestId": "60ffaaa1-4a26-5952-bb30-c989ab107de9",
+      "reused": true,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "fulfillment_succeeded",
+      "timestamp": "2026-09-19T19:14:04.741Z",
+      "source": "worker",
+      "eventId": "39914882747770723812509026086696191934346959923915784206",
+      "eventTimestamp": 1789845244741,
+      "ingestionTime": 1789845247150,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:18.362Z"
+    },
+    {
+      "candidate": "order-key",
+      "component": "worker",
+      "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+      "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+      "order": {
+        "orderId": "ORDER-A",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-A",
+      "outcome": "fulfilled",
+      "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+      "receiveCount": 2,
+      "requestId": "60ffaaa1-4a26-5952-bb30-c989ab107de9",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "completed",
+      "timestamp": "2026-09-19T19:14:04.741Z",
+      "source": "worker",
+      "eventId": "39914882747770723812509026086696191934346959923915784207",
+      "eventTimestamp": 1789845244741,
+      "ingestionTime": 1789845247150,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:18.362Z"
+    },
+    {
+      "candidate": "no-key",
+      "component": "worker",
+      "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": null,
+      "receiveCount": 2,
+      "requestId": "f94f2f5b-f869-5a44-a933-4c731955ab9b",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "received",
+      "timestamp": "2026-09-19T19:14:17.083Z",
+      "source": "worker",
+      "eventId": "39914883023006521052773976922436308484660931644381528065",
+      "eventTimestamp": 1789845257083,
+      "ingestionTime": 1789845266098,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:33.313Z"
+    },
+    {
+      "accepted": true,
+      "candidate": "no-key",
+      "component": "provider",
+      "key": null,
+      "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": "806354e22db64b0695a510037e3a4f6a",
+      "receiveCount": 2,
+      "requestId": "95ab65a0-e1a3-4d79-be26-ae14c8a9436f",
+      "reused": false,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "accepted",
+      "timestamp": "2026-09-19T19:14:17.105Z",
+      "workerRequestId": "f94f2f5b-f869-5a44-a933-4c731955ab9b",
+      "source": "provider",
+      "eventId": "39914883023497137447141650631571156542034033410984968193",
+      "eventTimestamp": 1789845257105,
+      "ingestionTime": 1789845266115,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:14:34.516Z"
+    },
+    {
+      "accepted": true,
+      "candidate": "no-key",
+      "component": "worker",
+      "key": null,
+      "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": "806354e22db64b0695a510037e3a4f6a",
+      "receiveCount": 2,
+      "requestId": "f94f2f5b-f869-5a44-a933-4c731955ab9b",
+      "reused": false,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "fulfillment_succeeded",
+      "timestamp": "2026-09-19T19:14:17.107Z",
+      "source": "worker",
+      "eventId": "39914883023541738937538711877833165723204492320525058050",
+      "eventTimestamp": 1789845257107,
+      "ingestionTime": 1789845266098,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:33.313Z"
+    },
+    {
+      "candidate": "no-key",
+      "component": "worker",
+      "key": null,
+      "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "outcome": "fulfilled",
+      "receiptId": "806354e22db64b0695a510037e3a4f6a",
+      "receiveCount": 2,
+      "requestId": "f94f2f5b-f869-5a44-a933-4c731955ab9b",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "completed",
+      "timestamp": "2026-09-19T19:14:17.107Z",
+      "source": "worker",
+      "eventId": "39914883023541738937538711877833165723204492320525058051",
+      "eventTimestamp": 1789845257107,
+      "ingestionTime": 1789845266098,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:33.313Z"
+    },
+    {
+      "candidate": "order-key",
+      "component": "worker",
+      "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": null,
+      "receiveCount": 2,
+      "requestId": "5f18dd7b-0965-551a-af60-be53e859b1a1",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "received",
+      "timestamp": "2026-09-19T19:14:18.852Z",
+      "source": "worker",
+      "eventId": "39914883062456539308974649259812994108975883148460883975",
+      "eventTimestamp": 1789845258852,
+      "ingestionTime": 1789845266098,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:33.313Z"
+    },
+    {
+      "accepted": false,
+      "candidate": "order-key",
+      "component": "provider",
+      "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+      "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+      "receiveCount": 2,
+      "requestId": "5f744075-a59d-440f-be4d-a3846891e452",
+      "reused": true,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "reused",
+      "timestamp": "2026-09-19T19:14:18.875Z",
+      "workerRequestId": "5f18dd7b-0965-551a-af60-be53e859b1a1",
+      "source": "provider",
+      "eventId": "39914883062969456448540853592089377884621633276570304517",
+      "eventTimestamp": 1789845258875,
+      "ingestionTime": 1789845266115,
+      "logStreamName": "2026/09/19/[$LATEST]0ec6de77afa6487d952c5a9bd4aa5b3c",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-provider",
+      "collectedAt": "2026-09-19T19:14:34.516Z"
+    },
+    {
+      "accepted": false,
+      "candidate": "order-key",
+      "component": "worker",
+      "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+      "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+      "receiveCount": 2,
+      "requestId": "5f18dd7b-0965-551a-af60-be53e859b1a1",
+      "reused": true,
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "fulfillment_succeeded",
+      "timestamp": "2026-09-19T19:14:18.877Z",
+      "source": "worker",
+      "eventId": "39914883063014057938937914838351387065792092186110394376",
+      "eventTimestamp": 1789845258877,
+      "ingestionTime": 1789845266098,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:33.313Z"
+    },
+    {
+      "candidate": "order-key",
+      "component": "worker",
+      "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+      "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+      "order": {
+        "orderId": "ORDER-B",
+        "quantity": 1,
+        "sku": "FIELD-NOTES-3PACK"
+      },
+      "orderId": "ORDER-B",
+      "outcome": "fulfilled",
+      "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+      "receiveCount": 2,
+      "requestId": "5f18dd7b-0965-551a-af60-be53e859b1a1",
+      "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+      "schemaVersion": 2,
+      "stage": "completed",
+      "timestamp": "2026-09-19T19:14:18.877Z",
+      "source": "worker",
+      "eventId": "39914883063014057938937914838351387065792092186110394377",
+      "eventTimestamp": 1789845258877,
+      "ingestionTime": 1789845266098,
+      "logStreamName": "2026/09/19/[$LATEST]453c989795174a8a842029f669da2f95",
+      "sourceLogGroup": "/aws/lambda/replayguard-keys-20260920-r2-worker",
+      "collectedAt": "2026-09-19T19:14:33.313Z"
+    }
+  ],
+  "ledgerObservations": [
+    {
+      "candidate": "no-key",
+      "observedAt": "2026-09-19T19:12:48.379Z",
+      "consistent": true,
+      "items": []
+    },
+    {
+      "candidate": "sku-key",
+      "observedAt": "2026-09-19T19:12:48.661Z",
+      "consistent": true,
+      "items": []
+    },
+    {
+      "candidate": "order-key",
+      "observedAt": "2026-09-19T19:12:48.945Z",
+      "consistent": true,
+      "items": []
+    },
+    {
+      "candidate": "no-key",
+      "observedAt": "2026-09-19T19:13:01.480Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+          "createdAt": "2026-09-19T19:12:47.966Z",
+          "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017967,
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#b5a8e0bc5eca4f6ab203f08598943844"
+        }
+      ]
+    },
+    {
+      "candidate": "sku-key",
+      "observedAt": "2026-09-19T19:13:01.766Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+          "createdAt": "2026-09-19T19:12:48.094Z",
+          "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+          "order": {
+            "orderId": "ORDER-A",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "expiresAt": 1790017968,
+          "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+          "receiveCount": 1,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "sku-key",
+          "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+          "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#sku-key",
+          "SK": "RECEIPT#8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2"
+        }
+      ]
+    },
+    {
+      "candidate": "order-key",
+      "observedAt": "2026-09-19T19:13:02.052Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+          "createdAt": "2026-09-19T19:12:52.756Z",
+          "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+          "order": {
+            "quantity": 1,
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017972,
+          "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+          "SK": "RECEIPT#321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c"
+        }
+      ]
+    },
+    {
+      "candidate": "no-key",
+      "observedAt": "2026-09-19T19:13:16.686Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "de3d349e-e83a-43a1-a0e9-3cfaaeb87ebd",
+          "createdAt": "2026-09-19T19:13:05.095Z",
+          "receiptId": "06a339ea95f742ceb7f559f18b7b3ee7",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-B",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017985,
+          "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#06a339ea95f742ceb7f559f18b7b3ee7"
+        },
+        {
+          "invocationId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+          "createdAt": "2026-09-19T19:12:47.966Z",
+          "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017967,
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#b5a8e0bc5eca4f6ab203f08598943844"
+        }
+      ]
+    },
+    {
+      "candidate": "sku-key",
+      "observedAt": "2026-09-19T19:13:16.975Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+          "createdAt": "2026-09-19T19:12:48.094Z",
+          "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+          "order": {
+            "orderId": "ORDER-A",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "expiresAt": 1790017968,
+          "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+          "receiveCount": 1,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "sku-key",
+          "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+          "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#sku-key",
+          "SK": "RECEIPT#8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2"
+        }
+      ]
+    },
+    {
+      "candidate": "order-key",
+      "observedAt": "2026-09-19T19:13:17.261Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+          "createdAt": "2026-09-19T19:12:52.756Z",
+          "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+          "order": {
+            "quantity": 1,
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017972,
+          "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+          "SK": "RECEIPT#321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c"
+        },
+        {
+          "invocationId": "2adedbc5-4ef3-4867-990e-2628ebadd5de",
+          "createdAt": "2026-09-19T19:13:06.863Z",
+          "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES-3PACK",
+            "quantity": 1
+          },
+          "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+          "receiveCount": 1,
+          "expiresAt": 1790017986,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+          "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "SK": "RECEIPT#5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a"
+        }
+      ]
+    },
+    {
+      "candidate": "no-key",
+      "observedAt": "2026-09-19T19:13:31.355Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "de3d349e-e83a-43a1-a0e9-3cfaaeb87ebd",
+          "createdAt": "2026-09-19T19:13:05.095Z",
+          "receiptId": "06a339ea95f742ceb7f559f18b7b3ee7",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-B",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017985,
+          "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#06a339ea95f742ceb7f559f18b7b3ee7"
+        },
+        {
+          "invocationId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+          "createdAt": "2026-09-19T19:12:47.966Z",
+          "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017967,
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#b5a8e0bc5eca4f6ab203f08598943844"
+        }
+      ]
+    },
+    {
+      "candidate": "sku-key",
+      "observedAt": "2026-09-19T19:13:31.636Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+          "createdAt": "2026-09-19T19:12:48.094Z",
+          "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+          "order": {
+            "orderId": "ORDER-A",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "expiresAt": 1790017968,
+          "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+          "receiveCount": 1,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "sku-key",
+          "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+          "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#sku-key",
+          "SK": "RECEIPT#8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2"
+        }
+      ]
+    },
+    {
+      "candidate": "order-key",
+      "observedAt": "2026-09-19T19:13:31.917Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+          "createdAt": "2026-09-19T19:12:52.756Z",
+          "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+          "order": {
+            "quantity": 1,
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017972,
+          "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+          "SK": "RECEIPT#321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c"
+        },
+        {
+          "invocationId": "2adedbc5-4ef3-4867-990e-2628ebadd5de",
+          "createdAt": "2026-09-19T19:13:06.863Z",
+          "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES-3PACK",
+            "quantity": 1
+          },
+          "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+          "receiveCount": 1,
+          "expiresAt": 1790017986,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+          "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "SK": "RECEIPT#5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a"
+        }
+      ]
+    },
+    {
+      "candidate": "no-key",
+      "observedAt": "2026-09-19T19:13:46.234Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "de3d349e-e83a-43a1-a0e9-3cfaaeb87ebd",
+          "createdAt": "2026-09-19T19:13:05.095Z",
+          "receiptId": "06a339ea95f742ceb7f559f18b7b3ee7",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-B",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017985,
+          "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#06a339ea95f742ceb7f559f18b7b3ee7"
+        },
+        {
+          "invocationId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+          "createdAt": "2026-09-19T19:12:47.966Z",
+          "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017967,
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#b5a8e0bc5eca4f6ab203f08598943844"
+        }
+      ]
+    },
+    {
+      "candidate": "sku-key",
+      "observedAt": "2026-09-19T19:13:46.515Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+          "createdAt": "2026-09-19T19:12:48.094Z",
+          "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+          "order": {
+            "orderId": "ORDER-A",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "expiresAt": 1790017968,
+          "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+          "receiveCount": 1,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "sku-key",
+          "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+          "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#sku-key",
+          "SK": "RECEIPT#8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2"
+        }
+      ]
+    },
+    {
+      "candidate": "order-key",
+      "observedAt": "2026-09-19T19:13:46.796Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+          "createdAt": "2026-09-19T19:12:52.756Z",
+          "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+          "order": {
+            "quantity": 1,
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017972,
+          "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+          "SK": "RECEIPT#321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c"
+        },
+        {
+          "invocationId": "2adedbc5-4ef3-4867-990e-2628ebadd5de",
+          "createdAt": "2026-09-19T19:13:06.863Z",
+          "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES-3PACK",
+            "quantity": 1
+          },
+          "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+          "receiveCount": 1,
+          "expiresAt": 1790017986,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+          "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "SK": "RECEIPT#5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a"
+        }
+      ]
+    },
+    {
+      "candidate": "no-key",
+      "observedAt": "2026-09-19T19:14:00.902Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "de3d349e-e83a-43a1-a0e9-3cfaaeb87ebd",
+          "createdAt": "2026-09-19T19:13:05.095Z",
+          "receiptId": "06a339ea95f742ceb7f559f18b7b3ee7",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-B",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017985,
+          "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#06a339ea95f742ceb7f559f18b7b3ee7"
+        },
+        {
+          "invocationId": "f412ca4b-bf16-4f06-a18a-611b9682eb34",
+          "createdAt": "2026-09-19T19:13:58.171Z",
+          "receiptId": "18bcc67b07fc43a5894de7cb09cb287b",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "receiveCount": 2,
+          "expiresAt": 1790018038,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "88d6da4d-01c8-5d9b-a740-b965e0fa01b9",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#18bcc67b07fc43a5894de7cb09cb287b"
+        },
+        {
+          "invocationId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+          "createdAt": "2026-09-19T19:12:47.966Z",
+          "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017967,
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#b5a8e0bc5eca4f6ab203f08598943844"
+        }
+      ]
+    },
+    {
+      "candidate": "sku-key",
+      "observedAt": "2026-09-19T19:14:01.186Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+          "createdAt": "2026-09-19T19:12:48.094Z",
+          "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+          "order": {
+            "orderId": "ORDER-A",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "expiresAt": 1790017968,
+          "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+          "receiveCount": 1,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "sku-key",
+          "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+          "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#sku-key",
+          "SK": "RECEIPT#8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2"
+        }
+      ]
+    },
+    {
+      "candidate": "order-key",
+      "observedAt": "2026-09-19T19:14:01.468Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+          "createdAt": "2026-09-19T19:12:52.756Z",
+          "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+          "order": {
+            "quantity": 1,
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017972,
+          "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+          "SK": "RECEIPT#321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c"
+        },
+        {
+          "invocationId": "2adedbc5-4ef3-4867-990e-2628ebadd5de",
+          "createdAt": "2026-09-19T19:13:06.863Z",
+          "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES-3PACK",
+            "quantity": 1
+          },
+          "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+          "receiveCount": 1,
+          "expiresAt": 1790017986,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+          "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "SK": "RECEIPT#5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a"
+        }
+      ]
+    },
+    {
+      "candidate": "no-key",
+      "observedAt": "2026-09-19T19:14:16.426Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "de3d349e-e83a-43a1-a0e9-3cfaaeb87ebd",
+          "createdAt": "2026-09-19T19:13:05.095Z",
+          "receiptId": "06a339ea95f742ceb7f559f18b7b3ee7",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-B",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017985,
+          "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#06a339ea95f742ceb7f559f18b7b3ee7"
+        },
+        {
+          "invocationId": "f412ca4b-bf16-4f06-a18a-611b9682eb34",
+          "createdAt": "2026-09-19T19:13:58.171Z",
+          "receiptId": "18bcc67b07fc43a5894de7cb09cb287b",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "receiveCount": 2,
+          "expiresAt": 1790018038,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "88d6da4d-01c8-5d9b-a740-b965e0fa01b9",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#18bcc67b07fc43a5894de7cb09cb287b"
+        },
+        {
+          "invocationId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+          "createdAt": "2026-09-19T19:12:47.966Z",
+          "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017967,
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#b5a8e0bc5eca4f6ab203f08598943844"
+        }
+      ]
+    },
+    {
+      "candidate": "sku-key",
+      "observedAt": "2026-09-19T19:14:16.709Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+          "createdAt": "2026-09-19T19:12:48.094Z",
+          "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+          "order": {
+            "orderId": "ORDER-A",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "expiresAt": 1790017968,
+          "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+          "receiveCount": 1,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "sku-key",
+          "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+          "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#sku-key",
+          "SK": "RECEIPT#8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2"
+        }
+      ]
+    },
+    {
+      "candidate": "order-key",
+      "observedAt": "2026-09-19T19:14:16.994Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+          "createdAt": "2026-09-19T19:12:52.756Z",
+          "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+          "order": {
+            "quantity": 1,
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017972,
+          "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+          "SK": "RECEIPT#321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c"
+        },
+        {
+          "invocationId": "2adedbc5-4ef3-4867-990e-2628ebadd5de",
+          "createdAt": "2026-09-19T19:13:06.863Z",
+          "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES-3PACK",
+            "quantity": 1
+          },
+          "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+          "receiveCount": 1,
+          "expiresAt": 1790017986,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+          "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "SK": "RECEIPT#5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a"
+        }
+      ]
+    },
+    {
+      "candidate": "no-key",
+      "observedAt": "2026-09-19T19:14:30.661Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "de3d349e-e83a-43a1-a0e9-3cfaaeb87ebd",
+          "createdAt": "2026-09-19T19:13:05.095Z",
+          "receiptId": "06a339ea95f742ceb7f559f18b7b3ee7",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-B",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017985,
+          "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#06a339ea95f742ceb7f559f18b7b3ee7"
+        },
+        {
+          "invocationId": "f412ca4b-bf16-4f06-a18a-611b9682eb34",
+          "createdAt": "2026-09-19T19:13:58.171Z",
+          "receiptId": "18bcc67b07fc43a5894de7cb09cb287b",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "receiveCount": 2,
+          "expiresAt": 1790018038,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "88d6da4d-01c8-5d9b-a740-b965e0fa01b9",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#18bcc67b07fc43a5894de7cb09cb287b"
+        },
+        {
+          "invocationId": "95ab65a0-e1a3-4d79-be26-ae14c8a9436f",
+          "createdAt": "2026-09-19T19:14:17.099Z",
+          "receiptId": "806354e22db64b0695a510037e3a4f6a",
+          "order": {
+            "orderId": "ORDER-B",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 2,
+          "expiresAt": 1790018057,
+          "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f94f2f5b-f869-5a44-a933-4c731955ab9b",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#806354e22db64b0695a510037e3a4f6a"
+        },
+        {
+          "invocationId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+          "createdAt": "2026-09-19T19:12:47.966Z",
+          "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017967,
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#b5a8e0bc5eca4f6ab203f08598943844"
+        }
+      ]
+    },
+    {
+      "candidate": "sku-key",
+      "observedAt": "2026-09-19T19:14:30.942Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+          "createdAt": "2026-09-19T19:12:48.094Z",
+          "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+          "order": {
+            "orderId": "ORDER-A",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "expiresAt": 1790017968,
+          "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+          "receiveCount": 1,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "sku-key",
+          "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+          "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#sku-key",
+          "SK": "RECEIPT#8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2"
+        }
+      ]
+    },
+    {
+      "candidate": "order-key",
+      "observedAt": "2026-09-19T19:14:31.225Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+          "createdAt": "2026-09-19T19:12:52.756Z",
+          "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+          "order": {
+            "quantity": 1,
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017972,
+          "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+          "SK": "RECEIPT#321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c"
+        },
+        {
+          "invocationId": "2adedbc5-4ef3-4867-990e-2628ebadd5de",
+          "createdAt": "2026-09-19T19:13:06.863Z",
+          "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES-3PACK",
+            "quantity": 1
+          },
+          "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+          "receiveCount": 1,
+          "expiresAt": 1790017986,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+          "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "SK": "RECEIPT#5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a"
+        }
+      ]
+    },
+    {
+      "candidate": "no-key",
+      "observedAt": "2026-09-19T19:14:45.844Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "de3d349e-e83a-43a1-a0e9-3cfaaeb87ebd",
+          "createdAt": "2026-09-19T19:13:05.095Z",
+          "receiptId": "06a339ea95f742ceb7f559f18b7b3ee7",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-B",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017985,
+          "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#06a339ea95f742ceb7f559f18b7b3ee7"
+        },
+        {
+          "invocationId": "f412ca4b-bf16-4f06-a18a-611b9682eb34",
+          "createdAt": "2026-09-19T19:13:58.171Z",
+          "receiptId": "18bcc67b07fc43a5894de7cb09cb287b",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "receiveCount": 2,
+          "expiresAt": 1790018038,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "88d6da4d-01c8-5d9b-a740-b965e0fa01b9",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#18bcc67b07fc43a5894de7cb09cb287b"
+        },
+        {
+          "invocationId": "95ab65a0-e1a3-4d79-be26-ae14c8a9436f",
+          "createdAt": "2026-09-19T19:14:17.099Z",
+          "receiptId": "806354e22db64b0695a510037e3a4f6a",
+          "order": {
+            "orderId": "ORDER-B",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 2,
+          "expiresAt": 1790018057,
+          "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f94f2f5b-f869-5a44-a933-4c731955ab9b",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#806354e22db64b0695a510037e3a4f6a"
+        },
+        {
+          "invocationId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+          "createdAt": "2026-09-19T19:12:47.966Z",
+          "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017967,
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#b5a8e0bc5eca4f6ab203f08598943844"
+        }
+      ]
+    },
+    {
+      "candidate": "sku-key",
+      "observedAt": "2026-09-19T19:14:46.124Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+          "createdAt": "2026-09-19T19:12:48.094Z",
+          "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+          "order": {
+            "orderId": "ORDER-A",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "expiresAt": 1790017968,
+          "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+          "receiveCount": 1,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "sku-key",
+          "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+          "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#sku-key",
+          "SK": "RECEIPT#8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2"
+        }
+      ]
+    },
+    {
+      "candidate": "order-key",
+      "observedAt": "2026-09-19T19:14:46.403Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+          "createdAt": "2026-09-19T19:12:52.756Z",
+          "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+          "order": {
+            "quantity": 1,
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017972,
+          "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+          "SK": "RECEIPT#321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c"
+        },
+        {
+          "invocationId": "2adedbc5-4ef3-4867-990e-2628ebadd5de",
+          "createdAt": "2026-09-19T19:13:06.863Z",
+          "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES-3PACK",
+            "quantity": 1
+          },
+          "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+          "receiveCount": 1,
+          "expiresAt": 1790017986,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+          "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "SK": "RECEIPT#5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a"
+        }
+      ]
+    },
+    {
+      "candidate": "no-key",
+      "observedAt": "2026-09-19T19:15:02.160Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "de3d349e-e83a-43a1-a0e9-3cfaaeb87ebd",
+          "createdAt": "2026-09-19T19:13:05.095Z",
+          "receiptId": "06a339ea95f742ceb7f559f18b7b3ee7",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-B",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017985,
+          "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#06a339ea95f742ceb7f559f18b7b3ee7"
+        },
+        {
+          "invocationId": "f412ca4b-bf16-4f06-a18a-611b9682eb34",
+          "createdAt": "2026-09-19T19:13:58.171Z",
+          "receiptId": "18bcc67b07fc43a5894de7cb09cb287b",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "receiveCount": 2,
+          "expiresAt": 1790018038,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "88d6da4d-01c8-5d9b-a740-b965e0fa01b9",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#18bcc67b07fc43a5894de7cb09cb287b"
+        },
+        {
+          "invocationId": "95ab65a0-e1a3-4d79-be26-ae14c8a9436f",
+          "createdAt": "2026-09-19T19:14:17.099Z",
+          "receiptId": "806354e22db64b0695a510037e3a4f6a",
+          "order": {
+            "orderId": "ORDER-B",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 2,
+          "expiresAt": 1790018057,
+          "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f94f2f5b-f869-5a44-a933-4c731955ab9b",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#806354e22db64b0695a510037e3a4f6a"
+        },
+        {
+          "invocationId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+          "createdAt": "2026-09-19T19:12:47.966Z",
+          "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017967,
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#b5a8e0bc5eca4f6ab203f08598943844"
+        }
+      ]
+    },
+    {
+      "candidate": "sku-key",
+      "observedAt": "2026-09-19T19:15:02.444Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+          "createdAt": "2026-09-19T19:12:48.094Z",
+          "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+          "order": {
+            "orderId": "ORDER-A",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "expiresAt": 1790017968,
+          "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+          "receiveCount": 1,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "sku-key",
+          "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+          "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#sku-key",
+          "SK": "RECEIPT#8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2"
+        }
+      ]
+    },
+    {
+      "candidate": "order-key",
+      "observedAt": "2026-09-19T19:15:02.729Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+          "createdAt": "2026-09-19T19:12:52.756Z",
+          "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+          "order": {
+            "quantity": 1,
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017972,
+          "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+          "SK": "RECEIPT#321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c"
+        },
+        {
+          "invocationId": "2adedbc5-4ef3-4867-990e-2628ebadd5de",
+          "createdAt": "2026-09-19T19:13:06.863Z",
+          "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES-3PACK",
+            "quantity": 1
+          },
+          "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+          "receiveCount": 1,
+          "expiresAt": 1790017986,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+          "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "SK": "RECEIPT#5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a"
+        }
+      ]
+    },
+    {
+      "candidate": "no-key",
+      "observedAt": "2026-09-19T19:15:18.507Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "de3d349e-e83a-43a1-a0e9-3cfaaeb87ebd",
+          "createdAt": "2026-09-19T19:13:05.095Z",
+          "receiptId": "06a339ea95f742ceb7f559f18b7b3ee7",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-B",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017985,
+          "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "8b6db590-ce3a-56ed-93e4-d6b82ec37256",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#06a339ea95f742ceb7f559f18b7b3ee7"
+        },
+        {
+          "invocationId": "f412ca4b-bf16-4f06-a18a-611b9682eb34",
+          "createdAt": "2026-09-19T19:13:58.171Z",
+          "receiptId": "18bcc67b07fc43a5894de7cb09cb287b",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "receiveCount": 2,
+          "expiresAt": 1790018038,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "88d6da4d-01c8-5d9b-a740-b965e0fa01b9",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#18bcc67b07fc43a5894de7cb09cb287b"
+        },
+        {
+          "invocationId": "95ab65a0-e1a3-4d79-be26-ae14c8a9436f",
+          "createdAt": "2026-09-19T19:14:17.099Z",
+          "receiptId": "806354e22db64b0695a510037e3a4f6a",
+          "order": {
+            "orderId": "ORDER-B",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 2,
+          "expiresAt": 1790018057,
+          "messageId": "18063e86-0622-4eca-8a58-526127db31f9",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f94f2f5b-f869-5a44-a933-4c731955ab9b",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#806354e22db64b0695a510037e3a4f6a"
+        },
+        {
+          "invocationId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+          "createdAt": "2026-09-19T19:12:47.966Z",
+          "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+          "order": {
+            "sku": "FIELD-NOTES-3PACK",
+            "orderId": "ORDER-A",
+            "quantity": 1
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017967,
+          "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "no-key",
+          "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+          "key": null,
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#no-key",
+          "SK": "RECEIPT#b5a8e0bc5eca4f6ab203f08598943844"
+        }
+      ]
+    },
+    {
+      "candidate": "sku-key",
+      "observedAt": "2026-09-19T19:15:18.787Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+          "createdAt": "2026-09-19T19:12:48.094Z",
+          "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+          "order": {
+            "orderId": "ORDER-A",
+            "quantity": 1,
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "expiresAt": 1790017968,
+          "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+          "receiveCount": 1,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "sku-key",
+          "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+          "key": "249aeb28d398720c4e7aa7928868b12b1c93268fd070d3f52187babb3254f10b",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#sku-key",
+          "SK": "RECEIPT#8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2"
+        }
+      ]
+    },
+    {
+      "candidate": "order-key",
+      "observedAt": "2026-09-19T19:15:19.074Z",
+      "consistent": true,
+      "items": [
+        {
+          "invocationId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+          "createdAt": "2026-09-19T19:12:52.756Z",
+          "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+          "order": {
+            "quantity": 1,
+            "orderId": "ORDER-A",
+            "sku": "FIELD-NOTES-3PACK"
+          },
+          "receiveCount": 1,
+          "expiresAt": 1790017972,
+          "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "key": "d8d605da6cb0613413a56516dbe510400f42243d4f2308cb156cf44b9de7f739",
+          "SK": "RECEIPT#321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c"
+        },
+        {
+          "invocationId": "2adedbc5-4ef3-4867-990e-2628ebadd5de",
+          "createdAt": "2026-09-19T19:13:06.863Z",
+          "receiptId": "5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a",
+          "order": {
+            "orderId": "ORDER-B",
+            "sku": "FIELD-NOTES-3PACK",
+            "quantity": 1
+          },
+          "messageId": "9b9bd312-08f3-4267-ad32-f496e04ee22c",
+          "receiveCount": 1,
+          "expiresAt": 1790017986,
+          "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+          "candidate": "order-key",
+          "workerRequestId": "cd2fd242-8929-512b-a5bc-b16a682b7d09",
+          "key": "6c3bb4ca030e5d3be092e026ebde16dd9f1a04d8b4e0d5b2d927b338d64ea306",
+          "PK": "RUN#366eeb3b-3258-474b-8136-792f1587ffa5#CANDIDATE#order-key",
+          "SK": "RECEIPT#5150dd5de6edd6b8417c7743a43fd169506fecd3fc75113cdef0d414a7a5977a"
+        }
+      ]
+    }
+  ],
+  "queueObservations": [
+    {
+      "observedAt": "2026-09-19T19:12:44.364Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-19T19:12:46.824Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-19T19:13:00.607Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 3,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-19T19:13:15.808Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 5,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-19T19:13:30.489Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 3,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-19T19:13:45.358Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 3,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-19T19:14:00.023Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 5,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-19T19:14:15.545Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 2,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-19T19:14:29.783Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 3,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-19T19:14:44.980Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-19T19:15:01.271Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    },
+    {
+      "observedAt": "2026-09-19T19:15:17.604Z",
+      "queue": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      },
+      "dlq": {
+        "visible": 0,
+        "notVisible": 0,
+        "delayed": 0
+      }
+    }
+  ],
+  "phaseGate": {
+    "recordedAt": "2026-09-19T19:13:04.873Z",
+    "proofs": [
+      {
+        "receiptId": "b5a8e0bc5eca4f6ab203f08598943844",
+        "messageId": "c762525c-9b90-454a-9e3b-abc23bc33601",
+        "workerRequestId": "f3e499f8-6dce-5e27-8c35-fad08d295a9c",
+        "providerRequestId": "df060c55-88a3-42f4-8bfd-eb79b3b7b887",
+        "faultEventId": "39914881068613813343947225933079905135969102032480043011",
+        "failureEventId": "39914881068703016324741348422230726194871468612803887108",
+        "candidate": "no-key",
+        "ledgerObservedAt": "2026-09-19T19:13:01.480Z"
+      },
+      {
+        "receiptId": "8ad143e89248919fe0c6f7704916b6a3bde432372541ad0605e8422cf9e660d2",
+        "messageId": "ee3eb39e-e65d-41de-8df7-5f0bdb4858b1",
+        "workerRequestId": "134dd151-ac90-5924-85fe-b2794c77b506",
+        "providerRequestId": "b0fe2d88-57e4-4b19-9f09-d8826ca3fdf3",
+        "faultEventId": "39914881070754684883006165754954575398064629114778025987",
+        "failureEventId": "39914881070866188608998818868896175795641227756639813636",
+        "candidate": "sku-key",
+        "ledgerObservedAt": "2026-09-19T19:13:01.766Z"
+      },
+      {
+        "receiptId": "321ed2e984b41f87a6814dc37d8a0d7f9dbbfa50456c2d1af14fe0d5636f570c",
+        "messageId": "f6348341-bd24-43bd-a030-21291a8cc201",
+        "workerRequestId": "90f896cc-d341-5552-8ed8-f5e433b551e9",
+        "providerRequestId": "6732ddaf-eea6-4a15-96cb-a8a64a6adf60",
+        "faultEventId": "39914881142607685912671833516982659672537649887046926345",
+        "failureEventId": "39914881142696888893465956018727011845738485691023294467",
+        "candidate": "order-key",
+        "ledgerObservedAt": "2026-09-19T19:13:02.052Z"
+      }
+    ]
+  },
+  "apiErrors": [],
+  "collection": {
+    "startedAt": "2026-09-19T19:12:42.146Z",
+    "logsStartTime": 1789845157146,
+    "lastLedgerReadAt": {
+      "no-key": "2026-09-19T19:15:18.507Z",
+      "sku-key": "2026-09-19T19:15:18.787Z",
+      "order-key": "2026-09-19T19:15:19.074Z"
+    },
+    "lastLogReadAt": "2026-09-19T19:15:21.828Z",
+    "unparsedLogEvents": 0,
+    "apiCalls": 105,
+    "maxApiCalls": 400,
+    "maxPagesPerRead": 5,
+    "stopReason": "Experiment evidence complete",
+    "finishedAt": "2026-09-19T19:15:21.831Z"
+  },
+  "cleanup": {
+    "status": "deleted",
+    "verified": true,
+    "errors": [],
+    "startedAt": "2026-09-19T19:15:21.840Z",
+    "stackArn": "arn:aws:cloudformation:us-east-1:570082421930:stack/replayguard-keys-20260920-r2/8aeb2320-b45d-11f1-88be-0afffbc0c917",
+    "apiCalls": 30,
+    "mappingDisableRequested": true,
+    "deleteRequested": true,
+    "lastStackStatus": "DELETE_COMPLETE",
+    "finishedAt": "2026-09-19T19:17:48.565Z"
+  },
+  "artifacts": {
+    "caseSha256": "8f0596749d9b157bf0cf86804fb4e826617bff20d561e3449624e21e5590a287",
+    "canonicalCaseSha256": "173046d698e013fde0ffa4d23f2e735ec800b5cfebded7754df17e8be23bd816",
+    "sourceFiles": {
+      "src/key_provider.py": "8818bd6eb26f774ac6fc414a787419595e658c06d4082350a6751f4409d5b195",
+      "src/key_worker.py": "03b8624a39836cd45fb315faf5c7bb2323f6f657f5edceef7949b591202cc80c",
+      "infra/build_template.py": "057665c52faceeb88b224f93b5b2ac3f6b5e30ae82215044f27d95e88958d2d2",
+      "scripts/deploy.py": "87421e9ede3b7bba1f4e5b48eee5f60ba30e06ffa71b0ef0175b893ed0c6a74c",
+      "scripts/destroy.py": "72a1728d801eef4ed7dc2f4f102024559179e12f3fb4331eab8107b7c29a15c5",
+      "scripts/run_key_case.py": "27576e68b02fafdebae158dd3601df534f20689c30b5ad73ead67419b827b021",
+      "scripts/verify_key_case.py": "4ffb35a3ac2a7e50c6400336ebffc7f7baefa78fbebc43878077dafeddcfcb9e",
+      "scripts/export_key_case.py": "d74315ea48ddfa0e31fc3d4d3abb693e0311fc468701ebb1693cc2ce67bf9173",
+      "requirements.txt": "59a1f0334858615197a9a232c0cee16fc4ab6bca8e02bf2f491f50529a5f18fa"
+    }
+  },
+  "limitations": [
+    "A receipt is the entire simulated effect; no real payment, shipment or email is attempted.",
+    "Standard SQS may redeliver beyond the observed grace period; no exactly-once claim is made.",
+    "Faults occur only after a new receipt on receiveCount=1; late first acceptance can leave fault evidence incomplete.",
+    "The fault is a failed provider response and worker invocation, not an OS process termination.",
+    "Offline consistency and source fingerprints are not AWS-signed attestations.",
+    "A matched experiment intentionally includes two candidates with business violations."
+  ],
+  "deployment": {
+    "stackArn": "arn:aws:cloudformation:us-east-1:570082421930:stack/replayguard-keys-20260920-r2/8aeb2320-b45d-11f1-88be-0afffbc0c917",
+    "stackStatus": "CREATE_COMPLETE",
+    "expiry": "1789848526",
+    "experiment": "key-scope",
+    "templateSourceSha256": {
+      "src/key_worker.py": "03b8624a39836cd45fb315faf5c7bb2323f6f657f5edceef7949b591202cc80c",
+      "src/key_provider.py": "8818bd6eb26f774ac6fc414a787419595e658c06d4082350a6751f4409d5b195"
+    }
+  },
+  "result": {
+    "schemaVersion": 2,
+    "kind": "replayguard-aws-key-scope-verdict",
+    "runId": "366eeb3b-3258-474b-8136-792f1587ffa5",
+    "experimentStatus": "passed",
+    "operationalStatus": "passed",
+    "candidateResults": [
+      {
+        "candidate": "no-key",
+        "status": "violation",
+        "receiptCounts": {
+          "ORDER-A": 2,
+          "ORDER-B": 2
+        },
+        "assertions": [
+          {
+            "id": "order:ORDER-A",
+            "status": "violation",
+            "expected": 1,
+            "observed": 2
+          },
+          {
+            "id": "order:ORDER-B",
+            "status": "violation",
+            "expected": 1,
+            "observed": 2
+          }
+        ]
+      },
+      {
+        "candidate": "sku-key",
+        "status": "violation",
+        "receiptCounts": {
+          "ORDER-A": 1,
+          "ORDER-B": 0
+        },
+        "assertions": [
+          {
+            "id": "order:ORDER-A",
+            "status": "passed",
+            "expected": 1,
+            "observed": 1
+          },
+          {
+            "id": "order:ORDER-B",
+            "status": "violation",
+            "expected": 1,
+            "observed": 0
+          }
+        ]
+      },
+      {
+        "candidate": "order-key",
+        "status": "passed",
+        "receiptCounts": {
+          "ORDER-A": 1,
+          "ORDER-B": 1
+        },
+        "assertions": [
+          {
+            "id": "order:ORDER-A",
+            "status": "passed",
+            "expected": 1,
+            "observed": 1
+          },
+          {
+            "id": "order:ORDER-B",
+            "status": "passed",
+            "expected": 1,
+            "observed": 1
+          }
+        ]
+      }
+    ],
+    "assertions": [
+      {
+        "id": "envelope",
+        "status": "passed",
+        "detail": "V2 exported AWS observation; origin is not authenticated offline."
+      },
+      {
+        "id": "case-fingerprint",
+        "status": "passed",
+        "detail": "Case inputs and fault match their captured canonical hash."
+      },
+      {
+        "id": "deployed-template-sources",
+        "status": "passed",
+        "detail": "Captured worker/receiver bytes match the deployed CloudFormation template; hashes are not signatures."
+      },
+      {
+        "id": "collection-errors",
+        "status": "passed",
+        "detail": "No API failures or undecodable run logs."
+      },
+      {
+        "id": "exact-dispatch",
+        "status": "passed",
+        "detail": "Six recorded original SQS sends; an ambiguous send is never retried."
+      },
+      {
+        "id": "causal-phase-gate",
+        "status": "passed",
+        "detail": "Every A receipt and post-commit worker failure were collected before any B send."
+      },
+      {
+        "id": "event-bindings",
+        "status": "passed",
+        "detail": "All collected run events bind to the exact submitted order/message and have unique source IDs."
+      },
+      {
+        "id": "no-key:independent-snapshot",
+        "status": "passed",
+        "detail": "Latest complete strongly consistent receipt query supplies the count."
+      },
+      {
+        "id": "no-key:receipt-integrity",
+        "status": "passed",
+        "detail": "Receipts match full inputs, chosen keys and original message identities."
+      },
+      {
+        "id": "no-key:trace:ORDER-A",
+        "status": "passed",
+        "detail": "A committed first-receive failure and same-message successful SQS retry are correlated."
+      },
+      {
+        "id": "no-key:trace:ORDER-B",
+        "status": "passed",
+        "detail": "A committed first-receive failure and same-message successful SQS retry are correlated."
+      },
+      {
+        "id": "sku-key:independent-snapshot",
+        "status": "passed",
+        "detail": "Latest complete strongly consistent receipt query supplies the count."
+      },
+      {
+        "id": "sku-key:receipt-integrity",
+        "status": "passed",
+        "detail": "Receipts match full inputs, chosen keys and original message identities."
+      },
+      {
+        "id": "sku-key:trace:ORDER-A",
+        "status": "passed",
+        "detail": "A committed first-receive failure and same-message successful SQS retry are correlated."
+      },
+      {
+        "id": "sku-key:trace:ORDER-B",
+        "status": "passed",
+        "detail": "Terminal payload rejection is correlated."
+      },
+      {
+        "id": "order-key:independent-snapshot",
+        "status": "passed",
+        "detail": "Latest complete strongly consistent receipt query supplies the count."
+      },
+      {
+        "id": "order-key:receipt-integrity",
+        "status": "passed",
+        "detail": "Receipts match full inputs, chosen keys and original message identities."
+      },
+      {
+        "id": "order-key:trace:ORDER-A",
+        "status": "passed",
+        "detail": "A committed first-receive failure and same-message successful SQS retry are correlated."
+      },
+      {
+        "id": "order-key:trace:ORDER-B",
+        "status": "passed",
+        "detail": "A committed first-receive failure and same-message successful SQS retry are correlated."
+      },
+      {
+        "id": "bounded-drain",
+        "status": "passed",
+        "detail": "Source and DLQ observed empty after terminal outcomes, then final ledger/log reads; no claim about all future deliveries."
+      },
+      {
+        "id": "expected-business-findings",
+        "status": "passed",
+        "detail": "Both faulty keys are detected and the business-order key preserves both valid orders."
+      }
+    ]
+  }
+}

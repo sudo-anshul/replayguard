@@ -1,0 +1,44 @@
+{
+  "kind": "actual-local-tutorial-execution",
+  "stage": "broken",
+  "case": "interleaved-retries",
+  "helperIsSeparateFromProduct": true,
+  "startedAt": "2026-09-19T18:52:42.474752+00:00",
+  "completedAt": "2026-09-19T18:52:42.534717+00:00",
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+    "-I",
+    "-S",
+    "scripts/test_repair.py",
+    "--adapter",
+    "candidate/adapter.py",
+    "--case",
+    "interleaved-retries",
+    "--output",
+    "broken.json"
+  ],
+  "displayCommand": "python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case interleaved-retries --output broken.json",
+  "workingDirectory": ".",
+  "networkWrapper": [
+    "/usr/bin/sandbox-exec",
+    "-p",
+    "(version 1)(allow default)(deny network*)"
+  ],
+  "processExitCode": 1,
+  "sourceBeforeSha256": "65003a7a00cfdee6d2975ba41b8caa3a65c1789cb28309793ed50654531e41ed",
+  "sourceAfterSha256": "65003a7a00cfdee6d2975ba41b8caa3a65c1789cb28309793ed50654531e41ed",
+  "sourceUnchangedDuringCommand": true,
+  "stdoutSha256": "4fec703911b1e771df90b258257cad1319c78a1d5769e8c5efedca4fbe9db4b3",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "sourceArchiveSha256": "6c25d254c8f53216ae7e82a46d8102b7508d8d83a4ad7933487a3541260654e5",
+  "newAwsExecution": false,
+  "simulatedTyping": false,
+  "report": "broken.json",
+  "reportSha256": "6b8017ff31e247d99983c32941d1afcc1dca89642a006fa840fcdfacebec175b",
+  "reportedStatus": "violation",
+  "observedReceipts": 1,
+  "observedReceiptsByOrder": {
+    "ORDER-A": 1,
+    "ORDER-B": 0
+  }
+}

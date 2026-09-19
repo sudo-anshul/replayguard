@@ -1,0 +1,12 @@
+[
+  {
+    "timestamp": 1789844332555,
+    "message": "[ERROR] TypeError: Object of type Decimal is not JSON serializable\nTraceback (most recent call last):\n\u00a0\u00a0File \"/var/task/index.py\", line 105, in handler\n\u00a0\u00a0\u00a0\u00a0emit(\"payload_conflict\", event, context, existing, existingOrder=existing.get(\"order\"))\n\u00a0\u00a0File \"/var/task/index.py\", line 70, in emit\n\u00a0\u00a0\u00a0\u00a0print(json.dumps({\"schemaVersion\": 2, \"component\": \"provider\", \"stage\": stage,\n\u00a0\u00a0File \"/var/lang/lib/python3.12/json/__init__.py\", line 238, in dumps\n\u00a0\u00a0\u00a0\u00a0**kw).encode(obj)\n\u00a0\u00a0File \"/var/lang/lib/python3.12/json/encoder.py\", line 200, in encode\n\u00a0\u00a0\u00a0\u00a0chunks = self.iterencode(o, _one_shot=True)\n\u00a0\u00a0File \"/var/lang/lib/python3.12/json/encoder.py\", line 258, in iterencode\n\u00a0\u00a0\u00a0\u00a0return _iterencode(o, 0)\n\u00a0\u00a0File \"/var/lang/lib/python3.12/json/encoder.py\", line 180, in default\n\u00a0\u00a0\u00a0\u00a0raise TypeError(f'Object of type {o.__class__.__name__} '",
+    "eventId": "39914862405343164145654024006710420380275337433480167431"
+  },
+  {
+    "timestamp": 1789844404541,
+    "message": "[ERROR] TypeError: Object of type Decimal is not JSON serializable\nTraceback (most recent call last):\n\u00a0\u00a0File \"/var/task/index.py\", line 105, in handler\n\u00a0\u00a0\u00a0\u00a0emit(\"payload_conflict\", event, context, existing, existingOrder=existing.get(\"order\"))\n\u00a0\u00a0File \"/var/task/index.py\", line 70, in emit\n\u00a0\u00a0\u00a0\u00a0print(json.dumps({\"schemaVersion\": 2, \"component\": \"provider\", \"stage\": stage,\n\u00a0\u00a0File \"/var/lang/lib/python3.12/json/__init__.py\", line 238, in dumps\n\u00a0\u00a0\u00a0\u00a0**kw).encode(obj)\n\u00a0\u00a0File \"/var/lang/lib/python3.12/json/encoder.py\", line 200, in encode\n\u00a0\u00a0\u00a0\u00a0chunks = self.iterencode(o, _one_shot=True)\n\u00a0\u00a0File \"/var/lang/lib/python3.12/json/encoder.py\", line 258, in iterencode\n\u00a0\u00a0\u00a0\u00a0return _iterencode(o, 0)\n\u00a0\u00a0File \"/var/lang/lib/python3.12/json/encoder.py\", line 180, in default\n\u00a0\u00a0\u00a0\u00a0raise TypeError(f'Object of type {o.__class__.__name__} '",
+    "eventId": "39914864010684608007079461560268114874417040870221807621"
+  }
+]

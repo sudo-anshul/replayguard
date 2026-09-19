@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path, PurePosixPath
+import re
 import tempfile
 import zipfile
 
@@ -16,6 +17,13 @@ WEB_FILES = (
     "repair-contract.js", "repair-example.json", "repair-transfer.json",
     "repair.css", "repair.html", "styles.css", "regression-case.zip",
     "replayguard-local-regression.zip", "replayguard-repair-lab.zip",
+    "repair-data.js", "repair-imports.js", "repair-motion.js", "shared-tokens.css", "build-manifest.json",
+    "aws-key-scope.html", "aws-key-scope.css", "aws-key-scope.js", "aws-key-scope-data.js",
+)
+OPTIONAL_RECORDINGS = (
+    "web/aws-key-scope-report.json", "web/aws-key-scope-regression.zip", "web/aws-key-scope-attempt-1.zip", "web/aws-key-scope-attempt-2.zip",
+    "evidence/key-scope-20260920.json", "evidence/key-scope-20260920-cleanup-followup.json",
+    "evidence/key-scope-20260920-r2.json", "evidence/key-scope-20260920-r3.json",
 )
 REQUIRED = (
     "README.md", "LICENSE", ".gitignore", "requirements.txt", "requirements.lock.txt",
@@ -31,6 +39,7 @@ OPTIONAL_DOCS = (
     "docs/deadline.md", "docs/deadline-api-snapshot.json", "docs/deadline-evidence.json",
     "docs/deadline-source-manifest.json", "docs/validation.md", "docs/what-we-learned.md",
     "docs/submission.md", "docs/publication-status.md", "docs/design.md",
+    "docs/submission-form.md", "docs/first-user-trial.md", "docs/releases/2026-09-20.md",
     "docs/deadline-refresh-20260919.json",
     ".github/workflows/offline-regression.yml", "docs/publication/README.md",
     "docs/publication/github-ci-initial.json",
@@ -46,26 +55,34 @@ OPTIONAL_DOCS = (
     "docs/publication/source-snapshot/SOURCE-PACKAGE.json",
     "docs/publication/source-snapshot/SOURCE-SHA256SUMS",
     "docs/screenshots/comparison.png",
+    "docs/screenshots/key-scope-inspector.png",
 )
 PATTERNS = (
     "src/*.py", "infra/*.py", "infra/*.json", "scripts/*.py",
+    "ui/*.html", "ui/*.js", "ui/*.css", "ui/*.svg", "ui/*.md",
     "local_lab/**/*.py", "repair_lab/**/*.py", "cases/**/*.json",
     "examples/dispatchdesk/*.py", "examples/dispatchdesk/README.md",
     "tests/*.py", "tests/*.cjs", "tests/fixtures/*.json", "tests/fixtures/README.md",
     "tests/repair_holdout/*.py", "tests/repair_holdout/*.cjs", "tests/repair_holdout/*.json",
+    "docs/releases/*.json",
 )
-REPAIR_DOC_EXTENSIONS = frozenset({".md", ".py", ".json", ".txt", ".srt", ".png", ".jpg"})
+REPAIR_DOC_EXTENSIONS = frozenset({".md", ".py", ".json", ".txt", ".srt", ".png", ".jpg", ".ts", ".tsx", ".js", ".mjs", ".cjs", ".css", ".woff2"})
+DEMO_ROOT = "demo/silent-20260920"
+DEMO_EXTENSIONS = REPAIR_DOC_EXTENSIONS | {".jpeg", ".webp"}
+DEMO_GENERATED_PARTS = frozenset({"public", "render", "previews", "final-review", ".review-bundle", ".render-parts", ".bounded-bundle", ".remotion"})
+DEMO_GENERATED_NAMES = frozenset({"prepared.json", "asset-manifest.json", "final-validation.json", "final-ffprobe.json", "final-decode.log", "bounded-render-manifest.json", "encoded-source.json", "editorial.ffconcat"})
 DENIED_PARTS = frozenset({".git", ".aws", ".venv", "node_modules", "__pycache__", "competitive-review", "account", "accounts"})
-DENIED_NAMES = frozenset({"deployment.local.json", "credentials", "credentials.json", ".env", "config.local.json"})
+DENIED_NAMES = frozenset({"deployment.local.json", "deployment-key-scope.local.json", "credentials", "credentials.json", ".env", "config.local.json"})
 SOURCE_README = """# ReplayGuard local source snapshot
 
 This archive contains the current static UI, bounded local repair runtime,
 reference/application adapters, tests, public run instructions, and selected
-historical evidence required by the retained regressions. It is an explicitly
+historical evidence and separately dated AWS key-scope attempts. It is an explicitly
 allowlisted source snapshot, not a Git history export or a public deployment.
 Private strategy/prior-project research, account configuration, credentials,
 and unrelated workspace files are excluded. Old downloadable archives and AWS
-evidence retain their original bytes; they do not attest to a new cloud run.
+evidence retain their original bytes. Current key-scope observations are separate
+files; inspect their experiment, business and cleanup states independently.
 Exporting source makes no AWS calls. Current operating authorization and
 accounting limits are recorded in docs/publication-status.md; credits are
 not treated as measured gross-spend headroom.
@@ -84,12 +101,14 @@ Open http://127.0.0.1:8088/ . The static UI reads JSON; it does not run Python.
 Read docs/repair-lab/runbook.md for pass/fail/restoration, the independent
 DispatchDesk example, trusted-code and simulation limits. The complete
 comparison intentionally includes incomplete/unresolved controls and does not
-have an all-green exit status. No new cloud execution is claimed.
+have an all-green exit status. AWS observations have their own versioned report
+and verifier; running the local repair lab does not reproduce AWS scheduling.
 
 ## Reproduce checks
 
 ```sh
-python3 -I -S -m unittest discover -s tests -p 'test_repair*.py'
+python3 -I -S -m unittest discover -s tests -p 'test_*.py'
+python3 -I -S scripts/build_web.py --check
 python3 tests/repair_holdout/run_transfer.py --output-dir /tmp/replayguard-transfer-new
 ```
 
@@ -124,9 +143,10 @@ Hashes establish byte consistency, not authorship, Git history or authentic
 AWS execution. Public report imports remain unauthenticated. Exporting this
 snapshot does not deploy hosting, upload a video or submit an entry; confirmed
 delivery links are recorded separately in docs/publication-status.md.
-The companion narrated MP4 is distributed separately from this source ZIP;
-its script, subtitles, captures and render manifest are included under
-docs/repair-lab/media/.
+Video binaries are distributed separately from this source ZIP. Historical
+narrated-video production records remain under docs/repair-lab/media/; the new
+September 20 video is silent and is not uploaded to YouTube. Check its production
+README for the exact supplied render inputs and any external prerequisites.
 """
 
 
@@ -146,21 +166,53 @@ def read_source(root, name):
     return cursor.read_bytes()
 
 
+def read_demo_sources(root):
+    """Include frozen static inputs, never files produced by a local render."""
+    directory = root / DEMO_ROOT
+    if not directory.exists() and not directory.is_symlink():
+        return {}
+    manifest_name = DEMO_ROOT + "/source-manifest.json"
+    manifest_bytes = read_source(root, manifest_name)
+    manifest = json.loads(manifest_bytes)
+    if not isinstance(manifest, dict) or manifest.get("status") != "complete" or manifest.get("selfContainedStaticInputs") is not True:
+        raise ValueError("Demo source manifest must describe complete static inputs")
+    indexed = manifest.get("files")
+    if not isinstance(indexed, dict) or not indexed:
+        raise ValueError("Demo source manifest must contain a nonempty files allowlist")
+    files = {manifest_name: manifest_bytes}
+    for name, expected in sorted(indexed.items()):
+        if not isinstance(name, str) or not isinstance(expected, str) or not re.fullmatch(r"[a-f0-9]{64}", expected):
+            raise ValueError("Invalid demo source filename or SHA-256")
+        path = PurePosixPath(name)
+        if path.is_absolute() or ".." in path.parts or path.as_posix() != name or "\\" in name or name == "source-manifest.json":
+            raise ValueError(f"Disallowed demo source path: {name}")
+        if any(part in DEMO_GENERATED_PARTS for part in path.parts) or path.name in DEMO_GENERATED_NAMES or (name != ".gitignore" and path.suffix.lower() not in DEMO_EXTENSIONS):
+            raise ValueError(f"Generated or unsupported demo source is not included: {name}")
+        full_name = DEMO_ROOT + "/" + name
+        data = read_source(root, full_name)
+        if hashlib.sha256(data).hexdigest() != expected:
+            raise ValueError(f"Demo source hash mismatch: {name}")
+        files[full_name] = data
+    return files
+
+
 def assemble(root=ROOT):
     root = Path(root).resolve()
     names = set(REQUIRED) | {"web/" + name for name in WEB_FILES}
     names.update(name for name in OPTIONAL_DOCS if (root / name).is_file())
+    names.update(name for name in OPTIONAL_RECORDINGS if (root / name).is_file())
     for pattern in PATTERNS:
         names.update(path.relative_to(root).as_posix() for path in root.glob(pattern) if path.is_file())
     for path in (root / "docs/repair-lab").rglob("*"):
         if path.is_file() and path.suffix in REPAIR_DOC_EXTENSIONS and "__pycache__" not in path.parts:
             names.add(path.relative_to(root).as_posix())
     files = {name: read_source(root, name) for name in sorted(names)}
+    files.update(read_demo_sources(root))
     files["SOURCE-README.md"] = SOURCE_README.encode()
     files["SOURCE-PACKAGE.json"] = (json.dumps({
         "schemaVersion": 1,
         "kind": "allowlisted-local-source-snapshot",
-        "newCloudEvidence": False,
+        "newCloudEvidence": "evidence/key-scope-20260920-r3.json" in files,
         "publiclyPublished": False,
         "includesGitHistory": False,
         "excludes": ["private competitive/prior-project research", "account and deployment.local.json configuration", "credentials and environment files", "unrelated workspace artifacts", "Git internal history", "video binaries"],

@@ -1,0 +1,167 @@
+{
+  "capturePolicy": "Only real UI/actual execution captures. Timestamped screenshot streams are permitted, but never called native30fps screen recording. Final composition has no audio.",
+  "captures": {
+    "aws-hook": {
+      "path": "captures/aws-hook/source.mp4",
+      "manifest": "captures/aws-hook/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 12,
+      "requiredContent": "Actual current AWS fulfillment/crash/retry evidence; independent receipts visible.",
+      "encodedManifest": "captures/aws-hook/encoded-source.json",
+      "recordedAt": "2026-09-19T19:36:17.792Z"
+    },
+    "aws-first-failure": {
+      "path": "captures/aws-first-failure/source.mp4",
+      "manifest": "captures/aws-first-failure/manifest.json",
+      "encodedManifest": "captures/aws-first-failure/encoded-source.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "requiredContent": "Original failed AWS report using archived verifier. Experimental status unresolved; later cleanup independently confirmed in separate evidence."
+    },
+    "aws-comparison": {
+      "path": "captures/aws-comparison/source.mp4",
+      "manifest": "captures/aws-comparison/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 12,
+      "requiredContent": "Actual unsafe/repaired AWS reports or current key-scope run; preserve run date and source distinction.",
+      "encodedManifest": "captures/aws-comparison/encoded-source.json",
+      "recordedAt": "2026-09-19T19:36:17.792Z"
+    },
+    "two-orders": {
+      "path": "captures/two-orders/source.mp4",
+      "manifest": "captures/two-orders/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 12,
+      "requiredContent": "New UI showing distinct valid orders with the same SKU and the key-scope comparison.",
+      "encodedManifest": "captures/two-orders/encoded-source.json"
+    },
+    "two-orders-final": {
+      "path": "captures/two-orders-final/source.mp4",
+      "manifest": "captures/two-orders-final/manifest.json",
+      "encodedManifest": "captures/two-orders-final/encoded-source.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video. Editorial return to an earlier final snapshot, not a new action."
+    },
+    "kit-download": {
+      "path": "captures/kit-download/source.mp4",
+      "manifest": "captures/kit-download/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 12,
+      "requiredContent": "New UI downloading the actual runnable regression kit.",
+      "encodedManifest": "captures/kit-download/encoded-source.json"
+    },
+    "baseline-run": {
+      "path": "captures/baseline-run/source.mp4",
+      "manifest": "captures/baseline-run/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 12,
+      "requiredContent": "Recording helper: actual orderId adapter execution on interleaved-retries, per-order counts and process exit visible.",
+      "encodedManifest": "captures/baseline-run/encoded-source.json"
+    },
+    "edit-sku": {
+      "path": "captures/edit-sku/source.mp4",
+      "manifest": "captures/edit-sku/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 14,
+      "requiredContent": "Actual edit orderId to sku and save; code must stay legible.",
+      "encodedManifest": "captures/edit-sku/encoded-source.json"
+    },
+    "run-sku": {
+      "path": "captures/run-sku/source.mp4",
+      "manifest": "captures/run-sku/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 12,
+      "requiredContent": "Actual SKU-key execution; show result only after command completes.",
+      "encodedManifest": "captures/run-sku/encoded-source.json"
+    },
+    "import-broken": {
+      "path": "captures/import-broken/source.mp4",
+      "manifest": "captures/import-broken/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 12,
+      "requiredContent": "New UI importing the actual report from the captured SKU execution.",
+      "encodedManifest": "captures/import-broken/encoded-source.json"
+    },
+    "failure-trace": {
+      "path": "captures/failure-trace/source.mp4",
+      "manifest": "captures/failure-trace/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 12,
+      "requiredContent": "Actual expanded missing-order assertion with receiver receipts and fault trace.",
+      "encodedManifest": "captures/failure-trace/encoded-source.json"
+    },
+    "restore-order-id": {
+      "path": "captures/restore-order-id/source.mp4",
+      "manifest": "captures/restore-order-id/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 14,
+      "requiredContent": "Actual edit sku to orderId and save.",
+      "encodedManifest": "captures/restore-order-id/encoded-source.json"
+    },
+    "run-restored": {
+      "path": "captures/run-restored/source.mp4",
+      "manifest": "captures/run-restored/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 12,
+      "requiredContent": "Actual restored adapter execution of the same case and fault.",
+      "encodedManifest": "captures/run-restored/encoded-source.json"
+    },
+    "import-restored": {
+      "path": "captures/import-restored/source.mp4",
+      "manifest": "captures/import-restored/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 12,
+      "requiredContent": "New UI imports the actual restored report and displays its evidence.",
+      "encodedManifest": "captures/import-restored/encoded-source.json"
+    },
+    "export-evidence": {
+      "path": "captures/export-evidence/source.mp4",
+      "manifest": "captures/export-evidence/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 12,
+      "requiredContent": "New UI opens/exports original JSON with inputs, fault, assertions and evidence.",
+      "encodedManifest": "captures/export-evidence/encoded-source.json"
+    },
+    "states": {
+      "path": "captures/states/source.mp4",
+      "manifest": "captures/states/manifest.json",
+      "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+      "minimumSuggestedSeconds": 12,
+      "requiredContent": "New UI shows its exact incomplete and unresolved states; use separateclips if required.",
+      "encodedManifest": "captures/states/encoded-source.json"
+    }
+  },
+  "reports": {
+    "before": {
+      "path": "evidence/executions/before/report.json",
+      "execution": "evidence/executions/before/execution.json",
+      "caseId": "interleaved-retries",
+      "label": "Order ID · before"
+    },
+    "broken": {
+      "path": "evidence/executions/broken/report.json",
+      "execution": "evidence/executions/broken/execution.json",
+      "caseId": "interleaved-retries",
+      "label": "SKU · broken"
+    },
+    "restored": {
+      "path": "evidence/executions/restored/report.json",
+      "execution": "evidence/executions/restored/execution.json",
+      "caseId": "interleaved-retries",
+      "label": "Order ID · restored"
+    }
+  },
+  "supportingEvidence": {
+    "historical-first-run": {
+      "path": "evidence/supporting/historical-first-run.json"
+    },
+    "historical-cleanup-followup": {
+      "path": "evidence/supporting/historical-cleanup-followup.json"
+    },
+    "historical-provider-diagnosis": {
+      "path": "evidence/supporting/historical-provider-diagnosis.json"
+    },
+    "final-aws-run": {
+      "path": "evidence/supporting/final-aws-run.json",
+      "expectedSha256": "49132ede7271bfa8c1e091bbde339a350eece3d47f8a41ce17af9fce4047d4f2"
+    }
+  }
+}

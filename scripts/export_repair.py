@@ -80,6 +80,7 @@ def assemble(root=ROOT):
         "trustedCodeOnly": True,
         "commands": {
             "passingCase": "python3 -I -S scripts/test_repair.py --candidate business-key --case crash-retry --output repaired.json",
+            "keyScopeCase": "python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case interleaved-retries --output before.json",
             "failingControl": "python3 -I -S scripts/test_repair.py --candidate no-key --case crash-retry --output duplicate.json",
             "allComparisons": "python3 -I -S scripts/test_repair.py --output repair-results.json",
             "independentExample": "python3 -I -S scripts/test_repair.py --adapter examples/dispatchdesk/adapter.py --case-file examples/dispatchdesk/cases.json --output dispatchdesk-results.json",

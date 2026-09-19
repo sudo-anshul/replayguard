@@ -17,34 +17,45 @@ The command executes candidate source; it does not load a stored successful
 result. Exit `0` means this selected candidate passed this selected case. The
 receipt itself is the simulated fulfillment effect.
 
-## Prove the test catches a broken repair
+## A repair can stop duplicates and still lose an order
 
 Make an editable copy, leaving the reference source intact:
 
 ```sh
 mkdir -p candidate
 cp repair_lab/adapters/business_key.py candidate/adapter.py
-python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case crash-retry --output before.json
+python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case interleaved-retries --output before.json
 ```
 
-In `candidate/adapter.py`, replace `key=order["orderId"]` with `key=None`.
+Two valid orders share the same product. Expect **PASSED / exit 0**, with one
+receipt for ORDER-A and one for ORDER-B. In `candidate/adapter.py`, replace
+`key=order["orderId"]` with `key=order["sku"]`.
 Run the same test again:
 
 ```sh
-python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case crash-retry --output broken.json
+python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case interleaved-retries --output broken.json
 ```
 
-Expect **VIOLATION / exit 1**: a retry creates a second receipt. Restore the
-candidate and rerun:
+Expect **VIOLATION / exit 1**: ORDER-A has one receipt, but valid ORDER-B has
+none. The receiver rejected the different payload under the reused product
+key. Stopping duplicates did not protect the other order. Restore the candidate
+and rerun:
 
 ```sh
 cp repair_lab/adapters/business_key.py candidate/adapter.py
-python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case crash-retry --output restored.json
+python3 -I -S scripts/test_repair.py --adapter candidate/adapter.py --case interleaved-retries --output restored.json
 ```
 
-Expect **PASSED / exit 0**. The JSON reports include the executed source
+Expect **PASSED / exit 0**, one receipt for each order. Import `before.json`,
+`broken.json` and `restored.json` into the companion lab. The browser checks and
+displays supplied observations; these terminal commands execute Python.
+The JSON reports include the executed source
 fingerprints, case inputs, fault conditions, observations, and assertions.
 Keep the failed report with its source when diagnosing a later change.
+
+For the simpler duplicate failure, replace the key with `None` and run
+`--case crash-retry`. One receipt becomes two and the result is a violation.
+Restore the reference source afterwards. Neither exercise makes real shipments.
 
 ## Compare the full controls
 

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "kind": "replayguard-local-sdk-serialization-regression",
+  "status": "passed",
+  "recordedAt": "2026-09-19T19:16:16Z",
+  "execution": "Local source with mocked Lambda/DynamoDB transport and actual boto3 value serialization; not AWS execution",
+  "runtime": {
+    "python": "3.14.3",
+    "boto3": "1.42.70"
+  },
+  "blockedOperationAttempts": {
+    "awsApi": 0,
+    "socketConnect": 0
+  },
+  "historicalRunId": "85500aff-3d08-483e-9e63-78a9723eb67a",
+  "historicalArchiveSha256": "ea41a00d1a9a753c8ea3165110ccfad657aebb21a2ad5b14214182d59cc775b4",
+  "sourceSha256": {
+    "archived": {
+      "key_provider.py": "1b0beee013eee8c5d5b3bf209e5a1c99a39b1d0b335feae529bdd9218254dee7",
+      "key_worker.py": "03b8624a39836cd45fb315faf5c7bb2323f6f657f5edceef7949b591202cc80c"
+    },
+    "current": {
+      "key_provider.py": "8818bd6eb26f774ac6fc414a787419595e658c06d4082350a6751f4409d5b195",
+      "key_worker.py": "03b8624a39836cd45fb315faf5c7bb2323f6f657f5edceef7949b591202cc80c"
+    }
+  },
+  "validatorSha256": "03607c933a01eb16f8fdf56ebed9b9672f483605d2043d8ada1ab32490cf9095",
+  "groupsPassed": 3,
+  "originalSource": {
+    "workerOutcomeForB": "raised",
+    "workerErrorType": "RuntimeError",
+    "providerErrors": [
+      "InjectedAfterCommit",
+      "TypeError"
+    ],
+    "aRetryReused": true,
+    "receiptCount": 1,
+    "payloadConflictLogCount": 0,
+    "conflictExistingOrder": null,
+    "conflictQuantityType": null
+  },
+  "repairedSource": {
+    "workerOutcomeForB": "rejected",
+    "workerErrorType": null,
+    "providerErrors": [
+      "InjectedAfterCommit",
+      "PayloadConflict"
+    ],
+    "aRetryReused": true,
+    "receiptCount": 1,
+    "payloadConflictLogCount": 1,
+    "conflictExistingOrder": {
+      "orderId": "A",
+      "quantity": 1,
+      "sku": "SAME-SKU"
+    },
+    "conflictQuantityType": "int"
+  },
+  "normalization": {
+    "invalidQuantitiesRejected": 10,
+    "invalidOrderShapesRejected": 4,
+    "validQuantitiesNormalizedWithoutMutation": 3
+  },
+  "limits": [
+    "These are three local regression groups, not three AWS experiments.",
+    "The original AWS observation and its cleanup follow-up remain separate, immutable records.",
+    "AWS SQS scheduling, service behavior and current cloud state are not tested here."
+  ]
+}

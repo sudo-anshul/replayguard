@@ -1,0 +1,34 @@
+{
+  "id": "two-orders-final",
+  "method": "Actual timestamped browser screenshots, with explicit editorial reading holds and documented elapsed-gap cuts; no synthetic intermediate frames or invented execution duration. Not native screen video.",
+  "captureManifestSha256": "191d0a014f50700ebbcf22f6e567587b07c37cf772249b09bd5e2ffeca15e0bc",
+  "sourceElapsedSeconds": 0.0,
+  "retainedSourceIntervalSeconds": 0,
+  "omittedElapsedGapSeconds": 0.0,
+  "editorialReadingHoldSeconds": 6.0,
+  "outputDurationSeconds": 6.0,
+  "containerFrameRate": 30,
+  "sourceFrameCount": 1,
+  "width": 1280,
+  "height": 800,
+  "videoSha256": "de140f85c1c7768810a9e446084cb7883186b9e5734e1470d5e81d936d8b71ae",
+  "fullDecodeExitCode": 0,
+  "audioStreamCount": 0,
+  "frames": [
+    {
+      "index": 0,
+      "file": "0002.png",
+      "sha256": "a8209a61521f0b997e90f32476e15f2bef76b6f2f70f629436f7ba7b07c3a1ab",
+      "originalTimestamp": 1789844162640,
+      "originalIntervalSeconds": 0,
+      "retainedIntervalSeconds": 0,
+      "omittedElapsedSeconds": 0,
+      "editorialReadingHoldSeconds": 6.0,
+      "outputStartSeconds": 0.0,
+      "outputDurationSeconds": 6.0
+    }
+  ],
+  "rawFramesRetained": true,
+  "originalEncodedManifestSha256": "700c82ee50b65402d3730ab4a79624fab12a522c5fb4c507314547b0bd9f50c8",
+  "originalVideoSha256": "de140f85c1c7768810a9e446084cb7883186b9e5734e1470d5e81d936d8b71ae"
+}

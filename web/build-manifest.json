@@ -1,0 +1,41 @@
+{
+  "assets": {
+    "web/aws-key-scope-data.js": "c659fec042defaeb010e21accd6e81fd7ac2d1a3aadb4bc518373fb7d12bcea7",
+    "web/aws-key-scope.css": "6e72ff7989f98b3c43198c997f4a812ecaa1c16fd029c2115ea5db5282007f85",
+    "web/aws-key-scope.html": "256dd35ed667977ec6d2f6c6cf297300df024633ae8dc3b4652fb3843f00c527",
+    "web/aws-key-scope.js": "42392b852003060ef5626380d3012ee093371aa6d58b0505d5f734e21f2c33bf",
+    "web/index.html": "b3035dd8ac51fceaf8a6acff083269dbafad98578bc7d0a8af38421f7612e94f",
+    "web/mark.svg": "e9108ebd7157990b9df59405ca9c79141dd152ef4a9163da90113ea1fbefa1a3",
+    "web/repair-app.js": "b845d677314412619e072ea5cb97f65491bd75f536aca92f79c5c9b6d1ef12ee",
+    "web/repair-data.js": "631d50fdb5c395fac62302feb2c306ecf15ed1e54a9c510be4e0ae17015415c6",
+    "web/repair-imports.js": "2d8cb8321129078c39f59a1c748975a0fe9e767f0760e94980e2bcda1a37d33e",
+    "web/repair-motion.js": "029d1671896409538d9c921fc95ac992eb03a3ada1a428ad4fd99bb886fc7c0c",
+    "web/repair.css": "2eaa719553786388c290f323007079848af5e9a39e5aa7d7d06328c3f33ce800",
+    "web/repair.html": "b3035dd8ac51fceaf8a6acff083269dbafad98578bc7d0a8af38421f7612e94f",
+    "web/shared-tokens.css": "af28bc7cf45bf0ce265ac3c85f379ac7ff8f72f8b6678826d527beaaad065824"
+  },
+  "buildCommand": "python3 -I -S scripts/build_web.py",
+  "schemaVersion": 1,
+  "scope": "Generated viewer assets and their source inputs; hashes establish byte consistency, not report origin.",
+  "sources": {
+    "scripts/build_web.py": "84d510a2c89a83b762f94a7a31155fd855b8c7c91b8518c441af6f894c58fa54",
+    "scripts/verify_key_case.py": "a3cc1a2612fdadfe88a04a84825e199040c10becf4a4ff4913a94ec9ed361dbc",
+    "ui/aws-key-scope-data.js": "c659fec042defaeb010e21accd6e81fd7ac2d1a3aadb4bc518373fb7d12bcea7",
+    "ui/aws-key-scope.css": "6e72ff7989f98b3c43198c997f4a812ecaa1c16fd029c2115ea5db5282007f85",
+    "ui/aws-key-scope.js": "42392b852003060ef5626380d3012ee093371aa6d58b0505d5f734e21f2c33bf",
+    "ui/aws-key-scope.template.html": "d4a31c3afab3715d6d1e9091c8c87a5fdfcd984b3abc488c5f7b8ea463b4ec6d",
+    "ui/index.template.html": "b102deea9f4ab44b9f897853651d7bbe1f9c66244727eab615bd036ca2cec87b",
+    "ui/repair-app.js": "b845d677314412619e072ea5cb97f65491bd75f536aca92f79c5c9b6d1ef12ee",
+    "ui/repair-data.js": "631d50fdb5c395fac62302feb2c306ecf15ed1e54a9c510be4e0ae17015415c6",
+    "ui/repair-imports.js": "2d8cb8321129078c39f59a1c748975a0fe9e767f0760e94980e2bcda1a37d33e",
+    "ui/repair-motion.js": "029d1671896409538d9c921fc95ac992eb03a3ada1a428ad4fd99bb886fc7c0c",
+    "ui/repair.css": "2eaa719553786388c290f323007079848af5e9a39e5aa7d7d06328c3f33ce800",
+    "ui/replayguard-mark.svg": "e9108ebd7157990b9df59405ca9c79141dd152ef4a9163da90113ea1fbefa1a3",
+    "ui/shared-tokens.css": "af28bc7cf45bf0ce265ac3c85f379ac7ff8f72f8b6678826d527beaaad065824",
+    "web/aws-key-scope-regression.zip": "e097d77241354bab95453a8610f00366e26e24bba35531139ebaedee34fe8ff4",
+    "web/aws-key-scope-report.json": "49132ede7271bfa8c1e091bbde339a350eece3d47f8a41ce17af9fce4047d4f2",
+    "web/repair-contract.js": "dabd37feb58a92476ff8de7ba125237c5a6004c88967ecfcd743a069361b4a31",
+    "web/repair-example.json": "a92089de5c85f1a1eb79bf48591607724b08a96279f4223b359b8298fd2490ce",
+    "web/repair-transfer.json": "9d4565a94e642747c559caa50c414fa6447a02aab56a182aca682ad994892224"
+  }
+}

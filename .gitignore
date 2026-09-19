@@ -12,10 +12,14 @@ work/
 !web/regression-case.zip
 !web/replayguard-local-regression.zip
 !web/replayguard-repair-lab.zip
+!web/aws-key-scope-regression.zip
+!web/aws-key-scope-attempt-1.zip
+!web/aws-key-scope-attempt-2.zip
 *.mp4
 *.webm
 *.aiff
 deployment.local.json
+deployment-key-scope.local.json
 .ci-out/
 /repair-results.json
 /repaired.json

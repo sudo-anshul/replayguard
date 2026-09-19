@@ -1,0 +1,385 @@
+{
+  "kind": "replayguard-silent-source-verification",
+  "schemaVersion": 1,
+  "status": "passed",
+  "verifiedAt": "2026-09-19T20:00:14.892378+00:00",
+  "scope": "Static-source and same-runtime reproduction verification. All capture MP4s were rebuilt from this package; the final master was independently validated against the rebuilt package assets and identical prepared composition. A second full-master render and fresh npm installation were not performed.",
+  "runtime": {
+    "node": "v22.20.0",
+    "ffmpeg": "ffmpeg version 8.0 Copyright (c) 2000-2025 the FFmpeg developers",
+    "ffmpegVersionOutputSha256": "10e7a02498ae568ef01cff8ab84c7a15a39254d88dbebb9afac3f5ce05d95b02",
+    "typescript": "5.9.3",
+    "dependencyMethod": "Existing installed locked renderer runtime, temporarily linked for TypeScript checking; the package JSON and lock are exact original bytes. No dependency install or browser download.",
+    "packageLockSha256": "fd9f055021afeae2ccb72637e209ddc88a97d4f3bb52dea6609c3d5781039a8e"
+  },
+  "checks": {
+    "allStaticFileHashesPassed": true,
+    "allCanonicalRgbaHashesPassed": true,
+    "canonicalFrames": 91,
+    "originalContainerByteHashesPassed": true,
+    "originalContainers": "91 JPEG containers with no additional lossy conversion",
+    "pathClosurePassed": true,
+    "lockedPackageFilesByteIdentical": true,
+    "pythonSyntaxPassed": true,
+    "javascriptSyntaxPassed": true,
+    "typescriptPassed": true,
+    "sourceClipsRebuilt": 16,
+    "sourceClipMp4sByteIdentical": 16,
+    "preparedCompositionByteIdentical": true
+  },
+  "prepared": {
+    "sha256": "1d487edb1b4a7f4d3b0b4bc99b20547a3271c24542315c4f7d6945d0bb702425",
+    "durationSeconds": 154,
+    "frames": 4620,
+    "scenes": 28,
+    "capturedActionContentSeconds": 117,
+    "capturedActionContentRatio": 0.7597402597402597,
+    "editorialReadingHoldSeconds": 98.11900010108947,
+    "metricScope": "Captured-action content includes explicitly documented reading holds. It is not continuous native-video footage or a claim about execution duration."
+  },
+  "clips": [
+    {
+      "capture": "aws-hook",
+      "recipe": "captures/aws-hook/encoding-recipe.json",
+      "rebuiltVideoSha256": "ae585f2425abdae234a653a5cfb371499f759c4a69df1e3aa312f6c8f89a43e6",
+      "matchesOriginalVideoSha256": true,
+      "frames": 240,
+      "durationSeconds": 8.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "aws-first-failure",
+      "recipe": "captures/aws-first-failure/encoding-recipe.json",
+      "rebuiltVideoSha256": "911a7f0c44a876be3da34ff376f369e5eb932ff24afd99b36861902ed065ab96",
+      "matchesOriginalVideoSha256": true,
+      "frames": 222,
+      "durationSeconds": 7.4,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "aws-comparison",
+      "recipe": "captures/aws-comparison/encoding-recipe.json",
+      "rebuiltVideoSha256": "024e33ff36dc2bf7511ea4bba9d8bfa6634d90d0d6eb1d17a44f847c35ca0486",
+      "matchesOriginalVideoSha256": true,
+      "frames": 360,
+      "durationSeconds": 12.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "two-orders",
+      "recipe": "captures/two-orders/encoding-recipe.json",
+      "rebuiltVideoSha256": "af071285ff07310b33eafd96ee4339fe112f06cfb45d318ac91c401f0b8425b5",
+      "matchesOriginalVideoSha256": true,
+      "frames": 300,
+      "durationSeconds": 10.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "two-orders-final",
+      "recipe": "captures/two-orders-final/encoding-recipe.json",
+      "rebuiltVideoSha256": "de140f85c1c7768810a9e446084cb7883186b9e5734e1470d5e81d936d8b71ae",
+      "matchesOriginalVideoSha256": true,
+      "frames": 180,
+      "durationSeconds": 6.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "kit-download",
+      "recipe": "captures/kit-download/encoding-recipe.json",
+      "rebuiltVideoSha256": "ca9c53d2fa704a2d435eeecd14fb75d6bdb9ba64ed10c6fe641d21c034e8241c",
+      "matchesOriginalVideoSha256": true,
+      "frames": 180,
+      "durationSeconds": 6.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "baseline-run",
+      "recipe": "captures/baseline-run/encoding-recipe.json",
+      "rebuiltVideoSha256": "dab1bc30fbc9c901692e723b533b6c0a1857bf78be389d392fd4562e22d077a8",
+      "matchesOriginalVideoSha256": true,
+      "frames": 240,
+      "durationSeconds": 8.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "edit-sku",
+      "recipe": "captures/edit-sku/encoding-recipe.json",
+      "rebuiltVideoSha256": "a1ea40b373433da17cb29efbc478b67258ded5e83162776d2e9b5ebba5d4fede",
+      "matchesOriginalVideoSha256": true,
+      "frames": 240,
+      "durationSeconds": 8.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "run-sku",
+      "recipe": "captures/run-sku/encoding-recipe.json",
+      "rebuiltVideoSha256": "9399e80b1e6b74c3154e08d387bf882db3a62d5250686bd5bb6d08d7cde94451",
+      "matchesOriginalVideoSha256": true,
+      "frames": 180,
+      "durationSeconds": 6.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "import-broken",
+      "recipe": "captures/import-broken/encoding-recipe.json",
+      "rebuiltVideoSha256": "cf0d606ed8b78b17560f8574dec07348ed96bb32df64ede4b73f5f29b4ae2e19",
+      "matchesOriginalVideoSha256": true,
+      "frames": 210,
+      "durationSeconds": 7.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "failure-trace",
+      "recipe": "captures/failure-trace/encoding-recipe.json",
+      "rebuiltVideoSha256": "f3d2788c1581a5bb0e6dd3f5b5cbed81c310c3e618bf29702e6776ee3af0133d",
+      "matchesOriginalVideoSha256": true,
+      "frames": 300,
+      "durationSeconds": 10.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "restore-order-id",
+      "recipe": "captures/restore-order-id/encoding-recipe.json",
+      "rebuiltVideoSha256": "8747a31196a68125cb86da321677e49a11cc01b06ee7bce5fd8167af99b7c667",
+      "matchesOriginalVideoSha256": true,
+      "frames": 240,
+      "durationSeconds": 8.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "run-restored",
+      "recipe": "captures/run-restored/encoding-recipe.json",
+      "rebuiltVideoSha256": "a9721bab0ea383d75585961ba9b4c6e61424d4b3b5f26023cab494a9638be3ac",
+      "matchesOriginalVideoSha256": true,
+      "frames": 180,
+      "durationSeconds": 6.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "import-restored",
+      "recipe": "captures/import-restored/encoding-recipe.json",
+      "rebuiltVideoSha256": "35aed105c0cd6d7a53775db3b969756b0b1b6c4aeac278a3db0e081df44298ce",
+      "matchesOriginalVideoSha256": true,
+      "frames": 210,
+      "durationSeconds": 7.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "export-evidence",
+      "recipe": "captures/export-evidence/encoding-recipe.json",
+      "rebuiltVideoSha256": "2da43c8bd70dccde76d02b15f1989b6e7166dd3d4751796a16de051ea69ea475",
+      "matchesOriginalVideoSha256": true,
+      "frames": 210,
+      "durationSeconds": 7.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    },
+    {
+      "capture": "states",
+      "recipe": "captures/states/encoding-recipe.json",
+      "rebuiltVideoSha256": "bbe04f87c484fb7bac38c51ab9ab23bedc6384cde1a46f2cd03551f394b79369",
+      "matchesOriginalVideoSha256": true,
+      "frames": 240,
+      "durationSeconds": 8.0,
+      "fullDecodePassed": true,
+      "audioStreams": 0
+    }
+  ],
+  "masterValidation": {
+    "video": {
+      "sha256": "bf6af0ae5585a044ce58eae3dafedc64374ddd86362710fdf6d7d8f8f79f120c",
+      "bytes": 9472219,
+      "durationSeconds": 154,
+      "width": 1920,
+      "height": 1080,
+      "codec": "h264",
+      "frames": 4620,
+      "containerFrameRate": "30/1",
+      "audioStreams": 0
+    },
+    "checks": {
+      "fullDecodePassed": true,
+      "zeroAudioStreams": true,
+      "singleVideoStream": true,
+      "fullHD": true,
+      "h264": true,
+      "containerFrameRate30": true,
+      "frameCountMatchesComposition": true,
+      "underThreeMinutes": true,
+      "withinEditorialBudget": true,
+      "durationMatchesComposition": true,
+      "notDraft": true,
+      "explicitlySilent": true,
+      "capturedActionContentAtLeast66Percent": true,
+      "sourceAssetsUnchanged": true
+    },
+    "sourceChecks": [
+      {
+        "id": "historical-first-run",
+        "role": "supporting-evidence",
+        "unchanged": true
+      },
+      {
+        "id": "historical-cleanup-followup",
+        "role": "supporting-evidence",
+        "unchanged": true
+      },
+      {
+        "id": "historical-provider-diagnosis",
+        "role": "supporting-evidence",
+        "unchanged": true
+      },
+      {
+        "id": "final-aws-run",
+        "role": "supporting-evidence",
+        "unchanged": true
+      },
+      {
+        "id": "aws-hook",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "aws-first-failure",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "aws-comparison",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "aws-comparison",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "aws-comparison",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "two-orders",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "two-orders-final",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "kit-download",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "baseline-run",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "edit-sku",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "edit-sku",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "run-sku",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "import-broken",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "failure-trace",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "failure-trace",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "failure-trace",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "restore-order-id",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "restore-order-id",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "run-restored",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "import-restored",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "before",
+        "role": "recorded-report",
+        "unchanged": true
+      },
+      {
+        "id": "broken",
+        "role": "recorded-report",
+        "unchanged": true
+      },
+      {
+        "id": "restored",
+        "role": "recorded-report",
+        "unchanged": true
+      },
+      {
+        "id": "export-evidence",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "states",
+        "role": "captured-actions",
+        "unchanged": true
+      },
+      {
+        "id": "states",
+        "role": "captured-actions",
+        "unchanged": true
+      }
+    ],
+    "scope": "Technical validation only. Final master is distributed separately; visual review is recorded outside this static package."
+  },
+  "cleanup": "Generated source MP4s, encoded manifests, concat lists, prepared props, linked public media and final-validation intermediates removed after verification. Original captures and this static package are retained."
+}

@@ -1,0 +1,11 @@
+{
+  "kind": "replayguard-cleanup-followup",
+  "runId": "85500aff-3d08-483e-9e63-78a9723eb67a",
+  "checkedAt": "2026-09-19T19:07:27.641839+00:00",
+  "stackArn": "arn:aws:cloudformation:us-east-1:570082421930:stack/replayguard-keys-20260920/97630a70-b45b-11f1-a9d2-0affedd6353d",
+  "operation": "CloudFormation.DescribeStacks with exact original stack ARN",
+  "status": "DELETE_COMPLETE",
+  "deletionVerified": true,
+  "originalReportUnchanged": true,
+  "note": "Original runner could not confirm deletion; this separate later read resolves only operational cleanup, not the failed experiment."
+}

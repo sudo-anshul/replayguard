@@ -11,7 +11,7 @@ if (!allowed.includes(new URL(base).hostname)) throw Error('Only loopback URLs a
 const out = path.resolve(option('--out', path.join(root, 'docs/repair-lab/native-browser-results')));
 fs.mkdirSync(out, { recursive: true });
 const digest = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
-const sources = ['web/repair-contract.js', 'web/repair-app.js', 'web/repair.css', 'web/repair.html'];
+const sources = ['web/repair-contract.js', 'web/repair-data.js', 'web/repair-imports.js', 'web/repair-app.js', 'web/repair-motion.js', 'web/repair.css', 'web/repair.html'];
 const fingerprints = () => Object.fromEntries(sources.map(name => [name, digest(fs.readFileSync(path.join(root, name)))]));
 const contract = require(path.join(root, 'web/repair-contract.js'));
 const labels = { pass: 'Passed', violation: 'Violation', incomplete: 'Incomplete', unresolved: 'Unresolved' };
@@ -27,6 +27,12 @@ const assert = (condition, message) => { if (!condition) throw Error(message); }
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce', acceptDownloads: true });
   await context.route('**/*', route => { const url = new URL(route.request().url()); if (allowed.includes(url.hostname) || url.protocol === 'blob:') return route.continue(); blockedRequests.push(url.href); return route.abort(); });
   const page = await context.newPage(); page.setDefaultTimeout(6000); page.on('pageerror', error => pageErrors.push(error.message));
+  async function choose(kind, id) {
+    for (const button of await page.locator('[data-' + kind + ']').all()) {
+      if (await button.getAttribute('data-' + kind) === id) { await button.click(); return; }
+    }
+    throw Error('Missing ' + kind + ': ' + id);
+  }
   await page.goto(base + '/repair.html', { waitUntil: 'networkidle' });
   for (const [index, file] of reportPaths.entries()) {
     const bytes = fs.readFileSync(file), report = JSON.parse(bytes), name = 'native-' + index + '-' + path.basename(path.dirname(file)) + '-' + path.basename(file);
@@ -38,13 +44,13 @@ const assert = (condition, message) => { if (!condition) throw Error(message); }
       assert(message.startsWith('Imported '), message);
       const observed = [];
       for (const result of report.results) {
-        await page.locator('#case-select').selectOption(result.caseId);
-        await page.locator('#candidate-select').selectOption(result.candidateId);
-        const status = (await page.locator('#finding-status').textContent()).trim();
-        assert(status === labels[result.status], 'Rendered status differs: ' + result.caseId + ', ' + status + ' vs ' + result.status);
+        await choose('case', result.caseId);
+        await choose('candidate', result.candidateId);
+        const status = (await page.locator('#verdict').textContent()).trim();
+        assert(status.endsWith(labels[result.status]), 'Rendered status differs: ' + result.caseId + ', ' + status + ' vs ' + result.status);
         observed.push({ caseId: result.caseId, candidateId: result.candidateId, supplied: result.status, rendered: status });
       }
-      await page.locator('#json-button').click();
+      await page.locator('#view-json').click();
       const [download] = await Promise.all([page.waitForEvent('download'), page.locator('#download-json').click()]);
       const stream = await download.createReadStream(), chunks = []; for await (const chunk of stream) chunks.push(chunk);
       await page.locator('#close-json').click();

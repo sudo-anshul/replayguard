@@ -1,0 +1,11 @@
+if (!process.env.CHROME_EXECUTABLE) throw new Error('Set CHROME_EXECUTABLE to an installed Chrome/Chromium executable.');
+import {Config} from '@remotion/cli/config';
+Config.setRspack(true);
+Config.setCachingEnabled(false);
+Config.setVideoImageFormat('jpeg');
+Config.setJpegQuality(88);
+Config.setConcurrency(1);
+Config.setCodec('h264');
+Config.setCrf(18);
+Config.setOverwriteOutput(true);
+Config.setBrowserExecutable(process.env.CHROME_EXECUTABLE);

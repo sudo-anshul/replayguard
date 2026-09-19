@@ -1,0 +1,21 @@
+{
+  "id": "two-orders-final",
+  "method": "Editorial return to an actual earlier captured final snapshot; this is not a new execution.",
+  "originalFrameIndex": 2,
+  "startedAt": "2026-09-19T18:56:02.495Z",
+  "parentManifestSourceSha256": "cd4fef15287538caed481b9edd34ee269c35c8e6e2acb9999b9f0a3aab035d56",
+  "parentManifest": "../../captures/two-orders/manifest.json",
+  "tabUrl": "http://127.0.0.1:4178/index.html",
+  "sourceManifestSha256": "191d0a014f50700ebbcf22f6e567587b07c37cf772249b09bd5e2ffeca15e0bc",
+  "pathMappingNote": "Original machine-specific paths replaced with package-relative deduplicated original screenshot containers. Original timestamps, names, detected formats and encoded-byte hashes retained. No additional lossy conversion. Canonical RGBA hashes use the FFmpeg build recorded in source-manifest.json.",
+  "frames": [
+    {
+      "timestamp": 1789844162640,
+      "path": "../../frames/a8209a61521f0b997e90f32476e15f2bef76b6f2f70f629436f7ba7b07c3a1ab.jpg",
+      "sourceOriginalName": "0002.png",
+      "sourceDetectedFormat": "JPEG",
+      "sourceFrameSha256": "a8209a61521f0b997e90f32476e15f2bef76b6f2f70f629436f7ba7b07c3a1ab",
+      "rgbaSha256": "4db1d48151e032ea6ff0edb7f9fae2f580a9a85247820cb5790aed4d4672f8c6"
+    }
+  ]
+}

@@ -1,0 +1,448 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "ReplayGuard: bounded, expiring SQS/Lambda failure lab and independent simulated fulfillment receipts.",
+  "Parameters": {
+    "LabName": {
+      "Type": "String",
+      "Default": "replayguard",
+      "MinLength": 3,
+      "MaxLength": 32,
+      "AllowedPattern": "[a-z][a-z0-9-]{2,31}",
+      "Description": "Unique short resource prefix."
+    },
+    "LabExpiresAt": {
+      "Type": "String",
+      "AllowedPattern": "[0-9]{10}",
+      "Description": "UTC Unix epoch after which both Lambdas reject fulfillment; deploy script permits 1-48 hours, default 24. Delete stack after use."
+    },
+    "ReservedConcurrency": {
+      "Type": "Number",
+      "Default": 2,
+      "AllowedValues": [
+        -1,
+        2
+      ],
+      "Description": "Use 2 when the regional quota permits reservations. Use -1 for low-quota student accounts; the private SQS mapping still caps worker concurrency at 2."
+    }
+  },
+  "Conditions": {
+    "HasReservation": {
+      "Fn::Equals": [
+        {
+          "Ref": "ReservedConcurrency"
+        },
+        2
+      ]
+    }
+  },
+  "Resources": {
+    "Ledger": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": {
+          "Fn::Sub": "${LabName}-receipts"
+        },
+        "BillingMode": "PAY_PER_REQUEST",
+        "OnDemandThroughput": {
+          "MaxReadRequestUnits": 5,
+          "MaxWriteRequestUnits": 5
+        },
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "PK",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "SK",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "PK",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "SK",
+            "KeyType": "RANGE"
+          }
+        ],
+        "SSESpecification": {
+          "SSEEnabled": true
+        },
+        "TimeToLiveSpecification": {
+          "AttributeName": "expiresAt",
+          "Enabled": true
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "ReplayGuard"
+          },
+          {
+            "Key": "LabExpiresAt",
+            "Value": {
+              "Ref": "LabExpiresAt"
+            }
+          }
+        ]
+      }
+    },
+    "DeadLetterQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": {
+          "Fn::Sub": "${LabName}-dlq"
+        },
+        "SqsManagedSseEnabled": true,
+        "MessageRetentionPeriod": 86400,
+        "MaximumMessageSize": 4096,
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "ReplayGuard"
+          }
+        ]
+      }
+    },
+    "OrdersQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": {
+          "Fn::Sub": "${LabName}-orders"
+        },
+        "SqsManagedSseEnabled": true,
+        "VisibilityTimeout": 72,
+        "MessageRetentionPeriod": 3600,
+        "MaximumMessageSize": 4096,
+        "ReceiveMessageWaitTimeSeconds": 20,
+        "RedrivePolicy": {
+          "deadLetterTargetArn": {
+            "Fn::GetAtt": [
+              "DeadLetterQueue",
+              "Arn"
+            ]
+          },
+          "maxReceiveCount": 3
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "ReplayGuard"
+          }
+        ]
+      }
+    },
+    "WorkerLogs": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": {
+          "Fn::Sub": "/aws/lambda/${LabName}-worker"
+        },
+        "RetentionInDays": 1
+      }
+    },
+    "ProviderLogs": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": {
+          "Fn::Sub": "/aws/lambda/${LabName}-provider"
+        },
+        "RetentionInDays": 1
+      }
+    },
+    "ProviderRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "replayguard-minimum",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${LabName}-provider:*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:PutItem",
+                    "dynamodb:GetItem"
+                  ],
+                  "Resource": {
+                    "Fn::GetAtt": [
+                      "Ledger",
+                      "Arn"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "WorkerRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "replayguard-minimum",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${LabName}-worker:*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "sqs:ReceiveMessage",
+                    "sqs:DeleteMessage",
+                    "sqs:GetQueueAttributes"
+                  ],
+                  "Resource": {
+                    "Fn::GetAtt": [
+                      "OrdersQueue",
+                      "Arn"
+                    ]
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": "lambda:InvokeFunction",
+                  "Resource": {
+                    "Fn::GetAtt": [
+                      "ProviderFunction",
+                      "Arn"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "ProviderFunction": {
+      "Type": "AWS::Lambda::Function",
+      "DependsOn": "ProviderLogs",
+      "Properties": {
+        "FunctionName": {
+          "Fn::Sub": "${LabName}-provider"
+        },
+        "Runtime": "python3.12",
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "ProviderRole",
+            "Arn"
+          ]
+        },
+        "Timeout": 6,
+        "MemorySize": 512,
+        "ReservedConcurrentExecutions": {
+          "Fn::If": [
+            "HasReservation",
+            {
+              "Ref": "ReservedConcurrency"
+            },
+            {
+              "Ref": "AWS::NoValue"
+            }
+          ]
+        },
+        "Architectures": [
+          "arm64"
+        ],
+        "Environment": {
+          "Variables": {
+            "LEDGER_TABLE": {
+              "Ref": "Ledger"
+            },
+            "LAB_EXPIRES_AT": {
+              "Ref": "LabExpiresAt"
+            }
+          }
+        },
+        "Code": {
+          "ZipFile": "\"\"\"V2 receiver: an opaque caller key controls an atomic simulated receipt.\n\nThe candidate field is only a ledger namespace. This receiver does not know\nwhich key strategy is intended to pass. A receipt is the entire modeled effect.\n\"\"\"\nimport datetime\nfrom decimal import Decimal\nimport hashlib\nimport json\nimport os\nimport re\nimport time\nimport uuid\n\n_table = None\nIDENTIFIER = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$\")\nSKU = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,127}$\")\nFAULT = \"after-commit-first-receive\"\n\n\nclass PayloadConflict(ValueError):\n    pass\n\n\nclass InjectedAfterCommit(RuntimeError):\n    pass\n\n\ndef validate_order(order):\n    if not isinstance(order, dict) or set(order) != {\"orderId\", \"sku\", \"quantity\"}:\n        raise ValueError(\"Invalid order fields\")\n    if not isinstance(order[\"orderId\"], str) or not IDENTIFIER.fullmatch(order[\"orderId\"]):\n        raise ValueError(\"Invalid orderId\")\n    if not isinstance(order[\"sku\"], str) or not SKU.fullmatch(order[\"sku\"]):\n        raise ValueError(\"Invalid sku\")\n    if type(order[\"quantity\"]) is not int or not 1 <= order[\"quantity\"] <= 100:\n        raise ValueError(\"Invalid quantity\")\n    return order\n\n\ndef stored_order(value):\n    \"\"\"DynamoDB returns numbers as Decimal; normalize only our integer contract.\"\"\"\n    if not isinstance(value, dict):\n        raise RuntimeError(\"Stored receipt has an invalid order\")\n    order = dict(value)\n    quantity = order.get(\"quantity\")\n    if isinstance(quantity, Decimal):\n        if not quantity.is_finite() or quantity != quantity.to_integral_value() or not 1 <= quantity <= 100:\n            raise RuntimeError(\"Stored receipt has an invalid quantity\")\n        order[\"quantity\"] = int(quantity)\n    try:\n        return validate_order(order)\n    except ValueError as error:\n        raise RuntimeError(\"Stored receipt has an invalid order\") from error\n\n\ndef validate(event):\n    required = {\"schemaVersion\", \"runId\", \"candidate\", \"order\", \"fault\", \"messageId\", \"receiveCount\", \"workerRequestId\"}\n    if not isinstance(event, dict) or not required <= set(event) or set(event) - required - {\"key\"}:\n        raise ValueError(\"Invalid receiver fields\")\n    if type(event[\"schemaVersion\"]) is not int or event[\"schemaVersion\"] != 2:\n        raise ValueError(\"Receiver requires schemaVersion 2\")\n    for name in (\"runId\", \"candidate\", \"messageId\", \"workerRequestId\"):\n        if not isinstance(event[name], str) or not IDENTIFIER.fullmatch(event[name]):\n            raise ValueError(\"Invalid \" + name)\n    validate_order(event[\"order\"])\n    if type(event[\"receiveCount\"]) is not int or not 1 <= event[\"receiveCount\"] <= 1000000:\n        raise ValueError(\"Invalid receiveCount\")\n    if event[\"fault\"] not in (FAULT, \"none\"):\n        raise ValueError(\"Unknown fault\")\n    if \"key\" in event and (not isinstance(event[\"key\"], str) or not event[\"key\"].strip() or len(event[\"key\"].encode(\"utf-8\")) > 256):\n        raise ValueError(\"key must be a nonempty string of at most 256 UTF-8 bytes\")\n    return event\n\n\ndef active():\n    if time.time() >= int(os.environ.get(\"LAB_EXPIRES_AT\", \"0\")):\n        raise RuntimeError(\"Lab expired or not configured; refusing fulfillment\")\n\n\ndef ledger():\n    global _table\n    if _table is None:\n        import boto3\n        from botocore.config import Config\n        _table = boto3.resource(\"dynamodb\", config=Config(connect_timeout=1, read_timeout=2, retries={\"total_max_attempts\": 1})).Table(os.environ[\"LEDGER_TABLE\"])\n    return _table\n\n\ndef emit(stage, event, context, receipt, **fields):\n    print(json.dumps({\"schemaVersion\": 2, \"component\": \"provider\", \"stage\": stage,\n        \"timestamp\": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec=\"milliseconds\").replace(\"+00:00\", \"Z\"),\n        \"runId\": event[\"runId\"], \"candidate\": event[\"candidate\"], \"order\": event[\"order\"],\n        \"orderId\": event[\"order\"][\"orderId\"], \"messageId\": event[\"messageId\"], \"receiveCount\": event[\"receiveCount\"],\n        \"workerRequestId\": event[\"workerRequestId\"], \"requestId\": context.aws_request_id,\n        \"receiptId\": receipt[\"receiptId\"], \"key\": event.get(\"key\"), **fields}, sort_keys=True, separators=(\",\", \":\")))\n\n\ndef handler(event, context):\n    event = validate(event)\n    active()\n    key = event.get(\"key\")\n    receipt_id = hashlib.sha256(key.encode(\"utf-8\")).hexdigest() if key is not None else uuid.uuid4().hex\n    created = time.time()\n    receipt = {\"PK\": f\"RUN#{event['runId']}#CANDIDATE#{event['candidate']}\", \"SK\": \"RECEIPT#\" + receipt_id,\n        \"receiptId\": receipt_id, \"runId\": event[\"runId\"], \"candidate\": event[\"candidate\"],\n        \"order\": dict(event[\"order\"]), \"key\": key, \"messageId\": event[\"messageId\"],\n        \"receiveCount\": event[\"receiveCount\"], \"workerRequestId\": event[\"workerRequestId\"],\n        \"invocationId\": context.aws_request_id,\n        \"createdAt\": datetime.datetime.fromtimestamp(created, datetime.timezone.utc).isoformat(timespec=\"milliseconds\").replace(\"+00:00\", \"Z\"),\n        \"expiresAt\": int(created) + 172800}\n    accepted = True\n    try:\n        ledger().put_item(Item=receipt, ConditionExpression=\"attribute_not_exists(PK) AND attribute_not_exists(SK)\")\n    except Exception as error:\n        response = getattr(error, \"response\", None)\n        details = response.get(\"Error\") if isinstance(response, dict) else None\n        code = details.get(\"Code\") if isinstance(details, dict) else None\n        if key is None or code != \"ConditionalCheckFailedException\":\n            raise\n        existing = ledger().get_item(Key={\"PK\": receipt[\"PK\"], \"SK\": receipt[\"SK\"]}, ConsistentRead=True).get(\"Item\")\n        if not existing:\n            raise RuntimeError(\"Conditional collision without an observable receipt\") from error\n        identity = (existing.get(\"runId\"), existing.get(\"candidate\"), existing.get(\"key\"))\n        if identity != (event[\"runId\"], event[\"candidate\"], key):\n            raise RuntimeError(\"Receipt namespace or key corruption\") from error\n        existing_order = stored_order(existing.get(\"order\"))\n        if existing_order != event[\"order\"]:\n            emit(\"payload_conflict\", event, context, existing, existingOrder=existing_order)\n            detail = {\"schemaVersion\": 2, \"kind\": \"replayguard-key-conflict\", \"runId\": event[\"runId\"],\n                \"candidate\": event[\"candidate\"], \"orderId\": event[\"order\"][\"orderId\"], \"key\": key,\n                \"messageId\": event[\"messageId\"], \"workerRequestId\": event[\"workerRequestId\"],\n                \"receiveCount\": event[\"receiveCount\"], \"receiptId\": existing[\"receiptId\"]}\n            raise PayloadConflict(json.dumps(detail, sort_keys=True, separators=(\",\", \":\"))) from error\n        receipt, accepted = existing, False\n    emit(\"accepted\" if accepted else \"reused\", event, context, receipt, accepted=accepted, reused=not accepted)\n    if accepted and event[\"receiveCount\"] == 1 and event[\"fault\"] == FAULT:\n        emit(\"fault_injected\", event, context, receipt, fault=FAULT)\n        raise InjectedAfterCommit(\"Receipt committed; successful provider response intentionally withheld\")\n    return {\"schemaVersion\": 2, \"receiptId\": receipt[\"receiptId\"], \"key\": key, \"order\": dict(event[\"order\"]), \"accepted\": accepted, \"reused\": not accepted}\n"
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "ReplayGuard"
+          }
+        ]
+      }
+    },
+    "WorkerFunction": {
+      "Type": "AWS::Lambda::Function",
+      "DependsOn": "WorkerLogs",
+      "Properties": {
+        "FunctionName": {
+          "Fn::Sub": "${LabName}-worker"
+        },
+        "Runtime": "python3.12",
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "WorkerRole",
+            "Arn"
+          ]
+        },
+        "Timeout": 12,
+        "MemorySize": 512,
+        "ReservedConcurrentExecutions": {
+          "Fn::If": [
+            "HasReservation",
+            {
+              "Ref": "ReservedConcurrency"
+            },
+            {
+              "Ref": "AWS::NoValue"
+            }
+          ]
+        },
+        "Architectures": [
+          "arm64"
+        ],
+        "Environment": {
+          "Variables": {
+            "PROVIDER_FUNCTION_ARN": {
+              "Fn::GetAtt": [
+                "ProviderFunction",
+                "Arn"
+              ]
+            },
+            "LAB_EXPIRES_AT": {
+              "Ref": "LabExpiresAt"
+            }
+          }
+        },
+        "Code": {
+          "ZipFile": "\"\"\"Three fixed caller key choices; no receipt-store permission or public API.\"\"\"\nimport datetime\nimport hashlib\nimport json\nimport os\nimport re\nimport time\n\n_lambda_client = None\nCANDIDATES = (\"no-key\", \"sku-key\", \"order-key\")\nFAULT = \"after-commit-first-receive\"\nIDENTIFIER = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$\")\nSKU = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,127}$\")\n\n\ndef validate(body):\n    if not isinstance(body, dict) or set(body) != {\"schemaVersion\", \"runId\", \"candidate\", \"order\", \"fault\"}:\n        raise ValueError(\"Invalid message fields\")\n    if type(body[\"schemaVersion\"]) is not int or body[\"schemaVersion\"] != 2 or body[\"candidate\"] not in CANDIDATES:\n        raise ValueError(\"Unknown schema or candidate\")\n    if not isinstance(body[\"runId\"], str) or not IDENTIFIER.fullmatch(body[\"runId\"]):\n        raise ValueError(\"Invalid runId\")\n    order = body[\"order\"]\n    if not isinstance(order, dict) or set(order) != {\"orderId\", \"sku\", \"quantity\"}:\n        raise ValueError(\"Invalid order fields\")\n    if not isinstance(order[\"orderId\"], str) or not IDENTIFIER.fullmatch(order[\"orderId\"]):\n        raise ValueError(\"Invalid orderId\")\n    if not isinstance(order[\"sku\"], str) or not SKU.fullmatch(order[\"sku\"]):\n        raise ValueError(\"Invalid sku\")\n    if type(order[\"quantity\"]) is not int or not 1 <= order[\"quantity\"] <= 100:\n        raise ValueError(\"Invalid quantity\")\n    if body[\"fault\"] not in (FAULT, \"none\"):\n        raise ValueError(\"Unknown fault\")\n    return body\n\n\ndef chosen_key(run_id, candidate, order):\n    if candidate == \"no-key\":\n        return None\n    field = \"sku\" if candidate == \"sku-key\" else \"orderId\"\n    return hashlib.sha256(json.dumps([run_id, field, order[field]], separators=(\",\", \":\")).encode()).hexdigest()\n\n\ndef client():\n    global _lambda_client\n    if _lambda_client is None:\n        import boto3\n        from botocore.config import Config\n        _lambda_client = boto3.client(\"lambda\", config=Config(connect_timeout=2, read_timeout=8, retries={\"total_max_attempts\": 1}))\n    return _lambda_client\n\n\ndef emit(stage, metadata, **fields):\n    print(json.dumps({**metadata, \"stage\": stage,\n        \"timestamp\": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec=\"milliseconds\").replace(\"+00:00\", \"Z\"),\n        **fields}, sort_keys=True, separators=(\",\", \":\")))\n\n\ndef conflict_detail(result, payload):\n    if result.get(\"errorType\") != \"PayloadConflict\":\n        return None\n    try:\n        detail = json.loads(result.get(\"errorMessage\", \"\"))\n    except (ValueError, TypeError):\n        return None\n    expected = {\"schemaVersion\": 2, \"kind\": \"replayguard-key-conflict\", \"runId\": payload[\"runId\"],\n        \"candidate\": payload[\"candidate\"], \"orderId\": payload[\"order\"][\"orderId\"], \"key\": payload.get(\"key\"),\n        \"messageId\": payload[\"messageId\"], \"workerRequestId\": payload[\"workerRequestId\"], \"receiveCount\": payload[\"receiveCount\"]}\n    if not isinstance(detail, dict) or set(detail) != set(expected) | {\"receiptId\"}:\n        return None\n    key = payload.get(\"key\")\n    if (type(detail.get(\"schemaVersion\")) is not int or type(detail.get(\"receiveCount\")) is not int\n            or not isinstance(key, str) or detail.get(\"receiptId\") != hashlib.sha256(key.encode()).hexdigest()\n            or any(detail.get(k) != v for k, v in expected.items())):\n        return None\n    return detail\n\n\ndef handler(event, context):\n    records = event.get(\"Records\", []) if isinstance(event, dict) else []\n    if len(records) != 1:\n        raise ValueError(\"BatchSize=1 required\")\n    record = records[0]\n    body = validate(json.loads(record[\"body\"]))\n    count = int(record.get(\"attributes\", {}).get(\"ApproximateReceiveCount\", \"0\"))\n    if count < 1 or count > 1000000:\n        raise ValueError(\"Invalid receive count\")\n    metadata = {\"schemaVersion\": 2, \"component\": \"worker\", \"runId\": body[\"runId\"], \"candidate\": body[\"candidate\"],\n        \"order\": body[\"order\"], \"orderId\": body[\"order\"][\"orderId\"], \"messageId\": record[\"messageId\"],\n        \"receiveCount\": count, \"requestId\": context.aws_request_id, \"receiptId\": None}\n    emit(\"received\", metadata)\n    try:\n        if time.time() >= int(os.environ.get(\"LAB_EXPIRES_AT\", \"0\")):\n            raise RuntimeError(\"Lab expired or not configured\")\n        payload = {**body, \"messageId\": record[\"messageId\"], \"receiveCount\": count, \"workerRequestId\": context.aws_request_id}\n        key = chosen_key(body[\"runId\"], body[\"candidate\"], body[\"order\"])\n        if key is not None:\n            payload[\"key\"] = key\n        response = client().invoke(FunctionName=os.environ[\"PROVIDER_FUNCTION_ARN\"], InvocationType=\"RequestResponse\", Payload=json.dumps(payload, separators=(\",\", \":\")).encode())\n        result = json.loads(response[\"Payload\"].read())\n        if response.get(\"StatusCode\") != 200 or not isinstance(result, dict):\n            raise RuntimeError(\"Provider returned an invalid invocation response\")\n        if response.get(\"FunctionError\"):\n            detail = conflict_detail(result, payload)\n            if detail is not None:\n                metadata[\"receiptId\"] = detail[\"receiptId\"]\n                emit(\"business_rejected\", metadata, reason=\"payload-conflict\", key=key)\n                emit(\"completed\", metadata, outcome=\"rejected\", key=key)\n                return {\"outcome\": \"rejected\", \"reason\": \"payload-conflict\"}\n            emit(\"provider_failed\", metadata, errorType=str(result.get(\"errorType\", \"UnknownError\"))[:120])\n            raise RuntimeError(\"Provider failed: \" + str(result.get(\"errorType\", \"UnknownError\"))[:120])\n        if (result.get(\"schemaVersion\") != 2 or result.get(\"key\") != key or result.get(\"order\") != body[\"order\"]\n                or type(result.get(\"accepted\")) is not bool or type(result.get(\"reused\")) is not bool\n                or result[\"accepted\"] == result[\"reused\"] or not re.fullmatch(r\"[a-f0-9]{32}|[a-f0-9]{64}\", str(result.get(\"receiptId\", \"\")))):\n            raise RuntimeError(\"Provider returned no valid receipt response\")\n        metadata[\"receiptId\"] = result[\"receiptId\"]\n        emit(\"fulfillment_succeeded\", metadata, key=key, accepted=result[\"accepted\"], reused=result[\"reused\"])\n        emit(\"completed\", metadata, outcome=\"fulfilled\", key=key)\n        return {\"outcome\": \"fulfilled\", \"receiptId\": result[\"receiptId\"], \"reused\": result[\"reused\"]}\n    except Exception as error:\n        emit(\"failed\", metadata, errorType=type(error).__name__, error=str(error)[:300])\n        raise\n"
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "ReplayGuard"
+          }
+        ]
+      }
+    },
+    "WorkerQueueMapping": {
+      "Type": "AWS::Lambda::EventSourceMapping",
+      "Properties": {
+        "EventSourceArn": {
+          "Fn::GetAtt": [
+            "OrdersQueue",
+            "Arn"
+          ]
+        },
+        "FunctionName": {
+          "Ref": "WorkerFunction"
+        },
+        "BatchSize": 1,
+        "MaximumBatchingWindowInSeconds": 0,
+        "Enabled": true,
+        "ScalingConfig": {
+          "MaximumConcurrency": 2
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "QueueUrl": {
+      "Value": {
+        "Ref": "OrdersQueue"
+      }
+    },
+    "DlqUrl": {
+      "Value": {
+        "Ref": "DeadLetterQueue"
+      }
+    },
+    "LedgerTable": {
+      "Value": {
+        "Ref": "Ledger"
+      }
+    },
+    "WorkerLogGroup": {
+      "Value": {
+        "Ref": "WorkerLogs"
+      }
+    },
+    "ProviderLogGroup": {
+      "Value": {
+        "Ref": "ProviderLogs"
+      }
+    },
+    "WorkerFunctionName": {
+      "Value": {
+        "Ref": "WorkerFunction"
+      }
+    },
+    "ProviderFunctionName": {
+      "Value": {
+        "Ref": "ProviderFunction"
+      }
+    },
+    "Region": {
+      "Value": {
+        "Ref": "AWS::Region"
+      }
+    },
+    "Expiry": {
+      "Value": {
+        "Ref": "LabExpiresAt"
+      }
+    },
+    "Experiment": {
+      "Value": "key-scope"
+    },
+    "MappingId": {
+      "Value": {
+        "Ref": "WorkerQueueMapping"
+      }
+    }
+  }
+}
