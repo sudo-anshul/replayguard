@@ -1,6 +1,8 @@
 # First Commit submission package
 
-Project title: **ReplayGuard — a retry repair should protect every order**
+Project title: **ReplayGuard — Keep the failure. Test the repair.**
+
+[Paste-ready final submission fields](submission-form.md).
 
 Intended track: **Ship It**. Publication and AWS hosting resumed on September 19, 2026. The confirmed live URL and YouTube link are recorded below as they are verified; no event submission is claimed until confirmed.
 
@@ -18,7 +20,7 @@ An independently authored synthetic application and five scenarios were frozen b
 
 The receipt is the complete simulated fulfillment effect. The project does not claim exactly-once SQS delivery, protection for arbitrary third-party APIs, or exhaustive interleaving coverage. The current bench runs locally. The dated AWS evidence, original infrastructure cleanup, and current delivery status remain explicit.
 
-AI disclosure: **OpenAI Codex** assisted with research, implementation, tests, UI, and demo preparation.
+AI disclosure: **OpenAI Codex** assisted with research, implementation, tests, UI, and demo preparation. **ElevenLabs** generated the Neha narration.
 
 ## Submission fields and current status
 
@@ -26,7 +28,7 @@ AI disclosure: **OpenAI Codex** assisted with research, implementation, tests, U
 | --- | --- |
 | Repository | [sudo-anshul/replayguard](https://github.com/sudo-anshul/replayguard): audited public source with a fresh history recording actual publication time. |
 | Live AWS URL | [Live AWS Amplify lab](https://prod.d2w687q4ucx6dk.amplifyapp.com). New static hosting; the original failure experiment remains recorded evidence. |
-| Demo | [Revised YouTube demo](https://youtu.be/CGE19upS66A), confirmed **unlisted**. The source video is **2:43 (163.033333 seconds)**, under three minutes; the watch player shows 2:43 and Studio rounds to 2:44. Signed-in playback, all eight chapters, the English (India) transcript, enabled captions and 1080p availability were verified. Signed-out playback remains unverified. |
+| Demo | [Revised YouTube demo](https://youtu.be/CGE19upS66A), confirmed **unlisted**. The source video is **2:43 (163.033333 seconds)**, under three minutes; the watch player shows 2:43 and Studio rounds to 2:44. Signed-in playback, all eight chapters, the English (India) transcript, enabled captions and 1080p availability were verified. [Signed-out playback passed](publication/youtube-signed-out-v2.json) in a fresh Firefox private window on September 19. |
 | Event submission | **Not submitted.** The [official form](https://www.wemakedevs.org/aws/first-commit/submit) has not been used to publish this entry. |
 | Eligibility | The user reports verified student status. Required Builder Center/SheerID verification, individual registration, and First Commit check-in were not independently verified in this work. |
 

@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-09-19T10:35:38Z",
+  "url": "https://www.youtube.com/watch?v=CGE19upS66A",
+  "status": "passed",
+  "method": "Manual browser UI verification through CUA in a newly opened Firefox private window; no account was signed in.",
+  "observations": {
+    "private_browsing_indicator": true,
+    "youtube_sign_in_link_visible": true,
+    "unlisted_badge_visible": true,
+    "player_duration": "2:43",
+    "playback_started_by_click": true,
+    "playback_advanced_to": "0:33",
+    "last_observed_chapter": "Compare three fulfillment keys",
+    "recorded_aws_scene_rendered": true,
+    "sign_in_wall": false
+  },
+  "scope": "Signed-out access and playback were verified. This was not a full-duration viewing or perceptual audio assessment.",
+  "cleanup": "Temporary private window closed; existing account sessions retained."
+}
