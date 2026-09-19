@@ -1,0 +1,66 @@
+{
+  "kind": "amplify-console-static-video-link-deployment",
+  "recordedAt": "2026-09-19T10:25:28.128262+00:00",
+  "scope": "Update demo links on the existing static Amplify site; no new AWS failure experiment.",
+  "observationSource": "Amplify console UI observed by the root agent and reported in this task",
+  "deploymentMechanism": "Exact ZIP uploaded through the existing Amplify console",
+  "cliOrApiDeploymentClaimed": false,
+  "appId": "d2w687q4ucx6dk",
+  "branch": "prod",
+  "liveUrl": "https://prod.d2w687q4ucx6dk.amplifyapp.com/",
+  "consoleObservation": {
+    "deploymentLabel": "Deployment 3",
+    "deploymentNumber": "3",
+    "stateLabels": [
+      "Deployed",
+      "Deployment SUCCEED"
+    ],
+    "durationText": "7 seconds",
+    "startedDisplay": "9/19/2026 3:53 PM",
+    "displayTimeZone": "Asia/Kolkata",
+    "timePrecision": "minute"
+  },
+  "uploadedArchive": {
+    "file": "replayguard-site-video-update.zip",
+    "bytes": 250304,
+    "sha256": "05dce5e449355d0bf7ce5240a179c3b0b03008fefd7834987330345c0cb6cd54",
+    "assetCount": 24,
+    "record": "site-upload-bundle.json",
+    "recordSha256": "86481fb01d698e8df71942c32eb7801f87fecdc4d9b29deab9e5f471a7c4d7b8"
+  },
+  "sourceManifest": {
+    "file": "site-stage-manifest.json",
+    "sha256": "55379ddc8ea932d43f4e3e22190e023c24e2e9ece2f5449dd2338d3d5606b928"
+  },
+  "anonymousHttpsVerification": {
+    "status": "passed",
+    "rootPassed": true,
+    "assetsPassed": 24,
+    "assetCount": 24,
+    "record": "anonymous-https-video-update.json",
+    "recordSha256": "4cd43c397bf6d05bf3265a5379a072441c7b2a0dce95600af4143d82c866aca7",
+    "verifier": "verify_anonymous_https.py",
+    "verifierSha256": "e6c567c0191c7d38ab8916e1247d117736cd5e41820bc218f4f187e3ed4186ce",
+    "caTrustSource": "Operating-system root CA bundle supplied through SSL_CERT_FILE; certificate and hostname verification enabled."
+  },
+  "replacementDemoUrl": "https://youtu.be/CGE19upS66A",
+  "replacementLinksVerifiedOn": [
+    "/",
+    "index.html",
+    "repair.html"
+  ],
+  "supersededVideoIdAbsentOnThosePages": true,
+  "previousDeployment": {
+    "deploymentNumber": "2",
+    "record": "../hosting-final/hosting-deployment-final.json",
+    "anonymousVerification": "../hosting-final/anonymous-https-final.json",
+    "historicalRecordsAltered": false
+  },
+  "limitations": "Console observation and independent anonymous byte/link checks; no CLI/API deployment response, comprehensive rendered UI review, or signed-out YouTube playback claimed.",
+  "browserFooterLinkObservation": {
+    "source": "Root agent observed the deployed root page through CUA",
+    "status": "passed",
+    "href": "https://youtu.be/CGE19upS66A",
+    "scope": "Root-page footer link only; not a new full responsive or interaction review"
+  }
+}

@@ -46,7 +46,7 @@
   "sourceVideoFile": "replayguard-demo-neha.mp4",
   "sourceVideoBytes": 13108071,
   "technicalValidation": "../repair-lab/media/revision-2/validation/final-video.json",
-  "recordUpdatedAt": "2026-09-19T10:15:26.085384+00:00",
+  "recordUpdatedAt": "2026-09-19T10:25:28.132819+00:00",
   "verificationSource": "YouTube Studio and signed-in watch-page observations reported by the root agent in this session.",
   "confirmation": "YouTube Studio displayed Video published; Unlisted was selected and saved.",
   "watchPlayerDisplay": "2:43",
@@ -80,5 +80,22 @@
     "credentialsSent": false,
     "httpStatus": 200,
     "signedOutPlaybackEstablished": false
+  },
+  "siteVideoLinkDeployment": {
+    "status": "verified",
+    "liveUrl": "https://prod.d2w687q4ucx6dk.amplifyapp.com/",
+    "deploymentNumber": "3",
+    "consoleRecord": "hosting-video-update/hosting-deployment-video-update.json",
+    "httpsRecord": "hosting-video-update/anonymous-https-video-update.json",
+    "httpsRecordSha256": "4cd43c397bf6d05bf3265a5379a072441c7b2a0dce95600af4143d82c866aca7",
+    "assetsPassed": 24,
+    "assetCount": 24,
+    "rootPassed": true,
+    "replacementLinksVerifiedOn": [
+      "/",
+      "index.html",
+      "repair.html"
+    ],
+    "rootFooterLinkVerifiedInBrowser": true
   }
 }

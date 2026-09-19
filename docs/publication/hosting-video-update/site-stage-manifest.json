@@ -1,0 +1,29 @@
+{
+  "scope": "Static demo link update only",
+  "files": {
+    "adapter-guide.html": "2244ee423fc088217e584217f8beb6425f0673dd0ef108a55cd618c7b06fac4a",
+    "app.js": "a70ebea6cdb54d473b60d5116079b8d87dd60bbc20c91a40a66b62208d7172e1",
+    "aws-resources.json": "f99d15376213f9b64cb2201177eb1441b8cd1c4e7d0cd46aef50eb02e3ce14d9",
+    "aws-run.css": "ca46572ab36b1a66a6fcca71e838944726ecdeae99b1a9dbc875c1a90772bcbf",
+    "aws-run.html": "85338cda28f0ecd56908601caffcc1c49eeedd28e261407fbdf65c2b124690fc",
+    "aws-run.js": "854bcac32c3ec077c2d0a562e8e41bbaabd2979c6b109281ebae67d44748aa4d",
+    "evidence-contract.js": "4caee8d8f6b23618797da20355058028c5e500cfc98f4923b4768ffb1601dd41",
+    "evidence.json": "e32d3a8c68b7228b3014eb644f982824eab4a5c7147885be0dc51988a938adf3",
+    "index.html": "46aa4074dba71274ff5f2f5b5f99cce8a4cf5af5746b3159a20fcb9dc1df8ecb",
+    "local-example.json": "f3f1c27d85eb33d11db00a166f3537f770d7db3d6bd91fd1208cdfe76f6756d2",
+    "local-report-contract.js": "1416fa5de0260efb1f8a495596f10481272e85af1404afea8136c604268c276a",
+    "mark.svg": "b6c59d8ec2e2a0bfab5770b6055006c88b07e5e016748f0e8bb1a938d0121574",
+    "recorded-lab.html": "3cbe109ba85b865efb78dfd08ee5e501fd63fe84c3c4cf5a0f9685b62710672e",
+    "reference-repair.js": "1dceb6a1d0da28876780fb8474369a93ca587154b3f23ac6f3598f961bdb3fed",
+    "regression-case.zip": "fbc7ba0a3fe4efa6bf26dbc76a0380ff1c96abcd23c4524662e4e618fd5290ef",
+    "repair-app.js": "695a31c63ab0641d1f57d229f384affd6bf2394ac4e7302a88f47359c49dcc82",
+    "repair-contract.js": "dabd37feb58a92476ff8de7ba125237c5a6004c88967ecfcd743a069361b4a31",
+    "repair-example.json": "a92089de5c85f1a1eb79bf48591607724b08a96279f4223b359b8298fd2490ce",
+    "repair-transfer.json": "9d4565a94e642747c559caa50c414fa6447a02aab56a182aca682ad994892224",
+    "repair.css": "f4e1603a434148d67f943189322cc901270814b618bc5720600dc4795d84b6e7",
+    "repair.html": "46aa4074dba71274ff5f2f5b5f99cce8a4cf5af5746b3159a20fcb9dc1df8ecb",
+    "replayguard-local-regression.zip": "064b9422ad7655665581ddccd3124430844af786ca655d3f9363635c93e235a0",
+    "replayguard-repair-lab.zip": "e01bdcaef59a813f56c96a4ba9e10c25175d41dd33c56d7e9b29b5b29d9d2555",
+    "styles.css": "e91f8e804d10ef588af1e0dba18293bea25dfb7e6c2ab9550225d0635fe323a3"
+  }
+}
