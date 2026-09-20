@@ -61,28 +61,28 @@ https://github.com/sudo-anshul/replayguard
 
 ## YouTube demo
 
-https://youtu.be/CGE19upS66A
+https://youtu.be/coCDLSyU8AY
 
-This is the **previously published September 19 video**, 2:43 (163.033333 seconds), unlisted. It shows the older interface, the original recorded AWS evidence and the local key-removal/restoration tutorial. It does not show the September 20 interface, the new order-ID → SKU → order-ID code execution or the final three-candidate AWS run. Signed-out playback was verified on September 19; this document does not claim a new playback check.
+This is the **September 20 narrated video**, **2:34 (154.000 seconds)**, published unlisted. It shows the recorded three-candidate AWS evidence and actual local order-ID → SKU → order-ID edits, executions and report imports. The local tutorial begins explicitly at 00:34. Publication and the watch-page duration were verified; YouTube's copyright and Community Guidelines checks reported no issues. [Current script, chapters and verification scope](demo-script.md).
 
-A new **silent local video is complete**: 154.000 seconds, 1920×1080 H.264/30 fps, zero audio streams. Full decode and 14 technical checks passed, with a 28-frame sampled visual review. [Exact metadata and production limits](releases/2026-09-20.md#media-and-publication). No new voice or YouTube upload occurred. The local video must not be described as published or supplied as though it were a YouTube URL. If the existing upload remains the submitted video, rely only on the capabilities it actually demonstrates in the judged pitch.
+The narrated master passed 17 technical and edit checks. Its picture is identical to the preserved silent master; no new AWS execution is implied by the narration or upload. The earlier upload's captions, 1080p availability and signed-out playback checks remain historical and are not carried over to this upload. Direct perceptual listening was not available during the machine review.
 
 ## Live demo or deployment
 
 https://prod.d2w687q4ucx6dk.amplifyapp.com/
 
-The accepted interface and three-candidate AWS viewer are **published in Amplify Deployment 4**. Anonymous HTTPS checks matched the root and all 37 staged assets. Live-browser checks confirmed the main/AWS navigation, expected results, control focus and 390-pixel layouts. [Deployment and verification records](releases/2026-09-20.md#deployed-website-verification). Source commit [`0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664`](https://github.com/sudo-anshul/replayguard/commit/0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664) is published and [anonymously verified](releases/2026-09-20-github-public.json). [Clean-source validation](releases/2026-09-20-source-validation.json) passed 149 Python tests, 112 JavaScript tests, 45 transfer checks and 19 release checks with network denied and identical re-export. The source ZIP and silent video are local companions; later docs-only updates are separate from the tested source.
+The accepted interface and three-candidate AWS viewer are **published in Amplify Deployment 4**. Anonymous HTTPS checks matched the root and all 37 staged assets. Live-browser checks confirmed the main/AWS navigation, expected results, control focus and 390-pixel layouts. [Deployment and verification records](releases/2026-09-20.md#deployed-website-verification). Source commit [`0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664`](https://github.com/sudo-anshul/replayguard/commit/0d0ec11ef4e3ba30ad03f2bd623f4e116d7ce664) is published and [anonymously verified](releases/2026-09-20-github-public.json). [Clean-source validation](releases/2026-09-20-source-validation.json) passed 149 Python tests, 112 JavaScript tests, 45 transfer checks and 19 release checks with network denied and identical re-export. The source ZIP and silent master remain local companions. The current video-link update is a separate release; [publication status](publication-status.md) records its deployment state.
 
 ## AI disclosure
 
-OpenAI Codex assisted with research, implementation, tests, interface design and demo preparation. ElevenLabs generated narration for the earlier published video. The current video revision is silent; no new voice generation is planned. The leader and any teammates must confirm their own contributions separately.
+OpenAI Codex assisted with research, implementation, tests, interface design and demo preparation. ElevenLabs generated Neha's English narration in an Indian accent for the current 2:34 video. The leader and any teammates must confirm their own contributions separately.
 
 ## Remaining submission checks
 
 - Fill and confirm the leader/team fields; verify registration/check-in and applicable student requirements.
-- Use the verified source release and deployed interface above; confirm the selected existing video. Link the [new local tutorial evidence](repair-lab/key-scope-tutorial/README.md) without implying that the existing video shows it.
+- Use the verified source release, deployed interface and selected [2:34 video](https://youtu.be/coCDLSyU8AY) above. Retain the [actual local tutorial evidence](repair-lab/key-scope-tutorial/README.md) with the submission.
 - Retain the completed final AWS report/archive and verified cleanup alongside both earlier attempts. Their exact published bytes passed Deployment 4's anonymous verification.
 - [Hosted CI run 35466519733 at the published source commit](releases/2026-09-20-github-ci.json) remains incomplete: the account billing block prevented all job steps from starting. This is not a test failure; local checks do not establish a hosted pass.
 - No outside-developer trial has been recorded. [Trial protocol and status](first-user-trial.md).
-- The [latest official API read](releases/2026-09-20-deadline.json) still gives September 20, 2026, **09:00 IST**. Target submission by 07:30 IST; conflicting official countdown information remains unresolved. See [earlier deadline evidence](deadline.md).
+- Submit before **September 20, 2026, 20:00 IST (14:30 UTC)**. The [official API check at September 20, 07:05:26 UTC](publication/deadline-current-20260920.json) verified the updated configuration. This supersedes the earlier 09:00 IST cutoff guidance and 07:30 target; [earlier evidence](deadline.md) remains historical.
 - Retain the actual successful submission screen/receipt. Prepared answers and an accessible form are not proof of submission.

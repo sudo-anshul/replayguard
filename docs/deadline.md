@@ -1,10 +1,14 @@
 # First Commit deadline and requirements
 
+**Current cutoff: September 20, 2026, 20:00 IST (14:30 UTC).** A [read-only, TLS-verified official API check at September 20, 07:05:26 UTC](publication/deadline-current-20260920.json) returned `end_date: "2026-09-20T14:30:00Z"`, with configuration updated at `2026-09-20T04:57:05.393246Z`. Submit before this cutoff. This supersedes the earlier 09:00 IST guidance and resolves the previously recorded API/countdown time mismatch. The dated observations and source evidence below remain unchanged as history.
+
+## Historical research and refreshes
+
 Fetched 2026-09-18 18:38–18:42 UTC (September 19 in India). Evidence manifest recorded **2026-09-18 18:42 UTC**. All HTTP sources were fetched using HTTPS with TLS verification. Firecrawl was attempted but had insufficient credits; no upgrade was made. Read-only browser inspection confirmed the rendered countdown and signed-out submission state.
 
 **Refresh: September 19, 2026, 04:12 UTC.** A read-only, TLS-verified fetch confirmed that the submission API still returns `end_date: "2026-09-20T03:30:00Z"` (**September 20, 09:00 IST**). The refreshed overview HTML exposed a start time but no end time; it does not resolve the earlier countdown/API discrepancy. [Refresh timestamp and response fingerprints](deadline-refresh-20260919.json). No AWS API or submission action was used.
 
-## Cutoff: current form configuration is September 20, 2026, 09:00 IST; official sources conflict
+## Historical cutoff comparison — superseded by the current configuration above
 
 **Use September 20, 2026, 09:00 IST (03:30 UTC) as the earlier operational boundary. Finish and submit well before it. The exact organizer-approved cutoff remains unresolved because the official sources disagree. Do not assume midnight.**
 

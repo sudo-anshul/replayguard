@@ -1,0 +1,425 @@
+{
+  "schemaVersion": 1,
+  "kind": "official-hackathon-deadline-refresh",
+  "startedAt": "2026-09-20T07:05:25.791158+00:00",
+  "checkedAt": "2026-09-20T07:05:26.179669+00:00",
+  "sourceUrl": "https://wemakedevs-server.onrender.com/hackathons/first-commit",
+  "method": "Anonymous read-only HTTPS GET using curl; TLS certificate and hostname verification enabled; no credentials, cookies, submission or account action.",
+  "httpStatus": 200,
+  "responseSha256": "26cb2089672343e93db4ceb9641c804aa0926d5db101ebd34ba7c98a4320afaf",
+  "responseBytes": 8176,
+  "end_date": "2026-09-20T14:30:00Z",
+  "updated_at": "2026-09-20T04:57:05.393246Z",
+  "deadlineIST": "2026-09-20T20:00:00+05:30",
+  "requiredSubmissionFields": [
+    {
+      "id": "abd822d2-91c6-44a8-96bd-802610d504de",
+      "label": "Team leader's WeMakeDevs username",
+      "type": "short",
+      "description": "You are the team leader if you are participating SOLO. You can get the username from [wemakedevs.org/home](https://wemakedevs.org/home) page.",
+      "max_length": null,
+      "options": null
+    },
+    {
+      "id": "ef2cf00c-f6aa-453e-8df9-3e5ca2b1182f",
+      "label": "Team leader's GitHub",
+      "type": "link",
+      "description": null,
+      "max_length": null,
+      "options": null
+    },
+    {
+      "id": "9bcf288d-8293-481e-bc8f-7931979ddcd1",
+      "label": "Team leader's LinkedIn ",
+      "type": "link",
+      "description": null,
+      "max_length": null,
+      "options": null
+    },
+    {
+      "id": "2ecf0271-03ba-4738-a3fc-107ae22a0e88",
+      "label": "Project title",
+      "type": "short",
+      "description": null,
+      "max_length": 120,
+      "options": null
+    },
+    {
+      "id": "211a9ecb-6eff-4e38-bb53-29b9e991bcdf",
+      "label": "Track you are submitting for",
+      "type": "checkbox",
+      "description": "You can submit the same project in both the tracks, but you can only win one.",
+      "max_length": null,
+      "options": [
+        "Built it",
+        "Ship it"
+      ]
+    },
+    {
+      "id": "1df38afb-5d53-4e66-8632-fc4e63bb2703",
+      "label": "GitHub link to project",
+      "type": "link",
+      "description": "Make sure it's public, and that it has a proper README and a commit history so judges can see how the project came together.",
+      "max_length": null,
+      "options": null
+    },
+    {
+      "id": "ce213876-116e-47ac-ba03-17a0e8fb1de7",
+      "label": "YouTube video demo link",
+      "type": "link",
+      "description": "Make sure the video is either published or unlisted. It should be not be more than 3 minutes covering how your project reflects the below points:\n- About the project\n- Tech stack and architecture\n- How you have used AWS\n- Learning and growth (optional)",
+      "max_length": null,
+      "options": null
+    },
+    {
+      "id": "e5fed8fc-11bb-4fd2-8587-c47605ebbc59",
+      "label": "What does your project do?",
+      "type": "long",
+      "description": "What problem does your project solve, and who is it for?",
+      "max_length": null,
+      "options": null
+    },
+    {
+      "id": "f73ee16d-c3ba-47ae-9a9a-0f7752efa4ee",
+      "label": "How did you use AWS in your project?",
+      "type": "long",
+      "description": "Tell us what your project does and how you have used AWS in your project:\n- Build it: How have you used AWS open source stack (mention tools name)\n- Ship it: How have you used AWS services (mention services name)",
+      "max_length": null,
+      "options": null
+    },
+    {
+      "id": "2718ca0b-38be-4195-9233-caf9152129da",
+      "label": "Team leader's contributions",
+      "type": "long",
+      "description": "Individual roles and key deliverables completed by team member.",
+      "max_length": null,
+      "options": null
+    },
+    {
+      "id": "e2dc5d2d-bd9c-4ecf-b04f-0471684ec2ee",
+      "label": "Help us evaluate you: your feedback on the AWS services you used ",
+      "type": "long",
+      "description": "Tell us what you didn't like about the AWS services you used and what could be better, whether technical or onboarding related. Specific feedback shows us you understood the tools in detail, so please name the services.",
+      "max_length": null,
+      "options": null
+    },
+    {
+      "id": "38767bec-8f2f-459a-9520-bbbab0c04d5e",
+      "label": "What did you like about the AWS services you used?",
+      "type": "long",
+      "description": "Tell us what worked well for you, whether that was a specific service, the docs, the setup, or anything that made building easier. Please name the services and be specific, since this also helps us see how well you understood the tools.",
+      "max_length": null,
+      "options": null
+    }
+  ],
+  "publicConfiguration": {
+    "id": "b29ada2a-27bf-4a61-b6e1-27cbb1a5b62c",
+    "slug": "first-commit",
+    "series_id": "254c7e56-566f-4379-9b4d-07789aa86a0a",
+    "series_slug": "aws-bharat-builds-tour",
+    "title": "First Commit",
+    "description": "First Commit",
+    "start_date": "2026-09-17T02:30:00Z",
+    "end_date": "2026-09-20T14:30:00Z",
+    "max_team_size": 4,
+    "frontend_path": "/aws/first-commit",
+    "custom_questions": null,
+    "submission_questions": [
+      {
+        "type": "short",
+        "id": "abd822d2-91c6-44a8-96bd-802610d504de",
+        "label": "Team leader's WeMakeDevs username",
+        "description": "You are the team leader if you are participating SOLO. You can get the username from [wemakedevs.org/home](https://wemakedevs.org/home) page.",
+        "required": true,
+        "image": null,
+        "max_length": null
+      },
+      {
+        "type": "short",
+        "id": "7c54f2ac-9477-4426-ac0c-47a23ba60a19",
+        "label": "Second team member's WeMakeDevs username",
+        "description": null,
+        "required": false,
+        "image": null,
+        "max_length": null
+      },
+      {
+        "type": "short",
+        "id": "f1c4b9cb-a3a9-4479-8d42-632e8d18a79d",
+        "label": "Third team member's WeMakeDevs username",
+        "description": null,
+        "required": false,
+        "image": null,
+        "max_length": null
+      },
+      {
+        "type": "short",
+        "id": "27aedcf0-c258-41cd-96d2-cba53309f106",
+        "label": "Fourth team member's WeMakeDevs username",
+        "description": null,
+        "required": false,
+        "image": null,
+        "max_length": null
+      },
+      {
+        "type": "link",
+        "id": "ef2cf00c-f6aa-453e-8df9-3e5ca2b1182f",
+        "label": "Team leader's GitHub",
+        "description": null,
+        "required": true,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "link",
+        "id": "8890d93e-dff4-4cdf-8854-2ece00ec865c",
+        "label": "Second team member's GitHub",
+        "description": null,
+        "required": false,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "link",
+        "id": "ad15d3e7-cdf0-423c-83e5-c566b91c0ff7",
+        "label": "Third team member's GitHub",
+        "description": null,
+        "required": false,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "link",
+        "id": "e55b5ceb-7389-44ca-9bf5-df80d5e093fb",
+        "label": "Fourth team member's GitHub",
+        "description": null,
+        "required": false,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "link",
+        "id": "9bcf288d-8293-481e-bc8f-7931979ddcd1",
+        "label": "Team leader's LinkedIn ",
+        "description": null,
+        "required": true,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "link",
+        "id": "a636bbbd-ed17-46e6-8260-91b0d29771c8",
+        "label": "Second team member's LinkedIn",
+        "description": null,
+        "required": false,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "link",
+        "id": "3b3309e8-fdf2-4b76-8df6-330cc5a51049",
+        "label": "Third team member's LinkedIn",
+        "description": null,
+        "required": false,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "link",
+        "id": "2c730f1a-1bf2-4505-a1d9-2f2c7dd27037",
+        "label": "Fourth team member's LinkedIn",
+        "description": null,
+        "required": false,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "link",
+        "id": "031875c5-4911-4fb2-a505-3064495994fd",
+        "label": "Team leader's resume",
+        "description": "The resume should be publicly accessible. You can upload it on Google Drive, make it public and share the link here. **This is necessary to be considered for Amazon Fast Track Interviews**.",
+        "required": false,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "link",
+        "id": "60eec4e6-368c-4a32-9aa2-8370efa06578",
+        "label": "Second team member's resume",
+        "description": "The resume should be publicly accessible.",
+        "required": false,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "link",
+        "id": "664c1d84-8f55-49b6-8c07-898b155d377f",
+        "label": "Third team member's resume",
+        "description": "The resume should be publicly accessible.",
+        "required": false,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "link",
+        "id": "0d501228-009c-4a13-9c34-192782d1428a",
+        "label": "Fourth team member's resume",
+        "description": "The resume should be publicly accessible.",
+        "required": false,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "short",
+        "id": "2ecf0271-03ba-4738-a3fc-107ae22a0e88",
+        "label": "Project title",
+        "description": null,
+        "required": true,
+        "image": null,
+        "max_length": 120
+      },
+      {
+        "type": "checkbox",
+        "id": "211a9ecb-6eff-4e38-bb53-29b9e991bcdf",
+        "label": "Track you are submitting for",
+        "description": "You can submit the same project in both the tracks, but you can only win one.",
+        "required": true,
+        "image": null,
+        "options": [
+          "Built it",
+          "Ship it"
+        ],
+        "max_select": null
+      },
+      {
+        "type": "link",
+        "id": "1df38afb-5d53-4e66-8632-fc4e63bb2703",
+        "label": "GitHub link to project",
+        "description": "Make sure it's public, and that it has a proper README and a commit history so judges can see how the project came together.",
+        "required": true,
+        "image": null,
+        "is_primary": true,
+        "url_template": null
+      },
+      {
+        "type": "link",
+        "id": "452fca1b-ccbe-4f4f-a6e3-b1c3788e204b",
+        "label": "Deployed link to project",
+        "description": "If you've deployed your project to an accessible URL, add it below. Optional, leave blank if your project doesn't have one.",
+        "required": false,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "link",
+        "id": "ce213876-116e-47ac-ba03-17a0e8fb1de7",
+        "label": "YouTube video demo link",
+        "description": "Make sure the video is either published or unlisted. It should be not be more than 3 minutes covering how your project reflects the below points:\n- About the project\n- Tech stack and architecture\n- How you have used AWS\n- Learning and growth (optional)",
+        "required": true,
+        "image": null,
+        "is_primary": false,
+        "url_template": null
+      },
+      {
+        "type": "long",
+        "id": "e5fed8fc-11bb-4fd2-8587-c47605ebbc59",
+        "label": "What does your project do?",
+        "description": "What problem does your project solve, and who is it for?",
+        "required": true,
+        "image": null,
+        "max_length": null
+      },
+      {
+        "type": "long",
+        "id": "f73ee16d-c3ba-47ae-9a9a-0f7752efa4ee",
+        "label": "How did you use AWS in your project?",
+        "description": "Tell us what your project does and how you have used AWS in your project:\n- Build it: How have you used AWS open source stack (mention tools name)\n- Ship it: How have you used AWS services (mention services name)",
+        "required": true,
+        "image": null,
+        "max_length": null
+      },
+      {
+        "type": "long",
+        "id": "991011dc-740c-4ef9-8ebf-786843510556",
+        "label": "Blog links",
+        "description": "[Publish your blogs on AWS Builder Center](https://builder.aws.com/create/content?trk=0b623e51-59b3-49a1-a76e-7d43b0f10785&sc_channel=el) and top 5 blogs will win Logitech gaming keyboard.\nYou can share upto four blogs below, one from each team member. The blog prizes are individual.",
+        "required": false,
+        "image": null,
+        "max_length": null
+      },
+      {
+        "type": "long",
+        "id": "2718ca0b-38be-4195-9233-caf9152129da",
+        "label": "Team leader's contributions",
+        "description": "Individual roles and key deliverables completed by team member.",
+        "required": true,
+        "image": null,
+        "max_length": null
+      },
+      {
+        "type": "long",
+        "id": "7ec10014-27f0-4dec-9a86-f812104b7d78",
+        "label": "Second team member's contributions",
+        "description": "Individual roles and key deliverables completed by team member.",
+        "required": false,
+        "image": null,
+        "max_length": null
+      },
+      {
+        "type": "long",
+        "id": "8bd6e6ba-e4f6-4910-89b3-3f1ec1afd76e",
+        "label": "Third team member's contributions",
+        "description": "Individual roles and key deliverables completed by team member.",
+        "required": false,
+        "image": null,
+        "max_length": null
+      },
+      {
+        "type": "long",
+        "id": "0c7086b7-2075-4b72-8c0b-f947240c5b6e",
+        "label": "Fourth team member's contributions",
+        "description": "Individual roles and key deliverables completed by team member.",
+        "required": false,
+        "image": null,
+        "max_length": null
+      },
+      {
+        "type": "long",
+        "id": "e2dc5d2d-bd9c-4ecf-b04f-0471684ec2ee",
+        "label": "Help us evaluate you: your feedback on the AWS services you used ",
+        "description": "Tell us what you didn't like about the AWS services you used and what could be better, whether technical or onboarding related. Specific feedback shows us you understood the tools in detail, so please name the services.",
+        "required": true,
+        "image": null,
+        "max_length": null
+      },
+      {
+        "type": "long",
+        "id": "38767bec-8f2f-459a-9520-bbbab0c04d5e",
+        "label": "What did you like about the AWS services you used?",
+        "description": "Tell us what worked well for you, whether that was a specific service, the docs, the setup, or anything that made building easier. Please name the services and be specific, since this also helps us see how well you understood the tools.",
+        "required": true,
+        "image": null,
+        "max_length": null
+      }
+    ],
+    "projects_published": false,
+    "winners_published": false,
+    "registration_count": 13433,
+    "created_at": "2026-08-16T20:40:51.997575Z",
+    "updated_at": "2026-09-20T04:57:05.393246Z"
+  },
+  "handling": "Public configuration only; no private account state or authentication data included. Preserves current response separately from prior deadline evidence."
+}

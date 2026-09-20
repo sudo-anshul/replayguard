@@ -26,7 +26,7 @@ The main lesson was that eliminating duplicates is only half of the repair: ever
 
 The receipt is the complete simulated fulfillment effect. A pass covers declared supported cases with a receiver that atomically owns the effect and its key decision. The project does not establish exactly-once SQS delivery, arbitrary third-party payment/shipping safety, process-restart coverage or all possible interleavings. Missing observation remains incomplete; unsupported contracts remain unresolved. Source hashes identify captured bytes, not authenticated report origin.
 
-AI disclosure: **OpenAI Codex** assisted with research, implementation, testing, UI and demo preparation. **ElevenLabs** generated narration for the previously published video. The current video revision is silent; leader/team contribution statements remain for their owners to confirm.
+AI disclosure: **OpenAI Codex** assisted with research, implementation, testing, UI and demo preparation. **ElevenLabs** generated Neha's English narration for the current 2:34 demo. Leader/team contribution statements remain for their owners to confirm.
 
 ## Delivery and evidence status
 
@@ -37,23 +37,21 @@ AI disclosure: **OpenAI Codex** assisted with research, implementation, testing,
 | Original AWS evidence | **Passed, dated September 18.** Two unsafe receipts versus one repaired receipt, 16 recomputed assertions. The original stacks were subsequently deleted; that cleanup does not describe a new stack. |
 | New three-candidate AWS experiment | Final third run **passed 22/22 experiment checks with verified cleanup**, observing 2/2 violation, 1/0 violation and 1/1 passed. Exact report and captured hardened verifier/archive retained. First two attempts remain unchanged. [Chronology and artifacts](releases/2026-09-20.md#aws-evidence). |
 | New local repair tutorial | **Passed.** A clean kit extraction executed order-ID → SKU → restored source, with 1/1 → 1/0 → 1/1 receipts. [Evidence](repair-lab/key-scope-tutorial/README.md). |
-| Existing YouTube demo | [September 19 published video](https://youtu.be/CGE19upS66A), **unlisted, 2:43**. Signed-out playback was verified September 19. It shows the earlier UI and key-removal/restoration tutorial; it does not show the September 20 revision. |
-| New silent video | **Completed local artifact**, 154.000 seconds, 1920×1080 H.264/30 fps with zero audio streams. Full decode and 14 technical checks passed; 28 sampled encoded frames reviewed. [Metadata and limits](releases/2026-09-20.md#media-and-publication). No new voice or YouTube upload; the existing link does not play this revision. |
+| Current YouTube demo | [September 20 narrated video](https://youtu.be/coCDLSyU8AY), **unlisted, 2:34 (154.000 seconds)**. Publication and the watch-page duration were verified; copyright and Community Guidelines checks reported no issues. It shows the recorded AWS comparison and actual local order-ID → SKU → order-ID tutorial. [Script and verification scope](demo-script.md). The previous upload's captions, quality and signed-out checks do not establish those states for this new upload. |
+| Preserved silent master | **Completed local artifact**, 154.000 seconds, 1920×1080 H.264/30 fps with zero audio streams. Full decode and 14 technical checks passed; 28 sampled encoded frames reviewed. [Metadata and limits](releases/2026-09-20.md#media-and-publication). Its picture is retained unchanged in the current narrated film; the silent source record remains historical. |
 | Outside-developer validation | **Not obtained.** [Trial protocol and status](first-user-trial.md); no outreach or participant outcome is claimed. |
 | Hosted CI | **Incomplete: did not start.** [Run 35466519733 at the published source commit](releases/2026-09-20-github-ci.json) executed no steps because of the account billing block. This is not a test failure; recorded local checks are separate. |
 | Event submission | **Not submitted.** Required owner fields and actual submission confirmation remain outstanding. |
 
 ## Video and submission boundary
 
-The rules require a public repository, a short writeup, and a public or unlisted **YouTube video under three minutes showing AWS use**. Ship it requires a live AWS deployment URL. A silent local MP4 is a review artifact; it does not replace the required YouTube link. The current instruction permits local silent video work and prohibits a new YouTube upload or new narration.
-
-The existing published video remains available. If it is used for submission, the judged pitch must rely on the capabilities it shows. New interface motion, the September 20 SKU-key code mutation and the final three-candidate AWS result must not be presented as features shown by that older upload. The [current form draft](submission-form.md) distinguishes these versions.
+The rules require a public repository, a short writeup, and a public or unlisted **YouTube video under three minutes showing AWS use**. Ship it requires a live AWS deployment URL. The selected [2:34 narrated YouTube film](https://youtu.be/coCDLSyU8AY) is published unlisted and replaces the earlier selected demo. It presents recorded AWS evidence and explicitly changes to the actual local tutorial at 00:34. The [current form draft](submission-form.md) uses this new URL. Publication of the film does not establish event submission.
 
 Confirm the leader's registered WeMakeDevs username, GitHub and LinkedIn profiles, actual contribution, team membership and any member contributions. Student verification is user-reported; applicable Builder Center/SheerID, registration and First Commit check-in still require account-owner confirmation. Resume sharing is an optional owner decision, with separate fast-track interview requirements. No personal profile or contribution has been invented to fill the form.
 
 ## Deadline and spending boundary
 
-Use **September 20, 2026, 09:00 IST (03:30 UTC)** as the earliest observed official cutoff; target submission by **07:30 IST**. The [latest read at 2026-09-19 19:48:16 UTC](releases/2026-09-20-deadline.json) retained `2026-09-20T03:30:00Z` and the configuration update at `2026-09-19T16:04:09.889984Z`. The earlier overview countdown pointed eleven hours later. This refresh does not resolve that conflict or establish organizer confirmation. [Original source evidence](deadline.md).
+The current official submission cutoff is **September 20, 2026, 20:00 IST (14:30 UTC)**. The [fresh API read at 2026-09-20 07:05:26 UTC](publication/deadline-current-20260920.json) returned `end_date: "2026-09-20T14:30:00Z"`, with configuration updated at `2026-09-20T04:57:05.393246Z`. Submit before this cutoff. It supersedes the earlier 09:00 IST boundary and 07:30 target; the [prior API snapshot](releases/2026-09-20-deadline.json) and [deadline history](deadline.md) remain preserved as historical evidence.
 
 AWS work remains bounded by a **US$25 cumulative gross project ceiling with US$5 reserved**. Confirmed headroom is required before further billable work. Credits, expiry and alerts are not hard spending caps. Historical spending observations are dated, not current billing readings. [Publication record](publication-status.md) and [operating limits](repair-lab/results.md#aws-evidence-and-present-limits).
 
@@ -65,4 +63,4 @@ AWS work remains bounded by a **US$25 cumulative gross project ceiling with US$5
 - [Final three-candidate AWS report](../web/aws-key-scope-report.json), [captured-source regression](../web/aws-key-scope-regression.zip) and [dated attempt chronology](releases/2026-09-20.md#aws-evidence).
 - [Original AWS viewer](../web/aws-run.html), [September 18 validation](validation.md) and [unchanged original AWS archive](../web/regression-case.zip).
 - [Adapter contract](repair-lab/adapter.md), [report schema](repair-lab/schema.md) and [learning/feedback](what-we-learned.md).
-- [Existing video script and provenance](demo-script.md) and [September 19 signed-out access check](publication/youtube-signed-out-v2.json).
+- [Current video script and verification scope](demo-script.md), [historical September 19 script](demo-script-v2.md) and [that earlier upload's signed-out check](publication/youtube-signed-out-v2.json).

@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-09-20T07:10:33.834259+00:00",
+  "status": "published-unlisted",
+  "url": "https://youtu.be/coCDLSyU8AY",
+  "videoId": "coCDLSyU8AY",
+  "title": "ReplayGuard — Keep the failure. Test the repair. | First Commit | WeMakeDevs X AWS",
+  "sourceFile": "replayguard-demo-neha.mp4",
+  "sourceBytes": 12647916,
+  "sourceSha256": "ea4a94ad6c48aa4866954d0702d45fce15e9fd02fa1f12cf2589499906d2d327",
+  "sourceDurationSeconds": 154.0,
+  "playerDurationSeconds": 154.021,
+  "playerStateObserved": {
+    "currentTime": 154.021,
+    "paused": true,
+    "readyState": 4,
+    "videoWidth": 1920,
+    "videoHeight": 1080,
+    "error": null
+  },
+  "copyrightCheck": "no-issues-found",
+  "communityGuidelinesCheck": "no-issues-found",
+  "madeForKids": false,
+  "paidPromotion": false,
+  "language": "English (India)",
+  "category": "Science & Technology",
+  "syntheticContentDisclosure": true,
+  "manualAITagAdded": false,
+  "narrationAttribution": "https://elevenlabs.io/",
+  "anonymousOembed": "passed; title and author resolved without authentication",
+  "directListeningPerformed": false,
+  "technicalAndEditChecks": {
+    "passed": 17,
+    "total": 17
+  },
+  "encodedAudio": {
+    "integratedLufs": -16.04,
+    "truePeakDbtp": -1.38
+  },
+  "previousVideo": {
+    "id": "CGE19upS66A",
+    "deletionConfirmed": false
+  },
+  "scope": "This verifies this new upload. Earlier video captions and signed-out playback checks are not inherited."
+}
