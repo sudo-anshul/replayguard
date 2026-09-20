@@ -38,7 +38,10 @@
   },
   "previousVideo": {
     "id": "CGE19upS66A",
-    "deletionConfirmed": false
+    "deletionConfirmed": true,
+    "deletionStatus": "permanently-deleted",
+    "deletionCheckedAt": "2026-09-20T07:26:16.712157+00:00",
+    "deletionEvidence": "youtube-previous-retired-v3.json"
   },
   "scope": "This verifies this new upload. Earlier video captions and signed-out playback checks are not inherited."
 }

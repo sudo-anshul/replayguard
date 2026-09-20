@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-09-20T07:26:16.712157+00:00",
+  "status": "permanently-deleted",
+  "videoId": "CGE19upS66A",
+  "url": "https://www.youtube.com/watch?v=CGE19upS66A",
+  "title": "ReplayGuard \u2014 Keep the failure. Test the repair. | First Commit | WeMakeDevs X AWS",
+  "uploadedDateObserved": "2026-09-19",
+  "studioDurationObserved": "2:44",
+  "explicitFinalConfirmationReceived": true,
+  "method": "User-confirmed Delete forever action in YouTube Studio.",
+  "watchPageObserved": [
+    "Video unavailable",
+    "This video has been removed by the uploader"
+  ],
+  "replacement": {
+    "videoId": "coCDLSyU8AY",
+    "url": "https://youtu.be/coCDLSyU8AY",
+    "studioListingObserved": "Unlisted"
+  },
+  "localOriginalPreserved": {
+    "filename": "replayguard-demo-neha-20260919.mp4",
+    "bytes": 13108071,
+    "sha256": "f59eeaf60918c0be3b98cdbfae39db474bc3909604f463751ddd0274994c8621"
+  },
+  "scope": "Only the superseded September 19 ReplayGuard upload was deleted. Historical publication records and local source media are preserved."
+}
