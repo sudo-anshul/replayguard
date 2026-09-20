@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-09-20T07:22:00.478488+00:00",
+  "deploymentJobId": "5",
+  "videoUrl": "https://youtu.be/coCDLSyU8AY",
+  "stagedPages": [
+    {
+      "path": "index.html",
+      "sha256": "ac7f02350c6372bf7ede6fed9a1a496936dc6d0846ee996023bab46c69db9611",
+      "newVideoIdPresent": true,
+      "previousVideoIdPresent": false
+    },
+    {
+      "path": "repair.html",
+      "sha256": "ac7f02350c6372bf7ede6fed9a1a496936dc6d0846ee996023bab46c69db9611",
+      "newVideoIdPresent": true,
+      "previousVideoIdPresent": false
+    }
+  ],
+  "anonymousBytesVerified": true,
+  "browserObservation": {
+    "url": "https://prod.d2w687q4ucx6dk.amplifyapp.com/",
+    "links": [
+      {
+        "text": "Watch the demo (2:34) Code, receipts and evidence",
+        "href": "https://youtu.be/coCDLSyU8AY"
+      },
+      {
+        "text": "Watch demo \u00b7 2:34",
+        "href": "https://youtu.be/coCDLSyU8AY"
+      }
+    ]
+  },
+  "scope": "A link update and static-byte verification. Prior interface reviews remain separate; no new AWS experiment was run."
+}
